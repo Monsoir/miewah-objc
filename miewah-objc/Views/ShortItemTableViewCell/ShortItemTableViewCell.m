@@ -22,10 +22,12 @@ static const CGFloat ScaleY = 0.9;
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    [self initialize];
 }
 
-- (void)setHighlighted:(BOOL)highlighted {
-    [super setHighlighted:highlighted];
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
         CGAffineTransform scaleTransform = CGAffineTransformMakeScale(ScaleX, ScaleY);
         [UIView animateWithDuration:AnimatingTime animations:^{

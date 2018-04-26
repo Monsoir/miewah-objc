@@ -15,7 +15,7 @@
     bottomBorderLayer.frame = CGRectMake(inset, self.frame.size.height - 1, self.frame.size.width - 2 * inset, height);
     bottomBorderLayer.backgroundColor = color.CGColor;
     bottomBorderLayer.masksToBounds = YES;
-    [bottomBorderLayer addSublayer:bottomBorderLayer];
+    [self.layer addSublayer:bottomBorderLayer];
 }
 
 @end

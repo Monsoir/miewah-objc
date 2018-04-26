@@ -10,7 +10,6 @@
 		9D1B8F7D209051270099976C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7C209051270099976C /* LoginViewController.m */; };
 		9D1B8F80209051350099976C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7F209051350099976C /* RegisterViewController.m */; };
 		9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F82209051430099976C /* AboutMeViewController.m */; };
-		9D1B8F862090515A0099976C /* WordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F852090515A0099976C /* WordsViewController.m */; };
 		9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F88209051690099976C /* WordDetailViewController.m */; };
 		9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F8B2090517D0099976C /* SlangsViewController.m */; };
 		9D1B8F8F209051850099976C /* SlangDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F8E209051850099976C /* SlangDetailViewController.m */; };
@@ -39,9 +38,11 @@
 		9D1B8FD92090E6DF0099976C /* AboutMeUnloggedItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD52090E6DF0099976C /* AboutMeUnloggedItems.plist */; };
 		9D1B8FDA2090E6DF0099976C /* WordDetailSections.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD62090E6DF0099976C /* WordDetailSections.plist */; };
 		9D1B8FDB2090E6DF0099976C /* SlangDetailSections.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD72090E6DF0099976C /* SlangDetailSections.plist */; };
+		9D1B8FE52091D3750099976C /* UIViewController+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8FE42091D3750099976C /* UIViewController+Keyboard.m */; };
+		9D1B8FE9209207480099976C /* WordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8FE8209207480099976C /* WordsViewController.m */; };
+		9D1B8FEA209208510099976C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D20FDD820887E3A00FC4856 /* Main.storyboard */; };
 		9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDD320887E3A00FC4856 /* AppDelegate.m */; };
 		9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDD620887E3A00FC4856 /* ViewController.m */; };
-		9D20FDDA20887E3A00FC4856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D20FDD820887E3A00FC4856 /* Main.storyboard */; };
 		9D20FDDC20887E3D00FC4856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D20FDDB20887E3D00FC4856 /* Assets.xcassets */; };
 		9D20FDDF20887E3D00FC4856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D20FDDD20887E3D00FC4856 /* LaunchScreen.storyboard */; };
 		9D20FDE220887E3D00FC4856 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDE120887E3D00FC4856 /* main.m */; };
@@ -74,8 +75,6 @@
 		9D1B8F7F209051350099976C /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		9D1B8F81209051430099976C /* AboutMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutMeViewController.h; sourceTree = "<group>"; };
 		9D1B8F82209051430099976C /* AboutMeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
-		9D1B8F842090515A0099976C /* WordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsViewController.h; sourceTree = "<group>"; };
-		9D1B8F852090515A0099976C /* WordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsViewController.m; sourceTree = "<group>"; };
 		9D1B8F87209051690099976C /* WordDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordDetailViewController.h; sourceTree = "<group>"; };
 		9D1B8F88209051690099976C /* WordDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewController.m; sourceTree = "<group>"; };
 		9D1B8F8A2090517D0099976C /* SlangsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlangsViewController.h; sourceTree = "<group>"; };
@@ -123,6 +122,10 @@
 		9D1B8FD52090E6DF0099976C /* AboutMeUnloggedItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AboutMeUnloggedItems.plist; sourceTree = "<group>"; };
 		9D1B8FD62090E6DF0099976C /* WordDetailSections.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordDetailSections.plist; sourceTree = "<group>"; };
 		9D1B8FD72090E6DF0099976C /* SlangDetailSections.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SlangDetailSections.plist; sourceTree = "<group>"; };
+		9D1B8FE32091D3750099976C /* UIViewController+Keyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Keyboard.h"; sourceTree = "<group>"; };
+		9D1B8FE42091D3750099976C /* UIViewController+Keyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Keyboard.m"; sourceTree = "<group>"; };
+		9D1B8FE7209207470099976C /* WordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsViewController.h; sourceTree = "<group>"; };
+		9D1B8FE8209207480099976C /* WordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsViewController.m; sourceTree = "<group>"; };
 		9D20FDCF20887E3A00FC4856 /* miewah-objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "miewah-objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D20FDD220887E3A00FC4856 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9D20FDD320887E3A00FC4856 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -172,14 +175,14 @@
 		9D1B8F7A209050E80099976C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9D1B8FE7209207470099976C /* WordsViewController.h */,
+				9D1B8FE8209207480099976C /* WordsViewController.m */,
 				9D1B8F7B209051270099976C /* LoginViewController.h */,
 				9D1B8F7C209051270099976C /* LoginViewController.m */,
 				9D1B8F7E209051350099976C /* RegisterViewController.h */,
 				9D1B8F7F209051350099976C /* RegisterViewController.m */,
 				9D1B8F81209051430099976C /* AboutMeViewController.h */,
 				9D1B8F82209051430099976C /* AboutMeViewController.m */,
-				9D1B8F842090515A0099976C /* WordsViewController.h */,
-				9D1B8F852090515A0099976C /* WordsViewController.m */,
 				9D1B8F87209051690099976C /* WordDetailViewController.h */,
 				9D1B8F88209051690099976C /* WordDetailViewController.m */,
 				9D1B8F8A2090517D0099976C /* SlangsViewController.h */,
@@ -226,6 +229,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D1B8FDF2091D3170099976C /* UIViewController */,
 				9D1B8FA12090C1080099976C /* UIColor */,
 				9D1B8F9D2090BFE10099976C /* UIView */,
 			);
@@ -304,6 +308,15 @@
 				9D1B8FD62090E6DF0099976C /* WordDetailSections.plist */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		9D1B8FDF2091D3170099976C /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9D1B8FE32091D3750099976C /* UIViewController+Keyboard.h */,
+				9D1B8FE42091D3750099976C /* UIViewController+Keyboard.m */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		9D20FDC620887E3900FC4856 = {
@@ -484,11 +497,11 @@
 				9D1B8F942090534C0099976C /* ShortItemTableViewCell.xib in Resources */,
 				9D1B8FD82090E6DF0099976C /* AboutMeLoggedItems.plist in Resources */,
 				9D1B8FB92090C84E0099976C /* ItemIntroductionHeader.xib in Resources */,
+				9D1B8FEA209208510099976C /* Main.storyboard in Resources */,
 				9D1B8FDB2090E6DF0099976C /* SlangDetailSections.plist in Resources */,
 				9D1B8FDA2090E6DF0099976C /* WordDetailSections.plist in Resources */,
 				9D20FDDC20887E3D00FC4856 /* Assets.xcassets in Resources */,
 				9D1B8FC82090CD230099976C /* NotificationBanner.xib in Resources */,
-				9D20FDDA20887E3A00FC4856 /* Main.storyboard in Resources */,
 				9D1B8FD92090E6DF0099976C /* AboutMeUnloggedItems.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,7 +549,6 @@
 			files = (
 				9D1B8F80209051350099976C /* RegisterViewController.m in Sources */,
 				9D1B8FBC2090C9170099976C /* TextAlignCenterTableViewCell.m in Sources */,
-				9D1B8F862090515A0099976C /* WordsViewController.m in Sources */,
 				9D1B8FB72090C8360099976C /* ItemIntroductionHeader.m in Sources */,
 				9D1B8FC52090CB650099976C /* ColorBlockBasicTableViewCell.m in Sources */,
 				9D1B8FAD2090C6AF0099976C /* SlangItemDetailHeaderView.m in Sources */,
@@ -555,8 +567,10 @@
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,
 				9D1B8FB32090C77C0099976C /* ItemIntroductionCell.m in Sources */,
 				9D1B8FBF2090C9980099976C /* AvatarHeader.m in Sources */,
+				9D1B8FE9209207480099976C /* WordsViewController.m in Sources */,
 				9D1B8FCB2090CD6C0099976C /* NotificationBanner.m in Sources */,
 				9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */,
+				9D1B8FE52091D3750099976C /* UIViewController+Keyboard.m in Sources */,
 				9D1B8FCE2090DC890099976C /* UIView+Nib.m in Sources */,
 				9D1B8F8F209051850099976C /* SlangDetailViewController.m in Sources */,
 				9D1B8FA72090C28C0099976C /* ShortItemDetailHeaderView.m in Sources */,

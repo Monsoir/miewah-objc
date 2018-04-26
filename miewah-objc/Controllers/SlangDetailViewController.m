@@ -7,8 +7,15 @@
 //
 
 #import "SlangDetailViewController.h"
+#import "ItemIntroductionCell.h"
 
-@interface SlangDetailViewController ()
+static NSString *SectionIdentifier = @"section-header";
+
+@interface SlangDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSArray<NSString *> *sectionNames;
 
 @end
 
@@ -17,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupSubviews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +32,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setupSubviews {
+    self.tableView.sectionHeaderHeight = 40;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:SectionIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
 }
-*/
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.sectionNames == nil) return 0;
+    return self.sectionNames.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ItemIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:[ItemIntroductionCell reuseIdentifier] forIndexPath:indexPath];
+    cell.lbIntroductions.text = @"dkldfjw;dh;jdksajf;kfnerifwnk;adsn;fna;fnskdajmlakjsdvdn,asksmca";
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:SectionIdentifier];
+    header.textLabel.text = self.sectionNames[section];
+    return header;
+}
+
+- (NSArray<NSString *> *)sectionNames {
+    if (_sectionNames == nil) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"SlangDetailSections" ofType:@"plist"];
+        _sectionNames = [NSArray arrayWithContentsOfFile:path];
+    }
+    
+    return _sectionNames;
+}
 
 @end

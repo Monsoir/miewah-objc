@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a43-M9-Ymt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a43-M9-Ymt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,7 @@
         <!--字词-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="字词" id="BYZ-38-t0r" customClass="WordsViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="字词" id="BYZ-38-t0r" customClass="WordsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,9 +47,6 @@
                                         </segmentedControl>
                                     </barButtonItem>
                                 </items>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="shadowImage" value="UIImage()"/>
-                                </userDefinedRuntimeAttributes>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,7 +74,7 @@
         <!--咩-->
         <scene sceneID="mYc-IU-tee">
             <objects>
-                <viewController title="咩" hidesBottomBarWhenPushed="YES" id="sLH-pY-bax" customClass="WordDetailViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="咩" hidesBottomBarWhenPushed="YES" id="sLH-pY-bax" customClass="WordDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLF-HJ-ggu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +82,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="3" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7j2-UP-B7F">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="xyb-Zs-J5l" customClass="ShortItemDetailHeaderView" customModule="miewa" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="xyb-Zs-J5l" customClass="ShortItemDetailHeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -223,7 +220,7 @@
         <!--故仔-->
         <scene sceneID="1OY-HC-wvU">
             <objects>
-                <viewController title="故仔" id="tLY-lZ-jMt" customClass="SlangsViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="故仔" id="tLY-lZ-jMt" customClass="SlangsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zQc-Ek-kGL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,7 +256,7 @@
         <!--我的-->
         <scene sceneID="RIg-5A-KaN">
             <objects>
-                <viewController id="3a3-8q-CSY" customClass="AboutMeViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3a3-8q-CSY" customClass="AboutMeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jrj-qn-8kx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,7 +264,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L0s-eC-RcQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="Psf-NG-Sq0" customClass="AvatarHeader" customModule="miewa" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="Psf-NG-Sq0" customClass="AvatarHeader">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -298,7 +295,7 @@
                                         <outlet property="lbName" destination="vRF-AD-4vv" id="hZO-AR-wMb"/>
                                     </connections>
                                 </view>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="U6x-nS-OBN" customClass="Footer" customModule="miewa" customModuleProvider="target">
+                                <view key="tableFooterView" contentMode="scaleToFill" id="U6x-nS-OBN" customClass="Footer">
                                     <rect key="frame" x="0.0" y="396" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -327,7 +324,7 @@
                                     </connections>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ColorBlockBasicTableViewCell" id="1Zs-QL-QYu" customClass="ColorBlockBasicTableViewCell" customModule="miewa" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ColorBlockBasicTableViewCell" id="1Zs-QL-QYu" customClass="ColorBlockBasicTableViewCell">
                                         <rect key="frame" x="0.0" y="308" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Zs-QL-QYu" id="YYf-kv-pKw">
@@ -363,7 +360,7 @@
                                             <outlet property="lbTitle" destination="HPH-7b-fSz" id="HTq-X6-yDO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextAlignCenterTableViewCell" id="TYy-KT-5BA" customClass="TextAlignCenterTableViewCell" customModule="miewa" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextAlignCenterTableViewCell" id="TYy-KT-5BA" customClass="TextAlignCenterTableViewCell">
                                         <rect key="frame" x="0.0" y="352" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TYy-KT-5BA" id="hn9-WL-Yj5">
@@ -420,7 +417,7 @@
         <!--惦过碌蔗-->
         <scene sceneID="Tf9-R0-Tkk">
             <objects>
-                <viewController title="惦过碌蔗" hidesBottomBarWhenPushed="YES" id="qan-Yb-Ktr" customClass="SlangDetailViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="惦过碌蔗" hidesBottomBarWhenPushed="YES" id="qan-Yb-Ktr" customClass="SlangDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6g3-P1-K6R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -428,7 +425,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5ai-Ok-y3m">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="FuA-qK-Zvp" customClass="SlangItemDetailHeaderView" customModule="miewa" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="FuA-qK-Zvp" customClass="SlangItemDetailHeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -550,7 +547,7 @@
         <!--Login View Controller-->
         <scene sceneID="f8N-Pm-XbJ">
             <objects>
-                <viewController id="EF1-36-gEj" customClass="LoginViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EF1-36-gEj" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xcb-S8-xC0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -673,7 +670,7 @@
         <!--Register View Controller-->
         <scene sceneID="iVB-hx-AiV">
             <objects>
-                <viewController id="taI-Js-Z8x" customClass="RegisterViewController" customModule="miewa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="taI-Js-Z8x" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pT3-pr-byh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
