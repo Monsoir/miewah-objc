@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WordsViewController : UIViewController
+@interface WordsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) NSMutableArray *dataSource;
+
+- (void)setupSubviews;
 
 @end

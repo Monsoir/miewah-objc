@@ -12,6 +12,8 @@
 #import "ColorBlockBasicTableViewCell.h"
 #import "TextAlignCenterTableViewCell.h"
 
+#import "UINavigationBar+BottomLine.h"
+
 @interface AboutMeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -30,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initialize];
+    [self setupNavigationBar];
     [self setupSubviews];
 }
 
@@ -40,6 +43,10 @@
 
 - (void)initialize {
     self.logged = NO;
+}
+
+- (void)setupNavigationBar {
+    [self.navigationController.navigationBar removeBottomLine];
 }
 
 - (void)setupSubviews {

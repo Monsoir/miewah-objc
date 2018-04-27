@@ -49,6 +49,9 @@
 		9D20FDEC20887E3E00FC4856 /* miewah_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDEB20887E3E00FC4856 /* miewah_objcTests.m */; };
 		9D20FDF720887E3E00FC4856 /* miewah_objcUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDF620887E3E00FC4856 /* miewah_objcUITests.m */; };
 		9D20FE0620887E8800FC4856 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */; };
+		9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */; };
+		9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */; };
+		9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +146,12 @@
 		9D20FDF620887E3E00FC4856 /* miewah_objcUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = miewah_objcUITests.m; sourceTree = "<group>"; };
 		9D20FDF820887E3E00FC4856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
+		9D6D4F082092FDA4009AA9CE /* WordsMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieViewController.h; sourceTree = "<group>"; };
+		9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieViewController.m; sourceTree = "<group>"; };
+		9D6D4F0B2092FE3E009AA9CE /* WordsMieMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieMieViewController.h; sourceTree = "<group>"; };
+		9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieMieViewController.m; sourceTree = "<group>"; };
+		9D6D4F0F2093256B009AA9CE /* UINavigationBar+BottomLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BottomLine.h"; sourceTree = "<group>"; };
+		9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BottomLine.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +186,10 @@
 			children = (
 				9D1B8FE7209207470099976C /* WordsViewController.h */,
 				9D1B8FE8209207480099976C /* WordsViewController.m */,
+				9D6D4F082092FDA4009AA9CE /* WordsMieViewController.h */,
+				9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */,
+				9D6D4F0B2092FE3E009AA9CE /* WordsMieMieViewController.h */,
+				9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */,
 				9D1B8F7B209051270099976C /* LoginViewController.h */,
 				9D1B8F7C209051270099976C /* LoginViewController.m */,
 				9D1B8F7E209051350099976C /* RegisterViewController.h */,
@@ -229,6 +242,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D6D4F0E20932554009AA9CE /* UINavigationBar */,
 				9D1B8FDF2091D3170099976C /* UIViewController */,
 				9D1B8FA12090C1080099976C /* UIColor */,
 				9D1B8F9D2090BFE10099976C /* UIView */,
@@ -386,6 +400,15 @@
 				9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D6D4F0E20932554009AA9CE /* UINavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				9D6D4F0F2093256B009AA9CE /* UINavigationBar+BottomLine.h */,
+				9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */,
+			);
+			path = UINavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,6 +578,7 @@
 				9D1B8F7D209051270099976C /* LoginViewController.m in Sources */,
 				9D1B8FD22090E3A60099976C /* Constants.m in Sources */,
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
+				9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */,
 				9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */,
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
@@ -563,10 +587,12 @@
 				9D1B8FA02090BFF40099976C /* UIView+Shadow.m in Sources */,
 				9D1B8F97209053700099976C /* ShortItemTableViewCell.m in Sources */,
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
+				9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */,
 				9D1B8FA42090C1150099976C /* UIColor+Hex.m in Sources */,
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,
 				9D1B8FB32090C77C0099976C /* ItemIntroductionCell.m in Sources */,
 				9D1B8FBF2090C9980099976C /* AvatarHeader.m in Sources */,
+				9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */,
 				9D1B8FE9209207480099976C /* WordsViewController.m in Sources */,
 				9D1B8FCB2090CD6C0099976C /* NotificationBanner.m in Sources */,
 				9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */,

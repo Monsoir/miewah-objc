@@ -10,22 +10,12 @@
 #import "ShortItemTableViewCell.h"
 
 #import "UIColor+Hex.h"
+#import "UINavigationBar+BottomLine.h"
 
-typedef enum : NSUInteger {
-    SectionIndexMie,
-    SectionIndexMieMie,
-} SectionIndex;
+@interface WordsViewController ()
 
-@interface WordsViewController ()<UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *sectionSegmentedControl;
-
-@property (nonatomic, assign) SectionIndex sectionIndex;
 @property (nonatomic, strong) NSMutableArray *mieWords;
 @property (nonatomic, strong) NSMutableArray *miemieWords;
-@property (nonatomic, weak) NSMutableArray *words;
-@property (nonatomic, assign) SectionIndex currentSection;
 
 @end
 
@@ -34,7 +24,6 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initialize];
     [self setupNavigationBar];
     [self setupSubviews];
 }
@@ -44,29 +33,12 @@ typedef enum : NSUInteger {
     // Dispose of any resources that can be recreated.
 }
 
-- (void)initialize {
-    self.words = nil;
-    self.currentSection = SectionIndexMie;
-}
-
 - (void)setupNavigationBar {
-    
+    [self.navigationController.navigationBar removeBottomLine];
 }
 
 - (void)setupSubviews {
     
-    // table view
-    self.tableView.rowHeight = 450;
-    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
-    [self.tableView registerNib:[UINib nibWithNibName:[ShortItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ShortItemTableViewCell reuseIdentifier]];
-    
-    // segmented control
-    self.currentSection = SectionIndexMie;
-}
-
-- (IBAction)actionSectionChanged:(UISegmentedControl *)sender {
-    self.currentSection = sender.selectedSegmentIndex;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,27 +46,14 @@ typedef enum : NSUInteger {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.words == nil) return 0;
+    if (self.dataSource == nil) return 0;
     
-    return self.words.count;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     return cell;
-}
-
-- (void)setWords:(NSMutableArray *)words {
-    _words = words;
-    if (_words == nil) return;
-    
-    UITableViewCell *firstVisibleCell = [self.tableView.visibleCells firstObject];
-    if (firstVisibleCell == nil) return;
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:firstVisibleCell];
-    NSIndexPath *destIndexPath = indexPath.row >= _words.count ? [NSIndexPath indexPathForRow:_words.count - 1 inSection:0] : indexPath;
-    [self.tableView reloadData];
-    [self.tableView scrollToRowAtIndexPath:destIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 - (NSMutableArray *)mieWords {
@@ -109,11 +68,6 @@ typedef enum : NSUInteger {
         _miemieWords = [NSMutableArray arrayWithArray:@[@1, @2, @3]];
     }
     return _miemieWords;
-}
-
-- (void)setCurrentSection:(SectionIndex)currentSection {
-    _currentSection = currentSection;
-    self.words = self.currentSection == SectionIndexMie ? self.mieWords : self.miemieWords;
 }
 
 @end
