@@ -11,6 +11,10 @@
 #import "Footer.h"
 #import "ColorBlockBasicTableViewCell.h"
 #import "TextAlignCenterTableViewCell.h"
+#import "UIConstants.h"
+#import "FoundationConstants.h"
+#import "MiewahUser.h"
+#import "AboutMeViewModel.h"
 
 #import "UINavigationBar+BottomLine.h"
 
@@ -20,9 +24,7 @@
 @property (nonatomic, weak) IBOutlet AvatarHeader *avatarHeader;
 @property (nonatomic, weak) IBOutlet Footer *tableFooter;
 
-@property (nonatomic, strong) NSArray<NSString *> *loggeditems;
-@property (nonatomic, strong) NSArray<NSString *> *unloggedItems;
-@property (nonatomic, assign) BOOL logged;
+@property (nonatomic, strong) AboutMeViewModel *vm;
 
 @end
 
@@ -31,9 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initialize];
     [self setupNavigationBar];
     [self setupSubviews];
+    [self linkSignals];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,8 +43,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)initialize {
-    self.logged = NO;
+- (void)linkSignals {
+    @weakify(self);
+    [self.vm.loggedChangedSignal subscribeNext:^(id _Nullable x) {
+        @strongify(self);
+        [self reloadView];
+    }];
 }
 
 - (void)setupNavigationBar {
@@ -51,10 +57,6 @@
 
 - (void)setupSubviews {
     self.tableView.rowHeight = 50;
-    self.tableFooter.shouldBeBlank = !self.logged;
-    self.tableFooter.title = @"登  出";
-    self.tableFooter.textColor = UIColor.redColor;
-    self.logged ? [self setupSubviewsForRegisteredUser] : [self setupSubviewsForTourist];
 }
 
 - (void)setupSubviewsForTourist {
@@ -63,22 +65,34 @@
 
 - (void)setupSubviewsForRegisteredUser {
     self.avatarHeader.lbName.text = @"扬扬扬";
+    self.tableFooter.title = @"登  出";
+    self.tableFooter.textColor = UIColor.redColor;
+    [self.tableFooter.btnFunction addTarget:self action:@selector(actionLogout) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)reloadView {
+    void (^reload)(void) = ^void() {
+        BOOL logged = [self.vm.logged boolValue];
+        self.tableFooter.shouldBeBlank = !logged;
+        logged ? [self setupSubviewsForRegisteredUser] : [self setupSubviewsForTourist];
+        [self.tableView reloadData];
+    };
+    runOnMainThread(reload);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray<NSString *> *items = self.logged ? self.loggeditems : self.unloggedItems;
-    return items.count;
+    return self.vm.interactiveItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.logged) {
+    if ([self.vm.logged boolValue]) {
         ColorBlockBasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ColorBlockBasicTableViewCell reuseIdentifier] forIndexPath:indexPath];
         cell.colorLeader.backgroundColor = UIColor.redColor;
-        cell.lbTitle.text = self.loggeditems[indexPath.row];
+        cell.lbTitle.text = self.vm.interactiveItems[indexPath.row];
         return cell;
     } else {
         TextAlignCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[TextAlignCenterTableViewCell reuseIdentifier] forIndexPath:indexPath];
-        cell.lbTtitle.text = self.unloggedItems[indexPath.row];
+        cell.lbTtitle.text = self.vm.interactiveItems[indexPath.row];
         return cell;
     }
 }
@@ -86,7 +100,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if (self.logged) {
+    if ([self.vm.logged boolValue]) {
         switch (indexPath.row) {
             default:
                 break;
@@ -106,22 +120,15 @@
     }
 }
 
-- (NSArray<NSString *> *)loggeditems {
-    if (_loggeditems == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"AboutMeLoggedItems" ofType:@"plist"];
-        _loggeditems = [NSArray arrayWithContentsOfFile:path];
-    }
-    
-    return _loggeditems;
+- (void)actionLogout {
+    [[MiewahUser thisUser] clearUserInfo];
 }
 
-- (NSArray<NSString *> *)unloggedItems {
-    if (_unloggedItems == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"AboutMeUnloggedItems" ofType:@"plist"];
-        _unloggedItems = [NSArray arrayWithContentsOfFile:path];
+- (AboutMeViewModel *)vm {
+    if (_vm == nil) {
+        _vm = [[AboutMeViewModel alloc] init];
     }
-    
-    return _unloggedItems;
+    return _vm;
 }
 
 @end

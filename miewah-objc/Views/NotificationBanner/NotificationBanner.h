@@ -25,5 +25,12 @@ typedef enum : NSUInteger {
 @property (nonatomic, weak) UIViewController *parentController;
 
 @property (nonatomic, assign) BannerStyle bannerStyle;
+@property (nonatomic, strong) UIColor *titleForegroundColor;
+@property (nonatomic, strong) UIColor *detailForegroundColor;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *detail;
+
+- (void)showOnViewController:(UIViewController *)viewController;
++ (void)displayABannerWithTitle:(NSString *)title detail:(NSString *)detail style:(BannerStyle)style onViewController:(UIViewController *)vc;
 
 @end

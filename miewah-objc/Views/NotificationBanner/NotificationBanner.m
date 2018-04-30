@@ -7,7 +7,7 @@
 //
 
 #import "NotificationBanner.h"
-#import "Constants.h"
+#import "UIConstants.h"
 
 #import "UIView+Nib.h"
 
@@ -84,6 +84,12 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
     return self;
 }
 
+- (void)dealloc {
+#if DEBUG
+    NSLog(@"%@ deallocs", NSStringFromClass([self class]));
+#endif
+}
+
 - (void)initialize {
     self.duration = 2.0;
     self.autoDismiss = YES;
@@ -135,17 +141,25 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
 
 - (BannerPositionFrame)bannerPositionFrameForViewController:(UIViewController *)vc {
     CGFloat height = BarHeight;
-    if (vc == nil) {
-        height = BarHeight + ([Constants isiPhoneX] ? 40 : 20);
-    }
+    height = BarHeight + ([UIConstants isiPhoneX] ? 40 : 20);
     return BannerPositionMake(UIScreen.mainScreen.bounds.size.width, height);
 }
 
 - (void)correctTitleTopMargin {
     if (self.parentController == nil) {
-        self.lbTitleTopConstraint.constant = [Constants isiPhoneX] ? 40 : 20;
+        self.lbTitleTopConstraint.constant = [UIConstants isiPhoneX] ? 40 : 20;
         [self setNeedsUpdateConstraints];
     }
+}
+
++ (void)displayABannerWithTitle:(NSString *)title detail:(NSString *)detail style:(BannerStyle)style onViewController:(UIViewController *)vc {
+    NotificationBanner *banner = [[NotificationBanner alloc] init];
+    banner.titleForegroundColor = UIColor.whiteColor;
+    banner.detailForegroundColor = UIColor.whiteColor;
+    banner.bannerStyle = style;
+    banner.title = title;
+    banner.detail = detail;
+    [banner showOnViewController:vc];
 }
 
 - (UIWindow *)appWindow {
@@ -173,6 +187,7 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
     return self.lbTitle.superview;
 }
 
+@synthesize titleForegroundColor = _titleForegroundColor;
 - (UIColor *)titleForegroundColor {
     return self.lbTitle.textColor;
 }
@@ -181,6 +196,7 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
     self.lbTitle.textColor = color;
 }
 
+@synthesize detailForegroundColor = _detailForegroundColor;
 - (UIColor *)detailForegroundColor {
     return self.lbDetail.textColor;
 }
@@ -189,6 +205,7 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
     self.lbDetail.textColor = color;
 }
 
+@synthesize title = _title;
 - (NSString *)title {
     return self.lbTitle.text;
 }
@@ -197,6 +214,7 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
     self.lbTitle.text = title;
 }
 
+@synthesize detail = _detail;
 - (NSString *)detail {
     return self.lbDetail.text;
 }

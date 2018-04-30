@@ -10,7 +10,20 @@
 
 extern const CGFloat iPhoneXDeviceHeight;
 
-@interface Constants : NSObject
+
+/**
+ 确保在主线程中运行
+ */
+#define runOnMainThread(aBlock) \
+if ([NSThread isMainThread]) { \
+aBlock(); \
+} else { \
+dispatch_async(dispatch_get_main_queue(), ^{ \
+aBlock(); \
+}); \
+}
+
+@interface UIConstants : NSObject
 
 + (CGFloat)NavigationBarHeight;
 + (BOOL)isiPhoneX;

@@ -6,11 +6,11 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "Constants.h"
+#import "UIConstants.h"
 
 CGFloat const iPhoneXDeviceHeight = 2436;
 
-@implementation Constants
+@implementation UIConstants
 
 + (CGFloat)NavigationBarHeight {
     return [[self class] isiPhoneX] ? 88 : 64;

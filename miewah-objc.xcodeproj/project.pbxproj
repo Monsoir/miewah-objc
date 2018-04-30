@@ -33,7 +33,7 @@
 		9D1B8FC82090CD230099976C /* NotificationBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FC72090CD230099976C /* NotificationBanner.xib */; };
 		9D1B8FCB2090CD6C0099976C /* NotificationBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8FCA2090CD6C0099976C /* NotificationBanner.m */; };
 		9D1B8FCE2090DC890099976C /* UIView+Nib.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8FCD2090DC890099976C /* UIView+Nib.m */; };
-		9D1B8FD22090E3A60099976C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD12090E3A60099976C /* Constants.m */; };
+		9D1B8FD22090E3A60099976C /* UIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD12090E3A60099976C /* UIConstants.m */; };
 		9D1B8FD82090E6DF0099976C /* AboutMeLoggedItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD42090E6DF0099976C /* AboutMeLoggedItems.plist */; };
 		9D1B8FD92090E6DF0099976C /* AboutMeUnloggedItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD52090E6DF0099976C /* AboutMeUnloggedItems.plist */; };
 		9D1B8FDA2090E6DF0099976C /* WordDetailSections.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1B8FD62090E6DF0099976C /* WordDetailSections.plist */; };
@@ -49,9 +49,25 @@
 		9D20FDEC20887E3E00FC4856 /* miewah_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDEB20887E3E00FC4856 /* miewah_objcTests.m */; };
 		9D20FDF720887E3E00FC4856 /* miewah_objcUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDF620887E3E00FC4856 /* miewah_objcUITests.m */; };
 		9D20FE0620887E8800FC4856 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */; };
+		9D45007F2094B88000A63C20 /* MiewahRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */; };
+		9D45008D2094C62800A63C20 /* APIAddresses.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45008C2094C62800A63C20 /* APIAddresses.m */; };
+		9D4500902096D05400A63C20 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45008F2096D05400A63C20 /* Validator.m */; };
+		9D4500932096F15900A63C20 /* MiewahLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500922096F15900A63C20 /* MiewahLoginManager.m */; };
+		9D4500962096F34A00A63C20 /* LoginResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500952096F34A00A63C20 /* LoginResponseObject.m */; };
+		9D45009A20973C8600A63C20 /* MiewahUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45009920973C8600A63C20 /* MiewahUser.m */; };
+		9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */; };
+		9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */; };
+		9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500A5209756E700A63C20 /* FoundationConstants.m */; };
 		9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */; };
 		9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */; };
 		9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */; };
+		9D6D4F1520940C43009AA9CE /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F1420940C43009AA9CE /* LoginViewModel.m */; };
+		9D6D4F1820944D2E009AA9CE /* RegisterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F1720944D2E009AA9CE /* RegisterViewModel.m */; };
+		9D6D4F1C20945FBF009AA9CE /* MiewahNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F1B20945FBF009AA9CE /* MiewahNetworker.m */; };
+		9D6D4F1F20946163009AA9CE /* MiewahViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F1E20946163009AA9CE /* MiewahViewModel.m */; };
+		9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F23209467B6009AA9CE /* BaseResponseObject.m */; };
+		9D6D4F2720946A8D009AA9CE /* RegisterResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F2620946A8D009AA9CE /* RegisterResponseObject.m */; };
+		9D6D4F2D20946CE4009AA9CE /* MiewahAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +135,8 @@
 		9D1B8FCA2090CD6C0099976C /* NotificationBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationBanner.m; sourceTree = "<group>"; };
 		9D1B8FCC2090DC890099976C /* UIView+Nib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Nib.h"; sourceTree = "<group>"; };
 		9D1B8FCD2090DC890099976C /* UIView+Nib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Nib.m"; sourceTree = "<group>"; };
-		9D1B8FD02090E3A60099976C /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		9D1B8FD12090E3A60099976C /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		9D1B8FD02090E3A60099976C /* UIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIConstants.h; sourceTree = "<group>"; };
+		9D1B8FD12090E3A60099976C /* UIConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIConstants.m; sourceTree = "<group>"; };
 		9D1B8FD42090E6DF0099976C /* AboutMeLoggedItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AboutMeLoggedItems.plist; sourceTree = "<group>"; };
 		9D1B8FD52090E6DF0099976C /* AboutMeUnloggedItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AboutMeUnloggedItems.plist; sourceTree = "<group>"; };
 		9D1B8FD62090E6DF0099976C /* WordDetailSections.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WordDetailSections.plist; sourceTree = "<group>"; };
@@ -146,12 +162,44 @@
 		9D20FDF620887E3E00FC4856 /* miewah_objcUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = miewah_objcUITests.m; sourceTree = "<group>"; };
 		9D20FDF820887E3E00FC4856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
+		9D45007D2094B88000A63C20 /* MiewahRegisterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahRegisterManager.h; sourceTree = "<group>"; };
+		9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahRegisterManager.m; sourceTree = "<group>"; };
+		9D45008B2094C62800A63C20 /* APIAddresses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIAddresses.h; sourceTree = "<group>"; };
+		9D45008C2094C62800A63C20 /* APIAddresses.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIAddresses.m; sourceTree = "<group>"; };
+		9D45008E2096D05400A63C20 /* Validator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
+		9D45008F2096D05400A63C20 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
+		9D4500912096F15900A63C20 /* MiewahLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahLoginManager.h; sourceTree = "<group>"; };
+		9D4500922096F15900A63C20 /* MiewahLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahLoginManager.m; sourceTree = "<group>"; };
+		9D4500942096F34A00A63C20 /* LoginResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginResponseObject.h; sourceTree = "<group>"; };
+		9D4500952096F34A00A63C20 /* LoginResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginResponseObject.m; sourceTree = "<group>"; };
+		9D45009820973C8600A63C20 /* MiewahUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahUser.h; sourceTree = "<group>"; };
+		9D45009920973C8600A63C20 /* MiewahUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahUser.m; sourceTree = "<group>"; };
+		9D45009E20974C4E00A63C20 /* AboutMeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutMeViewModel.h; sourceTree = "<group>"; };
+		9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewModel.m; sourceTree = "<group>"; };
+		9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+TestForDevelopment.h"; sourceTree = "<group>"; };
+		9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+TestForDevelopment.m"; sourceTree = "<group>"; };
+		9D4500A4209756E700A63C20 /* FoundationConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoundationConstants.h; sourceTree = "<group>"; };
+		9D4500A5209756E700A63C20 /* FoundationConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoundationConstants.m; sourceTree = "<group>"; };
 		9D6D4F082092FDA4009AA9CE /* WordsMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieViewController.h; sourceTree = "<group>"; };
 		9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieViewController.m; sourceTree = "<group>"; };
 		9D6D4F0B2092FE3E009AA9CE /* WordsMieMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieMieViewController.h; sourceTree = "<group>"; };
 		9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieMieViewController.m; sourceTree = "<group>"; };
 		9D6D4F0F2093256B009AA9CE /* UINavigationBar+BottomLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BottomLine.h"; sourceTree = "<group>"; };
 		9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BottomLine.m"; sourceTree = "<group>"; };
+		9D6D4F1320940C43009AA9CE /* LoginViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
+		9D6D4F1420940C43009AA9CE /* LoginViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
+		9D6D4F1620944D2E009AA9CE /* RegisterViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewModel.h; sourceTree = "<group>"; };
+		9D6D4F1720944D2E009AA9CE /* RegisterViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewModel.m; sourceTree = "<group>"; };
+		9D6D4F1A20945FBF009AA9CE /* MiewahNetworker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahNetworker.h; sourceTree = "<group>"; };
+		9D6D4F1B20945FBF009AA9CE /* MiewahNetworker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahNetworker.m; sourceTree = "<group>"; };
+		9D6D4F1D20946163009AA9CE /* MiewahViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahViewModel.h; sourceTree = "<group>"; };
+		9D6D4F1E20946163009AA9CE /* MiewahViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahViewModel.m; sourceTree = "<group>"; };
+		9D6D4F22209467B6009AA9CE /* BaseResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseResponseObject.h; sourceTree = "<group>"; };
+		9D6D4F23209467B6009AA9CE /* BaseResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseResponseObject.m; sourceTree = "<group>"; };
+		9D6D4F2520946A8D009AA9CE /* RegisterResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterResponseObject.h; sourceTree = "<group>"; };
+		9D6D4F2620946A8D009AA9CE /* RegisterResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterResponseObject.m; sourceTree = "<group>"; };
+		9D6D4F2B20946CE4009AA9CE /* MiewahAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahAPIManager.h; sourceTree = "<group>"; };
+		9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahAPIManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,8 +355,12 @@
 		9D1B8FCF2090E2550099976C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				9D1B8FD02090E3A60099976C /* Constants.h */,
-				9D1B8FD12090E3A60099976C /* Constants.m */,
+				9D1B8FD02090E3A60099976C /* UIConstants.h */,
+				9D1B8FD12090E3A60099976C /* UIConstants.m */,
+				9D4500A4209756E700A63C20 /* FoundationConstants.h */,
+				9D4500A5209756E700A63C20 /* FoundationConstants.m */,
+				9D45008E2096D05400A63C20 /* Validator.h */,
+				9D45008F2096D05400A63C20 /* Validator.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -357,6 +409,10 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9D45009720973C6A00A63C20 /* Models */,
+				9D4500842094C5BD00A63C20 /* IgnoredConstants */,
+				9D6D4F1920945DF9009AA9CE /* Networker */,
+				9D6D4F1220940C2E009AA9CE /* ViewModels */,
 				9D1B8FD32090E6CA0099976C /* Configs */,
 				9D1B8FCF2090E2550099976C /* Utils */,
 				9D1B8F992090BD7C0099976C /* Categories */,
@@ -364,6 +420,8 @@
 				9D1B8F7A209050E80099976C /* Controllers */,
 				9D20FDD220887E3A00FC4856 /* AppDelegate.h */,
 				9D20FDD320887E3A00FC4856 /* AppDelegate.m */,
+				9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */,
+				9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */,
 				9D20FDD520887E3A00FC4856 /* ViewController.h */,
 				9D20FDD620887E3A00FC4856 /* ViewController.m */,
 				9D20FDD820887E3A00FC4856 /* Main.storyboard */,
@@ -402,6 +460,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9D4500842094C5BD00A63C20 /* IgnoredConstants */ = {
+			isa = PBXGroup;
+			children = (
+				9D45008B2094C62800A63C20 /* APIAddresses.h */,
+				9D45008C2094C62800A63C20 /* APIAddresses.m */,
+			);
+			path = IgnoredConstants;
+			sourceTree = "<group>";
+		};
+		9D45009720973C6A00A63C20 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9D45009820973C8600A63C20 /* MiewahUser.h */,
+				9D45009920973C8600A63C20 /* MiewahUser.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9D6D4F0E20932554009AA9CE /* UINavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +485,50 @@
 				9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */,
 			);
 			path = UINavigationBar;
+			sourceTree = "<group>";
+		};
+		9D6D4F1220940C2E009AA9CE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9D6D4F1D20946163009AA9CE /* MiewahViewModel.h */,
+				9D6D4F1E20946163009AA9CE /* MiewahViewModel.m */,
+				9D6D4F1320940C43009AA9CE /* LoginViewModel.h */,
+				9D6D4F1420940C43009AA9CE /* LoginViewModel.m */,
+				9D6D4F1620944D2E009AA9CE /* RegisterViewModel.h */,
+				9D6D4F1720944D2E009AA9CE /* RegisterViewModel.m */,
+				9D45009E20974C4E00A63C20 /* AboutMeViewModel.h */,
+				9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9D6D4F1920945DF9009AA9CE /* Networker */ = {
+			isa = PBXGroup;
+			children = (
+				9D6D4F21209467A6009AA9CE /* ResponseObjects */,
+				9D6D4F1A20945FBF009AA9CE /* MiewahNetworker.h */,
+				9D6D4F1B20945FBF009AA9CE /* MiewahNetworker.m */,
+				9D6D4F2B20946CE4009AA9CE /* MiewahAPIManager.h */,
+				9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */,
+				9D45007D2094B88000A63C20 /* MiewahRegisterManager.h */,
+				9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */,
+				9D4500912096F15900A63C20 /* MiewahLoginManager.h */,
+				9D4500922096F15900A63C20 /* MiewahLoginManager.m */,
+			);
+			path = Networker;
+			sourceTree = "<group>";
+		};
+		9D6D4F21209467A6009AA9CE /* ResponseObjects */ = {
+			isa = PBXGroup;
+			children = (
+				9D6D4F22209467B6009AA9CE /* BaseResponseObject.h */,
+				9D6D4F23209467B6009AA9CE /* BaseResponseObject.m */,
+				9D6D4F2520946A8D009AA9CE /* RegisterResponseObject.h */,
+				9D6D4F2620946A8D009AA9CE /* RegisterResponseObject.m */,
+				9D4500942096F34A00A63C20 /* LoginResponseObject.h */,
+				9D4500952096F34A00A63C20 /* LoginResponseObject.m */,
+			);
+			path = ResponseObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,36 +690,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D4500932096F15900A63C20 /* MiewahLoginManager.m in Sources */,
+				9D6D4F1520940C43009AA9CE /* LoginViewModel.m in Sources */,
 				9D1B8F80209051350099976C /* RegisterViewController.m in Sources */,
+				9D6D4F2720946A8D009AA9CE /* RegisterResponseObject.m in Sources */,
+				9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */,
 				9D1B8FBC2090C9170099976C /* TextAlignCenterTableViewCell.m in Sources */,
 				9D1B8FB72090C8360099976C /* ItemIntroductionHeader.m in Sources */,
 				9D1B8FC52090CB650099976C /* ColorBlockBasicTableViewCell.m in Sources */,
 				9D1B8FAD2090C6AF0099976C /* SlangItemDetailHeaderView.m in Sources */,
+				9D45007F2094B88000A63C20 /* MiewahRegisterManager.m in Sources */,
+				9D45008D2094C62800A63C20 /* APIAddresses.m in Sources */,
+				9D6D4F2D20946CE4009AA9CE /* MiewahAPIManager.m in Sources */,
 				9D1B8F7D209051270099976C /* LoginViewController.m in Sources */,
-				9D1B8FD22090E3A60099976C /* Constants.m in Sources */,
+				9D1B8FD22090E3A60099976C /* UIConstants.m in Sources */,
+				9D4500902096D05400A63C20 /* Validator.m in Sources */,
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
 				9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */,
 				9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */,
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
+				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,
 				9D1B8F9C2090BDA50099976C /* UIView+RoundCorner.m in Sources */,
+				9D4500962096F34A00A63C20 /* LoginResponseObject.m in Sources */,
+				9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */,
 				9D1B8FA02090BFF40099976C /* UIView+Shadow.m in Sources */,
 				9D1B8F97209053700099976C /* ShortItemTableViewCell.m in Sources */,
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
 				9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */,
+				9D45009A20973C8600A63C20 /* MiewahUser.m in Sources */,
 				9D1B8FA42090C1150099976C /* UIColor+Hex.m in Sources */,
+				9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */,
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,
 				9D1B8FB32090C77C0099976C /* ItemIntroductionCell.m in Sources */,
 				9D1B8FBF2090C9980099976C /* AvatarHeader.m in Sources */,
 				9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */,
 				9D1B8FE9209207480099976C /* WordsViewController.m in Sources */,
 				9D1B8FCB2090CD6C0099976C /* NotificationBanner.m in Sources */,
+				9D6D4F1C20945FBF009AA9CE /* MiewahNetworker.m in Sources */,
 				9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */,
 				9D1B8FE52091D3750099976C /* UIViewController+Keyboard.m in Sources */,
 				9D1B8FCE2090DC890099976C /* UIView+Nib.m in Sources */,
 				9D1B8F8F209051850099976C /* SlangDetailViewController.m in Sources */,
 				9D1B8FA72090C28C0099976C /* ShortItemDetailHeaderView.m in Sources */,
+				9D6D4F1820944D2E009AA9CE /* RegisterViewModel.m in Sources */,
+				9D6D4F1F20946163009AA9CE /* MiewahViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +905,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -778,7 +915,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wenyongyang.miewah-objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monwingyeung.aaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -789,6 +926,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -798,7 +936,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wenyongyang.miewah-objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monwingyeung.aaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

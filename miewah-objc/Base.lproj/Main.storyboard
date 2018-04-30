@@ -662,9 +662,10 @@
                         <viewLayoutGuide key="safeArea" id="sXN-yr-c1U"/>
                     </view>
                     <connections>
+                        <outlet property="btnLogin" destination="vcx-h9-bR0" id="daK-Yk-grs"/>
                         <outlet property="ivAvatar" destination="dy4-yi-3Ih" id="gf6-cp-MPY"/>
+                        <outlet property="tfEmail" destination="AnO-RM-Qmo" id="fdx-k9-GXH"/>
                         <outlet property="tfPassword" destination="7lQ-nN-fhO" id="oUH-Ji-rs2"/>
-                        <outlet property="tfUsername" destination="AnO-RM-Qmo" id="aa4-OX-szO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nh-Ei-NSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -682,7 +683,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注       册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Et1-D4-tnJ">
                                 <rect key="frame" x="16" y="20" width="343" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="DXY-4O-kJQ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="DXY-4O-kJQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="textColor"/>
@@ -799,9 +800,10 @@
                         <viewLayoutGuide key="safeArea" id="Io9-Eb-J8F"/>
                     </view>
                     <connections>
+                        <outlet property="btnRegister" destination="AHP-Ho-ufu" id="0e5-Z8-Hz4"/>
+                        <outlet property="tfEmail" destination="q2F-Vs-J9m" id="3if-rQ-4TI"/>
                         <outlet property="tfPassword" destination="JJF-Cj-edU" id="rs7-Br-Le0"/>
                         <outlet property="tfPasswordConfirmation" destination="PWh-91-1ck" id="IZW-d2-d8K"/>
-                        <outlet property="tfUsername" destination="q2F-Vs-J9m" id="sU7-Lb-oYW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZS-nK-csx" userLabel="First Responder" sceneMemberID="firstResponder"/>
