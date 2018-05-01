@@ -11,6 +11,8 @@
 #import "ListLoadMoreFooterView.h"
 #import "WordsMieViewModel.h"
 #import "UIConstants.h"
+#import "NotificationBanner.h"
+#import "WordDetailViewController.h"
 
 #import "UIColor+Hex.h"
 
@@ -73,12 +75,13 @@
         runOnMainThread(_);
     }];
     
-    [self.vm.loadedFailure subscribeNext:^(id  _Nullable x) {
+    [self.vm.loadedFailure subscribeNext:^(NSString * _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
             [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:self.navigationController];
         };
         
         runOnMainThread(_);
@@ -90,6 +93,7 @@
             [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
         };
         
         runOnMainThread(_);
@@ -124,6 +128,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MiewahCharacter *character = self.vm.words[indexPath.row];
+    NSDictionary *userInfo = @{@"identifier": character.identifier};
+    [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
+}
+
 - (void)actionRefresh:(UIRefreshControl *)sender {
     [self.vm reloadData];
 }
@@ -133,6 +143,13 @@
         _vm = [[WordsMieViewModel alloc] init];
     }
     return _vm;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
+    if ([segue.identifier isEqualToString:@"showWordDetail"]) {
+        WordDetailViewController *vc = segue.destinationViewController;
+        [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
+    }
 }
 
 - (UIRefreshControl *)refreshControl {

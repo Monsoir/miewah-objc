@@ -34,9 +34,14 @@
 }
 
 + (NSArray<NSString *> *)extractKeys {
-    NSArray<NSString *> *keys = @[NSStringFromSelector(@selector(character)),
-                                 NSStringFromSelector(@selector(pronunciation)),
-                                 NSStringFromSelector(@selector(meaning))];
+    NSArray<NSString *> *keys = @[
+                                  NSStringFromSelector(@selector(character)),
+                                  NSStringFromSelector(@selector(pronunciation)),
+                                  NSStringFromSelector(@selector(meaning)),
+                                  NSStringFromSelector(@selector(inputMethods)),
+                                  NSStringFromSelector(@selector(sentences)),
+                                  NSStringFromSelector(@selector(pronunciationVoice)),
+                                  ];
     return keys;
 }
 

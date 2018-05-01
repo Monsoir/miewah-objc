@@ -59,7 +59,8 @@
     };
     MiewahRequestFailure failureHandler = ^(BaseResponseObject *payload) {
         @strongify(self);
-        [self.loadedFailure sendNext:payload];
+        NSString *message = [payload.comments componentsJoinedByString:@", "];
+        [self.loadedFailure sendNext:message];
     };
     MiewahRequestError errorHandler = ^(NSError *error) {
         @strongify(self);

@@ -10,4 +10,6 @@
 
 @interface WordDetailViewController : UIViewController
 
+- (void)setWordIdentifier:(NSString *)identifier;
+
 @end

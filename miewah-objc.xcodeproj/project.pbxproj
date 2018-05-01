@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D0574EA2098949E00FB7661 /* WordDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0574E92098949E00FB7661 /* WordDetailViewModel.m */; };
+		9D0574ED2098973700FB7661 /* MiewahWordDetailRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0574EC2098973700FB7661 /* MiewahWordDetailRequestManager.m */; };
+		9D0574F02098989B00FB7661 /* WordDetailResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0574EF2098989B00FB7661 /* WordDetailResponseObject.m */; };
 		9D1B8F7D209051270099976C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7C209051270099976C /* LoginViewController.m */; };
 		9D1B8F80209051350099976C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7F209051350099976C /* RegisterViewController.m */; };
 		9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F82209051430099976C /* AboutMeViewController.m */; };
@@ -95,6 +98,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D0574E82098949E00FB7661 /* WordDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordDetailViewModel.h; sourceTree = "<group>"; };
+		9D0574E92098949E00FB7661 /* WordDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewModel.m; sourceTree = "<group>"; };
+		9D0574EB2098973700FB7661 /* MiewahWordDetailRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahWordDetailRequestManager.h; sourceTree = "<group>"; };
+		9D0574EC2098973700FB7661 /* MiewahWordDetailRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahWordDetailRequestManager.m; sourceTree = "<group>"; };
+		9D0574EE2098989B00FB7661 /* WordDetailResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordDetailResponseObject.h; sourceTree = "<group>"; };
+		9D0574EF2098989B00FB7661 /* WordDetailResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailResponseObject.m; sourceTree = "<group>"; };
+		9D0574F220989E1900FB7661 /* Snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snippets; sourceTree = "<group>"; };
 		9D1B8F7B209051270099976C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9D1B8F7C209051270099976C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9D1B8F7E209051350099976C /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -249,6 +259,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D0574F120989E0600FB7661 /* Snippets */ = {
+			isa = PBXGroup;
+			children = (
+				9D0574F220989E1900FB7661 /* Snippets */,
+			);
+			path = Snippets;
+			sourceTree = "<group>";
+		};
 		9D1B8F7A209050E80099976C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +449,7 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9D0574F120989E0600FB7661 /* Snippets */,
 				9D45009720973C6A00A63C20 /* Models */,
 				9D4500842094C5BD00A63C20 /* IgnoredConstants */,
 				9D6D4F1920945DF9009AA9CE /* Networker */,
@@ -543,6 +562,8 @@
 				9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */,
 				9D4500B52098515E00A63C20 /* WordsMieViewModel.h */,
 				9D4500B62098515E00A63C20 /* WordsMieViewModel.m */,
+				9D0574E82098949E00FB7661 /* WordDetailViewModel.h */,
+				9D0574E92098949E00FB7661 /* WordDetailViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -561,6 +582,8 @@
 				9D4500922096F15900A63C20 /* MiewahLoginManager.m */,
 				9D4500C120985B6A00A63C20 /* MiewahCharacterRequestManager.h */,
 				9D4500C220985B6A00A63C20 /* MiewahCharacterRequestManager.m */,
+				9D0574EB2098973700FB7661 /* MiewahWordDetailRequestManager.h */,
+				9D0574EC2098973700FB7661 /* MiewahWordDetailRequestManager.m */,
 			);
 			path = Networker;
 			sourceTree = "<group>";
@@ -576,6 +599,8 @@
 				9D4500952096F34A00A63C20 /* LoginResponseObject.m */,
 				9D4500BB2098595800A63C20 /* CharacterListResponseObject.h */,
 				9D4500BC2098595800A63C20 /* CharacterListResponseObject.m */,
+				9D0574EE2098989B00FB7661 /* WordDetailResponseObject.h */,
+				9D0574EF2098989B00FB7661 /* WordDetailResponseObject.m */,
 			);
 			path = ResponseObjects;
 			sourceTree = "<group>";
@@ -756,8 +781,10 @@
 				9D6D4F2D20946CE4009AA9CE /* MiewahAPIManager.m in Sources */,
 				9D1B8F7D209051270099976C /* LoginViewController.m in Sources */,
 				9D1B8FD22090E3A60099976C /* UIConstants.m in Sources */,
+				9D0574ED2098973700FB7661 /* MiewahWordDetailRequestManager.m in Sources */,
 				9D4500902096D05400A63C20 /* Validator.m in Sources */,
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
+				9D0574F02098989B00FB7661 /* WordDetailResponseObject.m in Sources */,
 				9D4500BA2098588D00A63C20 /* MiewahCharacter.m in Sources */,
 				9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */,
 				9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */,
@@ -776,6 +803,7 @@
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
 				9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */,
 				9D45009A20973C8600A63C20 /* MiewahUser.m in Sources */,
+				9D0574EA2098949E00FB7661 /* WordDetailViewModel.m in Sources */,
 				9D1B8FA42090C1150099976C /* UIColor+Hex.m in Sources */,
 				9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */,
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,
