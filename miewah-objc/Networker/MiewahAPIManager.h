@@ -14,5 +14,6 @@
 
 - (NSString *)registerURL;
 - (NSString *)loginURL;
+- (NSString *)charactersURLWithPageIndex:(NSInteger)pageIndex;
 
 @end

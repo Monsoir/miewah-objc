@@ -60,6 +60,11 @@
 		9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500A5209756E700A63C20 /* FoundationConstants.m */; };
 		9D4500B120983F1600A63C20 /* ListLoadMoreFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D4500B020983F1600A63C20 /* ListLoadMoreFooterView.xib */; };
 		9D4500B420983F2600A63C20 /* ListLoadMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500B320983F2600A63C20 /* ListLoadMoreFooterView.m */; };
+		9D4500B72098515E00A63C20 /* WordsMieViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500B62098515E00A63C20 /* WordsMieViewModel.m */; };
+		9D4500BA2098588D00A63C20 /* MiewahCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500B92098588D00A63C20 /* MiewahCharacter.m */; };
+		9D4500BD2098595800A63C20 /* CharacterListResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500BC2098595800A63C20 /* CharacterListResponseObject.m */; };
+		9D4500C320985B6A00A63C20 /* MiewahCharacterRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500C220985B6A00A63C20 /* MiewahCharacterRequestManager.m */; };
+		9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500C620986BCE00A63C20 /* UITableView+AutoRefresh.m */; };
 		9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */; };
 		9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */; };
 		9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */; };
@@ -185,6 +190,16 @@
 		9D4500B020983F1600A63C20 /* ListLoadMoreFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLoadMoreFooterView.xib; sourceTree = "<group>"; };
 		9D4500B220983F2600A63C20 /* ListLoadMoreFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListLoadMoreFooterView.h; sourceTree = "<group>"; };
 		9D4500B320983F2600A63C20 /* ListLoadMoreFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListLoadMoreFooterView.m; sourceTree = "<group>"; };
+		9D4500B52098515E00A63C20 /* WordsMieViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieViewModel.h; sourceTree = "<group>"; };
+		9D4500B62098515E00A63C20 /* WordsMieViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieViewModel.m; sourceTree = "<group>"; };
+		9D4500B82098588D00A63C20 /* MiewahCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahCharacter.h; sourceTree = "<group>"; };
+		9D4500B92098588D00A63C20 /* MiewahCharacter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahCharacter.m; sourceTree = "<group>"; };
+		9D4500BB2098595800A63C20 /* CharacterListResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterListResponseObject.h; sourceTree = "<group>"; };
+		9D4500BC2098595800A63C20 /* CharacterListResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterListResponseObject.m; sourceTree = "<group>"; };
+		9D4500C120985B6A00A63C20 /* MiewahCharacterRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahCharacterRequestManager.h; sourceTree = "<group>"; };
+		9D4500C220985B6A00A63C20 /* MiewahCharacterRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahCharacterRequestManager.m; sourceTree = "<group>"; };
+		9D4500C520986BCE00A63C20 /* UITableView+AutoRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+AutoRefresh.h"; sourceTree = "<group>"; };
+		9D4500C620986BCE00A63C20 /* UITableView+AutoRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AutoRefresh.m"; sourceTree = "<group>"; };
 		9D6D4F082092FDA4009AA9CE /* WordsMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieViewController.h; sourceTree = "<group>"; };
 		9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieViewController.m; sourceTree = "<group>"; };
 		9D6D4F0B2092FE3E009AA9CE /* WordsMieMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieMieViewController.h; sourceTree = "<group>"; };
@@ -296,6 +311,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D4500C420986B2600A63C20 /* UITableView */,
 				9D6D4F0E20932554009AA9CE /* UINavigationBar */,
 				9D1B8FDF2091D3170099976C /* UIViewController */,
 				9D1B8FA12090C1080099976C /* UIColor */,
@@ -480,6 +496,8 @@
 			children = (
 				9D45009820973C8600A63C20 /* MiewahUser.h */,
 				9D45009920973C8600A63C20 /* MiewahUser.m */,
+				9D4500B82098588D00A63C20 /* MiewahCharacter.h */,
+				9D4500B92098588D00A63C20 /* MiewahCharacter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -492,6 +510,15 @@
 				9D4500B320983F2600A63C20 /* ListLoadMoreFooterView.m */,
 			);
 			path = ListTableFooterView;
+			sourceTree = "<group>";
+		};
+		9D4500C420986B2600A63C20 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				9D4500C520986BCE00A63C20 /* UITableView+AutoRefresh.h */,
+				9D4500C620986BCE00A63C20 /* UITableView+AutoRefresh.m */,
+			);
+			path = UITableView;
 			sourceTree = "<group>";
 		};
 		9D6D4F0E20932554009AA9CE /* UINavigationBar */ = {
@@ -514,6 +541,8 @@
 				9D6D4F1720944D2E009AA9CE /* RegisterViewModel.m */,
 				9D45009E20974C4E00A63C20 /* AboutMeViewModel.h */,
 				9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */,
+				9D4500B52098515E00A63C20 /* WordsMieViewModel.h */,
+				9D4500B62098515E00A63C20 /* WordsMieViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -530,6 +559,8 @@
 				9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */,
 				9D4500912096F15900A63C20 /* MiewahLoginManager.h */,
 				9D4500922096F15900A63C20 /* MiewahLoginManager.m */,
+				9D4500C120985B6A00A63C20 /* MiewahCharacterRequestManager.h */,
+				9D4500C220985B6A00A63C20 /* MiewahCharacterRequestManager.m */,
 			);
 			path = Networker;
 			sourceTree = "<group>";
@@ -543,6 +574,8 @@
 				9D6D4F2620946A8D009AA9CE /* RegisterResponseObject.m */,
 				9D4500942096F34A00A63C20 /* LoginResponseObject.h */,
 				9D4500952096F34A00A63C20 /* LoginResponseObject.m */,
+				9D4500BB2098595800A63C20 /* CharacterListResponseObject.h */,
+				9D4500BC2098595800A63C20 /* CharacterListResponseObject.m */,
 			);
 			path = ResponseObjects;
 			sourceTree = "<group>";
@@ -711,10 +744,12 @@
 				9D6D4F1520940C43009AA9CE /* LoginViewModel.m in Sources */,
 				9D1B8F80209051350099976C /* RegisterViewController.m in Sources */,
 				9D6D4F2720946A8D009AA9CE /* RegisterResponseObject.m in Sources */,
+				9D4500B72098515E00A63C20 /* WordsMieViewModel.m in Sources */,
 				9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */,
 				9D1B8FBC2090C9170099976C /* TextAlignCenterTableViewCell.m in Sources */,
 				9D1B8FB72090C8360099976C /* ItemIntroductionHeader.m in Sources */,
 				9D1B8FC52090CB650099976C /* ColorBlockBasicTableViewCell.m in Sources */,
+				9D4500BD2098595800A63C20 /* CharacterListResponseObject.m in Sources */,
 				9D1B8FAD2090C6AF0099976C /* SlangItemDetailHeaderView.m in Sources */,
 				9D45007F2094B88000A63C20 /* MiewahRegisterManager.m in Sources */,
 				9D45008D2094C62800A63C20 /* APIAddresses.m in Sources */,
@@ -723,10 +758,13 @@
 				9D1B8FD22090E3A60099976C /* UIConstants.m in Sources */,
 				9D4500902096D05400A63C20 /* Validator.m in Sources */,
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
+				9D4500BA2098588D00A63C20 /* MiewahCharacter.m in Sources */,
 				9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */,
 				9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */,
+				9D4500C320985B6A00A63C20 /* MiewahCharacterRequestManager.m in Sources */,
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
+				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,
 				9D1B8F9C2090BDA50099976C /* UIView+RoundCorner.m in Sources */,
@@ -923,7 +961,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A9WCJZAVJ6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -933,7 +971,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monwingyeung.aaa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monwingyeung.aa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -944,7 +982,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A9WCJZAVJ6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -954,7 +992,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monwingyeung.aaa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monwingyeung.aa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

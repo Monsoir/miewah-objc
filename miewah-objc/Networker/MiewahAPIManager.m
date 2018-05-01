@@ -28,4 +28,8 @@
     return [NSString stringWithFormat:@"%@%@", MiewahBaseURL, MiewahLoginURL];
 }
 
+- (NSString *)charactersURLWithPageIndex:(NSInteger)pageIndex {
+    return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahCharactersURL, (long)pageIndex];
+}
+
 @end

@@ -9,10 +9,19 @@
 #import "WordsMieViewController.h"
 #import "ShortItemTableViewCell.h"
 #import "ListLoadMoreFooterView.h"
+#import "WordsMieViewModel.h"
+#import "UIConstants.h"
 
 #import "UIColor+Hex.h"
 
 @interface WordsMieViewController ()
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) ListLoadMoreFooterView *footer;
+
+@property (nonatomic, strong) WordsMieViewModel *vm;
+
 @end
 
 @interface WordsMieViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
@@ -23,11 +32,68 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self linkSignals];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.vm.words.count == 0) {
+        self.loadingIndicator.hidden = NO;
+        [self.loadingIndicator startAnimating];
+        [self.vm reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)linkSignals {
+    @weakify(self);
+    
+    [self.vm.noMoreDataSignal subscribeNext:^(NSNumber * _Nullable x) {
+        if ([x boolValue]) {
+            self.footer.status = ListLoadMoreFooterViewStatusNoMore;
+        } else {
+            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
+        }
+    }];
+    
+    [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        void (^_)(void) = ^void() {
+            if (self.refreshControl.isRefreshing) [self.refreshControl endRefreshing];
+            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
+            [self.tableView reloadData];
+        };
+        
+        runOnMainThread(_);
+    }];
+    
+    [self.vm.loadedFailure subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        void (^_)(void) = ^void() {
+            [self.refreshControl endRefreshing];
+            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
+            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
+        };
+        
+        runOnMainThread(_);
+    }];
+    
+    [self.vm.loadedError subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        void (^_)(void) = ^void() {
+            [self.refreshControl endRefreshing];
+            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
+            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
+        };
+        
+        runOnMainThread(_);
+    }];
 }
 
 - (void)setupSubviews {
@@ -36,31 +102,53 @@
     [self.tableView registerNib:[UINib nibWithNibName:[ShortItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ShortItemTableViewCell reuseIdentifier]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.showsVerticalScrollIndicator = YES;
     
     // 设置 tableview 的下拉刷新
-    UIRefreshControl *aRefreshControl = [[UIRefreshControl alloc] init];
-    [aRefreshControl addTarget:self action:@selector(actionRefresh:) forControlEvents:UIControlEventValueChanged];
-    self.tableView.refreshControl = aRefreshControl;
+    self.tableView.refreshControl = self.refreshControl;
     
     // 设置 tableview 最下面的点击加载
-    ListLoadMoreFooterView *footer = [[ListLoadMoreFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50)];
-    footer.delegate = self;
-    self.tableView.tableFooterView = footer;
+    self.tableView.tableFooterView = self.footer;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.vm.words.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    MiewahCharacter *character = self.vm.words[indexPath.row];
+    cell.lbWord.text = character.character;
+    cell.lbPronounce.text = character.pronunciation;
+    cell.lbMeaning.text = character.meaning;
+    return cell;
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [sender endRefreshing];
-    });
+    [self.vm reloadData];
 }
 
-@synthesize dataSource = _dataSource;
-
-- (NSMutableArray *)dataSource {
-    if (_dataSource == nil) {
-        _dataSource = [NSMutableArray arrayWithArray:@[@1, @2, @3, @4, @5, @6]];
+- (WordsMieViewModel *)vm {
+    if (_vm == nil) {
+        _vm = [[WordsMieViewModel alloc] init];
     }
-    return _dataSource;
+    return _vm;
+}
+
+- (UIRefreshControl *)refreshControl {
+    if (_refreshControl == nil) {
+        _refreshControl = [[UIRefreshControl alloc] init];
+        [_refreshControl addTarget:self action:@selector(actionRefresh:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _refreshControl;
+}
+
+- (ListLoadMoreFooterView *)footer {
+    if (_footer == nil) {
+        _footer = [[ListLoadMoreFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50)];
+        _footer.delegate = self;
+    }
+    return _footer;
 }
 
 @end
@@ -68,10 +156,7 @@
 @implementation WordsMieViewController(loadMoreFooter)
 
 - (void)footerWillLoadMore:(ListLoadMoreFooterView *)footer {
-    NSLog(@"loading more...");
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        footer.status = ListLoadMoreFooterViewStatusNoMore;
-    });
+    [self.vm loadData];
 }
 
 @end

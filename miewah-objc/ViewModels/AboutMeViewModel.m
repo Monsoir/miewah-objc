@@ -27,7 +27,6 @@
 
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];
-//    [self registerNotifications];
     
     @weakify(self);
     MiewahUser *thisUser = [MiewahUser thisUser];
@@ -44,25 +43,6 @@
 - (void)dealloc {
     [NSNotificationCenter.defaultCenter removeObserver:self.loggedObserver name:LoginCompleteNotificationName object:nil];
 }
-
-//- (void)registerNotifications {
-//    @weakify(self);
-//    self.loggedObserver = [NSNotificationCenter.defaultCenter addObserverForName:LoginCompleteNotificationName object:self queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-//        MiewahUser *thisUser = [MiewahUser thisUser];
-//        @strongify(self);
-//        NSDictionary *userInfo = @{@"logged": @(thisUser.loginToken.length == 0),
-//                                   @"items": thisUser.loginToken.length == 0 ? self.unloggedItems : self.loggeditems,
-//                                   };
-//        [self.loggedSubject sendNext:userInfo];
-//    }];
-//}
-
-//- (RACSubject *)loggedSubject {
-//    if (_loggedSubject == nil) {
-//        _loggedSubject = [[RACSubject alloc] init];
-//    }
-//    return _loggedSubject;
-//}
 
 - (NSArray<NSString *> *)loggeditems {
     if (_loggeditems == nil) {

@@ -14,9 +14,6 @@
 
 @interface WordsViewController ()
 
-@property (nonatomic, strong) NSMutableArray *mieWords;
-@property (nonatomic, strong) NSMutableArray *miemieWords;
-
 @end
 
 @implementation WordsViewController
@@ -54,20 +51,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     return cell;
-}
-
-- (NSMutableArray *)mieWords {
-    if (_mieWords == nil) {
-        _mieWords = [NSMutableArray arrayWithArray:@[@1, @2, @3, @4, @5, @6]];
-    }
-    return _mieWords;
-}
-
-- (NSMutableArray *)miemieWords {
-    if (_miemieWords == nil) {
-        _miemieWords = [NSMutableArray arrayWithArray:@[@1, @2, @3]];
-    }
-    return _miemieWords;
 }
 
 @end

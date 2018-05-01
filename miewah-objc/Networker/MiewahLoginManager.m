@@ -10,13 +10,6 @@
 #import "MiewahAPIManager.h"
 #import "LoginResponseObject.h"
 
-@interface MiewahLoginManager ()
-
-@property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, copy) NSString *password;
-
-@end
-
 @implementation MiewahLoginManager
 
 - (NSURLSessionDataTask *)postLoginWithIdentifier:(NSString *)identifier password:(NSString *)password success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {

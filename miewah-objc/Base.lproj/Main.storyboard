@@ -19,24 +19,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="450" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ZF-It-BpY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="450" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ZF-It-BpY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="667" id="eCM-4L-Ugy"/>
                                 </constraints>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-g9-e4y">
+                                <rect key="frame" x="178" y="357.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3ZF-It-BpY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="49" id="1lq-P0-8Ra"/>
                             <constraint firstAttribute="trailing" secondItem="3ZF-It-BpY" secondAttribute="trailing" id="HQe-f3-Glz"/>
                             <constraint firstItem="3ZF-It-BpY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tp4-o5-N1d"/>
+                            <constraint firstItem="nTq-g9-e4y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mPo-Th-iKy"/>
+                            <constraint firstItem="nTq-g9-e4y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="u0g-fB-pHq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="字" id="n1O-Ln-Ze1"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="nTq-g9-e4y" id="G7B-Im-RRA"/>
                         <outlet property="tableView" destination="3ZF-It-BpY" id="sNI-lf-uP8"/>
                         <segue destination="sLH-pY-bax" kind="show" identifier="showWordDetail" id="Cjd-yE-hJB"/>
                     </connections>
@@ -839,6 +845,6 @@
         <image name="voice" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VN9-U8-rpq"/>
+        <segue reference="Cjd-yE-hJB"/>
     </inferredMetricsTieBreakers>
 </document>
