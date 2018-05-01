@@ -58,6 +58,8 @@
 		9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */; };
 		9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */; };
 		9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500A5209756E700A63C20 /* FoundationConstants.m */; };
+		9D4500B120983F1600A63C20 /* ListLoadMoreFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D4500B020983F1600A63C20 /* ListLoadMoreFooterView.xib */; };
+		9D4500B420983F2600A63C20 /* ListLoadMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500B320983F2600A63C20 /* ListLoadMoreFooterView.m */; };
 		9D6D4F0A2092FDA4009AA9CE /* WordsMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */; };
 		9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F0C2092FE3E009AA9CE /* WordsMieMieViewController.m */; };
 		9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */; };
@@ -180,6 +182,9 @@
 		9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+TestForDevelopment.m"; sourceTree = "<group>"; };
 		9D4500A4209756E700A63C20 /* FoundationConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoundationConstants.h; sourceTree = "<group>"; };
 		9D4500A5209756E700A63C20 /* FoundationConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoundationConstants.m; sourceTree = "<group>"; };
+		9D4500B020983F1600A63C20 /* ListLoadMoreFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLoadMoreFooterView.xib; sourceTree = "<group>"; };
+		9D4500B220983F2600A63C20 /* ListLoadMoreFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListLoadMoreFooterView.h; sourceTree = "<group>"; };
+		9D4500B320983F2600A63C20 /* ListLoadMoreFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListLoadMoreFooterView.m; sourceTree = "<group>"; };
 		9D6D4F082092FDA4009AA9CE /* WordsMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieViewController.h; sourceTree = "<group>"; };
 		9D6D4F092092FDA4009AA9CE /* WordsMieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsMieViewController.m; sourceTree = "<group>"; };
 		9D6D4F0B2092FE3E009AA9CE /* WordsMieMieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsMieMieViewController.h; sourceTree = "<group>"; };
@@ -257,6 +262,7 @@
 		9D1B8F92209053360099976C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D4500A72098395200A63C20 /* ListTableFooterView */,
 				9D1B8FC62090CD120099976C /* NotificationBanner */,
 				9D1B8FB42090C8280099976C /* ItemIntroductionHeader */,
 				9D1B8FAE2090C74A0099976C /* ItemIntroductionCell */,
@@ -478,6 +484,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9D4500A72098395200A63C20 /* ListTableFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				9D4500B020983F1600A63C20 /* ListLoadMoreFooterView.xib */,
+				9D4500B220983F2600A63C20 /* ListLoadMoreFooterView.h */,
+				9D4500B320983F2600A63C20 /* ListLoadMoreFooterView.m */,
+			);
+			path = ListTableFooterView;
+			sourceTree = "<group>";
+		};
 		9D6D4F0E20932554009AA9CE /* UINavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,6 +659,7 @@
 				9D1B8FEA209208510099976C /* Main.storyboard in Resources */,
 				9D1B8FDB2090E6DF0099976C /* SlangDetailSections.plist in Resources */,
 				9D1B8FDA2090E6DF0099976C /* WordDetailSections.plist in Resources */,
+				9D4500B120983F1600A63C20 /* ListLoadMoreFooterView.xib in Resources */,
 				9D20FDDC20887E3D00FC4856 /* Assets.xcassets in Resources */,
 				9D1B8FC82090CD230099976C /* NotificationBanner.xib in Resources */,
 				9D1B8FD92090E6DF0099976C /* AboutMeUnloggedItems.plist in Resources */,
@@ -717,6 +734,7 @@
 				9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */,
 				9D1B8FA02090BFF40099976C /* UIView+Shadow.m in Sources */,
 				9D1B8F97209053700099976C /* ShortItemTableViewCell.m in Sources */,
+				9D4500B420983F2600A63C20 /* ListLoadMoreFooterView.m in Sources */,
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
 				9D6D4F0D2092FE3E009AA9CE /* WordsMieMieViewController.m in Sources */,
 				9D45009A20973C8600A63C20 /* MiewahUser.m in Sources */,
