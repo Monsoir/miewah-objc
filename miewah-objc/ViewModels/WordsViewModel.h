@@ -6,17 +6,8 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "MiewahViewModel.h"
-#import "MiewahWord.h"
+#import "MiewahListViewModel.h"
 
-@interface WordsViewModel : MiewahViewModel
-
-@property (nonatomic, strong, readonly) NSMutableArray<MiewahWord *> *words;
-
-@property (nonatomic, strong, readonly) RACSignal *noMoreDataSignal;
-
-@property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
-@property (nonatomic, strong, readonly) RACSubject *loadedFailure;
-@property (nonatomic, strong, readonly) RACSubject *loadedError;
+@interface WordsViewModel : MiewahListViewModel
 
 @end

@@ -9,20 +9,21 @@
 #import "CharactersViewModel.h"
 #import "MiewahCharacterRequestManager.h"
 #import "CharacterListResponseObject.h"
+#import "MiewahCharacter.h"
 
 @interface CharactersViewModel ()
 
-@property (nonatomic, strong) NSMutableArray<MiewahCharacter *> *characters;
-
-@property (nonatomic, strong) RACSignal *noMoreDataSignal;
-
-@property (nonatomic, strong) RACSubject *loadedSuccess;
-@property (nonatomic, strong) RACSubject *loadedFailure;
-@property (nonatomic, strong) RACSubject *loadedError;
-
-@property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, assign) BOOL noMoreData;
-@property (nonatomic, strong) MiewahCharacterRequestManager *requester;
+//@property (nonatomic, strong) NSMutableArray<MiewahCharacter *> *characters;
+//
+//@property (nonatomic, strong) RACSignal *noMoreDataSignal;
+//
+//@property (nonatomic, strong) RACSubject *loadedSuccess;
+//@property (nonatomic, strong) RACSubject *loadedFailure;
+//@property (nonatomic, strong) RACSubject *loadedError;
+//
+//@property (nonatomic, assign) NSInteger currentPage;
+//@property (nonatomic, assign) BOOL noMoreData;
+@property (nonatomic, strong) id<MiewahListRequestProtocol> requester;
 
 @end
 
@@ -31,19 +32,9 @@
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];
     
-    self.noMoreDataSignal = [RACObserve(self, noMoreData) map:^id _Nullable(NSNumber * _Nullable value) {
-        return value;
-    }];
-    
-    [self resetFlags];
-}
-
-- (void)loadData {
     @weakify(self);
     
-    if (self.noMoreData) return;
-    
-    MiewahRequestSuccess successHandler = ^(BaseResponseObject *payload) {
+    self.requestSuccessHandler = ^(BaseResponseObject *payload) {
         @strongify(self);
         CharacterListResponseObject *_payload = (CharacterListResponseObject *)payload;
         
@@ -52,71 +43,30 @@
         
         [_payload.characters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:obj];
-            [self.characters addObject:character];
+            [self.items addObject:character];
         }];
         self.currentPage++;
         [self.loadedSuccess sendNext:nil];
     };
-    MiewahRequestFailure failureHandler = ^(BaseResponseObject *payload) {
+    self.requestFailureHandler = ^(BaseResponseObject *payload) {
         @strongify(self);
         NSString *message = [payload.comments componentsJoinedByString:@", "];
         [self.loadedFailure sendNext:message];
     };
-    MiewahRequestError errorHandler = ^(NSError *error) {
+    self.requestErrorHandler = ^(NSError *error) {
         @strongify(self);
         [self.loadedError sendNext:error];
     };
     
-    [self.requester getCharactersAtPage:self.currentPage
-                                success:successHandler
-                                failure:failureHandler
-                                  error:errorHandler];
-}
-
-- (void)reloadData {
     [self resetFlags];
-    [self loadData];
 }
 
-- (void)resetFlags {
-    self.currentPage = 1;
-    self.noMoreData = NO;
-    [self.characters removeAllObjects];
-}
-
-- (MiewahCharacterRequestManager *)requester {
+@synthesize requester = _requester;
+- (id<MiewahListRequestProtocol>)requester {
     if (_requester == nil) {
         _requester = [[MiewahCharacterRequestManager alloc] init];
     }
     return _requester;
-}
-
-- (RACSubject *)loadedSuccess {
-    if (_loadedSuccess == nil) {
-        _loadedSuccess = [[RACSubject alloc] init];
-    }
-    return _loadedSuccess;
-}
-
-- (RACSubject *)loadedFailure {
-    if (_loadedFailure == nil) {
-        _loadedFailure = [[RACSubject alloc] init];
-    }
-    return _loadedFailure;
-}
-
-- (RACSubject *)loadedError {
-    if (_loadedError == nil) {
-        _loadedError = [[RACSubject alloc] init];
-    }
-    return _loadedError;
-}
-
-- (NSMutableArray<MiewahCharacter *> *)characters {
-    if (_characters == nil) {
-        _characters = [NSMutableArray array];
-    }
-    return _characters;
 }
 
 @end

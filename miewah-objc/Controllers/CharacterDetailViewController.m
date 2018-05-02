@@ -1,39 +1,39 @@
 //
-//  WordDetailViewController.m
+//  CharacterViewController.m
 //  miewah-objc
 //
-//  Created by Christopher on 2018/4/25.
+//  Created by Christopher on 2018/5/2.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordDetailViewController.h"
-#import "WordDetailViewModel.h"
-#import "ItemIntroductionCell.h"
+#import "CharacterDetailViewController.h"
+#import "ShortItemDetailHeaderView.h"
+#import "CharacterDetailViewModel.h"
 #import "UIConstants.h"
 #import "NotificationBanner.h"
-#import "ShortItemDetailHeaderView.h"
 #import "MiewahCharacter.h"
 #import "MiewahWord.h"
+#import "ItemIntroductionCell.h"
 
 static NSString *SectionIdentifier = @"section-header";
 
-NSString * const WordDetailVCWordKey = @"word";
-NSString * const WordDetailVCPronunciationKey = @"pronunciation";
+NSString * const CharacterDetailVCWordKey = @"character";
+NSString * const CharacterDetailVCPronunciationKey = @"pronunciation";
 
-@interface WordDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CharacterDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet ShortItemDetailHeaderView *header;
 @property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
 
-@property (nonatomic, strong) WordDetailViewModel *vm;
+@property (nonatomic, strong) CharacterDetailViewModel *vm;
 
-@property (nonatomic, copy) NSString *tempWord;
+@property (nonatomic, copy) NSString *tempCharacter;
 @property (nonatomic, copy) NSString *tempPronunciation;
 
 @end
 
-@implementation WordDetailViewController
+@implementation CharacterDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,8 +63,6 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             self.navigationItem.rightBarButtonItem = nil;
-            self.header.lbWord.text = self.vm.word.word;
-            self.header.lbPronounce.text = self.vm.word.pronunciation;
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -89,7 +87,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
 
 - (void)setupNavigationBar {
     self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
-    self.title = self.tempWord;
+    self.title = self.tempCharacter;
 }
 
 - (void)setupSubviews {
@@ -100,7 +98,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
     [self.tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    self.header.lbWord.text = self.tempWord;
+    self.header.lbWord.text = self.tempCharacter;
     self.header.lbPronounce.text = self.tempPronunciation;
 }
 
@@ -124,17 +122,17 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
     return cell;
 }
 
-- (void)setWordIdentifier:(NSNumber *)identifier {
+- (void)setCharacterIdentifier:(NSNumber *)identifier {
     if (_vm) {
         _vm.identifier = identifier;
     } else {
-        _vm = [[WordDetailViewModel alloc] initWithIdentifier:identifier];
+        _vm = [[CharacterDetailViewModel alloc] initWithIdentifier:identifier];
     }
 }
 
 - (void)setInitialInfo:(NSDictionary *)info {
-    _tempWord = [info objectForKey:WordDetailVCWordKey];
-    _tempPronunciation = [info objectForKey:WordDetailVCPronunciationKey];
+    _tempCharacter = [info objectForKey:CharacterDetailVCWordKey];
+    _tempPronunciation = [info objectForKey:CharacterDetailVCPronunciationKey];
 }
 
 - (UIBarButtonItem *)loadingIndicatorItem {

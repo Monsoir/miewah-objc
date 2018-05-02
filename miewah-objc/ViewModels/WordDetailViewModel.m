@@ -2,43 +2,44 @@
 //  WordDetailViewModel.m
 //  miewah-objc
 //
-//  Created by Christopher on 2018/5/1.
+//  Created by Christopher on 2018/5/2.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "CharacterDetailViewModel.h"
-#import "CharacterDetailResponseObject.h"
-#import "MiewahCharacterRequestManager.h"
+#import "WordDetailViewModel.h"
+#import "MiewahWordRequestManager.h"
+#import "WordDetailResponseObject.h"
 
-@interface CharacterDetailViewModel ()
+@interface WordDetailViewModel ()
 
-@property (nonatomic, strong) MiewahCharacter *character;
+@property (nonatomic, strong) MiewahWord *word;
 @property (nonatomic, strong) NSArray<NSString *> *sectionNames;
 @property (nonatomic, strong) NSArray<NSString *> *displayContents;
-
 @property (nonatomic, strong) id<MiewahDetailRequestProtocol> requester;
 
 @end
 
-@implementation CharacterDetailViewModel
+@implementation WordDetailViewModel
 
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];
     
     @weakify(self);
-    self.requestSuccessHandler = ^(BaseResponseObject *payload){
+    self.requestSuccessHandler = ^(BaseResponseObject *payload) {
         @strongify(self);
-        CharacterDetailResponseObject *_payload = (CharacterDetailResponseObject *)payload;
-        MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:_payload.character];
-        self.character = character; // 这是设置好对象罢了
+        WordDetailResponseObject *_payload = (WordDetailResponseObject *)payload;
+        MiewahWord *word = [[MiewahWord alloc] initWithDictionary:_payload.word];
+        self.word = word; // 这是设置好对象罢了
         self.displayContents = [self makeContentToDisplay]; // 这是将需要展示的数据整理成数组形式，让 controller 更好地读取
-        [self.loadedSuccess sendNext:character];
+        [self.loadedSuccess sendNext:word];
     };
-    self.requestFailureHandler = ^(BaseResponseObject *payload){
+    
+    self.requestFailureHandler = ^(BaseResponseObject *payload) {
         @strongify(self);
         [self.loadedFailure sendNext:[payload.comments componentsJoinedByString:@", "]];
     };
-    self.requestErrorHandler = ^(NSError *error){
+    
+    self.requestErrorHandler = ^(NSError *error) {
         @strongify(self);
         [self.loadedError sendNext:error];
     };
@@ -46,10 +47,10 @@
 
 - (NSArray <NSString *> *)makeContentToDisplay {
     return @[
-             self.character.meaning ?: @"", // 意义
+             self.word.meaning ?: @"", // 意义
              @"", // 出处参考
-             self.character.sentences ?: @"", // 例句
-             self.character.prettifiedInputMethods ?: @"", //输入法
+             self.word.sentences ?: @"", // 例句
+             @"", //输入法
              @"", // 搜索关键字
              ];
 }
@@ -65,7 +66,7 @@
 @synthesize requester = _requester;
 - (id<MiewahDetailRequestProtocol>)requester {
     if (_requester == nil) {
-        _requester = [[MiewahCharacterRequestManager alloc] init];
+        _requester = [[MiewahWordRequestManager alloc] init];
     }
     return _requester;
 }

@@ -82,6 +82,10 @@
 		9DF3226D2099685000D5C463 /* MiewahWord.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3226C2099685000D5C463 /* MiewahWord.m */; };
 		9DF322702099842500D5C463 /* MiewahModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3226F2099842500D5C463 /* MiewahModel.m */; };
 		9DF322732099870200D5C463 /* MiewahListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322722099870200D5C463 /* MiewahListViewModel.m */; };
+		9DF322782099A69000D5C463 /* CharacterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322772099A69000D5C463 /* CharacterDetailViewController.m */; };
+		9DF3227C2099AD2600D5C463 /* MiewahDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3227B2099AD2600D5C463 /* MiewahDetailViewModel.m */; };
+		9DF3227F2099B13800D5C463 /* WordDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3227E2099B13700D5C463 /* WordDetailViewModel.m */; };
+		9DF322822099B2D100D5C463 /* WordDetailResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322812099B2D100D5C463 /* WordDetailResponseObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +246,15 @@
 		9DF3226F2099842500D5C463 /* MiewahModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahModel.m; sourceTree = "<group>"; };
 		9DF322712099870200D5C463 /* MiewahListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahListViewModel.h; sourceTree = "<group>"; };
 		9DF322722099870200D5C463 /* MiewahListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahListViewModel.m; sourceTree = "<group>"; };
+		9DF322752099952700D5C463 /* MiewahRequestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahRequestProtocol.h; sourceTree = "<group>"; };
+		9DF322762099A69000D5C463 /* CharacterDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterDetailViewController.h; sourceTree = "<group>"; };
+		9DF322772099A69000D5C463 /* CharacterDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterDetailViewController.m; sourceTree = "<group>"; };
+		9DF3227A2099AD2600D5C463 /* MiewahDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahDetailViewModel.h; sourceTree = "<group>"; };
+		9DF3227B2099AD2600D5C463 /* MiewahDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahDetailViewModel.m; sourceTree = "<group>"; };
+		9DF3227D2099B13700D5C463 /* WordDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordDetailViewModel.h; sourceTree = "<group>"; };
+		9DF3227E2099B13700D5C463 /* WordDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewModel.m; sourceTree = "<group>"; };
+		9DF322802099B2D100D5C463 /* WordDetailResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordDetailResponseObject.h; sourceTree = "<group>"; };
+		9DF322812099B2D100D5C463 /* WordDetailResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailResponseObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +297,8 @@
 			children = (
 				9D6D4F082092FDA4009AA9CE /* CharactersViewController.h */,
 				9D6D4F092092FDA4009AA9CE /* CharactersViewController.m */,
+				9DF322762099A69000D5C463 /* CharacterDetailViewController.h */,
+				9DF322772099A69000D5C463 /* CharacterDetailViewController.m */,
 				9D6D4F0B2092FE3E009AA9CE /* WordsViewController.h */,
 				9D6D4F0C2092FE3E009AA9CE /* WordsViewController.m */,
 				9D1B8F87209051690099976C /* WordDetailViewController.h */,
@@ -566,6 +581,7 @@
 		9D6D4F1220940C2E009AA9CE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9DF322792099AD0200D5C463 /* ViewModelTemplates */,
 				9D6D4F1D20946163009AA9CE /* MiewahViewModel.h */,
 				9D6D4F1E20946163009AA9CE /* MiewahViewModel.m */,
 				9D6D4F1320940C43009AA9CE /* LoginViewModel.h */,
@@ -574,14 +590,14 @@
 				9D6D4F1720944D2E009AA9CE /* RegisterViewModel.m */,
 				9D45009E20974C4E00A63C20 /* AboutMeViewModel.h */,
 				9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */,
-				9DF322712099870200D5C463 /* MiewahListViewModel.h */,
-				9DF322722099870200D5C463 /* MiewahListViewModel.m */,
 				9DF3225F209961D700D5C463 /* CharactersViewModel.h */,
 				9DF32260209961D700D5C463 /* CharactersViewModel.m */,
 				9D0574E82098949E00FB7661 /* CharacterDetailViewModel.h */,
 				9D0574E92098949E00FB7661 /* CharacterDetailViewModel.m */,
 				9DF322622099632300D5C463 /* WordsViewModel.h */,
 				9DF322632099632300D5C463 /* WordsViewModel.m */,
+				9DF3227D2099B13700D5C463 /* WordDetailViewModel.h */,
+				9DF3227E2099B13700D5C463 /* WordDetailViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -589,6 +605,7 @@
 		9D6D4F1920945DF9009AA9CE /* Networker */ = {
 			isa = PBXGroup;
 			children = (
+				9DF322742099950600D5C463 /* NetworkProtocols */,
 				9D6D4F21209467A6009AA9CE /* ResponseObjects */,
 				9D6D4F1A20945FBF009AA9CE /* MiewahNetworker.h */,
 				9D6D4F1B20945FBF009AA9CE /* MiewahNetworker.m */,
@@ -621,8 +638,29 @@
 				9D0574EF2098989B00FB7661 /* CharacterDetailResponseObject.m */,
 				9DF322682099635F00D5C463 /* WordListResponseObject.h */,
 				9DF322692099635F00D5C463 /* WordListResponseObject.m */,
+				9DF322802099B2D100D5C463 /* WordDetailResponseObject.h */,
+				9DF322812099B2D100D5C463 /* WordDetailResponseObject.m */,
 			);
 			path = ResponseObjects;
+			sourceTree = "<group>";
+		};
+		9DF322742099950600D5C463 /* NetworkProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				9DF322752099952700D5C463 /* MiewahRequestProtocol.h */,
+			);
+			path = NetworkProtocols;
+			sourceTree = "<group>";
+		};
+		9DF322792099AD0200D5C463 /* ViewModelTemplates */ = {
+			isa = PBXGroup;
+			children = (
+				9DF322712099870200D5C463 /* MiewahListViewModel.h */,
+				9DF322722099870200D5C463 /* MiewahListViewModel.m */,
+				9DF3227A2099AD2600D5C463 /* MiewahDetailViewModel.h */,
+				9DF3227B2099AD2600D5C463 /* MiewahDetailViewModel.m */,
+			);
+			path = ViewModelTemplates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -801,9 +839,11 @@
 				9D45008D2094C62800A63C20 /* APIAddresses.m in Sources */,
 				9D6D4F2D20946CE4009AA9CE /* MiewahAPIManager.m in Sources */,
 				9D1B8F7D209051270099976C /* LoginViewController.m in Sources */,
+				9DF322782099A69000D5C463 /* CharacterDetailViewController.m in Sources */,
 				9DF322642099632300D5C463 /* WordsViewModel.m in Sources */,
 				9D1B8FD22090E3A60099976C /* UIConstants.m in Sources */,
 				9D4500902096D05400A63C20 /* Validator.m in Sources */,
+				9DF322822099B2D100D5C463 /* WordDetailResponseObject.m in Sources */,
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
 				9D0574F02098989B00FB7661 /* CharacterDetailResponseObject.m in Sources */,
 				9D4500BA2098588D00A63C20 /* MiewahCharacter.m in Sources */,
@@ -823,6 +863,7 @@
 				9D1B8F97209053700099976C /* ShortItemTableViewCell.m in Sources */,
 				9DF322672099634800D5C463 /* MiewahWordRequestManager.m in Sources */,
 				9DF322702099842500D5C463 /* MiewahModel.m in Sources */,
+				9DF3227F2099B13800D5C463 /* WordDetailViewModel.m in Sources */,
 				9D4500B420983F2600A63C20 /* ListLoadMoreFooterView.m in Sources */,
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
 				9D6D4F0D2092FE3E009AA9CE /* WordsViewController.m in Sources */,
@@ -835,6 +876,7 @@
 				9D1B8FBF2090C9980099976C /* AvatarHeader.m in Sources */,
 				9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */,
 				9D1B8FCB2090CD6C0099976C /* NotificationBanner.m in Sources */,
+				9DF3227C2099AD2600D5C463 /* MiewahDetailViewModel.m in Sources */,
 				9D6D4F1C20945FBF009AA9CE /* MiewahNetworker.m in Sources */,
 				9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */,
 				9D1B8FE52091D3750099976C /* UIViewController+Keyboard.m in Sources */,

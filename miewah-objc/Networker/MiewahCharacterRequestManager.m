@@ -12,7 +12,7 @@
 
 @implementation MiewahCharacterRequestManager
 
-- (NSURLSessionDataTask *)getCharactersAtPage:(NSInteger)pageIndex success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {
+- (NSURLSessionDataTask *)getListAtPage:(NSInteger)pageIndex success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {
     MiewahNetworker *worker = [MiewahNetworker sharedNetworker];
     return [worker GET:[[MiewahAPIManager sharedManager] charactersURLWithPageIndex:pageIndex]
             parameters:nil
@@ -26,7 +26,7 @@
                }];
 }
 
-- (NSURLSessionDataTask *)getCharacterDetail:(NSString *)identifier success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {
+- (NSURLSessionDataTask *)getDetailOfIdentifier:(NSNumber *)identifier success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {
     MiewahNetworker *worker = [MiewahNetworker sharedNetworker];
     return [worker GET:[[MiewahAPIManager sharedManager] characterDetailOfIdentifier:identifier]
             parameters:nil

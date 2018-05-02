@@ -16,8 +16,9 @@
 - (NSString *)loginURL;
 
 - (NSString *)charactersURLWithPageIndex:(NSInteger)pageIndex;
-- (NSString *)characterDetailOfIdentifier:(NSString *)identifier;
+- (NSString *)characterDetailOfIdentifier:(NSNumber *)identifier;
 
 - (NSString *)wordsURLWithPageIndex:(NSInteger)pageIndex;
+- (NSString *)wordDetailOfIdentifier:(NSNumber *)identifier;
 
 @end

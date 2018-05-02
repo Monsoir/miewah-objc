@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const WordDetailVCWordKey;
+extern NSString * const WordDetailVCPronunciationKey;
+
 @interface WordDetailViewController : UIViewController
 
-- (void)setWordIdentifier:(NSString *)identifier;
+- (void)setWordIdentifier:(NSNumber *)identifier;
+- (void)setInitialInfo:(NSDictionary *)info;
 
 @end

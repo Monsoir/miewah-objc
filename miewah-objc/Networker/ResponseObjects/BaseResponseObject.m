@@ -12,6 +12,7 @@
 #import "CharacterListResponseObject.h"
 #import "CharacterDetailResponseObject.h"
 #import "WordListResponseObject.h"
+#import "WordDetailResponseObject.h"
 
 @implementation BaseResponseObject
 
@@ -28,9 +29,12 @@
         case ResponseObjectTypeWordList:
             return [[WordListResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeWordDetail:
-            break;
+            return [[WordDetailResponseObject alloc] initWithDictionary:aDict];
             
         default:
+#if DEBUG
+            NSLog(@"%@: Attention!!!!\nYou might forgot to SET THE CORRECT RESPONSE OBJECT!!!", [self class]);
+#endif
             return [[[self class] alloc] initWithDictionary:aDict];
     }
     
@@ -53,14 +57,14 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
 #if DEBUG
-    NSLog(@"%@ 设置了 undefined key...", [self class]);
+    NSLog(@"%@ setting undefined key...", [self class]);
 #endif
     return;
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
 #if DEBUG
-    NSLog(@"%@ 读取了 undefined key...", [self class]);
+    NSLog(@"%@ setting undefined key...", [self class]);
 #endif
     return nil;
 }

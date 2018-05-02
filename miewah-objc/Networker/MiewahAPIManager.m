@@ -32,12 +32,16 @@
     return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahCharactersURL, (long)pageIndex];
 }
 
-- (NSString *)characterDetailOfIdentifier:(NSString *)identifier {
+- (NSString *)characterDetailOfIdentifier:(NSNumber *)identifier {
     return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahCharacterDetailURL, identifier];
 }
 
 - (NSString *)wordsURLWithPageIndex:(NSInteger)pageIndex {
     return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahWordsURL, (long)pageIndex];
+}
+
+- (NSString *)wordDetailOfIdentifier:(NSNumber *)identifier {
+    return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahWordDetailURL, identifier];
 }
 
 @end

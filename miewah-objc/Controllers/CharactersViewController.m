@@ -12,7 +12,8 @@
 #import "CharactersViewModel.h"
 #import "UIConstants.h"
 #import "NotificationBanner.h"
-#import "WordDetailViewController.h"
+#import "CharacterDetailViewController.h"
+#import "MiewahCharacter.h"
 
 #import "UIColor+Hex.h"
 #import "UINavigationBar+BottomLine.h"
@@ -44,7 +45,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (self.vm.characters.count == 0) {
+    if (self.vm.items.count == 0) {
         self.loadingIndicator.hidden = NO;
         [self.loadingIndicator startAnimating];
         [self.vm reloadData];
@@ -122,12 +123,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vm.characters.count;
+    return self.vm.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
-    MiewahCharacter *character = self.vm.characters[indexPath.row];
+    MiewahCharacter *character = self.vm.items[indexPath.row];
     cell.lbWord.text = character.character;
     cell.lbPronounce.text = character.pronunciation;
     cell.lbMeaning.text = character.meaning;
@@ -135,9 +136,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahCharacter *character = self.vm.characters[indexPath.row];
-    NSDictionary *userInfo = @{@"identifier": character.identifier};
-    [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
+    MiewahCharacter *character = self.vm.items[indexPath.row];
+    NSDictionary *userInfo = @{
+                               @"identifier": character.identifier,
+                               CharacterDetailVCWordKey: character.character,
+                               CharacterDetailVCPronunciationKey: character.pronunciation,
+                               };
+    [self performSegueWithIdentifier:@"showCharacterDetail" sender:userInfo];
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {
@@ -152,9 +157,14 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
-    if ([segue.identifier isEqualToString:@"showWordDetail"]) {
-        WordDetailViewController *vc = segue.destinationViewController;
-        [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
+    if ([segue.identifier isEqualToString:@"showCharacterDetail"]) {
+        CharacterDetailViewController *vc = segue.destinationViewController;
+        [vc setCharacterIdentifier:[userInfo objectForKey:@"identifier"]];
+        NSDictionary *info = @{
+                               CharacterDetailVCWordKey: [userInfo objectForKey:CharacterDetailVCWordKey],
+                               CharacterDetailVCPronunciationKey: [userInfo objectForKey:CharacterDetailVCPronunciationKey],
+                               };
+        [vc setInitialInfo: info];
     }
 }
 

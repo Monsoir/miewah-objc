@@ -6,20 +6,8 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "MiewahViewModel.h"
-#import "MiewahCharacter.h"
+#import "MiewahListViewModel.h"
 
-@interface CharactersViewModel : MiewahViewModel
-
-@property (nonatomic, strong, readonly) NSMutableArray<MiewahCharacter *> *characters;
-
-@property (nonatomic, strong, readonly) RACSignal *noMoreDataSignal;
-
-@property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
-@property (nonatomic, strong, readonly) RACSubject *loadedFailure;
-@property (nonatomic, strong, readonly) RACSubject *loadedError;
-
-- (void)loadData;
-- (void)reloadData;
+@interface CharactersViewModel : MiewahListViewModel
 
 @end
