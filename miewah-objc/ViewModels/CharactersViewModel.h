@@ -1,15 +1,15 @@
 //
-//  WordsMieViewModel.h
+//  CharactersViewModel.h
 //  miewah-objc
 //
-//  Created by Christopher on 2018/5/1.
+//  Created by Christopher on 2018/5/2.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
 #import "MiewahViewModel.h"
 #import "MiewahCharacter.h"
 
-@interface WordsMieViewModel : MiewahViewModel
+@interface CharactersViewModel : MiewahViewModel
 
 @property (nonatomic, strong, readonly) NSMutableArray<MiewahCharacter *> *words;
 

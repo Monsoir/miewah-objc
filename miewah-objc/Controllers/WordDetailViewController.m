@@ -7,7 +7,7 @@
 //
 
 #import "WordDetailViewController.h"
-#import "WordDetailViewModel.h"
+#import "CharacterDetailViewModel.h"
 #import "ItemIntroductionCell.h"
 #import "UIConstants.h"
 #import "NotificationBanner.h"
@@ -19,7 +19,7 @@ static NSString *SectionIdentifier = @"section-header";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
 
-@property (nonatomic, strong) WordDetailViewModel *vm;
+@property (nonatomic, strong) CharacterDetailViewModel *vm;
 
 @end
 
@@ -111,7 +111,7 @@ static NSString *SectionIdentifier = @"section-header";
     if (_vm) {
         _vm.identifier = identifier;
     } else {
-        _vm = [[WordDetailViewModel alloc] initWithWordIdentifier:identifier];
+        _vm = [[CharacterDetailViewModel alloc] initWithWordIdentifier:identifier];
     }
 }
 

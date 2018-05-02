@@ -6,11 +6,11 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordDetailViewModel.h"
+#import "CharacterDetailViewModel.h"
 #import "CharacterDetailResponseObject.h"
 #import "MiewahCharacterRequestManager.h"
 
-@interface WordDetailViewModel ()
+@interface CharacterDetailViewModel ()
 
 @property (nonatomic, strong) NSArray<NSString *> *sectionNames;
 @property (nonatomic, strong) NSArray<NSString *> *displayContents;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation WordDetailViewModel
+@implementation CharacterDetailViewModel
 
 - (instancetype)initWithWordIdentifier:(NSString *)identifier {
     self = [super init];

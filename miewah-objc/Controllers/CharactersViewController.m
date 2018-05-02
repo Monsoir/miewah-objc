@@ -9,7 +9,7 @@
 #import "CharactersViewController.h"
 #import "ShortItemTableViewCell.h"
 #import "ListLoadMoreFooterView.h"
-#import "WordsMieViewModel.h"
+#import "CharactersViewModel.h"
 #import "UIConstants.h"
 #import "NotificationBanner.h"
 #import "WordDetailViewController.h"
@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
-@property (nonatomic, strong) WordsMieViewModel *vm;
+@property (nonatomic, strong) CharactersViewModel *vm;
 
 @end
 
@@ -144,9 +144,9 @@
     [self.vm reloadData];
 }
 
-- (WordsMieViewModel *)vm {
+- (CharactersViewModel *)vm {
     if (_vm == nil) {
-        _vm = [[WordsMieViewModel alloc] init];
+        _vm = [[CharactersViewModel alloc] init];
     }
     return _vm;
 }

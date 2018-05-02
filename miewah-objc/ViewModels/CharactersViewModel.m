@@ -1,16 +1,16 @@
 //
-//  WordsMieViewModel.m
+//  CharactersViewModel.m
 //  miewah-objc
 //
-//  Created by Christopher on 2018/5/1.
+//  Created by Christopher on 2018/5/2.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordsMieViewModel.h"
+#import "CharactersViewModel.h"
 #import "MiewahCharacterRequestManager.h"
 #import "CharacterListResponseObject.h"
 
-@interface WordsMieViewModel ()
+@interface CharactersViewModel ()
 
 @property (nonatomic, strong) NSMutableArray<MiewahCharacter *> *words;
 
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation WordsMieViewModel
+@implementation CharactersViewModel
 
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];

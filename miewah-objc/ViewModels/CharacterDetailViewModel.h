@@ -9,7 +9,7 @@
 #import "MiewahViewModel.h"
 #import "MiewahCharacter.h"
 
-@interface WordDetailViewModel : MiewahViewModel
+@interface CharacterDetailViewModel : MiewahViewModel
 
 @property (nonatomic, copy) NSString *identifier;
 
