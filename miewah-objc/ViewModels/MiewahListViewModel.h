@@ -1,5 +1,5 @@
 //
-//  CharactersViewModel.h
+//  MiewahListViewModel.h
 //  miewah-objc
 //
 //  Created by Christopher on 2018/5/2.
@@ -7,11 +7,11 @@
 //
 
 #import "MiewahViewModel.h"
-#import "MiewahCharacter.h"
+#import "MiewahModel.h"
 
-@interface CharactersViewModel : MiewahViewModel
+@interface MiewahListViewModel<T: MiewahModel*> : MiewahViewModel
 
-@property (nonatomic, strong, readonly) NSMutableArray<MiewahCharacter *> *characters;
+@property (nonatomic, strong, readonly) NSMutableArray<T> *items;
 
 @property (nonatomic, strong, readonly) RACSignal *noMoreDataSignal;
 
@@ -20,6 +20,7 @@
 @property (nonatomic, strong, readonly) RACSubject *loadedError;
 
 - (void)loadData;
+- (void)resetFlags;
 - (void)reloadData;
 
 @end

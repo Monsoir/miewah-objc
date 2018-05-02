@@ -11,6 +11,7 @@
 #import "LoginResponseObject.h"
 #import "CharacterListResponseObject.h"
 #import "CharacterDetailResponseObject.h"
+#import "WordListResponseObject.h"
 
 @implementation BaseResponseObject
 
@@ -25,7 +26,7 @@
         case ResponseObjectTypeCharacterDetail:
             return [[CharacterDetailResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeWordList:
-            break;
+            return [[WordListResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeWordDetail:
             break;
             
@@ -51,8 +52,17 @@
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    // 避免设置了未知 key 发生崩溃
+#if DEBUG
+    NSLog(@"%@ 设置了 undefined key...", [self class]);
+#endif
     return;
+}
+
+- (id)valueForUndefinedKey:(NSString *)key {
+#if DEBUG
+    NSLog(@"%@ 读取了 undefined key...", [self class]);
+#endif
+    return nil;
 }
 
 - (NSMutableArray<NSString *> *)extractKeys {

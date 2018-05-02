@@ -44,7 +44,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (self.vm.words.count == 0) {
+    if (self.vm.characters.count == 0) {
         self.loadingIndicator.hidden = NO;
         [self.loadingIndicator startAnimating];
         [self.vm reloadData];
@@ -122,12 +122,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vm.words.count;
+    return self.vm.characters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
-    MiewahCharacter *character = self.vm.words[indexPath.row];
+    MiewahCharacter *character = self.vm.characters[indexPath.row];
     cell.lbWord.text = character.character;
     cell.lbPronounce.text = character.pronunciation;
     cell.lbMeaning.text = character.meaning;
@@ -135,7 +135,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahCharacter *character = self.vm.words[indexPath.row];
+    MiewahCharacter *character = self.vm.characters[indexPath.row];
     NSDictionary *userInfo = @{@"identifier": character.identifier};
     [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
 }

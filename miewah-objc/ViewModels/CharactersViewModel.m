@@ -12,7 +12,7 @@
 
 @interface CharactersViewModel ()
 
-@property (nonatomic, strong) NSMutableArray<MiewahCharacter *> *words;
+@property (nonatomic, strong) NSMutableArray<MiewahCharacter *> *characters;
 
 @property (nonatomic, strong) RACSignal *noMoreDataSignal;
 
@@ -52,7 +52,7 @@
         
         [_payload.characters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:obj];
-            [self.words addObject:character];
+            [self.characters addObject:character];
         }];
         self.currentPage++;
         [self.loadedSuccess sendNext:nil];
@@ -81,7 +81,7 @@
 - (void)resetFlags {
     self.currentPage = 1;
     self.noMoreData = NO;
-    [self.words removeAllObjects];
+    [self.characters removeAllObjects];
 }
 
 - (MiewahCharacterRequestManager *)requester {
@@ -112,11 +112,11 @@
     return _loadedError;
 }
 
-- (NSMutableArray<MiewahCharacter *> *)words {
-    if (_words == nil) {
-        _words = [NSMutableArray array];
+- (NSMutableArray<MiewahCharacter *> *)characters {
+    if (_characters == nil) {
+        _characters = [NSMutableArray array];
     }
-    return _words;
+    return _characters;
 }
 
 @end
