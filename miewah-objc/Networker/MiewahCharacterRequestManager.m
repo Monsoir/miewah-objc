@@ -8,7 +8,7 @@
 
 #import "MiewahCharacterRequestManager.h"
 #import "MiewahAPIManager.h"
-#import "CharacterListResponseObject.h"
+#import "BaseResponseObject.h"
 
 @implementation MiewahCharacterRequestManager
 
@@ -18,7 +18,21 @@
             parameters:nil
               progress:nil
                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                   CharacterListResponseObject *payload = [[CharacterListResponseObject alloc] initWithDictionary:responseObject];
+                   BaseResponseObject *payload = [BaseResponseObject responseObjectOfType:ResponseObjectTypeCharacterList configuredWithDict:responseObject];
+                   [payload.success boolValue] ? successHandler(payload) : failureHandler(payload);
+               }
+               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                   errorHandler(error);
+               }];
+}
+
+- (NSURLSessionDataTask *)getCharacterDetail:(NSString *)identifier success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {
+    MiewahNetworker *worker = [MiewahNetworker sharedNetworker];
+    return [worker GET:[[MiewahAPIManager sharedManager] characterDetailOfIdentifier:identifier]
+            parameters:nil
+              progress:nil
+               success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                   BaseResponseObject *payload = [BaseResponseObject responseObjectOfType:ResponseObjectTypeCharacterDetail configuredWithDict:responseObject];
                    [payload.success boolValue] ? successHandler(payload) : failureHandler(payload);
                }
                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

@@ -6,9 +6,9 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordDetailResponseObject.h"
+#import "CharacterDetailResponseObject.h"
 
-@implementation WordDetailResponseObject
+@implementation CharacterDetailResponseObject
 
 - (NSMutableArray<NSString *> *)extractKeys {
     NSMutableArray *keys = [super extractKeys];

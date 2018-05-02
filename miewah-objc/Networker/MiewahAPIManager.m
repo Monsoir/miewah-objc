@@ -32,8 +32,8 @@
     return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahCharactersURL, (long)pageIndex];
 }
 
-- (NSString *)wordDetailOfIdentifier:(NSString *)identifier {
-    return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahWordDetailURL, identifier];
+- (NSString *)characterDetailOfIdentifier:(NSString *)identifier {
+    return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahCharacterDetailURL, identifier];
 }
 
 @end

@@ -8,10 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    ResponseObjectTypeRegister,
+    ResponseObjectTypeLogin,
+    ResponseObjectTypeCharacterList,
+    ResponseObjectTypeCharacterDetail,
+    ResponseObjectTypeWordList,
+    ResponseObjectTypeWordDetail,
+} ResponseObjectType;
+
 @interface BaseResponseObject : NSObject
 
 @property (nonatomic, assign, readonly) NSNumber *success;
 @property (nonatomic, strong, readonly) NSArray<NSString *> *comments;
+
++ (instancetype)responseObjectOfType:(ResponseObjectType)type configuredWithDict:(NSDictionary *)aDict;
 
 /**
  从字典中生成对应的响应对象
@@ -19,7 +30,7 @@
  @param aDict 响应数据字典
  @return 响应对象
  */
-- (instancetype)initWithDictionary:(NSDictionary *)aDict;
+//- (instancetype)initWithDictionary:(NSDictionary *)aDict;
 
 /**
  获取需要得到的响应字段

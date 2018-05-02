@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [self clearLoginInfo];
+    self.window.backgroundColor = UIColor.whiteColor;
     [[MiewahUser thisUser] fetchUserInfo];
     return YES;
 }

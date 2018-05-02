@@ -7,8 +7,34 @@
 //
 
 #import "BaseResponseObject.h"
+#import "RegisterResponseObject.h"
+#import "LoginResponseObject.h"
+#import "CharacterListResponseObject.h"
+#import "CharacterDetailResponseObject.h"
 
 @implementation BaseResponseObject
+
++ (instancetype)responseObjectOfType:(ResponseObjectType)type configuredWithDict:(NSDictionary *)aDict {
+    switch (type) {
+        case ResponseObjectTypeRegister:
+            return [[RegisterResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeLogin:
+            return [[LoginResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeCharacterList:
+            return [[CharacterListResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeCharacterDetail:
+            return [[CharacterDetailResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeWordList:
+            break;
+        case ResponseObjectTypeWordDetail:
+            break;
+            
+        default:
+            return [[[self class] alloc] initWithDictionary:aDict];
+    }
+    
+    return [[[self class] alloc] initWithDictionary:aDict];
+}
 
 - (instancetype)initWithDictionary:(NSDictionary *)aDict {
     self = [super init];

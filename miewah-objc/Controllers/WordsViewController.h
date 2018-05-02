@@ -1,17 +1,13 @@
 //
-//  WordsViewController.h
+//  WordsMieMieViewController.h
 //  miewah-objc
 //
-//  Created by Christopher on 2018/4/25.
+//  Created by Christopher on 2018/4/27.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WordsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) NSMutableArray *dataSource;
-
-- (void)setupSubviews;
-
+@interface WordsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

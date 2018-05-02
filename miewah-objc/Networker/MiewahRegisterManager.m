@@ -8,7 +8,7 @@
 
 #import "MiewahRegisterManager.h"
 #import "MiewahAPIManager.h"
-#import "RegisterResponseObject.h"
+#import "BaseResponseObject.h"
 
 @interface MiewahRegisterManager ()
 
@@ -37,7 +37,7 @@
                              @"confirmPassword": self.confirmedPassword,
                              };
     return [worker POST:[[MiewahAPIManager sharedManager] registerURL] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        RegisterResponseObject *payload = [[RegisterResponseObject alloc] initWithDictionary:responseObject];
+        BaseResponseObject *payload = [BaseResponseObject responseObjectOfType:ResponseObjectTypeRegister configuredWithDict:responseObject];
         if ([payload.success boolValue]) {
             successHandler(payload);
         } else {

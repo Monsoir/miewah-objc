@@ -8,7 +8,7 @@
 
 #import "BaseResponseObject.h"
 
-@interface WordDetailResponseObject : BaseResponseObject
+@interface CharacterDetailResponseObject : BaseResponseObject
 
 @property (nonatomic, strong) id character;
 

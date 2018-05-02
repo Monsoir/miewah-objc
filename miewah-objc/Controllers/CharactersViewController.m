@@ -6,7 +6,7 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordsMieViewController.h"
+#import "CharactersViewController.h"
 #import "ShortItemTableViewCell.h"
 #import "ListLoadMoreFooterView.h"
 #import "WordsMieViewModel.h"
@@ -15,8 +15,9 @@
 #import "WordDetailViewController.h"
 
 #import "UIColor+Hex.h"
+#import "UINavigationBar+BottomLine.h"
 
-@interface WordsMieViewController ()
+@interface CharactersViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -26,15 +27,17 @@
 
 @end
 
-@interface WordsMieViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
+@interface CharactersViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
 @end
 
-@implementation WordsMieViewController
+@implementation CharactersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setupNavigationBar];
+    [self setupSubviews];
     [self linkSignals];
 }
 
@@ -100,8 +103,11 @@
     }];
 }
 
+- (void)setupNavigationBar {
+    [self.navigationController.navigationBar removeBottomLine];
+}
+
 - (void)setupSubviews {
-    [super setupSubviews];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
     [self.tableView registerNib:[UINib nibWithNibName:[ShortItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ShortItemTableViewCell reuseIdentifier]];
     self.tableView.delegate = self;
@@ -170,7 +176,7 @@
 
 @end
 
-@implementation WordsMieViewController(loadMoreFooter)
+@implementation CharactersViewController(loadMoreFooter)
 
 - (void)footerWillLoadMore:(ListLoadMoreFooterView *)footer {
     [self.vm loadData];

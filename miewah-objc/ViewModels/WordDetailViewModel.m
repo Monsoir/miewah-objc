@@ -7,8 +7,8 @@
 //
 
 #import "WordDetailViewModel.h"
-#import "MiewahWordDetailRequestManager.h"
-#import "WordDetailResponseObject.h"
+#import "CharacterDetailResponseObject.h"
+#import "MiewahCharacterRequestManager.h"
 
 @interface WordDetailViewModel ()
 
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) RACSubject *detailRequestFailure;
 @property (nonatomic, strong) RACSubject *detailRequestError;
 
-@property (nonatomic, strong) MiewahWordDetailRequestManager *requester;
+@property (nonatomic, strong) MiewahCharacterRequestManager *requester;
 
 @end
 
@@ -46,7 +46,7 @@
     @weakify(self);
     MiewahRequestSuccess successHandler = ^(BaseResponseObject *payload){
         @strongify(self);
-        WordDetailResponseObject *_payload = (WordDetailResponseObject *)payload;
+        CharacterDetailResponseObject *_payload = (CharacterDetailResponseObject *)payload;
         MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:_payload.character];
         self.characterDetail = character; // 这是设置好对象罢了
         self.displayContents = [self makeContentToDisplay]; // 这是将需要展示的数据整理成数组形式，让 controller 更好地读取
@@ -61,7 +61,7 @@
         [self.detailRequestError sendNext:error];
     };
     
-    [self.requester getWordDetail:self.identifier
+    [self.requester getCharacterDetail:self.identifier
                           success:successHandler
                           failure:failureHandler
                             error:errorHandler];
@@ -106,9 +106,9 @@
     return _sectionNames;
 }
 
-- (MiewahWordDetailRequestManager *)requester {
+- (MiewahCharacterRequestManager *)requester {
     if (_requester == nil) {
-        _requester = [[MiewahWordDetailRequestManager alloc] init];
+        _requester = [[MiewahCharacterRequestManager alloc] init];
     }
     return _requester;
 }

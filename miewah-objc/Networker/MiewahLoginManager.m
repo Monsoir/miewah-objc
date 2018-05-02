@@ -8,7 +8,7 @@
 
 #import "MiewahLoginManager.h"
 #import "MiewahAPIManager.h"
-#import "LoginResponseObject.h"
+#import "BaseResponseObject.h"
 
 @implementation MiewahLoginManager
 
@@ -18,7 +18,7 @@
                              @"password": password,
                              };
     return [worker POST:[[MiewahAPIManager sharedManager] loginURL] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        LoginResponseObject *payload = [[LoginResponseObject alloc] initWithDictionary:responseObject];
+        BaseResponseObject *payload = [BaseResponseObject responseObjectOfType:ResponseObjectTypeLogin configuredWithDict:responseObject];
         if ([payload.success boolValue]) {
             successHandler(payload);
         } else {

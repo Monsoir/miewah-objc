@@ -6,8 +6,8 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordsViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface WordsMieViewController : WordsViewController
+@interface CharactersViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
