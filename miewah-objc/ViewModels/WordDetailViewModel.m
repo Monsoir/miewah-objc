@@ -72,7 +72,7 @@
              self.characterDetail.meaning ?: @"", // 意义
              @"", // 出处参考
              self.characterDetail.sentences ?: @"", // 例句
-             self.characterDetail.inputMethods ?: @"", //输入法
+             self.characterDetail.prettifiedInputMethods ?: @"", //输入法
              @"", // 搜索关键字
              ];
 }

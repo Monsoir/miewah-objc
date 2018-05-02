@@ -20,7 +20,8 @@
 @property (nonatomic, copy) NSString *pronunciationVoice;
 
 - (instancetype)initWithDictionary:(NSDictionary *)aDict;
-
+- (NSDictionary *)deSerializeInputMethods;
+- (NSString *)prettifiedInputMethods;
 
 /**
  可以直接获取的属性名称

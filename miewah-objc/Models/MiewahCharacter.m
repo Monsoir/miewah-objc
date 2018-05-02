@@ -26,6 +26,34 @@
     return self;
 }
 
+- (NSDictionary *)deSerializeInputMethods {
+    if (!self.inputMethods) return nil;
+    
+    NSData *inputMethodData = [self.inputMethods dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *inputMethodJSONObject = [NSJSONSerialization JSONObjectWithData:inputMethodData options:NSJSONReadingAllowFragments error:&error];
+    if (error) {
+#if DEBUG
+        NSLog(@"%@ input method string prettify failed", [self class]);
+#endif
+        return nil;
+    }
+    
+    return inputMethodJSONObject;
+}
+
+- (NSString *)prettifiedInputMethods {
+    NSDictionary *inputMethodJSON = [self deSerializeInputMethods];
+    if (inputMethodJSON == nil) return nil;
+    
+    NSMutableArray<NSString *> *methods = [NSMutableArray array];
+    [inputMethodJSON enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+        [methods addObject: [NSString stringWithFormat:@"%@: %@", key, obj]];
+    }];
+    
+    return [methods componentsJoinedByString:@"\n"];
+}
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
 #if DEBUG
     NSLog(@"%@ is setting undefined key", [self class]);
