@@ -13,6 +13,12 @@
 
 @implementation SlangItemDetailHeaderView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.lbSlang.backgroundColor = UIColor.whiteColor;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self decorateSubviews];

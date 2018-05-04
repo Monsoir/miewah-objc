@@ -11,7 +11,7 @@
 @implementation RegisterResponseObject
 
 - (NSMutableArray<NSString *> *)extractKeys {
-    NSMutableArray *keys = [super extractKeys];
+    NSMutableArray *keys = [BaseResponseObject extractKeys];
     [keys addObject:NSStringFromSelector(@selector(validateErrorMsg))];
     return keys;
 }

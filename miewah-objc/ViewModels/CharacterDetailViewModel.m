@@ -34,14 +34,6 @@
         self.displayContents = [self makeContentToDisplay]; // 这是将需要展示的数据整理成数组形式，让 controller 更好地读取
         [self.loadedSuccess sendNext:character];
     };
-    self.requestFailureHandler = ^(BaseResponseObject *payload){
-        @strongify(self);
-        [self.loadedFailure sendNext:[payload.comments componentsJoinedByString:@", "]];
-    };
-    self.requestErrorHandler = ^(NSError *error){
-        @strongify(self);
-        [self.loadedError sendNext:error];
-    };
 }
 
 - (NSArray <NSString *> *)makeContentToDisplay {

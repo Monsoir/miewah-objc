@@ -10,11 +10,9 @@
 
 @implementation WordListResponseObject
 
-- (NSMutableArray<NSString *> *)extractKeys {
-    NSMutableArray *keys = [super extractKeys];
-    [keys addObjectsFromArray:@[NSStringFromSelector(@selector(words)),
-                                NSStringFromSelector(@selector(currentPageIndex)),
-                                NSStringFromSelector(@selector(pages))]];
++ (NSMutableArray<NSString *> *)extractKeys {
+    NSMutableArray *keys = [BaseListReponseObject extractKeys];
+    [keys addObjectsFromArray:@[NSStringFromSelector(@selector(words))]];
     return keys;
 }
 

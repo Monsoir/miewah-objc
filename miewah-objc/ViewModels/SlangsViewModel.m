@@ -1,23 +1,23 @@
 //
-//  WordsViewModel.m
+//  SlangsViewModel.m
 //  miewah-objc
 //
-//  Created by Christopher on 2018/5/2.
+//  Created by Christopher on 2018/5/4.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordsViewModel.h"
-#import "WordListResponseObject.h"
-#import "MiewahWord.h"
-#import "MiewahWordRequestManager.h"
+#import "SlangsViewModel.h"
+#import "MiewahSlang.h"
+#import "MiewahSlangRequesterManager.h"
+#import "SlangListResponseObject.h"
 
-@interface WordsViewModel ()
+@interface SlangsViewModel ()
 
 @property (nonatomic, strong) id<MiewahListRequestProtocol> requester;
 
 @end
 
-@implementation WordsViewModel
+@implementation SlangsViewModel
 
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];
@@ -25,14 +25,14 @@
     @weakify(self);
     self.requestSuccessHandler = ^(BaseResponseObject *payload) {
         @strongify(self);
-        WordListResponseObject *_payload = (WordListResponseObject *)payload;
+        SlangListResponseObject *_payload = (SlangListResponseObject *)payload;
         
         // 最后一页
         self.noMoreData = [_payload.pages integerValue] == self.currentPage;
         
-        [_payload.words enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            MiewahWord *word = [[MiewahWord alloc] initWithDictionary:obj];
-            [self.items addObject:word];
+        [_payload.slangs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            MiewahSlang *slang = [[MiewahSlang alloc] initWithDictionary:obj];
+            [self.items addObject:slang];
         }];
         self.currentPage++;
         [self.loadedSuccess sendNext:nil];
@@ -44,7 +44,7 @@
 @synthesize requester = _requester;
 - (id<MiewahListRequestProtocol>)requester {
     if (_requester == nil) {
-        _requester = [[MiewahWordRequestManager alloc] init];
+        _requester = [[MiewahSlangRequesterManager alloc] init];
     }
     return _requester;
 }

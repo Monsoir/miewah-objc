@@ -125,16 +125,19 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
 }
 
 - (void)setWordIdentifier:(NSNumber *)identifier {
-    if (_vm) {
-        _vm.identifier = identifier;
-    } else {
-        _vm = [[WordDetailViewModel alloc] initWithIdentifier:identifier];
-    }
+    self.vm.identifier = identifier;
 }
 
 - (void)setInitialInfo:(NSDictionary *)info {
     _tempWord = [info objectForKey:WordDetailVCWordKey];
     _tempPronunciation = [info objectForKey:WordDetailVCPronunciationKey];
+}
+
+- (WordDetailViewModel *)vm {
+    if (_vm == nil) {
+        _vm = [[WordDetailViewModel alloc] init];
+    }
+    return _vm;
 }
 
 - (UIBarButtonItem *)loadingIndicatorItem {

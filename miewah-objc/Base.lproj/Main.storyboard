@@ -204,7 +204,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VTV-OF-dBx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VTV-OF-dBx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -212,18 +212,24 @@
                                     <outlet property="delegate" destination="tLY-lZ-jMt" id="hqS-1E-tXC"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DY6-ed-rZk">
+                                <rect key="frame" x="177.5" y="357" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="DY6-ed-rZk" firstAttribute="centerY" secondItem="6jj-wp-fhB" secondAttribute="centerY" id="6xm-dJ-Ztc"/>
                             <constraint firstAttribute="bottom" secondItem="VTV-OF-dBx" secondAttribute="bottom" id="PcM-5k-PyV"/>
                             <constraint firstItem="VTV-OF-dBx" firstAttribute="top" secondItem="zQc-Ek-kGL" secondAttribute="top" id="Tpu-av-fIQ"/>
                             <constraint firstAttribute="trailing" secondItem="VTV-OF-dBx" secondAttribute="trailing" id="Vol-0g-F3r"/>
                             <constraint firstItem="VTV-OF-dBx" firstAttribute="leading" secondItem="zQc-Ek-kGL" secondAttribute="leading" id="a3l-fI-aUj"/>
+                            <constraint firstItem="DY6-ed-rZk" firstAttribute="centerX" secondItem="6jj-wp-fhB" secondAttribute="centerX" id="htV-6P-17e"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6jj-wp-fhB"/>
                     </view>
                     <navigationItem key="navigationItem" title="故仔" id="eXW-AY-eGH"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="DY6-ed-rZk" id="ubZ-H6-l6j"/>
                         <outlet property="tableView" destination="VTV-OF-dBx" id="cgs-Ua-6b6"/>
                         <segue destination="qan-Yb-Ktr" kind="show" identifier="showSlangDetail" id="8vv-eD-QY2"/>
                     </connections>
@@ -475,6 +481,7 @@
                         <viewLayoutGuide key="safeArea" id="uYM-rK-cwc"/>
                     </view>
                     <connections>
+                        <outlet property="header" destination="FuA-qK-Zvp" id="gjE-OB-WkC"/>
                         <outlet property="tableView" destination="5ai-Ok-y3m" id="Cbe-IH-zPI"/>
                     </connections>
                 </viewController>

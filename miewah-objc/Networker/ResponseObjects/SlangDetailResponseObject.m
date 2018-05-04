@@ -1,19 +1,19 @@
 //
-//  WordDetailResponseObject.m
+//  SlangDetailResponseObject.m
 //  miewah-objc
 //
-//  Created by Christopher on 2018/5/1.
+//  Created by Christopher on 2018/5/4.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "CharacterDetailResponseObject.h"
+#import "SlangDetailResponseObject.h"
 
-@implementation CharacterDetailResponseObject
+@implementation SlangDetailResponseObject
 
 + (NSMutableArray<NSString *> *)extractKeys {
     NSMutableArray *keys = [BaseResponseObject extractKeys];
     [keys addObjectsFromArray:@[
-                                NSStringFromSelector(@selector(character))
+                                NSStringFromSelector(@selector(slang))
                                 ]];
     return keys;
 }

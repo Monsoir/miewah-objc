@@ -15,6 +15,8 @@ typedef enum : NSUInteger {
     ResponseObjectTypeCharacterDetail,
     ResponseObjectTypeWordList,
     ResponseObjectTypeWordDetail,
+    ResponseObjectTypeSlangList,
+    ResponseObejctTypeSlangDetail,
 } ResponseObjectType;
 
 @interface BaseResponseObject : NSObject
@@ -39,6 +41,6 @@ typedef enum : NSUInteger {
 
  @return 一个包含所有需要的响应字段字符串的数组
  */
-- (NSMutableArray<NSString *> *)extractKeys;
++ (NSMutableArray<NSString *> *)extractKeys;
 
 @end

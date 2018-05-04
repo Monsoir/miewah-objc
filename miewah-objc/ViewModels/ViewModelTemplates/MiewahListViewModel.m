@@ -32,6 +32,22 @@
 
 - (void)loadData {
     if (self.noMoreData) return;
+    
+    @weakify(self);
+    if (_requestFailureHandler == nil) {
+        _requestFailureHandler = ^(BaseResponseObject *payload) {
+            @strongify(self);
+            [self.loadedFailure sendNext:[payload.comments componentsJoinedByString:@", "]];
+        };
+    }
+    
+    if (_requestErrorHandler == nil) {
+        _requestErrorHandler = ^(NSError *error) {
+            @strongify(self);
+            [self.loadedError sendNext:error];
+        };
+    }
+    
     [self.requester getListAtPage:self.currentPage
                      success:self.requestSuccessHandler
                      failure:self.requestFailureHandler

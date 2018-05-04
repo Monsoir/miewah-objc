@@ -10,11 +10,9 @@
 
 @implementation CharacterListResponseObject
 
-- (NSMutableArray<NSString *> *)extractKeys {
-    NSMutableArray *keys = [super extractKeys];
-    [keys addObjectsFromArray:@[NSStringFromSelector(@selector(characters)),
-                                NSStringFromSelector(@selector(currentPageIndex)),
-                                NSStringFromSelector(@selector(pages))]];
++ (NSMutableArray<NSString *> *)extractKeys {
+    NSMutableArray *keys = [BaseResponseObject extractKeys];
+    [keys addObjectsFromArray:@[NSStringFromSelector(@selector(characters))]];
     return keys;
 }
 

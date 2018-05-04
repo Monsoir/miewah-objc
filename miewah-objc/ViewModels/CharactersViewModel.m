@@ -13,16 +13,6 @@
 
 @interface CharactersViewModel ()
 
-//@property (nonatomic, strong) NSMutableArray<MiewahCharacter *> *characters;
-//
-//@property (nonatomic, strong) RACSignal *noMoreDataSignal;
-//
-//@property (nonatomic, strong) RACSubject *loadedSuccess;
-//@property (nonatomic, strong) RACSubject *loadedFailure;
-//@property (nonatomic, strong) RACSubject *loadedError;
-//
-//@property (nonatomic, assign) NSInteger currentPage;
-//@property (nonatomic, assign) BOOL noMoreData;
 @property (nonatomic, strong) id<MiewahListRequestProtocol> requester;
 
 @end
@@ -47,15 +37,6 @@
         }];
         self.currentPage++;
         [self.loadedSuccess sendNext:nil];
-    };
-    self.requestFailureHandler = ^(BaseResponseObject *payload) {
-        @strongify(self);
-        NSString *message = [payload.comments componentsJoinedByString:@", "];
-        [self.loadedFailure sendNext:message];
-    };
-    self.requestErrorHandler = ^(NSError *error) {
-        @strongify(self);
-        [self.loadedError sendNext:error];
     };
     
     [self resetFlags];

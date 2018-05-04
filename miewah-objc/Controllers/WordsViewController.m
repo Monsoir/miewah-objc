@@ -77,7 +77,6 @@
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             [self.tableView reloadData];
         };
-        
         runOnMainThread(_);
     }];
     
@@ -101,7 +100,6 @@
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
         };
-        
         runOnMainThread(_);
     }];
 }
@@ -155,8 +153,8 @@
         WordDetailViewController *vc = segue.destinationViewController;
         [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
         NSDictionary *info = @{
-                               WordDetailVCWordKey: [userInfo objectForKey:@"word"],
-                               WordDetailVCPronunciationKey: [userInfo objectForKey:@"pronunciation"],
+                               WordDetailVCWordKey: [userInfo objectForKey:WordDetailVCWordKey],
+                               WordDetailVCPronunciationKey: [userInfo objectForKey:WordDetailVCPronunciationKey],
                                };
         [vc setInitialInfo: info];
     }

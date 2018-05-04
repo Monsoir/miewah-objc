@@ -44,4 +44,12 @@
     return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahWordDetailURL, identifier];
 }
 
+- (NSString *)slangsURLWithPageIndex:(NSInteger)pageIndex {
+    return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahSlangsURL, (long)pageIndex];
+}
+
+- (NSString *)slangDetailOfIdentifier:(NSNumber *)identifier {
+    return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahSlangDetailURL, identifier];
+}
+
 @end

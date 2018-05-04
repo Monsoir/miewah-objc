@@ -6,12 +6,10 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "BaseResponseObject.h"
+#import "BaseListReponseObject.h"
 
-@interface WordListResponseObject : BaseResponseObject
+@interface WordListResponseObject : BaseListReponseObject
 
 @property (nonatomic, strong) id words;
-@property (nonatomic, strong) NSNumber *currentPageIndex;
-@property (nonatomic, strong) NSNumber *pages;
 
 @end

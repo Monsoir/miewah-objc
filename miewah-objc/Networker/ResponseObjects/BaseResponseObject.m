@@ -13,6 +13,8 @@
 #import "CharacterDetailResponseObject.h"
 #import "WordListResponseObject.h"
 #import "WordDetailResponseObject.h"
+#import "SlangListResponseObject.h"
+#import "SlangDetailResponseObject.h"
 
 @implementation BaseResponseObject
 
@@ -30,6 +32,10 @@
             return [[WordListResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeWordDetail:
             return [[WordDetailResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeSlangList:
+            return [[SlangListResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObejctTypeSlangDetail:
+            return [[SlangDetailResponseObject alloc] initWithDictionary:aDict];
             
         default:
 #if DEBUG
@@ -44,7 +50,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)aDict {
     self = [super init];
     if (self) {
-        NSMutableArray *keys = [self extractKeys];
+        NSMutableArray *keys = [[self class] extractKeys];
         for (NSString *key in keys) {
             id value = [aDict objectForKey:key];
             if (value) {
@@ -69,7 +75,7 @@
     return nil;
 }
 
-- (NSMutableArray<NSString *> *)extractKeys {
++ (NSMutableArray<NSString *> *)extractKeys {
     NSMutableArray *keys = [NSMutableArray array];
     [keys addObject:NSStringFromSelector(@selector(success))];
     [keys addObject:NSStringFromSelector(@selector(comments))];

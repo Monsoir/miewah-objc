@@ -21,4 +21,7 @@
 - (NSString *)wordsURLWithPageIndex:(NSInteger)pageIndex;
 - (NSString *)wordDetailOfIdentifier:(NSNumber *)identifier;
 
+- (NSString *)slangsURLWithPageIndex:(NSInteger)pageIndex;
+- (NSString *)slangDetailOfIdentifier:(NSNumber *)identifier;
+
 @end

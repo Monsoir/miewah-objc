@@ -10,8 +10,8 @@
 
 @implementation LoginResponseObject
 
-- (NSMutableArray<NSString *> *)extractKeys {
-    NSMutableArray *keys = [super extractKeys];
++ (NSMutableArray<NSString *> *)extractKeys {
+    NSMutableArray *keys = [BaseResponseObject extractKeys];
     [keys addObject:NSStringFromSelector(@selector(token))];
     return keys;
 }
