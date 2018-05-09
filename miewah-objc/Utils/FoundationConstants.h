@@ -13,6 +13,13 @@ extern NSString * const LoginCompleteNotificationName;
 
 #define StandardUserDefault [NSUserDefaults standardUserDefaults]
 
+typedef enum : NSUInteger {
+    MiewahItemTypeCharacter,
+    MiewahItemTypeWord,
+    MiewahItemTypeSlang,
+    MiewahItemTypeNone,
+} MiewahItemType;
+
 @interface FoundationConstants : NSObject
 
 @end

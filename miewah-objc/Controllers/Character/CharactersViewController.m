@@ -1,38 +1,37 @@
 //
-//  WordsMieMieViewController.m
+//  WordsMieViewController.m
 //  miewah-objc
 //
 //  Created by Christopher on 2018/4/27.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "WordsViewController.h"
+#import "CharactersViewController.h"
 #import "ShortItemTableViewCell.h"
-#import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
-#import "WordDetailViewController.h"
-#import "MiewahWord.h"
-
-#import "WordsViewModel.h"
+#import "CharactersViewModel.h"
 #import "UIConstants.h"
+#import "NotificationBanner.h"
+#import "CharacterDetailViewController.h"
+#import "MiewahCharacter.h"
 
 #import "UIColor+Hex.h"
 #import "UINavigationBar+BottomLine.h"
 
-@interface WordsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface CharactersViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
-@property (nonatomic, strong) WordsViewModel *vm;
+@property (nonatomic, strong) CharactersViewModel *vm;
 
 @end
 
-@interface WordsViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
+@interface CharactersViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
 @end
 
-@implementation WordsViewController
+@implementation CharactersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +61,6 @@
     @weakify(self);
     
     [self.vm.noMoreDataSignal subscribeNext:^(NSNumber * _Nullable x) {
-        @strongify(self);
         if ([x boolValue]) {
             self.footer.status = ListLoadMoreFooterViewStatusNoMore;
         } else {
@@ -77,6 +75,7 @@
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             [self.tableView reloadData];
         };
+        
         runOnMainThread(_);
     }];
     
@@ -100,12 +99,14 @@
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
         };
+        
         runOnMainThread(_);
     }];
 }
 
 - (void)setupNavigationBar {
     [self.navigationController.navigationBar removeBottomLine];
+    [self configureNewOneItem];
 }
 
 - (void)setupSubviews {
@@ -122,49 +123,54 @@
     self.tableView.tableFooterView = self.footer;
 }
 
-- (void)actionRefresh:(UIRefreshControl *)sender {
-    [self.vm reloadData];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahWord *word = self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{@"identifier": word.identifier,
-                               WordDetailVCWordKey: word.word,
-                               WordDetailVCPronunciationKey: word.pronunciation,
-                               };
-    [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.vm.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
-    MiewahWord *word = self.vm.items[indexPath.row];
-    cell.lbWord.text = word.word;
-    cell.lbPronounce.text = word.pronunciation;
-    cell.lbMeaning.text = word.meaning;
+    MiewahCharacter *character = self.vm.items[indexPath.row];
+    cell.lbWord.text = character.character;
+    cell.lbPronounce.text = character.pronunciation;
+    cell.lbMeaning.text = character.meaning;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MiewahCharacter *character = self.vm.items[indexPath.row];
+    NSDictionary *userInfo = @{
+                               @"identifier": character.identifier,
+                               CharacterDetailVCWordKey: character.character,
+                               CharacterDetailVCPronunciationKey: character.pronunciation,
+                               };
+    [self performSegueWithIdentifier:@"showCharacterDetail" sender:userInfo];
+}
+
+- (void)actionRefresh:(UIRefreshControl *)sender {
+    [self.vm reloadData];
+}
+
+- (CharactersViewModel *)vm {
+    if (_vm == nil) {
+        _vm = [[CharactersViewModel alloc] init];
+    }
+    return _vm;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
-    if ([segue.identifier isEqualToString:@"showWordDetail"]) {
-        WordDetailViewController *vc = segue.destinationViewController;
-        [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
+    if ([segue.identifier isEqualToString:@"showCharacterDetail"]) {
+        CharacterDetailViewController *vc = segue.destinationViewController;
+        [vc setCharacterIdentifier:[userInfo objectForKey:@"identifier"]];
         NSDictionary *info = @{
-                               WordDetailVCWordKey: [userInfo objectForKey:WordDetailVCWordKey],
-                               WordDetailVCPronunciationKey: [userInfo objectForKey:WordDetailVCPronunciationKey],
+                               CharacterDetailVCWordKey: [userInfo objectForKey:CharacterDetailVCWordKey],
+                               CharacterDetailVCPronunciationKey: [userInfo objectForKey:CharacterDetailVCPronunciationKey],
                                };
         [vc setInitialInfo: info];
     }
 }
 
-- (WordsViewModel *)vm {
-    if (_vm == nil) {
-        _vm = [[WordsViewModel alloc] init];
-    }
-    return _vm;
+- (MiewahItemType)miewahItemType {
+    return MiewahItemTypeCharacter;
 }
 
 - (UIRefreshControl *)refreshControl {
@@ -185,7 +191,7 @@
 
 @end
 
-@implementation WordsViewController(loadMoreFooter)
+@implementation CharactersViewController(loadMoreFooter)
 
 - (void)footerWillLoadMore:(ListLoadMoreFooterView *)footer {
     [self.vm loadData];

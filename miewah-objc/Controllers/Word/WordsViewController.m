@@ -1,39 +1,38 @@
 //
-//  SlangsViewController.m
+//  WordsMieMieViewController.m
 //  miewah-objc
 //
-//  Created by Christopher on 2018/4/25.
+//  Created by Christopher on 2018/4/27.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "SlangsViewController.h"
-#import "LongItemTableViewCell.h"
+#import "WordsViewController.h"
+#import "ShortItemTableViewCell.h"
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
-#import "SlangsViewModel.h"
-#import "MiewahSlang.h"
-#import "SlangDetailViewController.h"
+#import "WordDetailViewController.h"
+#import "MiewahWord.h"
 
+#import "WordsViewModel.h"
 #import "UIConstants.h"
 
 #import "UIColor+Hex.h"
 #import "UINavigationBar+BottomLine.h"
 
-@interface SlangsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface WordsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
-@property (nonatomic, strong) SlangsViewModel *vm;
+@property (nonatomic, strong) WordsViewModel *vm;
 
 @end
 
-@interface SlangsViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
+@interface WordsViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
 @end
 
-@implementation SlangsViewController
+@implementation WordsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,12 +56,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-#if DEBUG
-    NSLog(@"%@ deallocs", [self class]);
-#endif
 }
 
 - (void)linkSignals {
@@ -95,6 +88,7 @@
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:self.navigationController];
         };
+        
         runOnMainThread(_);
     }];
     
@@ -115,9 +109,10 @@
 }
 
 - (void)setupSubviews {
-    self.tableView.rowHeight = 250;
-    self.tableView.backgroundColor = [UIColor colorWithHexString: @"#f6f6f6"];
-    [self.tableView registerNib:[UINib nibWithNibName:[LongItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[LongItemTableViewCell reuseIdentifier]];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
+    [self.tableView registerNib:[UINib nibWithNibName:[ShortItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ShortItemTableViewCell reuseIdentifier]];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = YES;
     
     // 设置 tableview 的下拉刷新
@@ -132,12 +127,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahSlang *slang = self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{@"identifier": slang.identifier,
-                               SlangDetailVCSlangKey: slang.slang,
-                               SlangDetailVCPronunciationKey: slang.pronunciation,
+    MiewahWord *word = self.vm.items[indexPath.row];
+    NSDictionary *userInfo = @{@"identifier": word.identifier,
+                               WordDetailVCWordKey: word.word,
+                               WordDetailVCPronunciationKey: word.pronunciation,
                                };
-    [self performSegueWithIdentifier:@"showSlangDetail" sender:userInfo];
+    [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -145,24 +140,35 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LongItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[LongItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
-    MiewahSlang *slang = self.vm.items[indexPath.row];
-    cell.lbItem.text = slang.slang;
-    cell.lbDetailA.text = slang.pronunciation;
-    cell.lbDetailB.text = slang.meaning;
+    ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    MiewahWord *word = self.vm.items[indexPath.row];
+    cell.lbWord.text = word.word;
+    cell.lbPronounce.text = word.pronunciation;
+    cell.lbMeaning.text = word.meaning;
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
-    if ([segue.identifier isEqualToString:@"showSlangDetail"]) {
-        SlangDetailViewController *vc = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"showWordDetail"]) {
+        WordDetailViewController *vc = segue.destinationViewController;
         [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
         NSDictionary *info = @{
-                               SlangDetailVCSlangKey: [userInfo objectForKey:SlangDetailVCSlangKey],
-                               SlangDetailVCPronunciationKey: [userInfo objectForKey:SlangDetailVCPronunciationKey],
+                               WordDetailVCWordKey: [userInfo objectForKey:WordDetailVCWordKey],
+                               WordDetailVCPronunciationKey: [userInfo objectForKey:WordDetailVCPronunciationKey],
                                };
         [vc setInitialInfo: info];
     }
+}
+
+- (MiewahItemType)miewahItemType {
+    return MiewahItemTypeWord;
+}
+
+- (WordsViewModel *)vm {
+    if (_vm == nil) {
+        _vm = [[WordsViewModel alloc] init];
+    }
+    return _vm;
 }
 
 - (UIRefreshControl *)refreshControl {
@@ -181,17 +187,12 @@
     return _footer;
 }
 
-- (SlangsViewModel *)vm {
-    if (_vm == nil) {
-        _vm = [[SlangsViewModel alloc] init];
-    }
-    return _vm;
-}
-
 @end
 
-@implementation SlangsViewController(loadMoreFooter)
+@implementation WordsViewController(loadMoreFooter)
+
 - (void)footerWillLoadMore:(ListLoadMoreFooterView *)footer {
     [self.vm loadData];
 }
+
 @end

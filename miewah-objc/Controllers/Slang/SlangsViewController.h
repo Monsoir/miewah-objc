@@ -6,8 +6,8 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MiewahListViewController.h"
 
-@interface SlangsViewController : UIViewController
+@interface SlangsViewController : MiewahListViewController
 
 @end

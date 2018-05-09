@@ -1,13 +1,13 @@
 //
-//  WordsMieViewController.h
+//  WordsMieMieViewController.h
 //  miewah-objc
 //
 //  Created by Christopher on 2018/4/27.
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MiewahListViewController.h"
 
-@interface CharactersViewController : UIViewController
+@interface WordsViewController : MiewahListViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
