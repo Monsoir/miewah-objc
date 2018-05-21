@@ -11,6 +11,14 @@
 NSInteger const MiewahPasswordLength = 8;
 NSString * const LoginCompleteNotificationName = @"LoginComplete";
 
+NSString * const EditAssetBasicInfosFieldNames = @"BasicInfos";
+NSString * const EditAssetExtraInfosFieldNames = @"ExtraInfos";
+
+NSString * const EditAssetToExtraInfosEnableNotificationName = @"NewAssetToExtraInfosNotification";
+NSString * const EditAssetToExtraInfosEnableNotificationUserInfoKey = @"NewAssetToExtraInfosNotificationUserInfoKey";
+NSString * const EditAssetResetNotificationName = @"NewAssetResetNotification";
+NSString * const EditAssetResetTypeNotificationUserInfoKey = @"EditAssetResetTypeNotificationUserInfoKey";
+
 @implementation FoundationConstants
 
 @end

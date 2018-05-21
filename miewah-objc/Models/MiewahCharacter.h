@@ -6,14 +6,11 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import "MiewahModel.h"
+#import "MiewahAsset.h"
 
-@interface MiewahCharacter : MiewahModel
+@interface MiewahCharacter : MiewahAsset
 
-@property (nonatomic, strong) NSNumber *identifier;
 @property (nonatomic, copy) NSString *character;
-@property (nonatomic, copy) NSString *pronunciation;
-@property (nonatomic, copy) NSString *meaning;
 
 @property (nonatomic, copy) NSString *inputMethods;
 @property (nonatomic, copy) NSString *sentences;

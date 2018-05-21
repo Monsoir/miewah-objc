@@ -8,12 +8,18 @@
 
 #import "EditViewModel.h"
 
+@interface EditViewModel()
+
+@property (nonatomic, strong) RACSignal *itemTypeSignal;
+
+@end
+
 @implementation EditViewModel
 
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];
     
-    self.ItemTypeSignal = [RACObserve(self, itemType) map:^id _Nullable(NSNumber * _Nullable value) {
+    self.itemTypeSignal = [RACObserve(self, itemType) map:^id _Nullable(NSNumber * _Nullable value) {
         return value;
     }];
 }

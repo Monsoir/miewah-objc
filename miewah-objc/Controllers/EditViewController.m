@@ -8,9 +8,8 @@
 
 #import "EditViewController.h"
 #import "UINavigationBar+BottomLine.h"
-#import "CharacterEditViewController.h"
-#import "WordEditViewController.h"
-#import "SlangEditViewController.h"
+#import "ItemEditBasicInfoViewController.h"
+#import "NewMiewahAsset.h"
 
 #import "EditViewModel.h"
 #import "UIConstants.h"
@@ -20,12 +19,15 @@
 @property (nonatomic, weak) IBOutlet UISegmentedControl *segSection;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
-@property (nonatomic, strong) CharacterEditViewController *vcCharacter;
-@property (nonatomic, strong) WordEditViewController *vcWord;
-@property (nonatomic, strong) SlangEditViewController *vcSlang;
-@property (nonatomic, weak) UIViewController *currentSubvc;
+@property (nonatomic, strong) ItemEditBasicInfoViewController *vcCharacter;
+@property (nonatomic, strong) ItemEditBasicInfoViewController *vcWord;
+@property (nonatomic, strong) ItemEditBasicInfoViewController *vcSlang;
+@property (nonatomic, weak) ItemEditBasicInfoViewController *currentSubvc;
+@property (nonatomic, strong) UIBarButtonItem *itemNext;
 
 @property (nonatomic, strong) EditViewModel *vm;
+
+@property (nonatomic, strong) NSDictionary *newCharacterFieldNames;
 
 @end
 
@@ -37,6 +39,7 @@
     
     [self setupNavigationBar];
     [self setupSubviews];
+    [self setupNotifications];
     [self linkSignals];
 }
 
@@ -46,6 +49,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EditAssetToExtraInfosEnableNotificationName object:nil];
 #if DEBUG
     NSLog(@"%@: deallocs", [self class]);
 #endif
@@ -53,12 +57,33 @@
 
 - (void)linkSignals {
     @weakify(self);
-    [self.vm.ItemTypeSignal subscribeNext:^(NSNumber * _Nullable x) {
+    [self.vm.itemTypeSignal subscribeNext:^(NSNumber * _Nullable x) {
         @strongify(self);
         void(^_)(void) = ^void() {
+            // 改变 UI
             [self switchSubvc];
+            
+            // 改变实例
+            MiewahItemType type = [x unsignedIntegerValue];
+            [NewMiewahAsset sharedAsset].type = type;
+            
+            // 发消息禁用下一步按钮
+            [DefaultNotificationCenter postNotificationName:EditAssetToExtraInfosEnableNotificationName
+                                                     object:nil
+                                                   userInfo:@{
+                                                              EditAssetToExtraInfosEnableNotificationUserInfoKey: @(NO),
+                                                              }];
         };
         runOnMainThread(_)
+    }];
+}
+
+- (void)setupNotifications {
+    @weakify(self);
+    [[NSNotificationCenter defaultCenter] addObserverForName:EditAssetToExtraInfosEnableNotificationName object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        @strongify(self);
+        BOOL enableNext = [note.userInfo[EditAssetToExtraInfosEnableNotificationUserInfoKey] boolValue];
+        self.itemNext.enabled = enableNext;
     }];
 }
 
@@ -67,6 +92,8 @@
     
     UIBarButtonItem *itemCancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionDismiss)];
     self.navigationItem.leftBarButtonItem = itemCancel;
+    
+    self.navigationItem.rightBarButtonItem = self.itemNext;
 }
 
 - (void)setupSubviews {
@@ -74,8 +101,8 @@
 }
 
 - (void)switchSubvc {
-    UIViewController *oldVC = self.currentSubvc;
-    UIViewController *newVC = nil;
+    ItemEditBasicInfoViewController *oldVC = self.currentSubvc;
+    ItemEditBasicInfoViewController *newVC = nil;
     MiewahItemType type = (MiewahItemType)[self.vm.itemType unsignedIntegerValue];
     switch (type) {
         case MiewahItemTypeCharacter:
@@ -98,14 +125,14 @@
     self.currentSubvc = newVC;
 }
 
-- (void)displaySubvc:(UIViewController *)vc {
+- (void)displaySubvc:(ItemEditBasicInfoViewController *)vc {
     [self addChildViewController:vc];
     vc.view.frame = self.containerView.bounds;
     [self.containerView addSubview:vc.view];
     [vc didMoveToParentViewController:self];
 }
 
-- (void)hideSubvc:(UIViewController *)vc {
+- (void)hideSubvc:(ItemEditBasicInfoViewController *)vc {
     if (vc == nil) return;
     [vc willMoveToParentViewController:nil];
     [vc.view removeFromSuperview];
@@ -114,15 +141,27 @@
 
 - (void)actionChangeSection:(UISegmentedControl *)sender {
     self.itemType = sender.selectedSegmentIndex;
+    NSDictionary *userInfo = @{
+                               EditAssetResetTypeNotificationUserInfoKey: self.vm.itemType,
+                               };
+    [DefaultNotificationCenter postNotificationName:EditAssetResetNotificationName
+                                             object:nil
+                                           userInfo:userInfo];
 }
 
 - (void)actionDismiss {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)actionNext {
+    
+}
+
 - (void)setItemType:(MiewahItemType)itemType {
     self.vm.itemType = @(itemType);
 }
+
+#pragma mark - Lazy initialization
 
 - (EditViewModel *)vm {
     if (_vm == nil) {
@@ -131,23 +170,38 @@
     return _vm;
 }
 
-- (CharacterEditViewController *)vcCharacter {
+- (UIBarButtonItem *)itemNext {
+    if (_itemNext == nil) {
+        _itemNext = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStylePlain target:self action:@selector(actionNext)];
+    }
+    return _itemNext;
+}
+
+- (NSDictionary *)newCharacterFieldNames {
+    if (_newCharacterFieldNames == nil) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"NewCharacterFieldNames" ofType:@"plist"];
+        _newCharacterFieldNames = [NSDictionary dictionaryWithContentsOfFile:path];
+    }
+    return _newCharacterFieldNames;
+}
+
+- (ItemEditBasicInfoViewController *)vcCharacter {
     if (_vcCharacter == nil) {
-        _vcCharacter = [[CharacterEditViewController alloc] init];
+        _vcCharacter = [[ItemEditBasicInfoViewController alloc] initWithType:MiewahItemTypeCharacter];
     }
     return _vcCharacter;
 }
 
-- (WordEditViewController *)vcWord {
+- (ItemEditBasicInfoViewController *)vcWord {
     if (_vcWord == nil) {
-        _vcWord = [[WordEditViewController alloc] init];
+        _vcWord = [[ItemEditBasicInfoViewController alloc] initWithType:MiewahItemTypeWord];
     }
     return _vcWord;
 }
 
-- (SlangEditViewController *)vcSlang {
+- (ItemEditBasicInfoViewController *)vcSlang {
     if (_vcSlang == nil) {
-        _vcSlang = [[SlangEditViewController alloc] init];
+        _vcSlang = [[ItemEditBasicInfoViewController alloc] initWithType:MiewahItemTypeSlang];
     }
     return _vcSlang;
 }

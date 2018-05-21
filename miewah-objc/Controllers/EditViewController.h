@@ -11,6 +11,8 @@
 
 @interface EditViewController : UIViewController
 
+@property (nonatomic, strong, readonly) NSDictionary *newCharacterFieldNames;
+
 - (void)setItemType:(MiewahItemType)itemType;
 
 @end

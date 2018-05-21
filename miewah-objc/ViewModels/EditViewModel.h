@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSNumber *itemType;
 
-@property (nonatomic, strong) RACSignal *ItemTypeSignal;
+@property (nonatomic, strong, readonly) RACSignal *itemTypeSignal;
 
 @end
