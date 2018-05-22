@@ -15,7 +15,6 @@
 @interface TypingBoardViewController ()
 
 @property (nonatomic, strong) TextPlaceholderView *tpv;
-@property (nonatomic, strong) NSLayoutConstraint *bottomConstraint;
 
 @property (nonatomic, copy) NSString *inputPlaceholder;
 
@@ -67,7 +66,6 @@
     
     NSArray<NSLayoutConstraint *> *constraints = [self.tpv fullLayoutConstraintsToParentView:self.view];
     [NSLayoutConstraint activateConstraints:constraints];
-    self.bottomConstraint = constraints[1]; // 第二个是底边约束
 }
 
 - (void)setupNotifications {
