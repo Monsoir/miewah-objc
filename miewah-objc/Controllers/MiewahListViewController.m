@@ -8,6 +8,7 @@
 
 #import "MiewahListViewController.h"
 #import "EditViewController.h"
+#import "TypingBoardViewController.h"
 
 @interface MiewahListViewController ()
 
@@ -30,9 +31,11 @@
 }
 
 - (void)toNewItemController {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    EditViewController *vc = [sb instantiateViewControllerWithIdentifier:@"EditViewController"];
-    vc.itemType = [self miewahItemType];    
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    EditViewController *vc = [sb instantiateViewControllerWithIdentifier:@"EditViewController"];
+//    vc.itemType = [self miewahItemType];
+    
+    TypingBoardViewController *vc = [[TypingBoardViewController alloc] initWithPlaceholder:@"placeholder"];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nc animated:YES completion:nil];
 }

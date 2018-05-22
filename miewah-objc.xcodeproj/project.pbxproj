@@ -60,6 +60,9 @@
 		9D2355F820B2BED40051A1CE /* UITableView+Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355F720B2BED40051A1CE /* UITableView+Cell.m */; };
 		9D2355FB20B309320051A1CE /* EditBasicInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355FA20B309320051A1CE /* EditBasicInfoViewModel.m */; };
 		9D2355FE20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355FD20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m */; };
+		9D23560120B3C02B0051A1CE /* TypingBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */; };
+		9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D23560420B3C1520051A1CE /* UITextView+Placeholder.m */; };
+		9D23560820B3EAFB0051A1CE /* TextPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D23560720B3EAFB0051A1CE /* TextPlaceholderView.m */; };
 		9D45007F2094B88000A63C20 /* MiewahRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */; };
 		9D45008D2094C62800A63C20 /* APIAddresses.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45008C2094C62800A63C20 /* APIAddresses.m */; };
 		9D4500902096D05400A63C20 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45008F2096D05400A63C20 /* Validator.m */; };
@@ -224,6 +227,12 @@
 		9D2355FA20B309320051A1CE /* EditBasicInfoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditBasicInfoViewModel.m; sourceTree = "<group>"; };
 		9D2355FC20B30C9C0051A1CE /* ItemEditBasicInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemEditBasicInfoViewController.h; sourceTree = "<group>"; };
 		9D2355FD20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemEditBasicInfoViewController.m; sourceTree = "<group>"; };
+		9D2355FF20B3C02B0051A1CE /* TypingBoardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypingBoardViewController.h; sourceTree = "<group>"; };
+		9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypingBoardViewController.m; sourceTree = "<group>"; };
+		9D23560320B3C1520051A1CE /* UITextView+Placeholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		9D23560420B3C1520051A1CE /* UITextView+Placeholder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
+		9D23560620B3EAFB0051A1CE /* TextPlaceholderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextPlaceholderView.h; sourceTree = "<group>"; };
+		9D23560720B3EAFB0051A1CE /* TextPlaceholderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextPlaceholderView.m; sourceTree = "<group>"; };
 		9D45007D2094B88000A63C20 /* MiewahRegisterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahRegisterManager.h; sourceTree = "<group>"; };
 		9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahRegisterManager.m; sourceTree = "<group>"; };
 		9D45008B2094C62800A63C20 /* APIAddresses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIAddresses.h; sourceTree = "<group>"; };
@@ -377,6 +386,8 @@
 				9DC9018A20A2DC43004670B8 /* EditViewController.m */,
 				9D2355FC20B30C9C0051A1CE /* ItemEditBasicInfoViewController.h */,
 				9D2355FD20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m */,
+				9D2355FF20B3C02B0051A1CE /* TypingBoardViewController.h */,
+				9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -403,6 +414,8 @@
 				9D1B8FC12090CA710099976C /* Footer.m */,
 				9D1B8FC32090CB650099976C /* ColorBlockBasicTableViewCell.h */,
 				9D1B8FC42090CB650099976C /* ColorBlockBasicTableViewCell.m */,
+				9D23560620B3EAFB0051A1CE /* TextPlaceholderView.h */,
+				9D23560720B3EAFB0051A1CE /* TextPlaceholderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -420,6 +433,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D23560220B3C13D0051A1CE /* UITextView */,
 				9D4500C420986B2600A63C20 /* UITableView */,
 				9D6D4F0E20932554009AA9CE /* UINavigationBar */,
 				9D1B8FDF2091D3170099976C /* UIViewController */,
@@ -595,6 +609,15 @@
 				9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D23560220B3C13D0051A1CE /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				9D23560320B3C1520051A1CE /* UITextView+Placeholder.h */,
+				9D23560420B3C1520051A1CE /* UITextView+Placeholder.m */,
+			);
+			path = UITextView;
 			sourceTree = "<group>";
 		};
 		9D4500842094C5BD00A63C20 /* IgnoredConstants */ = {
@@ -1030,6 +1053,7 @@
 				9D2355FB20B309320051A1CE /* EditBasicInfoViewModel.m in Sources */,
 				9D4500902096D05400A63C20 /* Validator.m in Sources */,
 				9DA882E5209BFDB0002E02DC /* LongItemTableViewCell.m in Sources */,
+				9D23560120B3C02B0051A1CE /* TypingBoardViewController.m in Sources */,
 				9DF322822099B2D100D5C463 /* WordDetailResponseObject.m in Sources */,
 				9D2355E620B29BDF0051A1CE /* UIView+Layout.m in Sources */,
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
@@ -1044,6 +1068,7 @@
 				9D4500C320985B6A00A63C20 /* MiewahCharacterRequestManager.m in Sources */,
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
+				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,
@@ -1072,6 +1097,7 @@
 				9DF3227C2099AD2600D5C463 /* MiewahDetailViewModel.m in Sources */,
 				9DA882E9209C09B0002E02DC /* SlangsViewModel.m in Sources */,
 				9D6D4F1C20945FBF009AA9CE /* MiewahNetworker.m in Sources */,
+				9D23560820B3EAFB0051A1CE /* TextPlaceholderView.m in Sources */,
 				9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */,
 				9D1B8FE52091D3750099976C /* UIViewController+Keyboard.m in Sources */,
 				9DF32261209961D700D5C463 /* CharactersViewModel.m in Sources */,
