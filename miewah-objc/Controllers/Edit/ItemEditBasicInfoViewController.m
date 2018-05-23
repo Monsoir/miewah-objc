@@ -40,6 +40,8 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F3F3F3"];
+    
+    [self setupNavigationBar];
     [self setupSubviews];
     [self linkSignals];
     [self setupNotification];
@@ -59,6 +61,11 @@
 #if DEBUG
     NSLog(@"%@: deallocs", [self class]);
 #endif
+}
+
+- (void)setupNavigationBar {
+    UIBarButtonItem *itemBack = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = itemBack;
 }
 
 - (void)setupSubviews {

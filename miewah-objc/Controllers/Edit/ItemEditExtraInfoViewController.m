@@ -11,6 +11,7 @@
 #import "TypingBoardViewController.h"
 #import "UINavigationBar+BottomLine.h"
 #import "NewMiewahAsset.h"
+#import "EditPreviewViewController.h"
 
 #import "UIView+Layout.h"
 #import "UIColor+Hex.h"
@@ -97,6 +98,10 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
     
     UIBarButtonItem *itemPreview = [[UIBarButtonItem alloc] initWithTitle:@"暂存并预览" style:UIBarButtonItemStylePlain target:self action:@selector(actionPreview)];
     self.navigationItem.rightBarButtonItem = itemPreview;
+    self.navigationItem.backBarButtonItem.title = @"";
+    
+    UIBarButtonItem *itemBack = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = itemBack;
 }
 
 - (void)setupSubviews {
@@ -106,14 +111,12 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
 }
 
 - (void)actionPreview {
-    MiewahAsset *currentAsset = [NewMiewahAsset sharedAsset].currentAsset;
-    currentAsset.source = self.vm.source;
-    currentAsset.sentences = self.vm.sentences;
-    if (self.type == MiewahItemTypeCharacter) {
-        MiewahCharacter *temp = (MiewahCharacter *)currentAsset;
-        temp.inputMethods = self.vm.inputMethods;
-    }
-    NSLog(@"%@", currentAsset);
+    // 保存
+    [self.vm saveExtraInfos];
+    
+    // 跳转
+    EditPreviewViewController *vc = [[EditPreviewViewController alloc] initWithAssetType:self.type];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

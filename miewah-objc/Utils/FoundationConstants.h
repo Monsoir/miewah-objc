@@ -41,6 +41,8 @@ extern NSString * const EditAssetSaveExtraInfoNotificationName;
 #define StandardUserDefault [NSUserDefaults standardUserDefaults]
 #define DefaultNotificationCenter [NSNotificationCenter defaultCenter]
 
+#define alwaysString(aString) aString ?: @""
+
 typedef enum : NSUInteger {
     MiewahItemTypeCharacter,
     MiewahItemTypeWord,

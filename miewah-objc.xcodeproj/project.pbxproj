@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9D0574EA2098949E00FB7661 /* CharacterDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0574E92098949E00FB7661 /* CharacterDetailViewModel.m */; };
 		9D0574F02098989B00FB7661 /* CharacterDetailResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0574EF2098989B00FB7661 /* CharacterDetailResponseObject.m */; };
+		9D0AFE5C20B5392B00C93934 /* EditPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE5B20B5392B00C93934 /* EditPreviewViewController.m */; };
+		9D0AFE5F20B539C500C93934 /* EditPreviewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE5E20B539C500C93934 /* EditPreviewViewModel.m */; };
+		9D0AFE6220B53DA500C93934 /* EditPreviewViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE6120B53DA500C93934 /* EditPreviewViewHeader.m */; };
 		9D1B8F7D209051270099976C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7C209051270099976C /* LoginViewController.m */; };
 		9D1B8F80209051350099976C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7F209051350099976C /* RegisterViewController.m */; };
 		9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F82209051430099976C /* AboutMeViewController.m */; };
@@ -139,6 +142,12 @@
 		9D0574EE2098989B00FB7661 /* CharacterDetailResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterDetailResponseObject.h; sourceTree = "<group>"; };
 		9D0574EF2098989B00FB7661 /* CharacterDetailResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterDetailResponseObject.m; sourceTree = "<group>"; };
 		9D0574F220989E1900FB7661 /* Snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snippets; sourceTree = "<group>"; };
+		9D0AFE5A20B5392B00C93934 /* EditPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPreviewViewController.h; sourceTree = "<group>"; };
+		9D0AFE5B20B5392B00C93934 /* EditPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPreviewViewController.m; sourceTree = "<group>"; };
+		9D0AFE5D20B539C500C93934 /* EditPreviewViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPreviewViewModel.h; sourceTree = "<group>"; };
+		9D0AFE5E20B539C500C93934 /* EditPreviewViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPreviewViewModel.m; sourceTree = "<group>"; };
+		9D0AFE6020B53DA500C93934 /* EditPreviewViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPreviewViewHeader.h; sourceTree = "<group>"; };
+		9D0AFE6120B53DA500C93934 /* EditPreviewViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPreviewViewHeader.m; sourceTree = "<group>"; };
 		9D1B8F7B209051270099976C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9D1B8F7C209051270099976C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9D1B8F7E209051350099976C /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -380,6 +389,8 @@
 				9D2355FD20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m */,
 				9D23560920B3FF950051A1CE /* ItemEditExtraInfoViewController.h */,
 				9D23560A20B3FF950051A1CE /* ItemEditExtraInfoViewController.m */,
+				9D0AFE5A20B5392B00C93934 /* EditPreviewViewController.h */,
+				9D0AFE5B20B5392B00C93934 /* EditPreviewViewController.m */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -393,6 +404,8 @@
 				9D2355FA20B309320051A1CE /* EditBasicInfoViewModel.m */,
 				9D23560C20B4011C0051A1CE /* EditExtraInfoViewModel.h */,
 				9D23560D20B4011C0051A1CE /* EditExtraInfoViewModel.m */,
+				9D0AFE5D20B539C500C93934 /* EditPreviewViewModel.h */,
+				9D0AFE5E20B539C500C93934 /* EditPreviewViewModel.m */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -442,6 +455,8 @@
 				9D1B8FC42090CB650099976C /* ColorBlockBasicTableViewCell.m */,
 				9D23560620B3EAFB0051A1CE /* TextPlaceholderView.h */,
 				9D23560720B3EAFB0051A1CE /* TextPlaceholderView.m */,
+				9D0AFE6020B53DA500C93934 /* EditPreviewViewHeader.h */,
+				9D0AFE6120B53DA500C93934 /* EditPreviewViewHeader.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1091,9 +1106,11 @@
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
+				9D0AFE5F20B539C500C93934 /* EditPreviewViewModel.m in Sources */,
 				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,
 				9DC9019D20A2F103004670B8 /* EditViewModel.m in Sources */,
+				9D0AFE5C20B5392B00C93934 /* EditPreviewViewController.m in Sources */,
 				9D1B8F9C2090BDA50099976C /* UIView+RoundCorner.m in Sources */,
 				9D4500962096F34A00A63C20 /* LoginResponseObject.m in Sources */,
 				9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */,
@@ -1119,6 +1136,7 @@
 				9DF3227C2099AD2600D5C463 /* MiewahDetailViewModel.m in Sources */,
 				9DA882E9209C09B0002E02DC /* SlangsViewModel.m in Sources */,
 				9D6D4F1C20945FBF009AA9CE /* MiewahNetworker.m in Sources */,
+				9D0AFE6220B53DA500C93934 /* EditPreviewViewHeader.m in Sources */,
 				9D23560820B3EAFB0051A1CE /* TextPlaceholderView.m in Sources */,
 				9D20FDD420887E3A00FC4856 /* AppDelegate.m in Sources */,
 				9D1B8FE52091D3750099976C /* UIViewController+Keyboard.m in Sources */,

@@ -81,6 +81,16 @@
     }
 }
 
+- (void)saveExtraInfos {
+    MiewahAsset *currentAsset = [NewMiewahAsset sharedAsset].currentAsset;
+    currentAsset.source = self.source;
+    currentAsset.sentences = self.sentences;
+    if (self.type == MiewahItemTypeCharacter) {
+        MiewahCharacter *temp = (MiewahCharacter *)currentAsset;
+        temp.inputMethods = self.inputMethods;
+    }
+}
+
 #pragma mark - Accessors
 
 - (NSArray<NSString *> *)sectionNames {
