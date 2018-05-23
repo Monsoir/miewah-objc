@@ -384,6 +384,19 @@
 			path = Edit;
 			sourceTree = "<group>";
 		};
+		9D0AFE5920B538B600C93934 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				9DC9019B20A2F103004670B8 /* EditViewModel.h */,
+				9DC9019C20A2F103004670B8 /* EditViewModel.m */,
+				9D2355F920B309320051A1CE /* EditBasicInfoViewModel.h */,
+				9D2355FA20B309320051A1CE /* EditBasicInfoViewModel.m */,
+				9D23560C20B4011C0051A1CE /* EditExtraInfoViewModel.h */,
+				9D23560D20B4011C0051A1CE /* EditExtraInfoViewModel.m */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		9D1B8F7A209050E80099976C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +719,7 @@
 		9D6D4F1220940C2E009AA9CE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9D0AFE5920B538B600C93934 /* Edit */,
 				9DC9019A20A2F0D6004670B8 /* Slang */,
 				9DC9019920A2F0C9004670B8 /* Word */,
 				9DC9019820A2F0BD004670B8 /* Character */,
@@ -716,12 +730,6 @@
 				9D6D4F1720944D2E009AA9CE /* RegisterViewModel.m */,
 				9D45009E20974C4E00A63C20 /* AboutMeViewModel.h */,
 				9D45009F20974C4E00A63C20 /* AboutMeViewModel.m */,
-				9DC9019B20A2F103004670B8 /* EditViewModel.h */,
-				9DC9019C20A2F103004670B8 /* EditViewModel.m */,
-				9D2355F920B309320051A1CE /* EditBasicInfoViewModel.h */,
-				9D2355FA20B309320051A1CE /* EditBasicInfoViewModel.m */,
-				9D23560C20B4011C0051A1CE /* EditExtraInfoViewModel.h */,
-				9D23560D20B4011C0051A1CE /* EditExtraInfoViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
