@@ -54,7 +54,6 @@
 		9D2355E820B29E1C0051A1CE /* NewCharacterFieldNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D2355E720B29E1C0051A1CE /* NewCharacterFieldNames.plist */; };
 		9D2355EB20B2A0E80051A1CE /* NewSlangFieldNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D2355E920B2A0E80051A1CE /* NewSlangFieldNames.plist */; };
 		9D2355EC20B2A0E80051A1CE /* NewWordFieldNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D2355EA20B2A0E80051A1CE /* NewWordFieldNames.plist */; };
-		9D2355EF20B2A62C0051A1CE /* CharacterEditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355EE20B2A62C0051A1CE /* CharacterEditViewModel.m */; };
 		9D2355F220B2AB0E0051A1CE /* NewMiewahAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355F120B2AB0E0051A1CE /* NewMiewahAsset.m */; };
 		9D2355F520B2AC520051A1CE /* MiewahAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355F420B2AC520051A1CE /* MiewahAsset.m */; };
 		9D2355F820B2BED40051A1CE /* UITableView+Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355F720B2BED40051A1CE /* UITableView+Cell.m */; };
@@ -217,8 +216,6 @@
 		9D2355E720B29E1C0051A1CE /* NewCharacterFieldNames.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NewCharacterFieldNames.plist; sourceTree = "<group>"; };
 		9D2355E920B2A0E80051A1CE /* NewSlangFieldNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewSlangFieldNames.plist; sourceTree = "<group>"; };
 		9D2355EA20B2A0E80051A1CE /* NewWordFieldNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewWordFieldNames.plist; sourceTree = "<group>"; };
-		9D2355ED20B2A62C0051A1CE /* CharacterEditViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterEditViewModel.h; sourceTree = "<group>"; };
-		9D2355EE20B2A62C0051A1CE /* CharacterEditViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterEditViewModel.m; sourceTree = "<group>"; };
 		9D2355F020B2AB0E0051A1CE /* NewMiewahAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewMiewahAsset.h; sourceTree = "<group>"; };
 		9D2355F120B2AB0E0051A1CE /* NewMiewahAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewMiewahAsset.m; sourceTree = "<group>"; };
 		9D2355F320B2AC520051A1CE /* MiewahAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahAsset.h; sourceTree = "<group>"; };
@@ -374,9 +371,23 @@
 			path = Snippets;
 			sourceTree = "<group>";
 		};
+		9D0AFE5820B5381D00C93934 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				9DC9018920A2DC43004670B8 /* EditViewController.h */,
+				9DC9018A20A2DC43004670B8 /* EditViewController.m */,
+				9D2355FC20B30C9C0051A1CE /* ItemEditBasicInfoViewController.h */,
+				9D2355FD20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m */,
+				9D23560920B3FF950051A1CE /* ItemEditExtraInfoViewController.h */,
+				9D23560A20B3FF950051A1CE /* ItemEditExtraInfoViewController.m */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		9D1B8F7A209050E80099976C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9D0AFE5820B5381D00C93934 /* Edit */,
 				9DC9018820A2DBB5004670B8 /* Slang */,
 				9DC9018720A2DBA9004670B8 /* Word */,
 				9DC9018620A2DB9A004670B8 /* Character */,
@@ -388,12 +399,6 @@
 				9D1B8F82209051430099976C /* AboutMeViewController.m */,
 				9DC9018C20A2E228004670B8 /* MiewahListViewController.h */,
 				9DC9018D20A2E228004670B8 /* MiewahListViewController.m */,
-				9DC9018920A2DC43004670B8 /* EditViewController.h */,
-				9DC9018A20A2DC43004670B8 /* EditViewController.m */,
-				9D2355FC20B30C9C0051A1CE /* ItemEditBasicInfoViewController.h */,
-				9D2355FD20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m */,
-				9D23560920B3FF950051A1CE /* ItemEditExtraInfoViewController.h */,
-				9D23560A20B3FF950051A1CE /* ItemEditExtraInfoViewController.m */,
 				9D2355FF20B3C02B0051A1CE /* TypingBoardViewController.h */,
 				9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */,
 			);
@@ -821,8 +826,6 @@
 				9DF32260209961D700D5C463 /* CharactersViewModel.m */,
 				9D0574E82098949E00FB7661 /* CharacterDetailViewModel.h */,
 				9D0574E92098949E00FB7661 /* CharacterDetailViewModel.m */,
-				9D2355ED20B2A62C0051A1CE /* CharacterEditViewModel.h */,
-				9D2355EE20B2A62C0051A1CE /* CharacterEditViewModel.m */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -1035,7 +1038,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D2355EF20B2A62C0051A1CE /* CharacterEditViewModel.m in Sources */,
 				9DA882EF209C0A73002E02DC /* SlangListResponseObject.m in Sources */,
 				9D2355F220B2AB0E0051A1CE /* NewMiewahAsset.m in Sources */,
 				9DF3226D2099685000D5C463 /* MiewahWord.m in Sources */,
