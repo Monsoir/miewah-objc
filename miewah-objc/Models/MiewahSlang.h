@@ -10,10 +10,6 @@
 
 @interface MiewahSlang : MiewahAsset
 
-@property (nonatomic, copy) NSString *slang;
-
-@property (nonatomic, copy) NSString *source;
-@property (nonatomic, copy) NSString *sentences;
 @property (nonatomic, copy) NSString *pronunciationVoice;
 
 @end

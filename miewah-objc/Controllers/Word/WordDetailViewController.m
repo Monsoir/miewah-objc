@@ -63,7 +63,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             self.navigationItem.rightBarButtonItem = nil;
-            self.header.lbWord.text = self.vm.word.word;
+            self.header.lbWord.text = self.vm.word.item;
             self.header.lbPronounce.text = self.vm.word.pronunciation;
             [self.tableView reloadData];
         };

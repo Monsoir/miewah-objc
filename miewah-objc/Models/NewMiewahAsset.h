@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "FoundationConstants.h"
 #import "MiewahAsset.h"
+#import "MiewahCharacter.h"
+#import "MiewahWord.h"
+#import "MiewahSlang.h"
 
 @interface NewMiewahAsset : NSObject
 

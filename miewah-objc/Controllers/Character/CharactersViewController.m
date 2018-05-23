@@ -130,7 +130,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     MiewahCharacter *character = self.vm.items[indexPath.row];
-    cell.lbWord.text = character.character;
+    cell.lbWord.text = character.item;
     cell.lbPronounce.text = character.pronunciation;
     cell.lbMeaning.text = character.meaning;
     return cell;
@@ -140,7 +140,7 @@
     MiewahCharacter *character = self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{
                                @"identifier": character.identifier,
-                               CharacterDetailVCWordKey: character.character,
+                               CharacterDetailVCWordKey: character.item,
                                CharacterDetailVCPronunciationKey: character.pronunciation,
                                };
     [self performSegueWithIdentifier:@"showCharacterDetail" sender:userInfo];

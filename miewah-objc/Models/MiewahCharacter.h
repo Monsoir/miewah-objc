@@ -10,10 +10,7 @@
 
 @interface MiewahCharacter : MiewahAsset
 
-@property (nonatomic, copy) NSString *character;
-
 @property (nonatomic, copy) NSString *inputMethods;
-@property (nonatomic, copy) NSString *sentences;
 @property (nonatomic, copy) NSString *pronunciationVoice;
 
 - (NSDictionary *)deSerializeInputMethods;

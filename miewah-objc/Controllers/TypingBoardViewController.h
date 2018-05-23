@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^TypingBoardCompletion)(NSString *content);
+
 @interface TypingBoardViewController : UIViewController
 
+@property (nonatomic, copy) TypingBoardCompletion completion;
+
 - (instancetype)initWithPlaceholder:(NSString *)placeholder;
+- (void)setContent:(NSString *)content;
 
 @end

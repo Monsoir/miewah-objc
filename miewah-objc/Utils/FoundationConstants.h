@@ -15,6 +15,9 @@ extern NSString * const LoginCompleteNotificationName;
 extern NSString * const EditAssetBasicInfosFieldNames;
 extern NSString * const EditAssetExtraInfosFieldNames;
 
+// 编辑时，数据的类型
+extern NSString * const EditAssetTypeNotificationUserInfoKey;
+
 // 编辑时，是否可以进行下一步
 extern NSString * const EditAssetToExtraInfosEnableNotificationName;
 
@@ -24,8 +27,16 @@ extern NSString * const EditAssetToExtraInfosEnableNotificationUserInfoKey;
 // 编辑时，重设数据
 extern NSString * const EditAssetResetNotificationName;
 
-// 编辑时，重设数据时的类型
-extern NSString * const EditAssetResetTypeNotificationUserInfoKey;
+// 编辑时，暂存基本信息
+extern NSString * const EditAssetSaveBasicInfoNotificationName;
+
+// 编辑时，暂存额外信息
+extern NSString * const EditAssetSaveExtraInfoNotificationName;
+
+// 编辑时，暂存信息的键
+//extern NSString * const BasicInfoItemKey;
+//extern NSString * const BasicInfoPronunonciationKey;
+//extern NSString * const BasicInfoMeaningKey;
 
 #define StandardUserDefault [NSUserDefaults standardUserDefaults]
 #define DefaultNotificationCenter [NSNotificationCenter defaultCenter]

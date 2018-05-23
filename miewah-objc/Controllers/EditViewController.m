@@ -9,6 +9,7 @@
 #import "EditViewController.h"
 #import "UINavigationBar+BottomLine.h"
 #import "ItemEditBasicInfoViewController.h"
+#import "ItemEditExtraInfoViewController.h"
 #import "NewMiewahAsset.h"
 
 #import "EditViewModel.h"
@@ -140,9 +141,8 @@
 }
 
 - (void)actionChangeSection:(UISegmentedControl *)sender {
-    self.itemType = sender.selectedSegmentIndex;
     NSDictionary *userInfo = @{
-                               EditAssetResetTypeNotificationUserInfoKey: self.vm.itemType,
+                               EditAssetTypeNotificationUserInfoKey: self.vm.itemType,
                                };
     [DefaultNotificationCenter postNotificationName:EditAssetResetNotificationName
                                              object:nil
@@ -150,11 +150,24 @@
 }
 
 - (void)actionDismiss {
+    [NewMiewahAsset sharedAsset].type = MiewahItemTypeNone;
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)actionNext {
+    // 跳转
+    MiewahItemType type = (MiewahItemType)[self.vm.itemType unsignedIntegerValue];
+    ItemEditExtraInfoViewController *vc = [[ItemEditExtraInfoViewController alloc] initWithType:type];
+    [self.navigationController pushViewController:vc animated:YES];
     
+    // 保存
+    NSDictionary *userInfo = @{
+                               EditAssetTypeNotificationUserInfoKey: self.vm.itemType,
+                               };
+    [DefaultNotificationCenter postNotificationName:EditAssetSaveBasicInfoNotificationName
+                                             object:nil
+                                           userInfo:userInfo];
 }
 
 - (void)setItemType:(MiewahItemType)itemType {
@@ -205,15 +218,5 @@
     }
     return _vcSlang;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

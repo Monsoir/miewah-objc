@@ -12,7 +12,7 @@
 
 + (NSArray<NSString *> *)extractKeys {
     NSArray<NSString *> *keys = @[
-                                  NSStringFromSelector(@selector(word)),
+                                  NSStringFromSelector(@selector(item)),
                                   NSStringFromSelector(@selector(pronunciation)),
                                   NSStringFromSelector(@selector(meaning)),
                                   NSStringFromSelector(@selector(source)),

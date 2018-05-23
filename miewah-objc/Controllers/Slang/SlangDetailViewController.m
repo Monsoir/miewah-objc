@@ -61,7 +61,7 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             self.navigationItem.rightBarButtonItem = nil;
-            self.header.lbSlang.text = self.vm.slang.slang;
+            self.header.lbSlang.text = self.vm.slang.item;
             self.header.lbPronounce.text = self.vm.slang.pronunciation;
             [self.tableView reloadData];
         };

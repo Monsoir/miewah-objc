@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *placeholder;
 
 - (instancetype)initWithPlaceholder:(NSString *)placeholder;
+- (void)setInitialContent:(NSString *)initialContent;
 
 @end

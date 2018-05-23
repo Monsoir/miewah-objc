@@ -20,5 +20,6 @@
 
 - (instancetype)initWithType:(MiewahItemType)type;
 - (void)readBasicInfos;
+- (void)saveBasicInfos;
 
 @end

@@ -53,14 +53,14 @@
 
 - (void)setupNavigationBar {
     UIBarButtonItem *itemCancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionDismiss)];
-    self.navigationItem.rightBarButtonItem = itemCancel;
+    self.navigationItem.leftBarButtonItem = itemCancel;
     
-    UIBarButtonItem *itemEndEditing = [[UIBarButtonItem alloc] initWithTitle:@"okk" style:UIBarButtonItemStylePlain target:self action:@selector(actionEndEditing)];
-    self.navigationItem.leftBarButtonItem = itemEndEditing;
+    UIBarButtonItem *itemDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(actionDone)];
+    self.navigationItem.rightBarButtonItem = itemDone;
 }
 
 - (void)setupSubviews {
-    self.view.backgroundColor = UIColor.redColor;
+    self.view.backgroundColor = UIColor.whiteColor;
     
     [self.view addSubview:self.tpv];
     
@@ -128,8 +128,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)actionEndEditing {
+- (void)actionDone {
     [self.view endEditing:YES];
+    if (self.completion) {
+        self.completion(self.tpv.realText);
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)setContent:(NSString *)content {
+    [self.tpv setInitialContent:content];
 }
 
 - (TextPlaceholderView *)tpv {

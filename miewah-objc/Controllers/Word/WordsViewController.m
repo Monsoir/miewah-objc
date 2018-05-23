@@ -129,7 +129,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahWord *word = self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{@"identifier": word.identifier,
-                               WordDetailVCWordKey: word.word,
+                               WordDetailVCWordKey: word.item,
                                WordDetailVCPronunciationKey: word.pronunciation,
                                };
     [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
@@ -142,7 +142,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     MiewahWord *word = self.vm.items[indexPath.row];
-    cell.lbWord.text = word.word;
+    cell.lbWord.text = word.item;
     cell.lbPronounce.text = word.pronunciation;
     cell.lbMeaning.text = word.meaning;
     return cell;

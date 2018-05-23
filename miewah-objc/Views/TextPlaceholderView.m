@@ -53,6 +53,12 @@
 #endif
 }
 
+- (void)setInitialContent:(NSString *)initialContent {
+    if (initialContent.length <= 0) return;
+    self.text = initialContent;
+    self.textColor = UIColor.blackColor;
+}
+
 - (NSString *)realText {
     if (self.placeholder.length > 0 && self.textColor == UIColor.lightGrayColor) {
         return @"";

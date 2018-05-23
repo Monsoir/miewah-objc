@@ -14,10 +14,18 @@ NSString * const LoginCompleteNotificationName = @"LoginComplete";
 NSString * const EditAssetBasicInfosFieldNames = @"BasicInfos";
 NSString * const EditAssetExtraInfosFieldNames = @"ExtraInfos";
 
+NSString * const EditAssetTypeNotificationUserInfoKey = @"EditAssetResetTypeNotificationUserInfoKey";
+
 NSString * const EditAssetToExtraInfosEnableNotificationName = @"NewAssetToExtraInfosNotification";
 NSString * const EditAssetToExtraInfosEnableNotificationUserInfoKey = @"NewAssetToExtraInfosNotificationUserInfoKey";
 NSString * const EditAssetResetNotificationName = @"NewAssetResetNotification";
-NSString * const EditAssetResetTypeNotificationUserInfoKey = @"EditAssetResetTypeNotificationUserInfoKey";
+
+NSString * const EditAssetSaveBasicInfoNotificationName = @"EditAssetSaveBasicInfoNotification";
+NSString * const EditAssetSaveExtraInfoNotificationName = @"EditAssetSaveExtraInfoNotification";
+
+//NSString * const BasicInfoItemKey = @"BasicInfoItem";
+//NSString * const BasicInfoPronunonciationKey = @"BasicInfoPronunonciation";
+//NSString * const BasicInfoMeaningKey = @"BasicInfoMeaning";
 
 @implementation FoundationConstants
 

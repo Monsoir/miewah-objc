@@ -58,13 +58,13 @@
     MiewahAsset *currentAsset = [NewMiewahAsset sharedAsset].currentAsset;
     switch (self.type) {
         case MiewahItemTypeCharacter:
-            self.item = ((MiewahCharacter *)currentAsset).character;
+            self.item = ((MiewahCharacter *)currentAsset).item;
             break;
         case MiewahItemTypeWord:
-            self.item = ((MiewahWord *)currentAsset).word;
+            self.item = ((MiewahWord *)currentAsset).item;
             break;
         case MiewahItemTypeSlang:
-            self.item = ((MiewahSlang *)currentAsset).slang;
+            self.item = ((MiewahSlang *)currentAsset).item;
             break;
             
         default:
@@ -73,6 +73,13 @@
     
     self.pronunonciation = currentAsset.pronunciation;
     self.meaning = currentAsset.meaning;
+}
+
+- (void)saveBasicInfos {
+    MiewahAsset *currentAsset = [NewMiewahAsset sharedAsset].currentAsset;
+    currentAsset.item = self.item;
+    currentAsset.pronunciation = self.pronunonciation;
+    currentAsset.meaning = self.meaning;
 }
 
 #pragma mark - Accessors

@@ -13,6 +13,7 @@
 #import "UIColor+Hex.h"
 #import "UIView+Layout.h"
 #import "UITableView+Cell.h"
+#import "UIViewController+Keyboard.h"
 
 @interface ItemEditBasicInfoViewController ()<UITableViewDelegate, UITableViewDataSource, TextTableViewCellDelegate>
 
@@ -63,6 +64,7 @@
 - (void)setupSubviews {
     [self.view addSubview:self.tableView];
     [NSLayoutConstraint activateConstraints:self.constraints];
+    [self setupTapToDismissKeyboard];
 }
 
 - (void)linkSignals {
@@ -77,15 +79,29 @@
 
 - (void)setupNotification {
     @weakify(self);
-    [DefaultNotificationCenter addObserverForName:EditAssetResetNotificationName object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        @strongify(self);
-        NSDictionary *userInfo = note.userInfo;
-        MiewahItemType type = [userInfo[EditAssetResetTypeNotificationUserInfoKey] unsignedIntegerValue];
-        if (type != self.type) return;
-        
-        [self.vm readBasicInfos];
-        [self.tableView reloadData];
-    }];
+    [DefaultNotificationCenter addObserverForName:EditAssetResetNotificationName
+                                           object:nil
+                                            queue:[NSOperationQueue mainQueue]
+                                       usingBlock:^(NSNotification * _Nonnull note) {
+                                           @strongify(self);
+                                           NSDictionary *userInfo = note.userInfo;
+                                           MiewahItemType type = [userInfo[EditAssetTypeNotificationUserInfoKey] unsignedIntegerValue];
+                                           if (type != self.type) return;
+                                           
+                                           [self.vm readBasicInfos];
+                                           [self.tableView reloadData];
+                                       }];
+    
+    [DefaultNotificationCenter addObserverForName:EditAssetSaveBasicInfoNotificationName
+                                           object:nil
+                                            queue:[NSOperationQueue mainQueue]
+                                       usingBlock:^(NSNotification * _Nonnull note) {
+                                           @strongify(self);
+                                           NSDictionary *userInfo = note.userInfo;
+                                           MiewahItemType type = [userInfo[EditAssetTypeNotificationUserInfoKey] unsignedIntegerValue];
+                                           if (type != self.type) return;
+                                           [self.vm saveBasicInfos];
+                                       }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -167,15 +183,5 @@
     }
     return _constraints;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
