@@ -422,6 +422,7 @@
 		9D1B8F7A209050E80099976C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9D3950D420B6F9540049C9E8 /* Accessories */,
 				9D0AFE5820B5381D00C93934 /* Edit */,
 				9DC9018820A2DBB5004670B8 /* Slang */,
 				9DC9018720A2DBA9004670B8 /* Word */,
@@ -434,8 +435,6 @@
 				9D1B8F82209051430099976C /* AboutMeViewController.m */,
 				9DC9018C20A2E228004670B8 /* MiewahListViewController.h */,
 				9DC9018D20A2E228004670B8 /* MiewahListViewController.m */,
-				9D2355FF20B3C02B0051A1CE /* TypingBoardViewController.h */,
-				9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -670,6 +669,28 @@
 			path = UITextView;
 			sourceTree = "<group>";
 		};
+		9D3950D420B6F9540049C9E8 /* Accessories */ = {
+			isa = PBXGroup;
+			children = (
+				9D2355FF20B3C02B0051A1CE /* TypingBoardViewController.h */,
+				9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */,
+			);
+			path = Accessories;
+			sourceTree = "<group>";
+		};
+		9D3950D520B6F9C60049C9E8 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				9D4500C120985B6A00A63C20 /* MiewahCharacterRequestManager.h */,
+				9D4500C220985B6A00A63C20 /* MiewahCharacterRequestManager.m */,
+				9DF322652099634800D5C463 /* MiewahWordRequestManager.h */,
+				9DF322662099634800D5C463 /* MiewahWordRequestManager.m */,
+				9DA882F3209C416A002E02DC /* MiewahSlangRequesterManager.h */,
+				9DA882F4209C416A002E02DC /* MiewahSlangRequesterManager.m */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
 		9D4500842094C5BD00A63C20 /* IgnoredConstants */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,6 +782,7 @@
 		9D6D4F1920945DF9009AA9CE /* Networker */ = {
 			isa = PBXGroup;
 			children = (
+				9D3950D520B6F9C60049C9E8 /* Asset */,
 				9DF322742099950600D5C463 /* NetworkProtocols */,
 				9D6D4F21209467A6009AA9CE /* ResponseObjects */,
 				9D3950D120B667970049C9E8 /* MiewahRequestConvention.h */,
@@ -775,12 +797,6 @@
 				9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */,
 				9D4500912096F15900A63C20 /* MiewahLoginManager.h */,
 				9D4500922096F15900A63C20 /* MiewahLoginManager.m */,
-				9D4500C120985B6A00A63C20 /* MiewahCharacterRequestManager.h */,
-				9D4500C220985B6A00A63C20 /* MiewahCharacterRequestManager.m */,
-				9DF322652099634800D5C463 /* MiewahWordRequestManager.h */,
-				9DF322662099634800D5C463 /* MiewahWordRequestManager.m */,
-				9DA882F3209C416A002E02DC /* MiewahSlangRequesterManager.h */,
-				9DA882F4209C416A002E02DC /* MiewahSlangRequesterManager.m */,
 			);
 			path = Networker;
 			sourceTree = "<group>";
