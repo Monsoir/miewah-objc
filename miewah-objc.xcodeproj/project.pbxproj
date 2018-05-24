@@ -12,6 +12,7 @@
 		9D0AFE5C20B5392B00C93934 /* EditPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE5B20B5392B00C93934 /* EditPreviewViewController.m */; };
 		9D0AFE5F20B539C500C93934 /* EditPreviewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE5E20B539C500C93934 /* EditPreviewViewModel.m */; };
 		9D0AFE6220B53DA500C93934 /* EditPreviewViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE6120B53DA500C93934 /* EditPreviewViewHeader.m */; };
+		9D0AFE6520B5ACD100C93934 /* MiewahAssetRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0AFE6420B5ACD100C93934 /* MiewahAssetRequestManager.m */; };
 		9D1B8F7D209051270099976C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7C209051270099976C /* LoginViewController.m */; };
 		9D1B8F80209051350099976C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F7F209051350099976C /* RegisterViewController.m */; };
 		9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8F82209051430099976C /* AboutMeViewController.m */; };
@@ -67,6 +68,8 @@
 		9D23560820B3EAFB0051A1CE /* TextPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D23560720B3EAFB0051A1CE /* TextPlaceholderView.m */; };
 		9D23560B20B3FF950051A1CE /* ItemEditExtraInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D23560A20B3FF950051A1CE /* ItemEditExtraInfoViewController.m */; };
 		9D23560E20B4011C0051A1CE /* EditExtraInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D23560D20B4011C0051A1CE /* EditExtraInfoViewModel.m */; };
+		9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3950CF20B665870049C9E8 /* MiewahPostNetworker.m */; };
+		9D3950D320B667970049C9E8 /* MiewahRequestConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3950D220B667970049C9E8 /* MiewahRequestConvention.m */; };
 		9D45007F2094B88000A63C20 /* MiewahRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */; };
 		9D45008D2094C62800A63C20 /* APIAddresses.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45008C2094C62800A63C20 /* APIAddresses.m */; };
 		9D4500902096D05400A63C20 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45008F2096D05400A63C20 /* Validator.m */; };
@@ -148,6 +151,8 @@
 		9D0AFE5E20B539C500C93934 /* EditPreviewViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPreviewViewModel.m; sourceTree = "<group>"; };
 		9D0AFE6020B53DA500C93934 /* EditPreviewViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPreviewViewHeader.h; sourceTree = "<group>"; };
 		9D0AFE6120B53DA500C93934 /* EditPreviewViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPreviewViewHeader.m; sourceTree = "<group>"; };
+		9D0AFE6320B5ACD100C93934 /* MiewahAssetRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahAssetRequestManager.h; sourceTree = "<group>"; };
+		9D0AFE6420B5ACD100C93934 /* MiewahAssetRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahAssetRequestManager.m; sourceTree = "<group>"; };
 		9D1B8F7B209051270099976C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9D1B8F7C209051270099976C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9D1B8F7E209051350099976C /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -245,6 +250,10 @@
 		9D23560A20B3FF950051A1CE /* ItemEditExtraInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemEditExtraInfoViewController.m; sourceTree = "<group>"; };
 		9D23560C20B4011C0051A1CE /* EditExtraInfoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditExtraInfoViewModel.h; sourceTree = "<group>"; };
 		9D23560D20B4011C0051A1CE /* EditExtraInfoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditExtraInfoViewModel.m; sourceTree = "<group>"; };
+		9D3950CE20B665870049C9E8 /* MiewahPostNetworker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahPostNetworker.h; sourceTree = "<group>"; };
+		9D3950CF20B665870049C9E8 /* MiewahPostNetworker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahPostNetworker.m; sourceTree = "<group>"; };
+		9D3950D120B667970049C9E8 /* MiewahRequestConvention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahRequestConvention.h; sourceTree = "<group>"; };
+		9D3950D220B667970049C9E8 /* MiewahRequestConvention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahRequestConvention.m; sourceTree = "<group>"; };
 		9D45007D2094B88000A63C20 /* MiewahRegisterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahRegisterManager.h; sourceTree = "<group>"; };
 		9D45007E2094B88000A63C20 /* MiewahRegisterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahRegisterManager.m; sourceTree = "<group>"; };
 		9D45008B2094C62800A63C20 /* APIAddresses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIAddresses.h; sourceTree = "<group>"; };
@@ -754,8 +763,12 @@
 			children = (
 				9DF322742099950600D5C463 /* NetworkProtocols */,
 				9D6D4F21209467A6009AA9CE /* ResponseObjects */,
+				9D3950D120B667970049C9E8 /* MiewahRequestConvention.h */,
+				9D3950D220B667970049C9E8 /* MiewahRequestConvention.m */,
 				9D6D4F1A20945FBF009AA9CE /* MiewahNetworker.h */,
 				9D6D4F1B20945FBF009AA9CE /* MiewahNetworker.m */,
+				9D3950CE20B665870049C9E8 /* MiewahPostNetworker.h */,
+				9D3950CF20B665870049C9E8 /* MiewahPostNetworker.m */,
 				9D6D4F2B20946CE4009AA9CE /* MiewahAPIManager.h */,
 				9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */,
 				9D45007D2094B88000A63C20 /* MiewahRegisterManager.h */,
@@ -879,6 +892,8 @@
 			isa = PBXGroup;
 			children = (
 				9DF322752099952700D5C463 /* MiewahRequestProtocol.h */,
+				9D0AFE6320B5ACD100C93934 /* MiewahAssetRequestManager.h */,
+				9D0AFE6420B5ACD100C93934 /* MiewahAssetRequestManager.m */,
 			);
 			path = NetworkProtocols;
 			sourceTree = "<group>";
@@ -1064,6 +1079,7 @@
 				9DA882EF209C0A73002E02DC /* SlangListResponseObject.m in Sources */,
 				9D2355F220B2AB0E0051A1CE /* NewMiewahAsset.m in Sources */,
 				9DF3226D2099685000D5C463 /* MiewahWord.m in Sources */,
+				9D3950D320B667970049C9E8 /* MiewahRequestConvention.m in Sources */,
 				9D4500932096F15900A63C20 /* MiewahLoginManager.m in Sources */,
 				9DF3226A2099635F00D5C463 /* WordListResponseObject.m in Sources */,
 				9D6D4F1520940C43009AA9CE /* LoginViewModel.m in Sources */,
@@ -1105,6 +1121,7 @@
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
+				9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D0AFE5F20B539C500C93934 /* EditPreviewViewModel.m in Sources */,
 				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
@@ -1126,6 +1143,7 @@
 				9D45009A20973C8600A63C20 /* MiewahUser.m in Sources */,
 				9D0574EA2098949E00FB7661 /* CharacterDetailViewModel.m in Sources */,
 				9D2355FE20B30C9C0051A1CE /* ItemEditBasicInfoViewController.m in Sources */,
+				9D0AFE6520B5ACD100C93934 /* MiewahAssetRequestManager.m in Sources */,
 				9D1B8FA42090C1150099976C /* UIColor+Hex.m in Sources */,
 				9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */,
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,

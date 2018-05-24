@@ -8,6 +8,7 @@
 
 #import "MiewahViewModel.h"
 #import "FoundationConstants.h"
+#import "MiewahAssetRequestManager.h"
 
 @interface EditPreviewViewModel : MiewahViewModel
 
@@ -16,6 +17,10 @@
 @property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
 @property (nonatomic, strong, readonly) NSArray<NSString *> *displayContents;
 
-- (instancetype)initWithAssetType:(MiewahItemType)type;
+@property (nonatomic, strong, readonly) RACSubject *postSuccess;
+@property (nonatomic, strong, readonly) RACSubject *postFailure;
+@property (nonatomic, strong, readonly) RACSubject *postError;
+
+- (BOOL)postData;
 
 @end

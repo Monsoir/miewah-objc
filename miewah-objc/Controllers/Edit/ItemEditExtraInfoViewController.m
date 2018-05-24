@@ -23,19 +23,10 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) EditExtraInfoViewModel *vm;
-@property (nonatomic, assign) MiewahItemType type;
 
 @end
 
 @implementation ItemEditExtraInfoViewController
-
-- (instancetype)initWithType:(MiewahItemType)type {
-    self = [super init];
-    if (self) {
-        _type = type;
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,7 +60,7 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
         runOnMainThread(_);
     }];
     
-    if (self.type == MiewahItemTypeCharacter) {
+    if (self.vm.type == MiewahItemTypeCharacter) {
         [self.vm.inputMethodsSignal subscribeNext:^(NSString * _Nullable x) {
             @strongify(self);
             void (^_)(void) = ^void() {
@@ -81,7 +72,7 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
 }
 
 - (void)setupNavigationBar {
-    switch (self.type) {
+    switch (self.vm.type) {
         case MiewahItemTypeCharacter:
             self.title = @"新建 - 字";
             break;
@@ -115,7 +106,7 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
     [self.vm saveExtraInfos];
     
     // 跳转
-    EditPreviewViewController *vc = [[EditPreviewViewController alloc] initWithAssetType:self.type];
+    EditPreviewViewController *vc = [[EditPreviewViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -211,7 +202,6 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-//        _tableView.bounces = NO;
         _tableView.tableFooterView = [[UIView alloc] init];
     }
     return _tableView;
@@ -219,7 +209,7 @@ NSString *CellIdentifier = @"ItemEditExtraInfoViewControllerCell";
 
 - (EditExtraInfoViewModel *)vm {
     if (_vm == nil) {
-        _vm = [[EditExtraInfoViewModel alloc] initWithType:self.type];
+        _vm = [[EditExtraInfoViewModel alloc] init];
     }
     return _vm;
 }

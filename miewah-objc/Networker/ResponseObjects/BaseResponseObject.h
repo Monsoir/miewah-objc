@@ -11,12 +11,19 @@
 typedef enum : NSUInteger {
     ResponseObjectTypeRegister,
     ResponseObjectTypeLogin,
+    
     ResponseObjectTypeCharacterList,
     ResponseObjectTypeCharacterDetail,
+    ResponseObjectTypeNewCharacter,
+    
     ResponseObjectTypeWordList,
     ResponseObjectTypeWordDetail,
+    ResponseObjectTypeNewWord,
+    
     ResponseObjectTypeSlangList,
     ResponseObejctTypeSlangDetail,
+    ResponseObjectTypeNewSlang,
+    
 } ResponseObjectType;
 
 @interface BaseResponseObject : NSObject

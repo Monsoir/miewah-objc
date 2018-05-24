@@ -8,6 +8,8 @@
 
 #import "MiewahListViewController.h"
 #import "EditViewController.h"
+#import "LoginViewController.h"
+#import "MiewahUser.h"
 
 @interface MiewahListViewController ()
 
@@ -30,9 +32,21 @@
 }
 
 - (void)toNewItemController {
+//    BOOL isLogin = [MiewahUser isLogin];
+//    isLogin ? [self postNewItemController] : [self postLoginController];
+    [self postNewItemController];
+}
+
+- (void)postLoginController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *vc = [sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    vc.forcingLogin = YES;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)postNewItemController {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     EditViewController *vc = [sb instantiateViewControllerWithIdentifier:@"EditViewController"];
-    vc.itemType = [self miewahItemType];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nc animated:YES completion:nil];
 }

@@ -552,7 +552,7 @@
         <!--我的-->
         <scene sceneID="Cke-g0-Rdu">
             <objects>
-                <navigationController title="我的" automaticallyAdjustsScrollViewInsets="NO" id="qQb-dy-bl9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="I" title="我的" automaticallyAdjustsScrollViewInsets="NO" id="qQb-dy-bl9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" id="eW3-w4-Yyg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="wDm-FW-Xsy">
@@ -571,7 +571,7 @@
         <!--Login View Controller-->
         <scene sceneID="f8N-Pm-XbJ">
             <objects>
-                <viewController id="EF1-36-gEj" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="EF1-36-gEj" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xcb-S8-xC0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

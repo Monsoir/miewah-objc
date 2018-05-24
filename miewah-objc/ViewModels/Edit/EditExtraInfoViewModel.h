@@ -11,6 +11,8 @@
 
 @interface EditExtraInfoViewModel : MiewahViewModel
 
+@property (nonatomic, assign, readonly) MiewahItemType type;
+
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSString *sentences;
 @property (nonatomic, copy) NSString *inputMethods;
@@ -21,7 +23,6 @@
 
 @property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
 
-- (instancetype)initWithType:(MiewahItemType)type;
 - (void)readExtraInfos;
 - (void)saveExtraInfos;
 

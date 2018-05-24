@@ -42,6 +42,14 @@
     [self linkSignals];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.forcingLogin) {
+        [NotificationBanner displayABannerWithTitle:@"请先登录" detail:@"" style:BannerStyleWarning onViewController:self];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

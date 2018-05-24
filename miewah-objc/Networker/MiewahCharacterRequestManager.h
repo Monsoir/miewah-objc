@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MiewahNetworker.h"
-#import "MiewahRequestProtocol.h"
+#import "MiewahAssetRequestManager.h"
 
-@interface MiewahCharacterRequestManager : NSObject<MiewahListRequestProtocol, MiewahDetailRequestProtocol>
+@interface MiewahCharacterRequestManager : MiewahAssetRequestManager
 
 @end

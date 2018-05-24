@@ -15,7 +15,6 @@
 @interface EditExtraInfoViewModel()
 
 @property (nonatomic, strong) NSArray<NSString *> *sectionNames;
-@property (nonatomic, assign) MiewahItemType type;
 
 @property (nonatomic, strong) RACSignal *sourceSignal;
 @property (nonatomic, strong) RACSignal *sentencesSignal;
@@ -25,10 +24,9 @@
 
 @implementation EditExtraInfoViewModel
 
-- (instancetype)initWithType:(MiewahItemType)type {
+- (instancetype)init {
     self = [super init];
     if (self) {
-        _type = type;
         [self readExtraInfos];
     }
     return self;
@@ -117,6 +115,10 @@
         _sectionNames = [whole valueForKey:EditAssetExtraInfosFieldNames];
     }
     return _sectionNames;
+}
+
+- (MiewahItemType)type {
+    return [NewMiewahAsset sharedAsset].type;
 }
 
 @end

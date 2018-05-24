@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseResponseObject.h"
+#import "MiewahRequestConvention.h"
+
+#define SharedNetworker [MiewahNetworker sharedNetworker]
 
 @import AFNetworking;
-
-typedef void (^MiewahRequestSuccess)(BaseResponseObject *payload);
-typedef void (^MiewahRequestFailure)(BaseResponseObject *payload);
-typedef void (^MiewahRequestError)(NSError *error);
 
 @interface MiewahNetworker : AFHTTPSessionManager
 

@@ -10,6 +10,8 @@
 
 extern NSString * const UserInfoKey;
 
+#define ThisUser [MiewahUser thisUser]
+
 @interface MiewahUser : NSObject
 
 @property (nonatomic, copy) NSString *name;
@@ -17,8 +19,9 @@ extern NSString * const UserInfoKey;
 
 + (instancetype)aUserWithName:(NSString *)name loginToken:(NSString *)token;
 + (instancetype)thisUser;
++ (BOOL)isLogin;
 - (void)clearUserInfo;
 - (void)saveUserInfo;
-- (void)fetchUserInfo;
+- (void)fetchUserInfoFromLocal;
 
 @end

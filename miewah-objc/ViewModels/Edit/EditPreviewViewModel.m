@@ -15,17 +15,73 @@
 @property (nonatomic, strong) NSArray<NSString *> *displayContents;
 
 @property (nonatomic, assign) MiewahItemType type;
+@property (nonatomic, strong) MiewahAssetRequestManager *requester;
+
+@property (nonatomic, strong) RACSubject *postSuccess;
+@property (nonatomic, strong) RACSubject *postFailure;
+@property (nonatomic, strong) RACSubject *postError;
 
 @end
 
 @implementation EditPreviewViewModel
 
-- (instancetype)initWithAssetType:(MiewahItemType)type {
-    self = [super init];
-    if (self) {
-        _type = type;
+- (BOOL)postData {
+    @weakify(self);
+    MiewahRequestSuccess successHandler = ^(BaseResponseObject *payload) {
+        @strongify(self);
+        [self.postSuccess sendNext:nil];
+    };
+    
+    MiewahRequestFailure failureHandler = ^(BaseResponseObject *payload) {
+        @strongify(self);
+        NSDictionary *userInfo = @{
+                                   MiewahRequestErrorCodeKey: @(MiewahRequestErrorCodeUnknown),
+                                   MiewahRequestErrorMessageKey: [payload.comments componentsJoinedByString:@", "],
+                                   };
+        [self.postFailure sendNext:userInfo];
+    };
+    
+    MiewahRequestError errorHandler = ^(NSError *error) {
+        @strongify(self);
+        NSDictionary *userInfo = error.userInfo;
+        NSInteger statusCode = [[userInfo valueForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+        if (statusCode == 401) {
+            NSDictionary *userInfo = @{
+                                       MiewahRequestErrorCodeKey: @(MiewahRequestErrorCodeUnauthorized),
+                                       MiewahRequestErrorMessageKey: @"请先登录",
+                                       };
+            [self.postFailure sendNext:userInfo];
+            return;
+        }
+        
+        [self.postError sendNext:error];
+    };
+    
+    NSDictionary *params = [self postParams];
+    [self.requester postNewAsset:params
+                         success:successHandler
+                         failure:failureHandler
+                           error:errorHandler];
+    
+    return YES;
+}
+
+- (NSDictionary *)postParams {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"item"] = alwaysString(CurrentEditingAsset.item);
+    params[@"pronunciation"] = alwaysString(CurrentEditingAsset.pronunciation);
+    params[@"meaning"] = alwaysString(CurrentEditingAsset.meaning);
+    params[@"source"] = alwaysString(CurrentEditingAsset.source);
+    params[@"sentences"] = alwaysString(CurrentEditingAsset.sentences);
+//    params[@"pronunciationVoice"] = @"";
+    
+    if (self.type == MiewahItemTypeCharacter) {
+        MiewahCharacter *temp = (MiewahCharacter *)CurrentEditingAsset;
+        params[@"inputMethods"] = temp.inputMethods;
     }
-    return self;
+    
+    return [params copy];
 }
 
 - (NSArray<NSString *> *)displayContents {
@@ -97,6 +153,38 @@
         _sectionNames = [NSArray arrayWithContentsOfFile:path];
     }
     return _sectionNames;
+}
+
+- (MiewahItemType)type {
+    return [NewMiewahAsset sharedAsset].type;
+}
+
+- (MiewahAssetRequestManager *)requester {
+    if (_requester == nil) {
+        _requester = [MiewahAssetRequestManager requestManagerOfType:[NewMiewahAsset sharedAsset].type];
+    }
+    return _requester;
+}
+
+- (RACSubject *)postSuccess {
+    if (_postSuccess == nil) {
+        _postSuccess = [[RACSubject alloc] init];
+    }
+    return _postSuccess;
+}
+
+- (RACSubject *)postFailure {
+    if (_postFailure == nil) {
+        _postFailure = [[RACSubject alloc] init];
+    }
+    return _postFailure;
+}
+
+- (RACSubject *)postError {
+    if (_postError == nil) {
+        _postError = [[RACSubject alloc] init];
+    }
+    return _postError;
 }
 
 @end

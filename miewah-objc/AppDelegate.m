@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
 //    [self clearLoginInfo];
     self.window.backgroundColor = UIColor.whiteColor;
-    [[MiewahUser thisUser] fetchUserInfo];
+    [[MiewahUser thisUser] fetchUserInfoFromLocal];
     return YES;
 }
 

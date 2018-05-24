@@ -11,6 +11,4 @@
 
 @interface EditPreviewViewController : UIViewController
 
-- (instancetype)initWithAssetType:(MiewahItemType)type;
-
 @end

@@ -24,18 +24,27 @@
             return [[RegisterResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeLogin:
             return [[LoginResponseObject alloc] initWithDictionary:aDict];
+            
         case ResponseObjectTypeCharacterList:
             return [[CharacterListResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeCharacterDetail:
             return [[CharacterDetailResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeNewCharacter:
+            return [[BaseResponseObject alloc] initWithDictionary:aDict];
+            
         case ResponseObjectTypeWordList:
             return [[WordListResponseObject alloc] initWithDictionary:aDict];
         case ResponseObjectTypeWordDetail:
             return [[WordDetailResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeNewWord:
+            return [[BaseResponseObject alloc] initWithDictionary:aDict];
+            
         case ResponseObjectTypeSlangList:
             return [[SlangListResponseObject alloc] initWithDictionary:aDict];
         case ResponseObejctTypeSlangDetail:
             return [[SlangDetailResponseObject alloc] initWithDictionary:aDict];
+        case ResponseObjectTypeNewSlang:
+            return [[BaseResponseObject alloc] initWithDictionary:aDict];
             
         default:
 #if DEBUG

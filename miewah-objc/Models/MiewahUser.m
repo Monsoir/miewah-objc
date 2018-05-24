@@ -30,13 +30,18 @@ static MiewahUser *_user = nil;
     return _user;
 }
 
++ (BOOL)isLogin {
+    [ThisUser fetchUserInfoFromLocal];
+    return ThisUser.loginToken.length > 0;
+}
+
 - (void)saveUserInfo {
     NSDictionary *serializedInfo = [self toDictionary];
     [StandardUserDefault setObject:serializedInfo forKey:UserInfoKey];
     [StandardUserDefault synchronize];
 }
 
-- (void)fetchUserInfo {
+- (void)fetchUserInfoFromLocal {
     NSDictionary *serializedInfo = [StandardUserDefault objectForKey:UserInfoKey];
     
     NSArray *keys = [[self class] serializedPropertyKeys];
@@ -54,7 +59,7 @@ static MiewahUser *_user = nil;
 - (void)clearUserInfo {
     [StandardUserDefault setObject:nil forKey:UserInfoKey];
     [StandardUserDefault synchronize];
-    [self fetchUserInfo];
+    [self fetchUserInfoFromLocal];
 }
 
 /**

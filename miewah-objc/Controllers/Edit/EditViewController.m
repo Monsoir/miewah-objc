@@ -10,7 +10,6 @@
 #import "UINavigationBar+BottomLine.h"
 #import "ItemEditBasicInfoViewController.h"
 #import "ItemEditExtraInfoViewController.h"
-#import "NewMiewahAsset.h"
 
 #import "EditViewModel.h"
 #import "UIConstants.h"
@@ -27,8 +26,6 @@
 @property (nonatomic, strong) UIBarButtonItem *itemNext;
 
 @property (nonatomic, strong) EditViewModel *vm;
-
-@property (nonatomic, strong) NSDictionary *newCharacterFieldNames;
 
 @end
 
@@ -64,28 +61,31 @@
             // 改变 UI
             [self switchSubvc];
             
-            // 改变实例
-            MiewahItemType type = [x unsignedIntegerValue];
-            [NewMiewahAsset sharedAsset].type = type;
-            
             // 发消息禁用下一步按钮
             [DefaultNotificationCenter postNotificationName:EditAssetToExtraInfosEnableNotificationName
                                                      object:nil
                                                    userInfo:@{
                                                               EditAssetToExtraInfosEnableNotificationUserInfoKey: @(NO),
                                                               }];
+            
+            NSDictionary *userInfo = @{
+                                       EditAssetTypeNotificationUserInfoKey: x ?: @(MiewahItemTypeCharacter),
+                                       };
+            [DefaultNotificationCenter postNotificationName:EditAssetResetNotificationName
+                                                     object:nil
+                                                   userInfo:userInfo];
         };
         runOnMainThread(_)
     }];
 }
 
 - (void)setupNotifications {
-    @weakify(self);
-    [[NSNotificationCenter defaultCenter] addObserverForName:EditAssetToExtraInfosEnableNotificationName object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        @strongify(self);
-        BOOL enableNext = [note.userInfo[EditAssetToExtraInfosEnableNotificationUserInfoKey] boolValue];
-        self.itemNext.enabled = enableNext;
-    }];
+    [DefaultNotificationCenter addObserver:self selector:@selector(toggleEditAssetToExtraInfos:) name:EditAssetToExtraInfosEnableNotificationName object:nil];
+}
+
+- (void)toggleEditAssetToExtraInfos:(NSNotification *)notif {
+    BOOL enableNext = [notif.userInfo[EditAssetToExtraInfosEnableNotificationUserInfoKey] boolValue];
+    self.itemNext.enabled = enableNext;
 }
 
 - (void)setupNavigationBar {
@@ -141,24 +141,17 @@
 }
 
 - (void)actionChangeSection:(UISegmentedControl *)sender {
-    NSDictionary *userInfo = @{
-                               EditAssetTypeNotificationUserInfoKey: self.vm.itemType,
-                               };
-    [DefaultNotificationCenter postNotificationName:EditAssetResetNotificationName
-                                             object:nil
-                                           userInfo:userInfo];
+    self.vm.itemType = @(sender.selectedSegmentIndex);
 }
 
 - (void)actionDismiss {
-    [NewMiewahAsset sharedAsset].type = MiewahItemTypeNone;
     [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)actionNext {
     // 跳转
-    MiewahItemType type = (MiewahItemType)[self.vm.itemType unsignedIntegerValue];
-    ItemEditExtraInfoViewController *vc = [[ItemEditExtraInfoViewController alloc] initWithType:type];
+    ItemEditExtraInfoViewController *vc = [[ItemEditExtraInfoViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     
     // 保存
@@ -168,10 +161,6 @@
     [DefaultNotificationCenter postNotificationName:EditAssetSaveBasicInfoNotificationName
                                              object:nil
                                            userInfo:userInfo];
-}
-
-- (void)setItemType:(MiewahItemType)itemType {
-    self.vm.itemType = @(itemType);
 }
 
 #pragma mark - Lazy initialization
@@ -188,14 +177,6 @@
         _itemNext = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStylePlain target:self action:@selector(actionNext)];
     }
     return _itemNext;
-}
-
-- (NSDictionary *)newCharacterFieldNames {
-    if (_newCharacterFieldNames == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"NewCharacterFieldNames" ofType:@"plist"];
-        _newCharacterFieldNames = [NSDictionary dictionaryWithContentsOfFile:path];
-    }
-    return _newCharacterFieldNames;
 }
 
 - (ItemEditBasicInfoViewController *)vcCharacter {

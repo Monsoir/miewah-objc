@@ -37,3 +37,18 @@
 - (NSURLSessionDataTask *)getDetailOfIdentifier:(NSNumber *)identifier success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler;
 
 @end
+
+@protocol MiewahAssetSubmitProtocol <NSObject>
+
+/**
+ 创建一个 character, word, slang
+
+ @param asset character, word, slang 的信息，以字典的方式进行传递
+ @param successHandler 获取成功回调
+ @param failureHandler 获取失败回调，业务上的请求失败
+ @param errorHandler 获取失败回调，技术上的请求失败
+ @return 该请求任务
+ */
+- (NSURLSessionDataTask *)postNewAsset:(NSDictionary *)asset success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler;
+
+@end

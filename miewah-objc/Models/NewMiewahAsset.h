@@ -13,6 +13,8 @@
 #import "MiewahWord.h"
 #import "MiewahSlang.h"
 
+#define CurrentEditingAsset [NewMiewahAsset sharedAsset].currentAsset
+
 @interface NewMiewahAsset : NSObject
 
 @property (nonatomic, assign) MiewahItemType type;

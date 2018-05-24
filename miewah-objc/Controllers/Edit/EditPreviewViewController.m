@@ -12,6 +12,9 @@
 
 #import "EditPreviewViewHeader.h"
 #import "ItemIntroductionCell.h"
+#import "UIConstants.h"
+#import "LoginViewController.h"
+#import "NotificationBanner.h"
 
 #import "UIView+Layout.h"
 
@@ -21,6 +24,8 @@ static NSString *SectionIdentifier = @"section-header";
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) EditPreviewViewHeader *header;
+@property (nonatomic, strong) UIBarButtonItem *itemSubmit;
+@property (nonatomic, strong) UIBarButtonItem *itemSubmitting;
 
 @property (nonatomic, strong) EditPreviewViewModel *vm;
 
@@ -28,20 +33,13 @@ static NSString *SectionIdentifier = @"section-header";
 
 @implementation EditPreviewViewController
 
-- (instancetype)initWithAssetType:(MiewahItemType)type {
-    self = [super init];
-    if (self) {
-        _vm = [[EditPreviewViewModel alloc] initWithAssetType:type];
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self setupNavigationBar];
     [self setupSubviews];
+    [self linkSignals];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,9 +52,50 @@ static NSString *SectionIdentifier = @"section-header";
     self.tableView.tableHeaderView = self.header;
 }
 
+- (void)linkSignals {
+    @weakify(self);
+    
+    [self.vm.postSuccess subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        void(^_)(void) = ^() {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        };
+        runOnMainThread(_);
+    }];
+    
+    [self.vm.postFailure subscribeNext:^(NSDictionary *_Nullable x) {
+        @strongify(self);
+        NSNumber *errorCodeO = [x valueForKey:MiewahRequestErrorCodeKey];
+        if (errorCodeO != nil && [errorCodeO unsignedIntegerValue] == MiewahRequestErrorCodeUnauthorized) {
+            void(^_)(void) = ^(void) {
+                self.navigationItem.rightBarButtonItem = self.itemSubmit;
+                [self postLoginController];
+            };
+            runOnMainThread(_);
+            return;
+        }
+        
+        NSString *msg = [x valueForKey:MiewahRequestErrorMessageKey];
+        void(^_)(void) = ^() {
+            self.navigationItem.rightBarButtonItem = self.itemSubmit;
+            [NotificationBanner displayABannerWithTitle:@"提交失败" detail:msg style:BannerStyleWarning onViewController:self.navigationController];
+        };
+        runOnMainThread(_);
+    }];
+    
+    [self.vm.postError subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        void(^_)(void) = ^(void) {
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
+        };
+        runOnMainThread(_);
+    }];
+}
+
 - (void)setupNavigationBar {
-    UIBarButtonItem *itemSubmit = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(actionSubmit)];
-    self.navigationItem.rightBarButtonItem = itemSubmit;
+    self.navigationItem.rightBarButtonItem = self.itemSubmit;
     
     NSString *title = nil;
     switch (self.vm.type) {
@@ -80,10 +119,17 @@ static NSString *SectionIdentifier = @"section-header";
 - (void)setupSubviews {
     [self.view addSubview:self.tableView];
     [NSLayoutConstraint activateConstraints:[self.tableView fullLayoutConstraintsToParentView:self.view]];
+    
+    self.header.item = CurrentEditingAsset.item;
+    self.header.prononuciation = CurrentEditingAsset.pronunciation;
 }
 
 - (void)actionSubmit {
-    
+    if ([self.vm postData]) {
+        self.navigationItem.rightBarButtonItem = self.itemSubmitting;
+    } else {
+        self.navigationItem.rightBarButtonItem = self.itemSubmit;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,12 +152,36 @@ static NSString *SectionIdentifier = @"section-header";
     return header;
 }
 
+- (void)postLoginController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *vc = [sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    vc.forcingLogin = YES;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
 #pragma mark - Accessors
 - (EditPreviewViewHeader *)header {
     if (_header == nil) {
         _header = [[EditPreviewViewHeader alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, [EditPreviewViewHeader height])];
     }
     return _header;
+}
+
+- (UIBarButtonItem *)itemSubmit {
+    if (_itemSubmit == nil) {
+        _itemSubmit = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(actionSubmit)];
+    }
+    return _itemSubmit;
+}
+
+- (UIBarButtonItem *)itemSubmitting {
+    if (_itemSubmitting == nil) {
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
+        [indicator startAnimating];
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        _itemSubmitting = [[UIBarButtonItem alloc] initWithCustomView:indicator];
+    }
+    return _itemSubmitting;
 }
 
 - (UITableView *)tableView {
@@ -128,6 +198,13 @@ static NSString *SectionIdentifier = @"section-header";
         [_tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
     }
     return _tableView;
+}
+
+- (EditPreviewViewModel *)vm {
+    if (_vm == nil) {
+        _vm = [[EditPreviewViewModel alloc] init];
+    }
+    return _vm;
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MiewahSlangRequesterManager.h"
 #import "MiewahAPIManager.h"
+#import "MiewahUser.h"
 
 @implementation MiewahSlangRequesterManager
 
@@ -38,6 +39,22 @@
                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                    errorHandler(error);
                }];
+}
+
+- (NSURLSessionDataTask *)postNewAsset:(NSDictionary *)asset success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler {
+    NSDictionary *headers = @{@"Authorization": [NSString stringWithFormat:@"jwt %@", ThisUser.loginToken]};
+    NSString *url = [SharedAPIManager newSlang];
+    
+    return [self.requester postToURL:url
+                              params:asset
+                             headers:headers
+                             success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
+                                 BaseResponseObject *payload = [BaseResponseObject responseObjectOfType:ResponseObjectTypeNewCharacter configuredWithDict:responseObject];
+                                 [payload.success boolValue] ? successHandler(payload) : failureHandler(payload);
+                             }
+                             failure:^(NSURLSessionDataTask * _Nullable task, NSError *error) {
+                                 errorHandler(error);
+                             }];
 }
 
 @end

@@ -82,6 +82,12 @@
     currentAsset.meaning = self.meaning;
 }
 
+- (void)reset {
+    self.item = @"";
+    self.pronunonciation = @"";
+    self.meaning = @"";
+}
+
 #pragma mark - Accessors
 
 - (NSArray<NSString *> *)sectionNames {

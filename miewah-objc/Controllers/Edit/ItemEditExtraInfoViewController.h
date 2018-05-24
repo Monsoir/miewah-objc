@@ -11,6 +11,4 @@
 
 @interface ItemEditExtraInfoViewController : UIViewController
 
-- (instancetype)initWithType:(MiewahItemType)type;
-
 @end

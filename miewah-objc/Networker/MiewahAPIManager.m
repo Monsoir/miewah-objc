@@ -28,6 +28,8 @@
     return [NSString stringWithFormat:@"%@%@", MiewahBaseURL, MiewahLoginURL];
 }
 
+#pragma mark - Character
+
 - (NSString *)charactersURLWithPageIndex:(NSInteger)pageIndex {
     return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahCharactersURL, (long)pageIndex];
 }
@@ -35,6 +37,12 @@
 - (NSString *)characterDetailOfIdentifier:(NSNumber *)identifier {
     return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahCharacterDetailURL, identifier];
 }
+
+- (NSString *)newCharacter {
+    return [NSString stringWithFormat:@"%@%@", MiewahBaseURL, MiewahNewCharacterURL];
+}
+
+#pragma mark - Word
 
 - (NSString *)wordsURLWithPageIndex:(NSInteger)pageIndex {
     return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahWordsURL, (long)pageIndex];
@@ -44,12 +52,22 @@
     return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahWordDetailURL, identifier];
 }
 
+- (NSString *)newWord {
+    return [NSString stringWithFormat:@"%@%@", MiewahBaseURL, MiewahNewWordURL];
+}
+
+#pragma mark - Slang
+
 - (NSString *)slangsURLWithPageIndex:(NSInteger)pageIndex {
     return [NSString stringWithFormat:@"%@%@%ld", MiewahBaseURL, MiewahSlangsURL, (long)pageIndex];
 }
 
 - (NSString *)slangDetailOfIdentifier:(NSNumber *)identifier {
     return [NSString stringWithFormat:@"%@%@%@", MiewahBaseURL, MiewahSlangDetailURL, identifier];
+}
+
+- (NSString *)newSlang {
+    return [NSString stringWithFormat:@"%@%@", MiewahBaseURL, MiewahNewSlangURL];
 }
 
 @end

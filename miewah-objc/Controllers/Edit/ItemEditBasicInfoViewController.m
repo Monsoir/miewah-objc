@@ -9,6 +9,7 @@
 #import "ItemEditBasicInfoViewController.h"
 #import "TextTableViewCell.h"
 #import "EditBasicInfoViewModel.h"
+#import "NewMiewahAsset.h"
 
 #import "UIColor+Hex.h"
 #import "UIView+Layout.h"
@@ -22,6 +23,9 @@
 
 @property (nonatomic, strong) EditBasicInfoViewModel *vm;
 @property (nonatomic, assign) MiewahItemType type;
+
+@property (nonatomic, strong) id resetAssetNotificationToken;
+@property (nonatomic, strong) id saveBasicInfoNotificationToken;
 
 @end
 
@@ -58,6 +62,9 @@
 }
 
 - (void)dealloc {
+    [DefaultNotificationCenter removeObserver:self name:EditAssetResetNotificationName object:nil];
+    [DefaultNotificationCenter removeObserver:self name:EditAssetSaveBasicInfoNotificationName object:nil];
+    
 #if DEBUG
     NSLog(@"%@: deallocs", [self class]);
 #endif
@@ -85,30 +92,25 @@
 }
 
 - (void)setupNotification {
-    @weakify(self);
-    [DefaultNotificationCenter addObserverForName:EditAssetResetNotificationName
-                                           object:nil
-                                            queue:[NSOperationQueue mainQueue]
-                                       usingBlock:^(NSNotification * _Nonnull note) {
-                                           @strongify(self);
-                                           NSDictionary *userInfo = note.userInfo;
-                                           MiewahItemType type = [userInfo[EditAssetTypeNotificationUserInfoKey] unsignedIntegerValue];
-                                           if (type != self.type) return;
-                                           
-                                           [self.vm readBasicInfos];
-                                           [self.tableView reloadData];
-                                       }];
     
-    [DefaultNotificationCenter addObserverForName:EditAssetSaveBasicInfoNotificationName
-                                           object:nil
-                                            queue:[NSOperationQueue mainQueue]
-                                       usingBlock:^(NSNotification * _Nonnull note) {
-                                           @strongify(self);
-                                           NSDictionary *userInfo = note.userInfo;
-                                           MiewahItemType type = [userInfo[EditAssetTypeNotificationUserInfoKey] unsignedIntegerValue];
-                                           if (type != self.type) return;
-                                           [self.vm saveBasicInfos];
-                                       }];
+    [DefaultNotificationCenter addObserver:self selector:@selector(reset) name:EditAssetResetNotificationName object:nil];
+    
+    [DefaultNotificationCenter addObserver:self
+                                  selector:@selector(saveBasicInfos:)
+                                      name:EditAssetSaveBasicInfoNotificationName
+                                    object:nil];
+}
+
+- (void)reset {
+    [self.vm reset];
+    [self.tableView reloadData];
+}
+
+- (void)saveBasicInfos:(NSNotification *)notif {
+    NSDictionary *userInfo = notif.userInfo;
+    MiewahItemType type = [userInfo[EditAssetTypeNotificationUserInfoKey] unsignedIntegerValue];
+    if (type != self.type) return;
+    [self.vm saveBasicInfos];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
