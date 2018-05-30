@@ -38,6 +38,12 @@ extern NSString * const EditAssetSaveExtraInfoNotificationName;
 //extern NSString * const BasicInfoPronunonciationKey;
 //extern NSString * const BasicInfoMeaningKey;
 
+// 沙盒读取
+#define HomeDirectory NSHomeDirectory()
+#define DocumentDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+#define CachesDirectory [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+#define TmpDirectory NSTemporaryDirectory()
+
 #define StandardUserDefault [NSUserDefaults standardUserDefaults]
 #define DefaultNotificationCenter [NSNotificationCenter defaultCenter]
 
