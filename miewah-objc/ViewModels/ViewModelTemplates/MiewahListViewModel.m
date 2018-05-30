@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) RACSignal *noMoreDataSignal;
 
+@property (nonatomic, strong) RACSubject *readCacheCompleted;
 @property (nonatomic, strong) RACSubject *loadedSuccess;
 @property (nonatomic, strong) RACSubject *loadedFailure;
 @property (nonatomic, strong) RACSubject *loadedError;
@@ -28,6 +29,10 @@
     self.noMoreDataSignal = [RACObserve(self, noMoreData) map:^id _Nullable(NSNumber * _Nullable value) {
         return value;
     }];
+}
+
+- (void)readCache {
+    
 }
 
 - (void)loadData {
@@ -65,6 +70,13 @@
     [self loadData];
 }
 
+- (RACSubject *)readCacheCompleted {
+    if (_readCacheCompleted == nil) {
+        _readCacheCompleted = [[RACSubject alloc] init];
+    }
+    return _readCacheCompleted;
+}
+
 - (RACSubject *)loadedSuccess {
     if (_loadedSuccess == nil) {
         _loadedSuccess = [[RACSubject alloc] init];
@@ -91,6 +103,14 @@
         _items = [NSMutableArray array];
     }
     return _items;
+}
+
+@end
+
+@implementation MiewahListViewModel(Cache)
+
+- (BOOL)shouldCacheItems:(id)items {
+    return self.currentPage == 1 && [items respondsToSelector:@selector(count)] && [items count] > 0;
 }
 
 @end

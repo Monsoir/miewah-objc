@@ -10,6 +10,9 @@
 #import "MiewahModel.h"
 #import "MiewahNetworker.h"
 #import "MiewahRequestProtocol.h"
+#import "DatabaseHelper.h"
+
+typedef void(^MiewahReadCacheCompletion)(void);
 
 @interface MiewahListViewModel: MiewahViewModel
 
@@ -17,6 +20,7 @@
 
 @property (nonatomic, strong, readonly) RACSignal *noMoreDataSignal;
 
+@property (nonatomic, strong, readonly) RACSubject *readCacheCompleted;
 @property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
 @property (nonatomic, strong, readonly) RACSubject *loadedFailure;
 @property (nonatomic, strong, readonly) RACSubject *loadedError;
@@ -43,6 +47,10 @@
 @property (nonatomic, assign) BOOL noMoreData;
 @property (nonatomic, strong, readonly) id<MiewahListRequestProtocol> requester;
 
+/**
+ 读取缓存
+ */
+- (void)readCache;
 
 /**
  加载数据，自动页码加一
@@ -60,5 +68,11 @@
  重新加载数据
  */
 - (void)reloadData;
+
+@end
+
+@interface MiewahListViewModel(Cache)
+
+- (BOOL)shouldCacheItems:(id)items;
 
 @end

@@ -11,5 +11,6 @@
 @interface AppDelegate (TestForDevelopment)
 
 - (void)clearLoginInfo;
+- (void)logSandBoxPaths;
 
 @end

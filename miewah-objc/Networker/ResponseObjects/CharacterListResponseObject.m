@@ -11,7 +11,7 @@
 @implementation CharacterListResponseObject
 
 + (NSMutableArray<NSString *> *)extractKeys {
-    NSMutableArray *keys = [BaseResponseObject extractKeys];
+    NSMutableArray *keys = [BaseListReponseObject extractKeys];
     [keys addObjectsFromArray:@[NSStringFromSelector(@selector(characters))]];
     return keys;
 }

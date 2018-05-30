@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "AppDelegate+TestForDevelopment.h"
 #import "MiewahUser.h"
+
+#import "AppDelegate+TestForDevelopment.h"
+#import "AppDelegate+DataBaseStuff.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +22,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [self clearLoginInfo];
+    [self logSandBoxPaths];
     self.window.backgroundColor = UIColor.whiteColor;
     [[MiewahUser thisUser] fetchUserInfoFromLocal];
+    
+    [self initializeDatabase];
     return YES;
 }
 

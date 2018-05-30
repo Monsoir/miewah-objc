@@ -44,6 +44,13 @@
     [self linkSignals];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.vm.items.count <= 0) {
+        [self.vm readCache];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -108,6 +115,15 @@
         };
         runOnMainThread(_);
     }];
+    
+    [self.vm.readCacheCompleted subscribeCompleted:^{
+        @strongify(self);
+        void(^_)(void) = ^void() {
+            [self.tableView reloadData];
+            [self.vm loadData];
+        };
+        runOnMainThread(_);
+    }];
 }
 
 - (void)setupNavigationBar {
@@ -125,6 +141,8 @@
     
     // 设置 tableview 最下面的点击加载
     self.tableView.tableFooterView = self.footer;
+    
+    [self.loadingIndicator stopAnimating];
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {

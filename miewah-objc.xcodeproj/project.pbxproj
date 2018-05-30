@@ -106,6 +106,9 @@
 		9DA882F5209C416A002E02DC /* MiewahSlangRequesterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA882F4209C416A002E02DC /* MiewahSlangRequesterManager.m */; };
 		9DA882F8209C43ED002E02DC /* SlangDetailResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA882F7209C43ED002E02DC /* SlangDetailResponseObject.m */; };
 		9DA882FB209C5323002E02DC /* SlangDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA882FA209C5323002E02DC /* SlangDetailViewModel.m */; };
+		9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */; };
+		9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC34BE020BE82570098AE7C /* FMDB.framework */; };
+		9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */; };
 		9DC9018B20A2DC43004670B8 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9018A20A2DC43004670B8 /* EditViewController.m */; };
 		9DC9018E20A2E228004670B8 /* MiewahListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9018D20A2E228004670B8 /* MiewahListViewController.m */; };
 		9DC9019D20A2F103004670B8 /* EditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9019C20A2F103004670B8 /* EditViewModel.m */; };
@@ -323,6 +326,11 @@
 		9DA882F7209C43ED002E02DC /* SlangDetailResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlangDetailResponseObject.m; sourceTree = "<group>"; };
 		9DA882F9209C5323002E02DC /* SlangDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlangDetailViewModel.h; sourceTree = "<group>"; };
 		9DA882FA209C5323002E02DC /* SlangDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlangDetailViewModel.m; sourceTree = "<group>"; };
+		9DC34BDD20BE7CD90098AE7C /* DatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
+		9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
+		9DC34BE020BE82570098AE7C /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = Carthage/Build/iOS/FMDB.framework; sourceTree = "<group>"; };
+		9DC34BE220BE8D120098AE7C /* AppDelegate+DataBaseStuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+DataBaseStuff.h"; sourceTree = "<group>"; };
+		9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+DataBaseStuff.m"; sourceTree = "<group>"; };
 		9DC9018920A2DC43004670B8 /* EditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		9DC9018A20A2DC43004670B8 /* EditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		9DC9018C20A2E228004670B8 /* MiewahListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahListViewController.h; sourceTree = "<group>"; };
@@ -361,6 +369,7 @@
 			files = (
 				9D20FE0620887E8800FC4856 /* ReactiveObjC.framework in Frameworks */,
 				9D1B8F91209052E10099976C /* AFNetworking.framework in Frameworks */,
+				9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +617,7 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9DC34BD920BE7B680098AE7C /* Database */,
 				9D0574F120989E0600FB7661 /* Snippets */,
 				9D45009720973C6A00A63C20 /* Models */,
 				9D4500842094C5BD00A63C20 /* IgnoredConstants */,
@@ -620,6 +630,8 @@
 				9D1B8F7A209050E80099976C /* Controllers */,
 				9D20FDD220887E3A00FC4856 /* AppDelegate.h */,
 				9D20FDD320887E3A00FC4856 /* AppDelegate.m */,
+				9DC34BE220BE8D120098AE7C /* AppDelegate+DataBaseStuff.h */,
+				9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */,
 				9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */,
 				9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */,
 				9D20FDD520887E3A00FC4856 /* ViewController.h */,
@@ -654,6 +666,7 @@
 		9D20FE0420887E8800FC4856 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DC34BE020BE82570098AE7C /* FMDB.framework */,
 				9D1B8F90209052E10099976C /* AFNetworking.framework */,
 				9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */,
 			);
@@ -836,6 +849,15 @@
 				9DA882E4209BFDB0002E02DC /* LongItemTableViewCell.xib */,
 			);
 			path = LongItemTableViewCell;
+			sourceTree = "<group>";
+		};
+		9DC34BD920BE7B680098AE7C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				9DC34BDD20BE7CD90098AE7C /* DatabaseHelper.h */,
+				9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		9DC9018620A2DB9A004670B8 /* Character */ = {
@@ -1076,10 +1098,12 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveObjC.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AFNetworking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FMDB.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveObjC.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AFNetworking.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FMDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1164,6 +1188,7 @@
 				9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */,
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,
 				9D1B8FB32090C77C0099976C /* ItemIntroductionCell.m in Sources */,
+				9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */,
 				9D1B8FBF2090C9980099976C /* AvatarHeader.m in Sources */,
 				9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */,
 				9D1B8FCB2090CD6C0099976C /* NotificationBanner.m in Sources */,
@@ -1181,6 +1206,7 @@
 				9D2355F820B2BED40051A1CE /* UITableView+Cell.m in Sources */,
 				9D2355F520B2AC520051A1CE /* MiewahAsset.m in Sources */,
 				9DA882F8209C43ED002E02DC /* SlangDetailResponseObject.m in Sources */,
+				9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */,
 				9D1B8FA72090C28C0099976C /* ShortItemDetailHeaderView.m in Sources */,
 				9D6D4F1820944D2E009AA9CE /* RegisterViewModel.m in Sources */,
 				9D6D4F1F20946163009AA9CE /* MiewahViewModel.m in Sources */,
