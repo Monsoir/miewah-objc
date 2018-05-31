@@ -25,6 +25,12 @@
 
 @implementation EditPreviewViewModel
 
+- (void)dealloc {
+    [_postSuccess sendCompleted];
+    [_postFailure sendCompleted];
+    [_postError sendCompleted];
+}
+
 - (BOOL)postData {
     @weakify(self);
     MiewahRequestSuccess successHandler = ^(BaseResponseObject *payload) {

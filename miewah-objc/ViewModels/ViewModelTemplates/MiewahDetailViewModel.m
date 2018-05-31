@@ -26,6 +26,12 @@
     return self;
 }
 
+- (void)dealloc {
+    [self.loadedSuccess sendCompleted];
+    [self.loadedFailure sendCompleted];
+    [self.loadedError sendCompleted];
+}
+
 - (void)loadDetail {
     if (self.identifier == nil) {
 #if DEBUG

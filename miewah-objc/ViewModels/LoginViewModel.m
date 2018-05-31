@@ -47,6 +47,12 @@
     }];
 }
 
+- (void)dealloc {
+    [self.loginSuccess sendCompleted];
+    [self.loginFailure sendCompleted];
+    [self.loginError sendCompleted];
+}
+
 - (BOOL)checkEmailValid:(NSString *)email {
     return [Validator validateEmail:email];
 }

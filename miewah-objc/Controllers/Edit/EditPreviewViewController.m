@@ -52,6 +52,10 @@ static NSString *SectionIdentifier = @"section-header";
     self.tableView.tableHeaderView = self.header;
 }
 
+- (void)dealloc {
+    NSLog(@"%@ deallocs", [self class]);
+}
+
 - (void)linkSignals {
     @weakify(self);
     

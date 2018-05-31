@@ -54,6 +54,12 @@
     }];
 }
 
+- (void)dealloc {
+    [self.registerSuccess sendCompleted];
+    [self.registerFailure sendCompleted];
+    [self.registerError sendCompleted];
+}
+
 - (void)postRegister {
     self.registerManager = [[MiewahRegisterManager alloc] initWithEmail:self.email password:self.password confirmedPassword:self.passwordConfirmation];
     @weakify(self);

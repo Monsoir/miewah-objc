@@ -72,10 +72,6 @@
     }];
 }
 
-//- (BOOL)shouldCacheItems:(id)items {
-//    return self.currentPage == 1 && [items respondsToSelector:@selector(count)] && [items count] > 0;
-//}
-
 @synthesize requester = _requester;
 - (id<MiewahListRequestProtocol>)requester {
     if (_requester == nil) {

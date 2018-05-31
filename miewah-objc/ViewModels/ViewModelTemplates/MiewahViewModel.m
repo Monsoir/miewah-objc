@@ -10,6 +10,12 @@
 
 @implementation MiewahViewModel
 
+- (void)dealloc {
+#if DEBUG
+    NSLog(@"%@ deallocs", [self class]);
+#endif
+}
+
 - (instancetype)init
 {
     self = [super init];

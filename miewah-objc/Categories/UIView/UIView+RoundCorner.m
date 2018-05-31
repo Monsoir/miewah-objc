@@ -10,6 +10,12 @@
 
 @implementation UIView (RoundCorner)
 
+- (void)maskRoundedCornersWithRadius:(CGFloat)radius {
+    self.layer.cornerRadius = radius;
+    self.layer.masksToBounds = YES;
+    self.clipsToBounds = YES;
+}
+
 - (void)maskRoundedCorners:(UIRectCorner)corners cornerRadius:(CGSize)cornerRadii {
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:cornerRadii];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];

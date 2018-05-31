@@ -11,7 +11,14 @@
 @interface UIView (RoundCorner)
 
 /**
- 绘制圆角
+ 绘制圆角，使用 cornerRadius, 只能一次性设置四个角
+
+ @param radius 圆角半径
+ */
+- (void)maskRoundedCornersWithRadius:(CGFloat)radius;
+
+/**
+ 绘制圆角，使用 UIBezierPath, 可以指定哪些角需要圆角
 
  @param corners 需要圆角的位置
  @param cornerRadii 圆角的半径
