@@ -74,6 +74,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:self.navigationController];
+            self.navigationItem.rightBarButtonItem = nil;
         };
         runOnMainThread(_);
     }];
@@ -82,6 +83,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
+            self.navigationItem.rightBarButtonItem = nil;
         };
         runOnMainThread(_);
     }];

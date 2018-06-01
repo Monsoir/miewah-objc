@@ -12,8 +12,12 @@
 
 - (void)maskRoundedCornersWithRadius:(CGFloat)radius {
     self.layer.cornerRadius = radius;
-    self.layer.masksToBounds = YES;
-    self.clipsToBounds = YES;
+//    self.layer.masksToBounds = YES;
+//    self.clipsToBounds = YES;
+    
+    // 栅格化，缓存
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen.mainScreen scale];
 }
 
 - (void)maskRoundedCorners:(UIRectCorner)corners cornerRadius:(CGSize)cornerRadii {

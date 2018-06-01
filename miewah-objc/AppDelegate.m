@@ -26,6 +26,9 @@
     self.window.backgroundColor = UIColor.whiteColor;
     [[MiewahUser thisUser] fetchUserInfoFromLocal];
     
+//    [[UINavigationBar appearance] setTranslucent:NO];
+//    [[UITabBar appearance] setTranslucent:NO];
+    
     [self initializeDatabase];
     return YES;
 }

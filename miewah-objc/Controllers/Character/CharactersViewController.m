@@ -7,7 +7,7 @@
 //
 
 #import "CharactersViewController.h"
-#import "ShortItemTableViewCell.h"
+#import "ItemTableViewCell.h"
 #import "ListLoadMoreFooterView.h"
 #import "CharactersViewModel.h"
 #import "UIConstants.h"
@@ -127,7 +127,8 @@
 
 - (void)setupSubviews {
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
-    [self.tableView registerNib:[UINib nibWithNibName:[ShortItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ShortItemTableViewCell reuseIdentifier]];
+    self.tableView.rowHeight = [ItemTableViewCell cellHeight];
+    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:[ItemTableViewCell reuseIdentifier]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = YES;
@@ -146,11 +147,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     MiewahCharacter *character = self.vm.items[indexPath.row];
-    cell.lbWord.text = character.item;
-    cell.lbPronounce.text = character.pronunciation;
-    cell.lbMeaning.text = character.meaning;
+    cell.lbItem.text = character.item;
+    cell.lbDetailA.text = character.pronunciation;
+    cell.lbDetailB.text = character.meaning;
     return cell;
 }
 

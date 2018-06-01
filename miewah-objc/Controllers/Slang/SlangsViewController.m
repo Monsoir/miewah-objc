@@ -7,7 +7,7 @@
 //
 
 #import "SlangsViewController.h"
-#import "LongItemTableViewCell.h"
+#import "ItemTableViewCell.h"
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
 #import "SlangsViewModel.h"
@@ -131,9 +131,9 @@
 }
 
 - (void)setupSubviews {
-    self.tableView.rowHeight = 250;
+    self.tableView.rowHeight = [ItemTableViewCell cellHeight];
     self.tableView.backgroundColor = [UIColor colorWithHexString: @"#f6f6f6"];
-    [self.tableView registerNib:[UINib nibWithNibName:[LongItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[LongItemTableViewCell reuseIdentifier]];
+    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:[NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])]];
     self.tableView.showsVerticalScrollIndicator = YES;
     
     // 设置 tableview 的下拉刷新
@@ -163,7 +163,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LongItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[LongItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     MiewahSlang *slang = self.vm.items[indexPath.row];
     cell.lbItem.text = slang.item;
     cell.lbDetailA.text = slang.pronunciation;

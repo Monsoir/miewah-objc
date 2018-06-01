@@ -49,7 +49,7 @@ static const CGFloat ScaleY = 0.9;
 - (void)roundContainer {
     CGFloat cornerRadius = 10;
     [self.container maskRoundedCorners:UIRectCornerAllCorners cornerRadius:CGSizeMake(cornerRadius, cornerRadius)];
-    [self.lbWord maskRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopLeft cornerRadius:CGSizeMake(cornerRadius, cornerRadius)];
+//    [self.lbWord maskRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopLeft cornerRadius:CGSizeMake(cornerRadius, cornerRadius)];
 }
 
 - (void)shadowContainer {

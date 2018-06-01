@@ -87,6 +87,8 @@
 		9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500C620986BCE00A63C20 /* UITableView+AutoRefresh.m */; };
 		9D48863D20AEC7940007D297 /* TextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D48863B20AEC7940007D297 /* TextTableViewCell.m */; };
 		9D48863E20AEC7940007D297 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D48863C20AEC7940007D297 /* TextTableViewCell.xib */; };
+		9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BF4D520C131A100E95D4B /* ItemTableViewCell.m */; };
+		9D6BF4D820C137A500E95D4B /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6BF4D720C137A500E95D4B /* Masonry.framework */; };
 		9D6D4F0A2092FDA4009AA9CE /* CharactersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F092092FDA4009AA9CE /* CharactersViewController.m */; };
 		9D6D4F0D2092FE3E009AA9CE /* WordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F0C2092FE3E009AA9CE /* WordsViewController.m */; };
 		9D6D4F112093256B009AA9CE /* UINavigationBar+BottomLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F102093256B009AA9CE /* UINavigationBar+BottomLine.m */; };
@@ -289,6 +291,9 @@
 		9D48863A20AEC7940007D297 /* TextTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextTableViewCell.h; sourceTree = "<group>"; };
 		9D48863B20AEC7940007D297 /* TextTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextTableViewCell.m; sourceTree = "<group>"; };
 		9D48863C20AEC7940007D297 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
+		9D6BF4D420C131A100E95D4B /* ItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemTableViewCell.h; sourceTree = "<group>"; };
+		9D6BF4D520C131A100E95D4B /* ItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
+		9D6BF4D720C137A500E95D4B /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 		9D6D4F082092FDA4009AA9CE /* CharactersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharactersViewController.h; sourceTree = "<group>"; };
 		9D6D4F092092FDA4009AA9CE /* CharactersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharactersViewController.m; sourceTree = "<group>"; };
 		9D6D4F0B2092FE3E009AA9CE /* WordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsViewController.h; sourceTree = "<group>"; };
@@ -370,6 +375,7 @@
 				9D20FE0620887E8800FC4856 /* ReactiveObjC.framework in Frameworks */,
 				9D1B8F91209052E10099976C /* AFNetworking.framework in Frameworks */,
 				9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */,
+				9D6BF4D820C137A500E95D4B /* Masonry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +480,8 @@
 				9D23560720B3EAFB0051A1CE /* TextPlaceholderView.m */,
 				9D0AFE6020B53DA500C93934 /* EditPreviewViewHeader.h */,
 				9D0AFE6120B53DA500C93934 /* EditPreviewViewHeader.m */,
+				9D6BF4D420C131A100E95D4B /* ItemTableViewCell.h */,
+				9D6BF4D520C131A100E95D4B /* ItemTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -666,6 +674,7 @@
 		9D20FE0420887E8800FC4856 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D6BF4D720C137A500E95D4B /* Masonry.framework */,
 				9DC34BE020BE82570098AE7C /* FMDB.framework */,
 				9D1B8F90209052E10099976C /* AFNetworking.framework */,
 				9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */,
@@ -1099,11 +1108,13 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveObjC.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AFNetworking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FMDB.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveObjC.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AFNetworking.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FMDB.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Masonry.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1163,6 +1174,7 @@
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
 				9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
+				9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */,
 				9D0AFE5F20B539C500C93934 /* EditPreviewViewModel.m in Sources */,
 				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,

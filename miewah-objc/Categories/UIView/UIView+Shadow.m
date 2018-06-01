@@ -15,6 +15,8 @@
     self.layer.shadowRadius = radius;
     self.layer.shadowOpacity = opacity;
     self.layer.shadowColor = color.CGColor;
+    // 提前告知阴影路径，防止离屏渲染
+    self.layer.shadowPath = [[UIBezierPath bezierPathWithRect:self.bounds] CGPath];
 }
 
 @end

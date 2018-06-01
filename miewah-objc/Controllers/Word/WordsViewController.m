@@ -7,7 +7,8 @@
 //
 
 #import "WordsViewController.h"
-#import "ShortItemTableViewCell.h"
+//#import "ShortItemTableViewCell.h"
+#import "ItemTableViewCell.h"
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
 #import "WordDetailViewController.h"
@@ -126,7 +127,8 @@
 
 - (void)setupSubviews {
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
-    [self.tableView registerNib:[UINib nibWithNibName:[ShortItemTableViewCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ShortItemTableViewCell reuseIdentifier]];
+    self.tableView.rowHeight = [ItemTableViewCell cellHeight];
+    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:[NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = YES;
@@ -158,11 +160,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShortItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ShortItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     MiewahWord *word = self.vm.items[indexPath.row];
-    cell.lbWord.text = word.item;
-    cell.lbPronounce.text = word.pronunciation;
-    cell.lbMeaning.text = word.meaning;
+    cell.lbItem.text = word.item;
+    cell.lbDetailA.text = word.pronunciation;
+    cell.lbDetailB.text = word.meaning;
     return cell;
 }
 
