@@ -13,6 +13,7 @@ NSString * const LoginCompleteNotificationName = @"LoginComplete";
 
 NSString * const EditAssetBasicInfosFieldNames = @"BasicInfos";
 NSString * const EditAssetExtraInfosFieldNames = @"ExtraInfos";
+NSString * const EditAssetRecordInfosFieldNames = @"RecordInfos";
 
 NSString * const EditAssetTypeNotificationUserInfoKey = @"EditAssetResetTypeNotificationUserInfoKey";
 
@@ -22,6 +23,8 @@ NSString * const EditAssetResetNotificationName = @"NewAssetResetNotification";
 
 NSString * const EditAssetSaveBasicInfoNotificationName = @"EditAssetSaveBasicInfoNotification";
 NSString * const EditAssetSaveExtraInfoNotificationName = @"EditAssetSaveExtraInfoNotification";
+
+NSInteger const RecordDuration = 5;
 
 //NSString * const BasicInfoItemKey = @"BasicInfoItem";
 //NSString * const BasicInfoPronunonciationKey = @"BasicInfoPronunonciation";

@@ -14,11 +14,20 @@
 
 @interface EditExtraInfoViewModel()
 
-@property (nonatomic, strong) NSArray<NSString *> *sectionNames;
+@property (nonatomic, strong) NSArray<NSString *> *sectionANames;
+@property (nonatomic, strong) NSArray<NSString *> *sectionBNames;
 
 @property (nonatomic, strong) RACSignal *sourceSignal;
 @property (nonatomic, strong) RACSignal *sentencesSignal;
 @property (nonatomic, strong) RACSignal *inputMethodsSignal;
+@property (nonatomic, strong) RACSignal *recordURLSignal;
+
+@property (nonatomic, strong) RACSubject *startRecordingSubject;
+@property (nonatomic, strong) RACSubject *recordingSubject;
+@property (nonatomic, strong) RACSubject *finishRecordingSubject;
+@property (nonatomic, strong) RACSubject *abortRecordingSubject;
+
+@property (nonatomic, strong) NSTimer *recordTimer;
 
 @end
 
@@ -30,6 +39,12 @@
         [self readExtraInfos];
     }
     return self;
+}
+
+- (void)dealloc {
+    [_recordingSubject sendCompleted];
+    [_finishRecordingSubject sendCompleted];
+    [_abortRecordingSubject sendCompleted];
 }
 
 - (void)initializeObserverSignals {
@@ -44,6 +59,10 @@
     }];
     
     self.inputMethodsSignal = [RACObserve(self, inputMethods) map:^id _Nullable(id  _Nullable value) {
+        return value;
+    }];
+    
+    self.recordURLSignal = [RACObserve(self, recordURL) map:^id _Nullable(id  _Nullable value) {
         return value;
     }];
 }
@@ -89,10 +108,53 @@
     }
 }
 
+- (void)startRecording {
+    self.isRecording = YES;
+    __block NSInteger counter = RecordDuration;
+    self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        counter--;
+        if (counter < 0) {
+            [self finishRecording];
+        } else {
+            NSDictionary *userInfo = @{@"counter": @(counter)};
+            [self.recordingSubject sendNext:userInfo];
+        }
+    }];
+    [self.startRecordingSubject sendNext:nil];
+}
+
+- (void)finishRecording {
+    self.isRecording = NO;
+    
+    [self.recordTimer invalidate];
+    _recordTimer = nil;
+    
+    self.recordURL = @"a";
+    
+    [self.finishRecordingSubject sendNext:nil];
+}
+
+- (void)abortRecording {
+    self.isRecording = NO;
+    
+    [self.recordTimer invalidate];
+    _recordTimer = nil;
+    
+    [self.abortRecordingSubject sendNext:nil];
+}
+
+- (void)playRecord {
+    NSLog(@"play");
+}
+
+- (void)deleteRecord {
+    self.recordURL = nil;
+}
+
 #pragma mark - Accessors
 
-- (NSArray<NSString *> *)sectionNames {
-    if (_sectionNames == nil) {
+- (NSArray<NSString *> *)sectionANames {
+    if (_sectionANames == nil) {
         NSString *fileName = nil;
         switch (self.type) {
             case MiewahItemTypeCharacter:
@@ -112,13 +174,67 @@
         
         NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"];
         NSDictionary *whole = [NSDictionary dictionaryWithContentsOfFile:path];
-        _sectionNames = [whole valueForKey:EditAssetExtraInfosFieldNames];
+        _sectionANames = [whole valueForKey:EditAssetExtraInfosFieldNames];
     }
-    return _sectionNames;
+    return _sectionANames;
+}
+
+- (NSArray<NSString *> *)sectionBNames {
+    if (_sectionBNames == nil) {
+        NSString *fileName = nil;
+        switch (self.type) {
+            case MiewahItemTypeCharacter:
+                fileName = @"NewCharacterFieldNames";
+                break;
+            case MiewahItemTypeWord:
+                fileName = @"NewWordFieldNames";
+                break;
+            case MiewahItemTypeSlang:
+                fileName = @"NewSlangFieldNames";
+                break;
+                
+            default:
+                break;
+        }
+        if (fileName == nil) return nil;
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"];
+        NSDictionary *whole = [NSDictionary dictionaryWithContentsOfFile:path];
+        _sectionBNames = [whole valueForKey:EditAssetRecordInfosFieldNames];
+    }
+    return _sectionBNames;
 }
 
 - (MiewahItemType)type {
     return [NewMiewahAsset sharedAsset].type;
+}
+
+- (RACSubject *)startRecordingSubject {
+    if (_startRecordingSubject == nil) {
+        _startRecordingSubject = [[RACSubject alloc] init];
+    }
+    return _startRecordingSubject;
+}
+
+- (RACSubject *)recordingSubject {
+    if (_recordingSubject == nil) {
+        _recordingSubject = [[RACSubject alloc] init];
+    }
+    return _recordingSubject;
+}
+
+- (RACSubject *)finishRecordingSubject {
+    if (_finishRecordingSubject == nil) {
+        _finishRecordingSubject = [[RACSubject alloc] init];
+    }
+    return _finishRecordingSubject;
+}
+
+- (RACSubject *)abortRecordingSubject {
+    if (_abortRecordingSubject == nil) {
+        _abortRecordingSubject = [[RACSubject alloc] init];
+    }
+    return _abortRecordingSubject;
 }
 
 @end

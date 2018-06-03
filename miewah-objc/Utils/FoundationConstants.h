@@ -14,6 +14,7 @@ extern NSString * const LoginCompleteNotificationName;
 // 编辑时的表单字段可视化名称
 extern NSString * const EditAssetBasicInfosFieldNames;
 extern NSString * const EditAssetExtraInfosFieldNames;
+extern NSString * const EditAssetRecordInfosFieldNames;
 
 // 编辑时，数据的类型
 extern NSString * const EditAssetTypeNotificationUserInfoKey;
@@ -32,6 +33,9 @@ extern NSString * const EditAssetSaveBasicInfoNotificationName;
 
 // 编辑时，暂存额外信息
 extern NSString * const EditAssetSaveExtraInfoNotificationName;
+
+// 录音时长
+extern const NSInteger RecordDuration;
 
 // 编辑时，暂存信息的键
 //extern NSString * const BasicInfoItemKey;
