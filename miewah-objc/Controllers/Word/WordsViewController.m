@@ -94,7 +94,7 @@
             [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:self.navigationController];
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:nil];
         };
         
         runOnMainThread(_);
@@ -106,7 +106,7 @@
             [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:nil];
         };
         runOnMainThread(_);
     }];
