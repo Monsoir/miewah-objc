@@ -120,7 +120,9 @@ BannerPositionFrame BannerPositionMake(CGFloat width, CGFloat height) {
             [self.swiptGesture addTarget:self action:@selector(dismiss)];
             [self addGestureRecognizer:self.swiptGesture];
             if (self.autoDismiss) {
-                [self performSelector:@selector(dismiss) withObject:nil afterDelay:self.duration];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self dismiss];
+                });
             }
         }
     }];
