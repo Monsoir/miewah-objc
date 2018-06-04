@@ -11,6 +11,7 @@
 
 #import "AppDelegate+TestForDevelopment.h"
 #import "AppDelegate+DataBaseStuff.h"
+#import "AppDelegate+TabBar.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,7 @@
 //    [[UITabBar appearance] setTranslucent:NO];
     
     [self initializeDatabase];
+    self.window.rootViewController = [self configureTabBarStuff];
     return YES;
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a43-M9-Ymt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a43-M9-Ymt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -159,7 +159,7 @@
         <!--字-->
         <scene sceneID="A8D-ml-g9M">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jz7-Hh-zJf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CharacterNC" automaticallyAdjustsScrollViewInsets="NO" id="Jz7-Hh-zJf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="字" id="VTW-Hp-E4A"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Bzi-Kg-6pi">
@@ -196,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="-689" y="1536"/>
         </scene>
-        <!--故仔-->
+        <!--语-->
         <scene sceneID="1OY-HC-wvU">
             <objects>
-                <viewController title="故仔" id="tLY-lZ-jMt" customClass="SlangsViewController" sceneMemberID="viewController">
+                <viewController title="语" id="tLY-lZ-jMt" customClass="SlangsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zQc-Ek-kGL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -527,11 +527,11 @@
             </objects>
             <point key="canvasLocation" x="832.79999999999995" y="846.9265367316342"/>
         </scene>
-        <!--故仔-->
+        <!--语-->
         <scene sceneID="gkb-bW-8cZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1dT-wq-DWh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="故仔" id="hQH-WC-tmR"/>
+                <navigationController storyboardIdentifier="SlangNC" automaticallyAdjustsScrollViewInsets="NO" id="1dT-wq-DWh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="语" id="hQH-WC-tmR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6yb-db-7nQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -552,7 +552,7 @@
         <!--我的-->
         <scene sceneID="Cke-g0-Rdu">
             <objects>
-                <navigationController storyboardIdentifier="I" title="我的" automaticallyAdjustsScrollViewInsets="NO" id="qQb-dy-bl9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MineNC" title="我的" automaticallyAdjustsScrollViewInsets="NO" id="qQb-dy-bl9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" id="eW3-w4-Yyg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="wDm-FW-Xsy">
@@ -884,7 +884,7 @@
         <!--词-->
         <scene sceneID="pRm-QQ-ifa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IFv-Hp-x6q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WordNC" automaticallyAdjustsScrollViewInsets="NO" id="IFv-Hp-x6q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="词" id="5Re-do-Jbo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="eUO-6w-oaX">

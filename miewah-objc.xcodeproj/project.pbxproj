@@ -87,6 +87,7 @@
 		9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4500C620986BCE00A63C20 /* UITableView+AutoRefresh.m */; };
 		9D48863D20AEC7940007D297 /* TextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D48863B20AEC7940007D297 /* TextTableViewCell.m */; };
 		9D48863E20AEC7940007D297 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D48863C20AEC7940007D297 /* TextTableViewCell.xib */; };
+		9D51F46820C5373A00488DDF /* AppDelegate+TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */; };
 		9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BF4D520C131A100E95D4B /* ItemTableViewCell.m */; };
 		9D6BF4D820C137A500E95D4B /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6BF4D720C137A500E95D4B /* Masonry.framework */; };
 		9D6D4F0A2092FDA4009AA9CE /* CharactersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F092092FDA4009AA9CE /* CharactersViewController.m */; };
@@ -296,6 +297,8 @@
 		9D48863A20AEC7940007D297 /* TextTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextTableViewCell.h; sourceTree = "<group>"; };
 		9D48863B20AEC7940007D297 /* TextTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextTableViewCell.m; sourceTree = "<group>"; };
 		9D48863C20AEC7940007D297 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
+		9D51F46620C5373A00488DDF /* AppDelegate+TabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+TabBar.h"; sourceTree = "<group>"; };
+		9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+TabBar.m"; sourceTree = "<group>"; };
 		9D6BF4D420C131A100E95D4B /* ItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemTableViewCell.h; sourceTree = "<group>"; };
 		9D6BF4D520C131A100E95D4B /* ItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
 		9D6BF4D720C137A500E95D4B /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
@@ -659,6 +662,8 @@
 				9D1B8F7A209050E80099976C /* Controllers */,
 				9D20FDD220887E3A00FC4856 /* AppDelegate.h */,
 				9D20FDD320887E3A00FC4856 /* AppDelegate.m */,
+				9D51F46620C5373A00488DDF /* AppDelegate+TabBar.h */,
+				9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */,
 				9DC34BE220BE8D120098AE7C /* AppDelegate+DataBaseStuff.h */,
 				9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */,
 				9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */,
@@ -1240,6 +1245,7 @@
 				9DC9019D20A2F103004670B8 /* EditViewModel.m in Sources */,
 				9D0AFE5C20B5392B00C93934 /* EditPreviewViewController.m in Sources */,
 				9D1B8F9C2090BDA50099976C /* UIView+RoundCorner.m in Sources */,
+				9D51F46820C5373A00488DDF /* AppDelegate+TabBar.m in Sources */,
 				9D4500962096F34A00A63C20 /* LoginResponseObject.m in Sources */,
 				9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */,
 				9D1B8FA02090BFF40099976C /* UIView+Shadow.m in Sources */,
