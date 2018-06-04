@@ -53,6 +53,9 @@ extern const NSInteger RecordDuration;
 
 #define alwaysString(aString) aString ?: @""
 
+// 并发队列
+#define ConcurrentQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 typedef enum : NSUInteger {
     MiewahItemTypeCharacter,
     MiewahItemTypeWord,

@@ -40,7 +40,7 @@ static CGFloat ButtonLength = 35;
 
 - (void)initialize {
     self.didInitialLayout = NO;
-    _hasContent = NO;
+    _enabled = NO;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self.contentView addSubview:self.btnPlay];
@@ -74,10 +74,10 @@ static CGFloat ButtonLength = 35;
     [super updateConstraints];
 }
 
-- (void)setHasContent:(BOOL)hasContent {
-    _hasContent = hasContent;
+- (void)setEnabled:(BOOL)hasContent {
+    _enabled = hasContent;
     
-    if (_hasContent) {
+    if (_enabled) {
         self.btnPlay.tintColor = self.enablePlayColor;
         self.btnDel.tintColor = self.enableDelColor;
     } else {

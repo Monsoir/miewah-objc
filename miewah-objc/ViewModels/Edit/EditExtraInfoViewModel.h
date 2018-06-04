@@ -18,12 +18,17 @@
 @property (nonatomic, copy) NSString *inputMethods;
 @property (nonatomic, copy) NSString *recordURL;
 
+@property (nonatomic, assign, readonly) BOOL permitRecording;
+@property (nonatomic, assign, readonly) BOOL isRecording;
+@property (nonatomic, assign, readonly) BOOL isPlaying;
+
 @property (nonatomic, strong, readonly) RACSignal *sourceSignal;
 @property (nonatomic, strong, readonly) RACSignal *sentencesSignal;
 @property (nonatomic, strong, readonly) RACSignal *inputMethodsSignal;
-@property (nonatomic, strong, readonly) RACSignal *recordURLSignal;
+@property (nonatomic, strong, readonly) RACSignal *recordingSignal;
+@property (nonatomic, strong, readonly) RACSignal *recordFileManipulationSignal;
+@property (nonatomic, strong, readonly) RACSignal *permitRecordingSignal;
 
-@property (nonatomic, assign) BOOL isRecording;
 @property (nonatomic, strong, readonly) RACSubject *startRecordingSubject;
 @property (nonatomic, strong, readonly) RACSubject *recordingSubject;
 @property (nonatomic, strong, readonly) RACSubject *finishRecordingSubject;
@@ -41,5 +46,7 @@
 
 - (void)playRecord;
 - (void)deleteRecord;
+
+- (void)requestRecordAuthorization;
 
 @end

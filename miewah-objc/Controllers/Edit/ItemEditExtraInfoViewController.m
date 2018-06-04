@@ -32,6 +32,7 @@ static CGFloat RecordButtonWidth = 200;
 @property (nonatomic, copy) NSString *countDownPrompt;
 
 @property (nonatomic, strong) EditExtraInfoViewModel *vm;
+@property (nonatomic, assign) BOOL recordFileManipulatable;
 
 @end
 
@@ -46,6 +47,11 @@ static CGFloat RecordButtonWidth = 200;
     [self linkSignals];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.vm requestRecordAuthorization];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,6 +60,12 @@ static CGFloat RecordButtonWidth = 200;
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self.btnRecord maskRoundedCornersWithRadius:10];
+}
+
+- (void)dealloc {
+#if DEBUG
+    NSLog(@"%@ deallocs", [self class]);
+#endif
 }
 
 - (void)linkSignals {
@@ -84,10 +96,27 @@ static CGFloat RecordButtonWidth = 200;
         }];
     }
     
-    [self.vm.recordURLSignal subscribeNext:^(id  _Nullable x) {
+    [self.vm.recordFileManipulationSignal subscribeNext:^(NSNumber * _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^() {
+            self.recordFileManipulatable = [x boolValue];
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+        };
+        runOnMainThread(_);
+    }];
+    
+    [self.vm.permitRecordingSignal subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        void(^_)(void) = ^() {
+            self.btnRecord.enabled = [x boolValue];
+        };
+        runOnMainThread(_);
+    }];
+    
+    [self.vm.recordingSignal subscribeNext:^(NSNumber * _Nullable x) {
+        @strongify(self);
+        void(^_)(void) = ^() {
+            self.btnRecord.alpha = [x boolValue] ? 0.6 : 1.0;
         };
         runOnMainThread(_);
     }];
@@ -231,21 +260,21 @@ static CGFloat RecordButtonWidth = 200;
         EditRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[EditRecordTableViewCell reuseIdentifier]];
         if (cell == nil) {
             cell = [[EditRecordTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[EditRecordTableViewCell reuseIdentifier]];
+            @weakify(self);
+            cell.howToPlay = ^{
+                @strongify(self);
+                [self.vm playRecord];
+            };
+            
+            cell.howToDelete = ^{
+                @strongify(self);
+                [self.vm deleteRecord];
+            };
         }
         NSString *prompt = self.vm.sectionBNames[indexPath.row];
         cell.textLabel.text = prompt;
-        cell.hasContent = self.vm.recordURL.length > 0;
+        cell.enabled = self.recordFileManipulatable;
         
-        @weakify(self);
-        cell.howToPlay = ^{
-            @strongify(self);
-            [self.vm playRecord];
-        };
-        
-        cell.howToDelete = ^{
-            @strongify(self);
-            [self.vm deleteRecord];
-        };
         return cell;
     }
     
@@ -377,12 +406,13 @@ static CGFloat RecordButtonWidth = 200;
 
 - (UIButton *)btnRecord {
     if (_btnRecord == nil) {
-        _btnRecord = [UIButton buttonWithType:UIButtonTypeSystem];
+        _btnRecord = [UIButton buttonWithType:UIButtonTypeCustom];
         _btnRecord.backgroundColor = [UIColor colorWithHexString:@"#E8F0F9"];
         [_btnRecord setTitle:@"按住录音" forState:UIControlStateNormal];
         [_btnRecord setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_btnRecord addTarget:self action:@selector(actionStartRecording:) forControlEvents:UIControlEventTouchDown];
         [_btnRecord addTarget:self action:@selector(actionFinishRecording:) forControlEvents:UIControlEventTouchUpInside];
+//        [_btnRecord addTarget:self action:@selector(actionStartRecording:) forControlEvents:UIControlEventTouchUpInside];
         [_btnRecord addTarget:self action:@selector(actionWillAbortRecording:) forControlEvents:UIControlEventTouchDragOutside];
         [_btnRecord addTarget:self action:@selector(actionResumeRecording:) forControlEvents:UIControlEventTouchDragInside];
         [_btnRecord addTarget:self action:@selector(actionAbortRecording:) forControlEvents:UIControlEventTouchUpOutside];

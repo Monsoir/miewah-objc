@@ -12,15 +12,26 @@
 #import "MiewahWord.h"
 #import "MiewahSlang.h"
 
+#import "MiewahAudioHelper.h"
+#import "MiewahFileMangerHelper.h"
+
 @interface EditExtraInfoViewModel()
 
 @property (nonatomic, strong) NSArray<NSString *> *sectionANames;
 @property (nonatomic, strong) NSArray<NSString *> *sectionBNames;
 
+@property (nonatomic, assign) BOOL permitRecording;
+@property (nonatomic, assign) BOOL isRecording;
+@property (nonatomic, assign) BOOL isPlaying;
+
 @property (nonatomic, strong) RACSignal *sourceSignal;
 @property (nonatomic, strong) RACSignal *sentencesSignal;
 @property (nonatomic, strong) RACSignal *inputMethodsSignal;
 @property (nonatomic, strong) RACSignal *recordURLSignal;
+@property (nonatomic, strong) RACSignal *recordingSignal;
+@property (nonatomic, strong) RACSignal *playingSignal;
+@property (nonatomic, strong) RACSignal *recordFileManipulationSignal;
+@property (nonatomic, strong) RACSignal *permitRecordingSignal;
 
 @property (nonatomic, strong) RACSubject *startRecordingSubject;
 @property (nonatomic, strong) RACSubject *recordingSubject;
@@ -28,6 +39,7 @@
 @property (nonatomic, strong) RACSubject *abortRecordingSubject;
 
 @property (nonatomic, strong) NSTimer *recordTimer;
+@property (nonatomic, strong) MiewahAudioHelper *audioHelper;
 
 @end
 
@@ -42,13 +54,34 @@
 }
 
 - (void)dealloc {
-    [_recordingSubject sendCompleted];
-    [_finishRecordingSubject sendCompleted];
-    [_abortRecordingSubject sendCompleted];
+    // 这里太多对象了，在其他线程进行释放
+    NSArray *signals = @[self.sourceSignal, self.sentencesSignal, self.inputMethodsSignal, self.recordURLSignal, self.recordingSignal, self.playingSignal, self.recordFileManipulationSignal, self.permitRecordingSignal];
+    NSArray *subjects = @[self.startRecordingSubject, self.recordingSubject, self.finishRecordingSubject, self.abortRecordingSubject];
+    
+    self.sourceSignal = nil;
+    self.sentencesSignal = nil;
+    self.inputMethodsSignal = nil;
+    self.recordingSignal = nil;
+    self.playingSignal = nil;
+    self.recordFileManipulationSignal = nil;
+    self.permitRecordingSignal = nil;
+    
+    self.startRecordingSubject = nil;
+    self.recordingSubject = nil;
+    self.finishRecordingSubject = nil;
+    self.abortRecordingSubject = nil;
+    
+    dispatch_async(ConcurrentQueue, ^{
+        [signals class];
+        [subjects makeObjectsPerformSelector:@selector(sendCompleted)];
+    });
 }
 
 - (void)initializeObserverSignals {
     [super initializeObserverSignals];
+    
+    self.isPlaying = NO;
+    self.isRecording = NO;
     
     self.sourceSignal = [RACObserve(self, source) map:^id _Nullable(id  _Nullable value) {
         return value;
@@ -64,6 +97,23 @@
     
     self.recordURLSignal = [RACObserve(self, recordURL) map:^id _Nullable(id  _Nullable value) {
         return value;
+    }];
+    
+    self.recordingSignal = [RACObserve(self, isRecording) map:^id _Nullable(id  _Nullable value) {
+        return value;
+    }];
+    
+    self.playingSignal = [RACObserve(self, isPlaying) map:^id _Nullable(id  _Nullable value) {
+        return value;
+    }];
+    
+    self.permitRecordingSignal = [RACObserve(self, permitRecording) map:^id _Nullable(id  _Nullable value) {
+        return value;
+    }];
+    
+    NSArray<RACSignal *> *signals = @[self.recordingSignal, self.playingSignal, self.permitRecordingSignal, self.recordURLSignal];
+    self.recordFileManipulationSignal = [RACSignal combineLatest:signals reduce:^id _Nonnull (NSNumber *isRecording, NSNumber *isPlaying, NSNumber *permiteRecording, NSString *fileURL) {
+        return @(![isRecording boolValue] && ![isPlaying boolValue] && [permiteRecording boolValue] && fileURL.length > 0);
     }];
 }
 
@@ -110,6 +160,8 @@
 
 - (void)startRecording {
     self.isRecording = YES;
+    
+    // 配置定时器
     __block NSInteger counter = RecordDuration;
     self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
         counter--;
@@ -120,7 +172,15 @@
             [self.recordingSubject sendNext:userInfo];
         }
     }];
-    [self.startRecordingSubject sendNext:nil];
+    
+    [self.audioHelper recordAudioWithStartedBlock:^(BOOL successful, NSError *error) {
+        if (successful) {
+            [self.startRecordingSubject sendNext:nil];
+        } else {
+#warning 错误处理
+            NSLog(@"error: %@", error.description);
+        }
+    }];
 }
 
 - (void)finishRecording {
@@ -129,9 +189,8 @@
     [self.recordTimer invalidate];
     _recordTimer = nil;
     
-    self.recordURL = @"a";
-    
-    [self.finishRecordingSubject sendNext:nil];
+    [self.audioHelper finishRecording];
+//    [self.finishRecordingSubject sendNext:nil];
 }
 
 - (void)abortRecording {
@@ -139,19 +198,77 @@
     
     [self.recordTimer invalidate];
     _recordTimer = nil;
-    
+    [self.audioHelper abortRecording];
     [self.abortRecordingSubject sendNext:nil];
 }
 
 - (void)playRecord {
-    NSLog(@"play");
+    [self.audioHelper playAudioWithStartedBlock:^(BOOL successful, NSError *error) {
+        if (successful) {
+            self.isPlaying = YES;
+        } else {
+            NSLog(@"%@", error.description);
+        }
+    }];
 }
 
 - (void)deleteRecord {
-    self.recordURL = nil;
+    if (self.recordURL) {
+        NSError *error = nil;
+        BOOL deleteResult = [MiewahFileMangerHelper deleteFileAtPath:self.recordURL error:&error];
+        if (deleteResult == NO) {
+#warning 错误处理
+            NSLog(@"%@", error.description);
+        }
+        self.recordURL = nil;
+    }
+}
+
+- (void)requestRecordAuthorization {
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        self.permitRecording = granted;
+    }];
 }
 
 #pragma mark - Accessors
+
+- (MiewahAudioHelper *)audioHelper {
+    if (_audioHelper == nil) {
+        MiewahAudioHelper *_ = [[MiewahAudioHelper alloc] init];
+        __weak typeof(self) weakSelf = self;
+        
+        // 录音完成
+        _.recordCompletion = ^(BOOL successful, NSString *url) {
+            if (successful) {
+                if ([MiewahFileMangerHelper fileExistAtPath:url]) {
+                    weakSelf.recordURL = url;
+                    weakSelf.isRecording = NO;
+                    [weakSelf.finishRecordingSubject sendNext:nil];
+                }
+            }
+        };
+        
+        // 录音失败
+        _.recordFailure = ^(NSError *error) {
+#warning 错误处理
+            NSLog(@"%@", error);
+            weakSelf.isRecording = NO;
+        };
+        
+        // 播放完成
+        _.playCompletion = ^(BOOL successful) {
+            weakSelf.isPlaying = NO;
+        };
+        
+        // 播放失败
+        _.playFailure = ^(NSError *error) {
+            weakSelf.isPlaying = NO;
+        };
+        
+        _audioHelper = _;
+    }
+    return _audioHelper;
+}
 
 - (NSArray<NSString *> *)sectionANames {
     if (_sectionANames == nil) {

@@ -14,7 +14,7 @@ typedef void(^DeleteRecordBlock)(void);
 
 @interface EditRecordTableViewCell : UITableViewCell
 
-@property (nonatomic, assign) BOOL hasContent;
+@property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) PlayRecordBlock howToPlay;
 @property (nonatomic, copy) DeleteRecordBlock howToDelete;
 

@@ -72,10 +72,10 @@ const CGFloat ButtonSize = 40;
     [self addSubview:self.lbPronounciation];
     
     [self addSubview:self.btnPronounce];
-    [self addSubview:self.btnRecord];
+//    [self addSubview:self.btnRecord];
     
     self.btnPronounce.enabled = self.needPrononucing;
-    self.btnRecord.enabled = self.needRecording;
+//    self.btnRecord.enabled = self.needRecording;
 }
 
 - (void)updateConstraints {
@@ -86,7 +86,7 @@ const CGFloat ButtonSize = 40;
         [NSLayoutConstraint activateConstraints:[self labelItemConstraints]];
         [NSLayoutConstraint activateConstraints:[self labelPrononuciationConstraints]];
         [NSLayoutConstraint activateConstraints:[self btnPronounceConstraints]];
-        [NSLayoutConstraint activateConstraints:[self btnRecordConstraints]];
+//        [NSLayoutConstraint activateConstraints:[self btnRecordConstraints]];
         
         self.didInitialLayout = true;
     }

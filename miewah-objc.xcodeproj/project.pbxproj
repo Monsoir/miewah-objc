@@ -101,6 +101,7 @@
 		9D6D4F2D20946CE4009AA9CE /* MiewahAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
+		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
 		9DA882E5209BFDB0002E02DC /* LongItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA882E3209BFDB0002E02DC /* LongItemTableViewCell.m */; };
 		9DA882E6209BFDB0002E02DC /* LongItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DA882E4209BFDB0002E02DC /* LongItemTableViewCell.xib */; };
 		9DA882E9209C09B0002E02DC /* SlangsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA882E8209C09B0002E02DC /* SlangsViewModel.m */; };
@@ -127,6 +128,8 @@
 		9DF3227C2099AD2600D5C463 /* MiewahDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3227B2099AD2600D5C463 /* MiewahDetailViewModel.m */; };
 		9DF3227F2099B13800D5C463 /* WordDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3227E2099B13700D5C463 /* WordDetailViewModel.m */; };
 		9DF322822099B2D100D5C463 /* WordDetailResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322812099B2D100D5C463 /* WordDetailResponseObject.m */; };
+		9DF66E7C20C4326200DC1342 /* NSDateFormatter+Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF66E7B20C4326200DC1342 /* NSDateFormatter+Singleton.m */; };
+		9DF66E8020C4E1F400DC1342 /* MiewahFileMangerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -320,6 +323,8 @@
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
 		9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+ReuseIdentifier.m"; sourceTree = "<group>"; };
+		9D8BCB6120C41FB1009C913B /* MiewahAudioHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahAudioHelper.h; sourceTree = "<group>"; };
+		9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahAudioHelper.m; sourceTree = "<group>"; };
 		9DA882E2209BFDB0002E02DC /* LongItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LongItemTableViewCell.h; sourceTree = "<group>"; };
 		9DA882E3209BFDB0002E02DC /* LongItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LongItemTableViewCell.m; sourceTree = "<group>"; };
 		9DA882E4209BFDB0002E02DC /* LongItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LongItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -371,6 +376,10 @@
 		9DF3227E2099B13700D5C463 /* WordDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewModel.m; sourceTree = "<group>"; };
 		9DF322802099B2D100D5C463 /* WordDetailResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordDetailResponseObject.h; sourceTree = "<group>"; };
 		9DF322812099B2D100D5C463 /* WordDetailResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordDetailResponseObject.m; sourceTree = "<group>"; };
+		9DF66E7A20C4326200DC1342 /* NSDateFormatter+Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Singleton.h"; sourceTree = "<group>"; };
+		9DF66E7B20C4326200DC1342 /* NSDateFormatter+Singleton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Singleton.m"; sourceTree = "<group>"; };
+		9DF66E7E20C4E1F400DC1342 /* MiewahFileMangerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahFileMangerHelper.h; sourceTree = "<group>"; };
+		9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahFileMangerHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -507,6 +516,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9DF66E7920C4325300DC1342 /* NSDateFormatter */,
 				9D8BCB5C20C3DF7C009C913B /* UITableViewCell */,
 				9D23560220B3C13D0051A1CE /* UITextView */,
 				9D4500C420986B2600A63C20 /* UITableView */,
@@ -634,6 +644,8 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9DF66E7D20C4E1E300DC1342 /* FileManagerUtils */,
+				9D8BCB6020C41A41009C913B /* AVFoundationUtils */,
 				9DC34BD920BE7B680098AE7C /* Database */,
 				9D0574F120989E0600FB7661 /* Snippets */,
 				9D45009720973C6A00A63C20 /* Models */,
@@ -868,6 +880,15 @@
 			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
+		9D8BCB6020C41A41009C913B /* AVFoundationUtils */ = {
+			isa = PBXGroup;
+			children = (
+				9D8BCB6120C41FB1009C913B /* MiewahAudioHelper.h */,
+				9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */,
+			);
+			path = AVFoundationUtils;
+			sourceTree = "<group>";
+		};
 		9DA882E1209BFD9B002E02DC /* LongItemTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -974,6 +995,24 @@
 				9DF3227B2099AD2600D5C463 /* MiewahDetailViewModel.m */,
 			);
 			path = ViewModelTemplates;
+			sourceTree = "<group>";
+		};
+		9DF66E7920C4325300DC1342 /* NSDateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				9DF66E7A20C4326200DC1342 /* NSDateFormatter+Singleton.h */,
+				9DF66E7B20C4326200DC1342 /* NSDateFormatter+Singleton.m */,
+			);
+			path = NSDateFormatter;
+			sourceTree = "<group>";
+		};
+		9DF66E7D20C4E1E300DC1342 /* FileManagerUtils */ = {
+			isa = PBXGroup;
+			children = (
+				9DF66E7E20C4E1F400DC1342 /* MiewahFileMangerHelper.h */,
+				9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */,
+			);
+			path = FileManagerUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1171,6 +1210,7 @@
 				9DC9018E20A2E228004670B8 /* MiewahListViewController.m in Sources */,
 				9D1B8FD22090E3A60099976C /* UIConstants.m in Sources */,
 				9D2355FB20B309320051A1CE /* EditBasicInfoViewModel.m in Sources */,
+				9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */,
 				9D4500902096D05400A63C20 /* Validator.m in Sources */,
 				9DA882E5209BFDB0002E02DC /* LongItemTableViewCell.m in Sources */,
 				9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */,
@@ -1208,6 +1248,8 @@
 				9DF322672099634800D5C463 /* MiewahWordRequestManager.m in Sources */,
 				9DF322702099842500D5C463 /* MiewahModel.m in Sources */,
 				9DF3227F2099B13800D5C463 /* WordDetailViewModel.m in Sources */,
+				9DF66E8020C4E1F400DC1342 /* MiewahFileMangerHelper.m in Sources */,
+				9DF66E7C20C4326200DC1342 /* NSDateFormatter+Singleton.m in Sources */,
 				9D4500B420983F2600A63C20 /* ListLoadMoreFooterView.m in Sources */,
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
 				9D6D4F0D2092FE3E009AA9CE /* WordsViewController.m in Sources */,
