@@ -11,12 +11,18 @@
 @implementation AppDelegate (Appearance)
 
 - (void)configureAppTintColor {
+    
+    // UINavigationBar
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: UIColor.blackColor,
                                  };
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     [[UINavigationBar appearance] setTintColor:UIColor.blackColor];
     
+    // UITabBar
+    [[UITabBar appearance] setTintColor:UIColor.blackColor];
+    
+    // UISegmentedControl
     [[UISegmentedControl appearance] setTintColor:UIColor.blackColor];
 }
 
