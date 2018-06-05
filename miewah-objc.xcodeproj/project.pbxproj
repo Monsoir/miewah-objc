@@ -100,6 +100,7 @@
 		9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F23209467B6009AA9CE /* BaseResponseObject.m */; };
 		9D6D4F2720946A8D009AA9CE /* RegisterResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F2620946A8D009AA9CE /* RegisterResponseObject.m */; };
 		9D6D4F2D20946CE4009AA9CE /* MiewahAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */; };
+		9D7B493920C62BC100FDF0AD /* AppDelegate+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7B493820C62BC100FDF0AD /* AppDelegate+Appearance.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -322,6 +323,8 @@
 		9D6D4F2620946A8D009AA9CE /* RegisterResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterResponseObject.m; sourceTree = "<group>"; };
 		9D6D4F2B20946CE4009AA9CE /* MiewahAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahAPIManager.h; sourceTree = "<group>"; };
 		9D6D4F2C20946CE4009AA9CE /* MiewahAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahAPIManager.m; sourceTree = "<group>"; };
+		9D7B493720C62BC100FDF0AD /* AppDelegate+Appearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Appearance.h"; sourceTree = "<group>"; };
+		9D7B493820C62BC100FDF0AD /* AppDelegate+Appearance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Appearance.m"; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -647,6 +650,7 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9D7B493620C62AED00FDF0AD /* AppDelegate */,
 				9DF66E7D20C4E1E300DC1342 /* FileManagerUtils */,
 				9D8BCB6020C41A41009C913B /* AVFoundationUtils */,
 				9DC34BD920BE7B680098AE7C /* Database */,
@@ -660,14 +664,6 @@
 				9D1B8F992090BD7C0099976C /* Categories */,
 				9D1B8F92209053360099976C /* Views */,
 				9D1B8F7A209050E80099976C /* Controllers */,
-				9D20FDD220887E3A00FC4856 /* AppDelegate.h */,
-				9D20FDD320887E3A00FC4856 /* AppDelegate.m */,
-				9D51F46620C5373A00488DDF /* AppDelegate+TabBar.h */,
-				9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */,
-				9DC34BE220BE8D120098AE7C /* AppDelegate+DataBaseStuff.h */,
-				9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */,
-				9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */,
-				9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */,
 				9D20FDD520887E3A00FC4856 /* ViewController.h */,
 				9D20FDD620887E3A00FC4856 /* ViewController.m */,
 				9D20FDD820887E3A00FC4856 /* Main.storyboard */,
@@ -874,6 +870,23 @@
 				9DA882F7209C43ED002E02DC /* SlangDetailResponseObject.m */,
 			);
 			path = ResponseObjects;
+			sourceTree = "<group>";
+		};
+		9D7B493620C62AED00FDF0AD /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				9D20FDD220887E3A00FC4856 /* AppDelegate.h */,
+				9D20FDD320887E3A00FC4856 /* AppDelegate.m */,
+				9D7B493720C62BC100FDF0AD /* AppDelegate+Appearance.h */,
+				9D7B493820C62BC100FDF0AD /* AppDelegate+Appearance.m */,
+				9D51F46620C5373A00488DDF /* AppDelegate+TabBar.h */,
+				9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */,
+				9DC34BE220BE8D120098AE7C /* AppDelegate+DataBaseStuff.h */,
+				9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */,
+				9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */,
+				9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		9D8BCB5C20C3DF7C009C913B /* UITableViewCell */ = {
@@ -1225,6 +1238,7 @@
 				9D1B8F8C2090517D0099976C /* SlangsViewController.m in Sources */,
 				9D0574F02098989B00FB7661 /* CharacterDetailResponseObject.m in Sources */,
 				9D4500BA2098588D00A63C20 /* MiewahCharacter.m in Sources */,
+				9D7B493920C62BC100FDF0AD /* AppDelegate+Appearance.m in Sources */,
 				9DC9018B20A2DC43004670B8 /* EditViewController.m in Sources */,
 				9D6D4F0A2092FDA4009AA9CE /* CharactersViewController.m in Sources */,
 				9D23560B20B3FF950051A1CE /* ItemEditExtraInfoViewController.m in Sources */,

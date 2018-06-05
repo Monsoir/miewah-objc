@@ -12,6 +12,7 @@
 #import "AppDelegate+TestForDevelopment.h"
 #import "AppDelegate+DataBaseStuff.h"
 #import "AppDelegate+TabBar.h"
+#import "AppDelegate+Appearance.h"
 
 @interface AppDelegate ()
 
@@ -22,16 +23,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [self clearLoginInfo];
+#if DEBUG
     [self logSandBoxPaths];
-    self.window.backgroundColor = UIColor.whiteColor;
+#endif
+    [self clearLoginInfo];
+    
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _window.backgroundColor = UIColor.whiteColor;
+    _window.rootViewController = [self configureTabBarStuff];
+    [_window makeKeyAndVisible];
+    [self configureAppTintColor];
+    
     [[MiewahUser thisUser] fetchUserInfoFromLocal];
-    
-//    [[UINavigationBar appearance] setTranslucent:NO];
-//    [[UITabBar appearance] setTranslucent:NO];
-    
     [self initializeDatabase];
-    self.window.rootViewController = [self configureTabBarStuff];
+    
     return YES;
 }
 
