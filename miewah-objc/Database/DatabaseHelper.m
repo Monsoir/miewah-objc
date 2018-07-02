@@ -91,7 +91,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
         FMResultSet *result = [db executeQuery:sql];
         while ([result next]) {
             MiewahAsset *asset = [MiewahAsset assetOfType:type];
-            asset.identifier = @([result intForColumnIndex:0]);
+            asset.identifier = [result stringForColumnIndex:0];
             asset.item = [result stringForColumnIndex:1];
             asset.pronunciation = [result stringForColumnIndex:2];
             asset.meaning = [result stringForColumnIndex:3];

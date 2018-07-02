@@ -11,7 +11,7 @@
 
 @interface MiewahAsset : MiewahModel
 
-@property (nonatomic, strong) NSNumber *identifier;
+@property (nonatomic, strong) NSString *identifier;
 
 @property (nonatomic, copy) NSString *item;
 @property (nonatomic, copy) NSString *pronunciation;
