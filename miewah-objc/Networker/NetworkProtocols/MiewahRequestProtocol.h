@@ -34,7 +34,7 @@
  @param errorHandler 获取失败回调，技术上的请求失败
  @return 该请求任务
  */
-- (NSURLSessionDataTask *)getDetailOfIdentifier:(NSNumber *)identifier success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler;
+- (NSURLSessionDataTask *)getDetailOfIdentifier:(NSString *)identifier success:(MiewahRequestSuccess)successHandler failure:(MiewahRequestFailure)failureHandler error:(MiewahRequestError)errorHandler;
 
 @end
 
