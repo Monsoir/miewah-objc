@@ -40,6 +40,7 @@
 
 + (NSArray<NSString *> *)extractKeys {
     NSArray<NSString *> *keys = @[
+                                  NSStringFromSelector(@selector(objectId)),
                                   NSStringFromSelector(@selector(item)),
                                   NSStringFromSelector(@selector(pronunciation)),
                                   NSStringFromSelector(@selector(meaning)),
@@ -47,6 +48,8 @@
                                   NSStringFromSelector(@selector(inputMethods)),
                                   NSStringFromSelector(@selector(sentences)),
                                   NSStringFromSelector(@selector(pronunciationVoice)),
+                                  NSStringFromSelector(@selector(createdAt)),
+                                  NSStringFromSelector(@selector(updatedAt)),
                                   ];
     return keys;
 }

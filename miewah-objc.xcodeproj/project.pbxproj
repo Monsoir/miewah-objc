@@ -51,7 +51,6 @@
 		9D20FDDC20887E3D00FC4856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D20FDDB20887E3D00FC4856 /* Assets.xcassets */; };
 		9D20FDDF20887E3D00FC4856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D20FDDD20887E3D00FC4856 /* LaunchScreen.storyboard */; };
 		9D20FDE220887E3D00FC4856 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDE120887E3D00FC4856 /* main.m */; };
-		9D20FDEC20887E3E00FC4856 /* miewah_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDEB20887E3E00FC4856 /* miewah_objcTests.m */; };
 		9D20FDF720887E3E00FC4856 /* miewah_objcUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D20FDF620887E3E00FC4856 /* miewah_objcUITests.m */; };
 		9D20FE0620887E8800FC4856 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D20FE0520887E8800FC4856 /* ReactiveObjC.framework */; };
 		9D2355E620B29BDF0051A1CE /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2355E520B29BDF0051A1CE /* UIView+Layout.m */; };
@@ -249,7 +248,6 @@
 		9D20FDE020887E3D00FC4856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D20FDE120887E3D00FC4856 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D20FDE720887E3D00FC4856 /* miewah-objcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "miewah-objcTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D20FDEB20887E3E00FC4856 /* miewah_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = miewah_objcTests.m; sourceTree = "<group>"; };
 		9D20FDED20887E3E00FC4856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D20FDF220887E3E00FC4856 /* miewah-objcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "miewah-objcUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D20FDF620887E3E00FC4856 /* miewah_objcUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = miewah_objcUITests.m; sourceTree = "<group>"; };
@@ -731,7 +729,6 @@
 				9DAD6C4D20EB6A1F001BBCE0 /* Service */,
 				9DAD6C3420EB51B9001BBCE0 /* DAO */,
 				9DAD6C3020EB4BD2001BBCE0 /* NetworkUtils */,
-				9D20FDEB20887E3E00FC4856 /* miewah_objcTests.m */,
 				9D20FDED20887E3E00FC4856 /* Info.plist */,
 			);
 			path = "miewah-objcTests";
@@ -1529,7 +1526,6 @@
 				9DAD6C2E20EB3476001BBCE0 /* LeanCloudCharacterDaoTests.m in Sources */,
 				9DAD6C3320EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m in Sources */,
 				9DAD6C3820EB60DC001BBCE0 /* LeanCloudSlangDaoTests.m in Sources */,
-				9D20FDEC20887E3E00FC4856 /* miewah_objcTests.m in Sources */,
 				9DAD6C4F20EB6A36001BBCE0 /* CharacterServiceTests.m in Sources */,
 				9DAD6C5920EB711F001BBCE0 /* SlangServiceTests.m in Sources */,
 			);

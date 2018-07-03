@@ -40,6 +40,7 @@
         
         id item = [list firstObject];
         XCTAssertTrue([item isKindOfClass:[MiewahWord class]], @"列表元素类型错误");
+        XCTAssertNotNil(((MiewahWord *)item).objectId, @"元素缺少了 id");
     }];
     [self waitForExpectationsWithTimeout:10 handler:^(NSError * _Nullable error) {
         NSLog(@"%@", error);
