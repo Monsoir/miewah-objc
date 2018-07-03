@@ -125,6 +125,12 @@
 		9DAD6C3320EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C3220EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m */; };
 		9DAD6C3620EB6079001BBCE0 /* LeanCloudWordDaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C3520EB6079001BBCE0 /* LeanCloudWordDaoTests.m */; };
 		9DAD6C3820EB60DC001BBCE0 /* LeanCloudSlangDaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C3720EB60DC001BBCE0 /* LeanCloudSlangDaoTests.m */; };
+		9DAD6C4920EB658A001BBCE0 /* CharacterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C4820EB658A001BBCE0 /* CharacterService.m */; };
+		9DAD6C4F20EB6A36001BBCE0 /* CharacterServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C4E20EB6A36001BBCE0 /* CharacterServiceTests.m */; };
+		9DAD6C5220EB6EA8001BBCE0 /* WordService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C5120EB6EA8001BBCE0 /* WordService.m */; };
+		9DAD6C5520EB6F55001BBCE0 /* SlangService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C5420EB6F55001BBCE0 /* SlangService.m */; };
+		9DAD6C5720EB7004001BBCE0 /* WordServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C5620EB7003001BBCE0 /* WordServiceTests.m */; };
+		9DAD6C5920EB711F001BBCE0 /* SlangServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C5820EB711F001BBCE0 /* SlangServiceTests.m */; };
 		9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */; };
 		9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC34BE020BE82570098AE7C /* FMDB.framework */; };
 		9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */; };
@@ -378,6 +384,16 @@
 		9DAD6C3220EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeanCloudAPIManagerTests.m; sourceTree = "<group>"; };
 		9DAD6C3520EB6079001BBCE0 /* LeanCloudWordDaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeanCloudWordDaoTests.m; sourceTree = "<group>"; };
 		9DAD6C3720EB60DC001BBCE0 /* LeanCloudSlangDaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeanCloudSlangDaoTests.m; sourceTree = "<group>"; };
+		9DAD6C4620EB6557001BBCE0 /* BaseServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseServiceProtocol.h; sourceTree = "<group>"; };
+		9DAD6C4720EB658A001BBCE0 /* CharacterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterService.h; sourceTree = "<group>"; };
+		9DAD6C4820EB658A001BBCE0 /* CharacterService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterService.m; sourceTree = "<group>"; };
+		9DAD6C4E20EB6A36001BBCE0 /* CharacterServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterServiceTests.m; sourceTree = "<group>"; };
+		9DAD6C5020EB6EA8001BBCE0 /* WordService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordService.h; sourceTree = "<group>"; };
+		9DAD6C5120EB6EA8001BBCE0 /* WordService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordService.m; sourceTree = "<group>"; };
+		9DAD6C5320EB6F55001BBCE0 /* SlangService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlangService.h; sourceTree = "<group>"; };
+		9DAD6C5420EB6F55001BBCE0 /* SlangService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlangService.m; sourceTree = "<group>"; };
+		9DAD6C5620EB7003001BBCE0 /* WordServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordServiceTests.m; sourceTree = "<group>"; };
+		9DAD6C5820EB711F001BBCE0 /* SlangServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlangServiceTests.m; sourceTree = "<group>"; };
 		9DC34BDD20BE7CD90098AE7C /* DatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
 		9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 		9DC34BE020BE82570098AE7C /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = Carthage/Build/iOS/FMDB.framework; sourceTree = "<group>"; };
@@ -681,6 +697,7 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD6C3920EB62B6001BBCE0 /* Service */,
 				9DAD6C2520EB1E7E001BBCE0 /* NetworkUtils */,
 				9DAD6C1320EB16CD001BBCE0 /* DAO */,
 				9D7B493620C62AED00FDF0AD /* AppDelegate */,
@@ -711,6 +728,7 @@
 		9D20FDEA20887E3E00FC4856 /* miewah-objcTests */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD6C4D20EB6A1F001BBCE0 /* Service */,
 				9DAD6C3420EB51B9001BBCE0 /* DAO */,
 				9DAD6C3020EB4BD2001BBCE0 /* NetworkUtils */,
 				9D20FDEB20887E3E00FC4856 /* miewah_objcTests.m */,
@@ -1054,6 +1072,54 @@
 			path = DAO;
 			sourceTree = "<group>";
 		};
+		9DAD6C3920EB62B6001BBCE0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C4620EB6557001BBCE0 /* BaseServiceProtocol.h */,
+				9DAD6C3C20EB62E8001BBCE0 /* Slang */,
+				9DAD6C3B20EB62E4001BBCE0 /* Word */,
+				9DAD6C3A20EB62DF001BBCE0 /* Character */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9DAD6C3A20EB62DF001BBCE0 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C4720EB658A001BBCE0 /* CharacterService.h */,
+				9DAD6C4820EB658A001BBCE0 /* CharacterService.m */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		9DAD6C3B20EB62E4001BBCE0 /* Word */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C5020EB6EA8001BBCE0 /* WordService.h */,
+				9DAD6C5120EB6EA8001BBCE0 /* WordService.m */,
+			);
+			path = Word;
+			sourceTree = "<group>";
+		};
+		9DAD6C3C20EB62E8001BBCE0 /* Slang */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C5320EB6F55001BBCE0 /* SlangService.h */,
+				9DAD6C5420EB6F55001BBCE0 /* SlangService.m */,
+			);
+			path = Slang;
+			sourceTree = "<group>";
+		};
+		9DAD6C4D20EB6A1F001BBCE0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C4E20EB6A36001BBCE0 /* CharacterServiceTests.m */,
+				9DAD6C5620EB7003001BBCE0 /* WordServiceTests.m */,
+				9DAD6C5820EB711F001BBCE0 /* SlangServiceTests.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		9DC34BD920BE7B680098AE7C /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -1346,6 +1412,7 @@
 				9D4500932096F15900A63C20 /* MiewahLoginManager.m in Sources */,
 				9DF3226A2099635F00D5C463 /* WordListResponseObject.m in Sources */,
 				9D6D4F1520940C43009AA9CE /* LoginViewModel.m in Sources */,
+				9DAD6C4920EB658A001BBCE0 /* CharacterService.m in Sources */,
 				9D1B8F80209051350099976C /* RegisterViewController.m in Sources */,
 				9D6D4F2720946A8D009AA9CE /* RegisterResponseObject.m in Sources */,
 				9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */,
@@ -1392,6 +1459,7 @@
 				9DAD6C2C20EB1EF5001BBCE0 /* LeanCloudGetter.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
+				9DAD6C5520EB6F55001BBCE0 /* SlangService.m in Sources */,
 				9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */,
@@ -1406,6 +1474,7 @@
 				9D4500A020974C4E00A63C20 /* AboutMeViewModel.m in Sources */,
 				9D1B8FA02090BFF40099976C /* UIView+Shadow.m in Sources */,
 				9D1B8F97209053700099976C /* ShortItemTableViewCell.m in Sources */,
+				9DAD6C5220EB6EA8001BBCE0 /* WordService.m in Sources */,
 				9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */,
 				9DF322672099634800D5C463 /* MiewahWordRequestManager.m in Sources */,
 				9DF322702099842500D5C463 /* MiewahModel.m in Sources */,
@@ -1456,10 +1525,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DAD6C3620EB6079001BBCE0 /* LeanCloudWordDaoTests.m in Sources */,
+				9DAD6C5720EB7004001BBCE0 /* WordServiceTests.m in Sources */,
 				9DAD6C2E20EB3476001BBCE0 /* LeanCloudCharacterDaoTests.m in Sources */,
 				9DAD6C3320EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m in Sources */,
 				9DAD6C3820EB60DC001BBCE0 /* LeanCloudSlangDaoTests.m in Sources */,
 				9D20FDEC20887E3E00FC4856 /* miewah_objcTests.m in Sources */,
+				9DAD6C4F20EB6A36001BBCE0 /* CharacterServiceTests.m in Sources */,
+				9DAD6C5920EB711F001BBCE0 /* SlangServiceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
