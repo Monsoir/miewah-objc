@@ -126,7 +126,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
     return cell;
 }
 
-- (void)setWordIdentifier:(NSNumber *)identifier {
+- (void)setWordIdentifier:(NSString *)identifier {
     self.vm.identifier = identifier;
 }
 

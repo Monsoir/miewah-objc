@@ -124,7 +124,7 @@ NSString * const CharacterDetailVCPronunciationKey = @"pronunciation";
     return cell;
 }
 
-- (void)setCharacterIdentifier:(NSNumber *)identifier {
+- (void)setCharacterIdentifier:(NSString *)identifier {
     if (_vm) {
         _vm.identifier = identifier;
     } else {

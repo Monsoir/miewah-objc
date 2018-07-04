@@ -13,7 +13,7 @@
 
 @interface MiewahDetailViewModel : MiewahViewModel
 
-@property (nonatomic, copy) NSNumber *identifier;
+@property (nonatomic, copy) NSString *identifier;
 
 @property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
 @property (nonatomic, strong, readonly) RACSubject *loadedFailure;

@@ -124,7 +124,7 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
     return header;
 }
 
-- (void)setWordIdentifier:(NSNumber *)identifier {
+- (void)setWordIdentifier:(NSString *)identifier {
     self.vm.identifier = identifier;
 }
 

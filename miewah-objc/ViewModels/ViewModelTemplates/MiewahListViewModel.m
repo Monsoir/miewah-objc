@@ -10,58 +10,38 @@
 
 @interface MiewahListViewModel ()
 
-@property (nonatomic, strong) NSMutableArray *items;
-
-@property (nonatomic, strong) RACSignal *noMoreDataSignal;
+@property (nonatomic, strong) NSMutableArray<MiewahAsset *> *items;
 
 @property (nonatomic, strong) RACSubject *readCacheCompleted;
 @property (nonatomic, strong) RACSubject *loadedSuccess;
 @property (nonatomic, strong) RACSubject *loadedFailure;
-@property (nonatomic, strong) RACSubject *loadedError;
+@property (nonatomic, assign) NSInteger skip;
 
 @end
 
 @implementation MiewahListViewModel
-
-- (void)initializeObserverSignals {
-    [super initializeObserverSignals];
-    
-    self.noMoreDataSignal = [RACObserve(self, noMoreData) map:^id _Nullable(NSNumber * _Nullable value) {
-        return value;
-    }];
-}
 
 - (void)readCache {
     
 }
 
 - (void)loadData {
-    if (self.noMoreData) return;
-    
     @weakify(self);
-    if (_requestFailureHandler == nil) {
-        _requestFailureHandler = ^(BaseResponseObject *payload) {
-            @strongify(self);
-            [self.loadedFailure sendNext:[payload.comments componentsJoinedByString:@", "]];
-        };
-    }
-    
-    if (_requestErrorHandler == nil) {
-        _requestErrorHandler = ^(NSError *error) {
-            @strongify(self);
-            [self.loadedError sendNext:error];
-        };
-    }
-    
-    [self.requester getListAtPage:self.currentPage
-                     success:self.requestSuccessHandler
-                     failure:self.requestFailureHandler
-                       error:self.requestErrorHandler];
+    [self.service getListAtPageIndex:self.skip completion:^(NSArray<MiewahAsset *> *list, NSError *error) {
+        @strongify(self);
+        if (error) {
+            [self.loadedFailure sendNext:error];
+            return;
+        }
+        
+        [self.items addObjectsFromArray:list];
+        self.skip = self.items.count;
+        [self.loadedSuccess sendNext:self.items];
+    }];
 }
 
 - (void)resetFlags {
-    self.noMoreData = NO;
-    self.currentPage = 1;
+    self.skip = 0;
     [self.items removeAllObjects];
 }
 
@@ -91,26 +71,11 @@
     return _loadedFailure;
 }
 
-- (RACSubject *)loadedError {
-    if (_loadedError == nil) {
-        _loadedError = [[RACSubject alloc] init];
-    }
-    return _loadedError;
-}
-
 - (NSMutableArray *)items {
     if (_items == nil) {
         _items = [NSMutableArray array];
     }
     return _items;
-}
-
-@end
-
-@implementation MiewahListViewModel(Cache)
-
-- (BOOL)shouldCacheItems:(id)items {
-    return self.currentPage == 1 && [items respondsToSelector:@selector(count)] && [items count] > 0;
 }
 
 @end

@@ -7,14 +7,13 @@
 //
 
 #import "WordsViewController.h"
-//#import "ShortItemTableViewCell.h"
 #import "ItemTableViewCell.h"
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
 #import "WordDetailViewController.h"
 #import "MiewahWord.h"
 
-#import "WordsViewModel.h"
+#import "WordListViewModel.h"
 #import "UIConstants.h"
 
 #import "UIColor+Hex.h"
@@ -26,7 +25,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
-@property (nonatomic, strong) WordsViewModel *vm;
+@property (nonatomic, strong) WordListViewModel *vm;
 
 @end
 
@@ -69,20 +68,12 @@
 - (void)linkSignals {
     @weakify(self);
     
-    [self.vm.noMoreDataSignal subscribeNext:^(NSNumber * _Nullable x) {
-        @strongify(self);
-        if ([x boolValue]) {
-            self.footer.status = ListLoadMoreFooterViewStatusNoMore;
-        } else {
-            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-        }
-    }];
-    
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
             if (self.refreshControl.isRefreshing) [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
+            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -94,20 +85,9 @@
             [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:nil];
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:nil style:BannerStyleWarning onViewController:nil];
         };
         
-        runOnMainThread(_);
-    }];
-    
-    [self.vm.loadedError subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        void (^_)(void) = ^void() {
-            [self.refreshControl endRefreshing];
-            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
-            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:nil];
-        };
         runOnMainThread(_);
     }];
     
@@ -147,7 +127,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahWord *word = self.vm.items[indexPath.row];
+    MiewahWord *word = (MiewahWord *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{@"identifier": word.identifier,
                                WordDetailVCWordKey: word.item,
                                WordDetailVCPronunciationKey: word.pronunciation,
@@ -185,9 +165,9 @@
     return MiewahItemTypeWord;
 }
 
-- (WordsViewModel *)vm {
+- (WordListViewModel *)vm {
     if (_vm == nil) {
-        _vm = [[WordsViewModel alloc] init];
+        _vm = [[WordListViewModel alloc] init];
     }
     return _vm;
 }

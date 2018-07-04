@@ -9,7 +9,7 @@
 #import "CharactersViewController.h"
 #import "ItemTableViewCell.h"
 #import "ListLoadMoreFooterView.h"
-#import "CharactersViewModel.h"
+#import "CharacterListViewModel.h"
 #import "UIConstants.h"
 #import "NotificationBanner.h"
 #import "CharacterDetailViewController.h"
@@ -24,7 +24,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
-@property (nonatomic, strong) CharactersViewModel *vm;
+@property (nonatomic, strong) CharacterListViewModel *vm;
 
 @end
 
@@ -67,19 +67,12 @@
 - (void)linkSignals {
     @weakify(self);
     
-    [self.vm.noMoreDataSignal subscribeNext:^(NSNumber * _Nullable x) {
-        if ([x boolValue]) {
-            self.footer.status = ListLoadMoreFooterViewStatusNoMore;
-        } else {
-            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-        }
-    }];
-    
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
             if (self.refreshControl.isRefreshing) [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
+            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [self.tableView reloadData];
         };
         
@@ -92,19 +85,7 @@
             [self.refreshControl endRefreshing];
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:nil];
-        };
-        
-        runOnMainThread(_);
-    }];
-    
-    [self.vm.loadedError subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        void (^_)(void) = ^void() {
-            [self.refreshControl endRefreshing];
-            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
-            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:nil];
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:nil style:BannerStyleWarning onViewController:nil];
         };
         
         runOnMainThread(_);
@@ -114,7 +95,7 @@
         @strongify(self);
         void(^_)(void) = ^void() {
             [self.tableView reloadData];
-            [self.vm loadData];
+            [self.vm reloadData];
         };
         runOnMainThread(_);
     }];
@@ -148,7 +129,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
-    MiewahCharacter *character = self.vm.items[indexPath.row];
+    MiewahCharacter *character = (MiewahCharacter *)self.vm.items[indexPath.row];
     cell.lbItem.text = character.item;
     cell.lbDetailA.text = character.pronunciation;
     cell.lbDetailB.text = character.meaning;
@@ -156,7 +137,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahCharacter *character = self.vm.items[indexPath.row];
+    MiewahCharacter *character = (MiewahCharacter *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{
                                @"identifier": character.identifier,
                                CharacterDetailVCWordKey: character.item,
@@ -169,9 +150,9 @@
     [self.vm reloadData];
 }
 
-- (CharactersViewModel *)vm {
+- (CharacterListViewModel *)vm {
     if (_vm == nil) {
-        _vm = [[CharactersViewModel alloc] init];
+        _vm = [[CharacterListViewModel alloc] init];
     }
     return _vm;
 }

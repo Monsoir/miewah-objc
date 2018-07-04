@@ -18,7 +18,7 @@
 
 @implementation MiewahDetailViewModel
 
-- (instancetype)initWithIdentifier:(NSNumber *)identifier {
+- (instancetype)initWithIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
         _identifier = identifier;

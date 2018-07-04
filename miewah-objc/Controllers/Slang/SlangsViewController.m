@@ -10,7 +10,7 @@
 #import "ItemTableViewCell.h"
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
-#import "SlangsViewModel.h"
+#import "SlangListViewModel.h"
 #import "MiewahSlang.h"
 #import "SlangDetailViewController.h"
 
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
-@property (nonatomic, strong) SlangsViewModel *vm;
+@property (nonatomic, strong) SlangListViewModel *vm;
 
 @end
 
@@ -75,15 +75,6 @@
 - (void)linkSignals {
     @weakify(self);
     
-    [self.vm.noMoreDataSignal subscribeNext:^(NSNumber * _Nullable x) {
-        @strongify(self);
-        if ([x boolValue]) {
-            self.footer.status = ListLoadMoreFooterViewStatusNoMore;
-        } else {
-            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-        }
-    }];
-    
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
@@ -101,17 +92,6 @@
             if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:nil];
-        };
-        runOnMainThread(_);
-    }];
-    
-    [self.vm.loadedError subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        void (^_)(void) = ^void() {
-            [self.refreshControl endRefreshing];
-            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
-            self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:nil];
         };
         runOnMainThread(_);
     }];
@@ -150,7 +130,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahSlang *slang = self.vm.items[indexPath.row];
+    MiewahSlang *slang = (MiewahSlang *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{@"identifier": slang.identifier,
                                SlangDetailVCSlangKey: slang.item,
                                SlangDetailVCPronunciationKey: slang.pronunciation,
@@ -165,7 +145,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = [NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])];
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    MiewahSlang *slang = self.vm.items[indexPath.row];
+    MiewahSlang *slang = (MiewahSlang *)self.vm.items[indexPath.row];
     cell.lbItem.text = slang.item;
     cell.lbDetailA.text = slang.pronunciation;
     cell.lbDetailB.text = slang.meaning;
@@ -204,9 +184,9 @@
     return _footer;
 }
 
-- (SlangsViewModel *)vm {
+- (SlangListViewModel *)vm {
     if (_vm == nil) {
-        _vm = [[SlangsViewModel alloc] init];
+        _vm = [[SlangListViewModel alloc] init];
     }
     return _vm;
 }
