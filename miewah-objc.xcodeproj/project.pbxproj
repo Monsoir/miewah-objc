@@ -173,7 +173,6 @@
 		9D0574E92098949E00FB7661 /* CharacterDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterDetailViewModel.m; sourceTree = "<group>"; };
 		9D0574EE2098989B00FB7661 /* CharacterDetailResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterDetailResponseObject.h; sourceTree = "<group>"; };
 		9D0574EF2098989B00FB7661 /* CharacterDetailResponseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterDetailResponseObject.m; sourceTree = "<group>"; };
-		9D0574F220989E1900FB7661 /* Snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snippets; sourceTree = "<group>"; };
 		9D0AFE5A20B5392B00C93934 /* EditPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPreviewViewController.h; sourceTree = "<group>"; };
 		9D0AFE5B20B5392B00C93934 /* EditPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPreviewViewController.m; sourceTree = "<group>"; };
 		9D0AFE5D20B539C500C93934 /* EditPreviewViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPreviewViewModel.h; sourceTree = "<group>"; };
@@ -462,14 +461,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9D0574F120989E0600FB7661 /* Snippets */ = {
-			isa = PBXGroup;
-			children = (
-				9D0574F220989E1900FB7661 /* Snippets */,
-			);
-			path = Snippets;
-			sourceTree = "<group>";
-		};
 		9D0AFE5820B5381D00C93934 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +635,10 @@
 				9D4500A5209756E700A63C20 /* FoundationConstants.m */,
 				9D45008E2096D05400A63C20 /* Validator.h */,
 				9D45008F2096D05400A63C20 /* Validator.m */,
+				9DF66E7D20C4E1E300DC1342 /* FileManagerUtils */,
+				9D8BCB6020C41A41009C913B /* AVFoundationUtils */,
+				9DC34BD920BE7B680098AE7C /* Database */,
+				9DAD6C2520EB1E7E001BBCE0 /* NetworkUtils */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -696,13 +691,8 @@
 			isa = PBXGroup;
 			children = (
 				9DAD6C3920EB62B6001BBCE0 /* Service */,
-				9DAD6C2520EB1E7E001BBCE0 /* NetworkUtils */,
 				9DAD6C1320EB16CD001BBCE0 /* DAO */,
 				9D7B493620C62AED00FDF0AD /* AppDelegate */,
-				9DF66E7D20C4E1E300DC1342 /* FileManagerUtils */,
-				9D8BCB6020C41A41009C913B /* AVFoundationUtils */,
-				9DC34BD920BE7B680098AE7C /* Database */,
-				9D0574F120989E0600FB7661 /* Snippets */,
 				9D45009720973C6A00A63C20 /* Models */,
 				9D4500842094C5BD00A63C20 /* IgnoredConstants */,
 				9D6D4F1920945DF9009AA9CE /* Networker */,
