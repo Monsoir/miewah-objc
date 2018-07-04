@@ -11,6 +11,14 @@
 @implementation AppDelegate (TabBar)
 
 - (UITabBarController *)configureTabBarStuff {
+    
+    UITabBarController *tvc = [[UITabBarController alloc] init];
+    NSArray *viewControllers = [self tabs];
+    tvc.viewControllers = viewControllers;
+    return tvc;
+}
+
+- (NSArray<UINavigationController *> *)tabs {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     UINavigationController *characterNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"CharacterNC"];
@@ -22,13 +30,15 @@
     UINavigationController *slangNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"SlangNC"];
     [[self class] configureViewController:slangNC tabBarImage:[UIImage imageNamed:@"tab-bar-slang"] selected:[UIImage imageNamed:@"tab-bar-slang-selected"]];
     
-    UINavigationController *mineNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"MineNC"];
-    [[self class] configureViewController:mineNC tabBarImage:[UIImage imageNamed:@"tab-bar-mine"] selected:[UIImage imageNamed:@"tab-bar-mine-selected"]];
+//    UINavigationController *mineNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"MineNC"];
+//    [[self class] configureViewController:mineNC tabBarImage:[UIImage imageNamed:@"tab-bar-mine"] selected:[UIImage imageNamed:@"tab-bar-mine-selected"]];
     
-    UITabBarController *tvc = [[UITabBarController alloc] init];
-    NSArray *viewControllers = @[characterNC, wordNC, slangNC, mineNC];
-    tvc.viewControllers = viewControllers;
-    return tvc;
+    return @[
+             characterNC,
+             wordNC,
+             slangNC,
+//             mineNC,
+             ];
 }
 
 + (UINavigationController *)navigationViewControllerFromStoryboard:(UIStoryboard *)sb identifier:(NSString *)identifier {
