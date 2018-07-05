@@ -22,6 +22,11 @@
 
 @implementation MiewahListViewModel
 
+- (void)dealloc {
+    [self.loadedSuccess sendCompleted];
+    [self.loadedFailure sendCompleted];
+}
+
 + (MiewahItemType)assetType {
     return MiewahItemTypeNone;
 }
