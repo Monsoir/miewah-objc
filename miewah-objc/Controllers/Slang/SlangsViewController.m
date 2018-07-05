@@ -13,6 +13,7 @@
 #import "SlangListViewModel.h"
 #import "MiewahSlang.h"
 #import "SlangDetailViewController.h"
+#import "FoundationConstants.h"
 
 #import "UIConstants.h"
 
@@ -131,9 +132,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahSlang *slang = (MiewahSlang *)self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{@"identifier": slang.objectId,
-                               SlangDetailVCSlangKey: slang.item,
-                               SlangDetailVCPronunciationKey: alwaysString(slang.pronunciation),
+    NSDictionary *userInfo = @{
+                               AssetObjectIdKey: slang.objectId,
+                               AssetItemKey: slang.item,
+                               AssetPronunciationKey: alwaysString(slang.pronunciation),
                                };
     [self performSegueWithIdentifier:@"showSlangDetail" sender:userInfo];
 }
@@ -156,12 +158,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
     if ([segue.identifier isEqualToString:@"showSlangDetail"]) {
         SlangDetailViewController *vc = segue.destinationViewController;
-        [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
-        NSDictionary *info = @{
-                               SlangDetailVCSlangKey: [userInfo objectForKey:SlangDetailVCSlangKey],
-                               SlangDetailVCPronunciationKey: [userInfo objectForKey:SlangDetailVCPronunciationKey],
-                               };
-        [vc setInitialInfo: info];
+        [vc setInitialInfo: userInfo];
     }
 }
 

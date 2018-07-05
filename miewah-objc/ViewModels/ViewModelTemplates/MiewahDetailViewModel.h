@@ -7,36 +7,21 @@
 //
 
 #import "MiewahViewModel.h"
-#import "MiewahWord.h"
-#import "MiewahRequestProtocol.h"
-#import "MiewahNetworker.h"
+#import "BaseServiceProtocol.h"
+#import "MiewahAsset.h"
 
 @interface MiewahDetailViewModel : MiewahViewModel
 
-@property (nonatomic, copy) NSString *identifier;
-
+@property (nonatomic, strong, readonly) MiewahAsset *asset;
+@property (nonatomic, strong, readonly) id<BaseServiceProtocol> service;
 @property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
 @property (nonatomic, strong, readonly) RACSubject *loadedFailure;
-@property (nonatomic, strong, readonly) RACSubject *loadedError;
 
-/**
- 接口调用成功回调
- */
-@property (nonatomic, copy) MiewahRequestSuccess requestSuccessHandler;
+@property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
+@property (nonatomic, strong, readonly) NSArray<NSString *> *displayContents;
 
-/**
- 接口调用失败回调，业务上请求失败
- */
-@property (nonatomic, copy) MiewahRequestFailure requestFailureHandler;
-
-/**
- 接口调用失败回调，技术上请求失败
- */
-@property (nonatomic, copy) MiewahRequestError requestErrorHandler;
-
-@property (nonatomic, strong, readonly) id<MiewahDetailRequestProtocol> requester;
-
-- (instancetype)initWithIdentifier:(NSString *)identifier;
-- (void)loadDetail;
+- (instancetype)initWithInfo:(NSDictionary *)userInfo;
+- (void)loadData;
+- (NSArray <NSString *> *)makeContentToDisplay;
 
 @end

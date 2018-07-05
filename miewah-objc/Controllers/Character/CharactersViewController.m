@@ -140,9 +140,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahCharacter *character = (MiewahCharacter *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{
-                               @"identifier": character.objectId,
-                               CharacterDetailVCWordKey: character.item,
-                               CharacterDetailVCPronunciationKey: alwaysString(character.pronunciation),
+                               AssetObjectIdKey: character.objectId,
+                               AssetItemKey: character.item,
+                               AssetPronunciationKey: alwaysString(character.pronunciation),
                                };
     [self performSegueWithIdentifier:@"showCharacterDetail" sender:userInfo];
 }
@@ -161,12 +161,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
     if ([segue.identifier isEqualToString:@"showCharacterDetail"]) {
         CharacterDetailViewController *vc = segue.destinationViewController;
-        [vc setCharacterIdentifier:[userInfo objectForKey:@"identifier"]];
-        NSDictionary *info = @{
-                               CharacterDetailVCWordKey: [userInfo objectForKey:CharacterDetailVCWordKey],
-                               CharacterDetailVCPronunciationKey: [userInfo objectForKey:CharacterDetailVCPronunciationKey],
-                               };
-        [vc setInitialInfo: info];
+        [vc setInitialInfo: userInfo];
     }
 }
 

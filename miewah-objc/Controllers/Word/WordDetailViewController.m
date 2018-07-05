@@ -17,9 +17,6 @@
 
 static NSString *SectionIdentifier = @"section-header";
 
-NSString * const WordDetailVCWordKey = @"word";
-NSString * const WordDetailVCPronunciationKey = @"pronunciation";
-
 @interface WordDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -27,9 +24,6 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
 @property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
 
 @property (nonatomic, strong) WordDetailViewModel *vm;
-
-@property (nonatomic, copy) NSString *tempWord;
-@property (nonatomic, copy) NSString *tempPronunciation;
 
 @end
 
@@ -43,7 +37,7 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
     [self setupSubviews];
     [self linkSignals];
     
-    [self.vm loadDetail];
+    [self.vm loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,8 +57,8 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             self.navigationItem.rightBarButtonItem = nil;
-            self.header.lbWord.text = self.vm.word.item;
-            self.header.lbPronounce.text = self.vm.word.pronunciation;
+            self.header.lbWord.text = self.vm.asset.item;
+            self.header.lbPronounce.text = self.vm.asset.pronunciation;
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -78,20 +72,11 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
         };
         runOnMainThread(_);
     }];
-    
-    [self.vm.loadedError subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        void (^_)(void) = ^void() {
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
-            self.navigationItem.rightBarButtonItem = nil;
-        };
-        runOnMainThread(_);
-    }];
 }
 
 - (void)setupNavigationBar {
     self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
-    self.title = self.tempWord;
+    self.title = self.vm.asset.item;
 }
 
 - (void)setupSubviews {
@@ -102,8 +87,8 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
     [self.tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    self.header.lbWord.text = self.tempWord;
-    self.header.lbPronounce.text = self.tempPronunciation;
+    self.header.lbWord.text = self.vm.asset.item;
+    self.header.lbPronounce.text = self.vm.asset.pronunciation;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -126,20 +111,8 @@ NSString * const WordDetailVCPronunciationKey = @"pronunciation";
     return cell;
 }
 
-- (void)setWordIdentifier:(NSString *)identifier {
-    self.vm.identifier = identifier;
-}
-
 - (void)setInitialInfo:(NSDictionary *)info {
-    _tempWord = [info objectForKey:WordDetailVCWordKey];
-    _tempPronunciation = [info objectForKey:WordDetailVCPronunciationKey];
-}
-
-- (WordDetailViewModel *)vm {
-    if (_vm == nil) {
-        _vm = [[WordDetailViewModel alloc] init];
-    }
-    return _vm;
+    _vm = [[WordDetailViewModel alloc] initWithInfo:info];
 }
 
 - (UIBarButtonItem *)loadingIndicatorItem {

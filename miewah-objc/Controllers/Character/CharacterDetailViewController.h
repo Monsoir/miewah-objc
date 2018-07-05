@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const CharacterDetailVCWordKey;
-extern NSString * const CharacterDetailVCPronunciationKey;
-
 @interface CharacterDetailViewController : UIViewController
 
-- (void)setCharacterIdentifier:(NSString *)identifier;
 - (void)setInitialInfo:(NSDictionary *)info;
 
 @end

@@ -13,6 +13,10 @@ NSString * const LoginCompleteNotificationName = @"LoginComplete";
 
 const NSInteger CacheItemCount = 10;
 
+NSString * const AssetObjectIdKey = @"identifier";
+NSString * const AssetItemKey = @"item";
+NSString * const AssetPronunciationKey = @"pronunciation";
+
 NSString * const EditAssetBasicInfosFieldNames = @"BasicInfos";
 NSString * const EditAssetExtraInfosFieldNames = @"ExtraInfos";
 NSString * const EditAssetRecordInfosFieldNames = @"RecordInfos";

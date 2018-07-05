@@ -7,12 +7,7 @@
 //
 
 #import "MiewahDetailViewModel.h"
-#import "MiewahSlang.h"
 
 @interface SlangDetailViewModel : MiewahDetailViewModel
-
-@property (nonatomic, strong, readonly) MiewahSlang *slang;
-@property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
-@property (nonatomic, strong, readonly) NSArray<NSString *> *displayContents;
 
 @end

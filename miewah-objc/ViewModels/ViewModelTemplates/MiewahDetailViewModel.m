@@ -10,55 +10,50 @@
 
 @interface MiewahDetailViewModel ()
 
+@property (nonatomic, strong) MiewahAsset *asset;
 @property (nonatomic, strong) RACSubject *loadedSuccess;
 @property (nonatomic, strong) RACSubject *loadedFailure;
-@property (nonatomic, strong) RACSubject *loadedError;
+
+@property (nonatomic, strong) NSArray<NSString *> *displayContents;
 
 @end
 
 @implementation MiewahDetailViewModel
 
-- (instancetype)initWithIdentifier:(NSString *)identifier {
+- (instancetype)initWithInfo:(NSDictionary *)userInfo {
     self = [super init];
     if (self) {
-        _identifier = identifier;
+        self.asset = [[MiewahAsset alloc] init];
+        self.asset.objectId = userInfo[AssetObjectIdKey];
+        self.asset.item = userInfo[AssetItemKey];
+        self.asset.pronunciation = userInfo[AssetPronunciationKey];
     }
     return self;
+}
+
+- (void)loadData {
+    @weakify(self);
+    [self.service getDetailOfIdentifier:self.asset.objectId completion:^(MiewahAsset *asset, NSError *error) {
+        @strongify(self);
+        
+        if (error != nil) {
+            [self.loadedFailure sendNext:error];
+            return;
+        }
+        
+        self.asset = asset;
+        self.displayContents = [self makeContentToDisplay];
+        [self.loadedSuccess sendNext:self.asset];
+    }];
 }
 
 - (void)dealloc {
     [self.loadedSuccess sendCompleted];
     [self.loadedFailure sendCompleted];
-    [self.loadedError sendCompleted];
 }
 
-- (void)loadDetail {
-    if (self.identifier == nil) {
-#if DEBUG
-        NSLog(@"%@'s identifier is nil", [self class]);
-#endif
-        return;
-    }
-    
-    @weakify(self);
-    if (_requestFailureHandler == nil) {
-        _requestFailureHandler = ^(BaseResponseObject *payload) {
-            @strongify(self);
-            [self.loadedFailure sendNext:[payload.comments componentsJoinedByString:@", "]];
-        };
-    }
-    
-    if (_requestErrorHandler == nil) {
-        _requestErrorHandler = ^(NSError *error) {
-            @strongify(self);
-            [self.loadedError sendNext:error];
-        };
-    }
-    
-    [self.requester getDetailOfIdentifier:self.identifier
-                                  success:self.requestSuccessHandler
-                                  failure:self.requestFailureHandler
-                                    error:self.requestErrorHandler];
+- (NSArray<NSString *> *)makeContentToDisplay {
+    return @[];
 }
 
 - (RACSubject *)loadedSuccess {
@@ -73,13 +68,6 @@
         _loadedFailure = [[RACSubject alloc] init];
     }
     return _loadedFailure;
-}
-
-- (RACSubject *)loadedError {
-    if (_loadedError == nil) {
-        _loadedError = [[RACSubject alloc] init];
-    }
-    return _loadedError;
 }
 
 @end

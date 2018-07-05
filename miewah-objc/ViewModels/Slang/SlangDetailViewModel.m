@@ -7,44 +7,28 @@
 //
 
 #import "SlangDetailViewModel.h"
-#import "MiewahSlangRequesterManager.h"
-#import "SlangDetailResponseObject.h"
-#import "MiewahRequestProtocol.h"
+#import "SlangService.h"
 
 @interface SlangDetailViewModel ()
 
-@property (nonatomic, strong) MiewahSlang *slang;
+@property (nonatomic, strong) SlangService *service;
 @property (nonatomic, strong) NSArray<NSString *> *sectionNames;
-@property (nonatomic, strong) NSArray<NSString *> *displayContents;
-@property (nonatomic, strong) id<MiewahDetailRequestProtocol> requester;
 
 @end
 
 @implementation SlangDetailViewModel
 
-- (void)initializeObserverSignals {
-    [super initializeObserverSignals];
-    
-    @weakify(self);
-    self.requestSuccessHandler = ^(BaseResponseObject *payload) {
-        @strongify(self);
-        SlangDetailResponseObject *_payload = (SlangDetailResponseObject *)payload;
-        MiewahSlang *slang = [[MiewahSlang alloc] initWithDictionary:_payload.slang];
-        self.slang = slang; // 这是设置好对象罢了
-        self.displayContents = [self makeContentToDisplay]; // 这是将需要展示的数据整理成数组形式，让 controller 更好地读取
-        [self.loadedSuccess sendNext:slang];
-    };
-}
-
 - (NSArray <NSString *> *)makeContentToDisplay {
+    MiewahSlang *asset = (MiewahSlang *)self.asset;
     return @[
-             self.slang.meaning ?: @"", // 意义
-             @"", // 出处参考
-             self.slang.sentences ?: @"", // 例句
+             alwaysString(asset.meaning), // 意义
+             alwaysString(asset.meaning), // 出处参考
+             alwaysString(asset.sentences), // 例句
              @"", //输入法
              ];
 }
 
+@synthesize sectionNames = _sectionNames;
 - (NSArray<NSString *> *)sectionNames {
     if (_sectionNames == nil) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"SlangDetailSections" ofType:@"plist"];
@@ -53,12 +37,12 @@
     return _sectionNames;
 }
 
-@synthesize requester = _requester;
-- (id<MiewahDetailRequestProtocol>)requester {
-    if (_requester == nil) {
-        _requester = [[MiewahSlangRequesterManager alloc] init];
+@synthesize service = _service;
+- (SlangService *)service {
+    if (_service == nil) {
+        _service = [[SlangService alloc] init];
     }
-    return _requester;
+    return _service;
 }
 
 @end

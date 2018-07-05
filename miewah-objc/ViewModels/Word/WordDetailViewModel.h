@@ -7,12 +7,7 @@
 //
 
 #import "MiewahDetailViewModel.h"
-#import "MiewahWord.h"
 
 @interface WordDetailViewModel : MiewahDetailViewModel
-
-@property (nonatomic, strong, readonly) MiewahWord *word;
-@property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
-@property (nonatomic, strong, readonly) NSArray<NSString *> *displayContents;
 
 @end

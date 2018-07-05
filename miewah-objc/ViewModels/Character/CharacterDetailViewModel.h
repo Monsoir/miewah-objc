@@ -7,12 +7,7 @@
 //
 
 #import "MiewahDetailViewModel.h"
-#import "MiewahCharacter.h"
 
 @interface CharacterDetailViewModel : MiewahDetailViewModel
-
-@property (nonatomic, strong, readonly) MiewahCharacter *character;
-@property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
-@property (nonatomic, strong, readonly) NSArray<NSString *> *displayContents;
 
 @end

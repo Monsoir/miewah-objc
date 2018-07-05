@@ -14,6 +14,11 @@ extern NSString * const LoginCompleteNotificationName;
 // 列表缓存最大数目
 extern const NSInteger CacheItemCount;
 
+// 页面值传递
+extern NSString * const AssetObjectIdKey;
+extern NSString * const AssetItemKey;
+extern NSString * const AssetPronunciationKey;
+
 // 编辑时的表单字段可视化名称
 extern NSString * const EditAssetBasicInfosFieldNames;
 extern NSString * const EditAssetExtraInfosFieldNames;

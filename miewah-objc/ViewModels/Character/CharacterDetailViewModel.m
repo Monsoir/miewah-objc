@@ -7,45 +7,33 @@
 //
 
 #import "CharacterDetailViewModel.h"
-#import "CharacterDetailResponseObject.h"
-#import "MiewahCharacterRequestManager.h"
+#import "CharacterService.h"
 
 @interface CharacterDetailViewModel ()
 
-@property (nonatomic, strong) MiewahCharacter *character;
+@property (nonatomic, strong) CharacterService *service;
 @property (nonatomic, strong) NSArray<NSString *> *sectionNames;
-@property (nonatomic, strong) NSArray<NSString *> *displayContents;
-
-@property (nonatomic, strong) id<MiewahDetailRequestProtocol> requester;
 
 @end
 
 @implementation CharacterDetailViewModel
 
-- (void)initializeObserverSignals {
-    [super initializeObserverSignals];
-    
-    @weakify(self);
-    self.requestSuccessHandler = ^(BaseResponseObject *payload){
-        @strongify(self);
-        CharacterDetailResponseObject *_payload = (CharacterDetailResponseObject *)payload;
-        MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:_payload.character];
-        self.character = character; // 这是设置好对象罢了
-        self.displayContents = [self makeContentToDisplay]; // 这是将需要展示的数据整理成数组形式，让 controller 更好地读取
-        [self.loadedSuccess sendNext:character];
-    };
-}
-
 - (NSArray <NSString *> *)makeContentToDisplay {
+    MiewahCharacter *asset = (MiewahCharacter *)self.asset;
     return @[
-             self.character.meaning ?: @"", // 意义
-             @"", // 出处参考
-             self.character.sentences ?: @"", // 例句
-             self.character.prettifiedInputMethods ?: @"", //输入法
+             alwaysString(asset.meaning), // 意义
+             alwaysString(asset.source), // 出处参考
+             alwaysString(asset.sentences), // 例句
+#warning 后台需要修改一下输入法数据的格式
+//             alwaysString(asset.prettifiedInputMethods), //输入法
+             alwaysString(asset.inputMethods), //输入法
              @"", // 搜索关键字
              ];
 }
 
+#pragma mark - Accessors
+
+@synthesize sectionNames = _sectionNames;
 - (NSArray<NSString *> *)sectionNames {
     if (_sectionNames == nil) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"WordDetailSections" ofType:@"plist"];
@@ -54,12 +42,12 @@
     return _sectionNames;
 }
 
-@synthesize requester = _requester;
-- (id<MiewahDetailRequestProtocol>)requester {
-    if (_requester == nil) {
-        _requester = [[MiewahCharacterRequestManager alloc] init];
+@synthesize service = _service;
+- (CharacterService *)service {
+    if (_service == nil) {
+        _service = [[CharacterService alloc] init];
     }
-    return _requester;
+    return _service;
 }
 
 @end

@@ -128,9 +128,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahWord *word = (MiewahWord *)self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{@"identifier": word.objectId,
-                               WordDetailVCWordKey: word.item,
-                               WordDetailVCPronunciationKey: alwaysString(word.pronunciation),
+    NSDictionary *userInfo = @{
+                               AssetObjectIdKey: word.objectId,
+                               AssetItemKey: word.item,
+                               AssetPronunciationKey: alwaysString(word.pronunciation),
                                };
     [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
 }
@@ -153,12 +154,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
     if ([segue.identifier isEqualToString:@"showWordDetail"]) {
         WordDetailViewController *vc = segue.destinationViewController;
-        [vc setWordIdentifier:[userInfo objectForKey:@"identifier"]];
-        NSDictionary *info = @{
-                               WordDetailVCWordKey: [userInfo objectForKey:WordDetailVCWordKey],
-                               WordDetailVCPronunciationKey: [userInfo objectForKey:WordDetailVCPronunciationKey],
-                               };
-        [vc setInitialInfo: info];
+        [vc setInitialInfo: userInfo];
     }
 }
 

@@ -15,9 +15,6 @@
 
 static NSString *SectionIdentifier = @"section-header";
 
-NSString * const SlangDetailVCSlangKey = @"slang";
-NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
-
 @interface SlangDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -41,7 +38,7 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
     [self setupNavigationBar];
     [self setupSubviews];
     [self linkSignals];
-    [self.vm loadDetail];
+    [self.vm loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,8 +58,8 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
         @strongify(self);
         void (^_)(void) = ^void() {
             self.navigationItem.rightBarButtonItem = nil;
-            self.header.lbSlang.text = self.vm.slang.item;
-            self.header.lbPronounce.text = self.vm.slang.pronunciation;
+            self.header.lbSlang.text = self.vm.asset.item;
+            self.header.lbPronounce.text = self.vm.asset.pronunciation;
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -76,20 +73,11 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
         };
         runOnMainThread(_);
     }];
-    
-    [self.vm.loadedError subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        void (^_)(void) = ^void() {
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:@"请检查是否已连接网络" style:BannerStyleWarning onViewController:self.navigationController];
-            self.navigationItem.rightBarButtonItem = nil;
-        };
-        runOnMainThread(_);
-    }];
 }
 
 - (void)setupNavigationBar {
     self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
-    self.title = self.tempSlang;
+    self.title = self.vm.asset.item;
 }
 
 - (void)setupSubviews {
@@ -100,8 +88,8 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
     [self.tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    self.header.lbSlang.text = self.tempSlang;
-    self.header.lbPronounce.text = self.tempPronunciation;
+    self.header.lbSlang.text = self.vm.asset.item;
+    self.header.lbPronounce.text = self.vm.asset.pronunciation;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -124,13 +112,8 @@ NSString * const SlangDetailVCPronunciationKey = @"pronunciation";
     return header;
 }
 
-- (void)setWordIdentifier:(NSString *)identifier {
-    self.vm.identifier = identifier;
-}
-
 - (void)setInitialInfo:(NSDictionary *)info {
-    _tempSlang = [info objectForKey:SlangDetailVCSlangKey];
-    _tempPronunciation = [info objectForKey:SlangDetailVCPronunciationKey];
+    _vm = [[SlangDetailViewModel alloc] initWithInfo:info];
 }
 
 - (SlangDetailViewModel *)vm {
