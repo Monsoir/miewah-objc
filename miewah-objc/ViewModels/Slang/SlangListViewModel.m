@@ -17,6 +17,11 @@
 
 @implementation SlangListViewModel
 
++ (MiewahItemType)assetType {
+    return MiewahItemTypeSlang;
+}
+
+#pragma mark - Accessors
 @synthesize service = _service;
 - (SlangService *)service {
     if (_service == nil) {

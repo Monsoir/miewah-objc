@@ -11,6 +11,8 @@
 NSInteger const MiewahPasswordLength = 8;
 NSString * const LoginCompleteNotificationName = @"LoginComplete";
 
+const NSInteger CacheItemCount = 10;
+
 NSString * const EditAssetBasicInfosFieldNames = @"BasicInfos";
 NSString * const EditAssetExtraInfosFieldNames = @"ExtraInfos";
 NSString * const EditAssetRecordInfosFieldNames = @"RecordInfos";

@@ -19,12 +19,8 @@ typedef void(^ReadCacheCompletion)(BOOL success, NSArray<MiewahAsset *> *assets,
 
 + (void)createDatabasesCompletion:(CreateDatabasesCompletion)completion;
 
-+ (void)cacheCharacterList:(NSArray<MiewahCharacter *> *)characters completion:(CacheCompletion)completion;
-+ (void)cacheWordList:(NSArray<MiewahWord *> *)words completion:(CacheCompletion)completion;
-+ (void)cacheSlangList:(NSArray<MiewahSlang *> *)slangs completion:(CacheCompletion)completion;
++ (void)cacheListOfType:(MiewahItemType)type assets:(NSArray<MiewahAsset *> *)assets completion:(CacheCompletion)completion;
 
-+ (void)readCharacterListCacheCompletion:(ReadCacheCompletion)completion;
-+ (void)readWordListCacheCompletion:(ReadCacheCompletion)completion;
-+ (void)readSlangListCacheCompletion:(ReadCacheCompletion)completion;
++ (void)readListCacheOfType:(MiewahItemType)type completion:(ReadCacheCompletion)completion;
 
 @end

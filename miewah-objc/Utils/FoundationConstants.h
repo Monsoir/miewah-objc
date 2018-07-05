@@ -11,6 +11,9 @@
 extern const NSInteger MiewahPasswordLength;
 extern NSString * const LoginCompleteNotificationName;
 
+// 列表缓存最大数目
+extern const NSInteger CacheItemCount;
+
 // 编辑时的表单字段可视化名称
 extern NSString * const EditAssetBasicInfosFieldNames;
 extern NSString * const EditAssetExtraInfosFieldNames;

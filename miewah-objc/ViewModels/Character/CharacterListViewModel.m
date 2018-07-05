@@ -13,12 +13,13 @@
 
 @property (nonatomic, strong) CharacterService *service;
 
+
 @end
 
 @implementation CharacterListViewModel
 
-- (void)readCache {
-    
++ (MiewahItemType)assetType {
+    return MiewahItemTypeCharacter;
 }
 
 #pragma mark - Accessors

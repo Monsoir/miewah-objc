@@ -26,6 +26,14 @@
     [self getDetailFromLeanCloudOfIdentifier:identifier completion:completion];
 }
 
+- (void)cacheList:(NSArray<MiewahAsset *> *)aList completion:(CacheCompletion)completion {
+    [DatabaseHelper cacheListOfType:MiewahItemTypeSlang assets:aList completion:completion];
+}
+
+- (void)readListCacheCompletion:(ReadCacheCompletion)completion {
+    [DatabaseHelper readListCacheOfType:MiewahItemTypeSlang completion:completion];
+}
+
 - (void)getListFromLeanCloudAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
     [self.dao getListAtPage:pageIndex success:^(NSArray *results) {
         NSMutableArray<MiewahSlang *> *items = [NSMutableArray array];

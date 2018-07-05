@@ -48,4 +48,6 @@ typedef void(^MiewahReadCacheCompletion)(void);
  */
 - (void)reloadData;
 
++ (MiewahItemType)assetType;
+
 @end

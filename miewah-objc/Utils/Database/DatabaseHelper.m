@@ -54,30 +54,6 @@ static NSString * SlangFavorTableName = @"slang_favor";
     });
 }
 
-+ (void)cacheCharacterList:(NSArray<MiewahCharacter *> *)characters completion:(CacheCompletion)completion {
-    [self cacheListOfType:MiewahItemTypeCharacter assets:characters completion:completion];
-}
-
-+ (void)cacheWordList:(NSArray<MiewahWord *> *)words completion:(CacheCompletion)completion {
-    [self cacheListOfType:MiewahItemTypeWord assets:words completion:completion];
-}
-
-+ (void)cacheSlangList:(NSArray<MiewahSlang *> *)slangs completion:(CacheCompletion)completion {
-    [self cacheListOfType:MiewahItemTypeSlang assets:slangs completion:completion];
-}
-
-+ (void)readCharacterListCacheCompletion:(ReadCacheCompletion)completion {
-    [self readListCacheOfType:MiewahItemTypeCharacter completion:completion];
-}
-
-+ (void)readWordListCacheCompletion:(ReadCacheCompletion)completion {
-    [self readListCacheOfType:MiewahItemTypeWord completion:completion];
-}
-
-+ (void)readSlangListCacheCompletion:(ReadCacheCompletion)completion {
-    [self readListCacheOfType:MiewahItemTypeSlang completion:completion];
-}
-
 + (void)readListCacheOfType:(MiewahItemType)type completion:(ReadCacheCompletion)completion {
     NSString *tableName = [self tableNameOfType:type];
     if (tableName == nil) {
@@ -95,6 +71,8 @@ static NSString * SlangFavorTableName = @"slang_favor";
             asset.item = [result stringForColumnIndex:1];
             asset.pronunciation = [result stringForColumnIndex:2];
             asset.meaning = [result stringForColumnIndex:3];
+            asset.createdAt = [result stringForColumnIndex:5];
+            asset.updatedAt = [result stringForColumnIndex:4];
             
             [assets addObject:asset];
         }
@@ -113,7 +91,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
     
     NSMutableArray *sqls = [NSMutableArray array];
     for (MiewahAsset *asset in assets) {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES ('%@', '%@', '%@', '%@')", tableName, asset.identifier, asset.item, asset.pronunciation, asset.meaning];
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES ('%@', '%@', '%@', '%@', '%@', '%@')", tableName, asset.objectId, asset.item, asset.pronunciation, asset.meaning, asset.createdAt, asset.updatedAt];
         [sqls addObject:sql];
     }
     
@@ -135,17 +113,17 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (NSString *)createCacheTablesSQLs {
-    NSString *createCharacterTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer, item text, pronunciation text, meaning text)", CharacterListCacheTableName];
-    NSString *createWordTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer, item text, pronunciation text, meaning text)", WordListCacheTableName];
-    NSString *createSlangTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer, item text, pronunciation text, meaning text)", SlangListCacheTableName];
+    NSString *createCharacterTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, createdAt text, updatedAt text)", CharacterListCacheTableName];
+    NSString *createWordTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, createdAt text, updatedAt text)", WordListCacheTableName];
+    NSString *createSlangTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, createdAt text, updatedAt text)", SlangListCacheTableName];
     
     return [@[createCharacterTable, createWordTable, createSlangTable] componentsJoinedByString:@";"];
 }
 
 + (NSString *)createFavorTablesSQLs {
-    NSString *createCharacterTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer, item text, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text)", CharacterFavorTableName];
-    NSString *createWordTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer, item text, pronunciation text, meaning text, sentences text, pronunciationVoice text)", WordFavorTableName];
-    NSString *createSlangTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (id integer, item text, pronunciation text, meaning text, pronunciationVoice text, source text)", SlangFavorTableName];
+    NSString *createCharacterTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text, createdAt text, updatedAt text)", CharacterFavorTableName];
+    NSString *createWordTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, sentences text, pronunciationVoice text, createdAt text, updatedAt text)", WordFavorTableName];
+    NSString *createSlangTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, pronunciationVoice text, source text, createdAt text, updatedAt text)", SlangFavorTableName];
     
     return [@[createCharacterTable, createWordTable, createSlangTable] componentsJoinedByString:@";"];
 }

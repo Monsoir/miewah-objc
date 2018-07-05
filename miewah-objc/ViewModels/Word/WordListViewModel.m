@@ -17,6 +17,12 @@
 
 @implementation WordListViewModel
 
++ (MiewahItemType)assetType {
+    return MiewahItemTypeWord;
+}
+
+#pragma mark - Accessors
+
 @synthesize service = _service;
 - (WordService *)service {
     if (_service == nil) {

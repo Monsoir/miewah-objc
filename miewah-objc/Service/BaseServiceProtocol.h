@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MiewahAsset.h"
+#import "DatabaseHelper.h"
 
 typedef void(^ServiceGetListCompletion)(NSArray<MiewahAsset *> *list, NSError *error);
 typedef void(^ServiceGetDetailCompletion)(MiewahAsset *asset, NSError *error);
@@ -16,5 +17,8 @@ typedef void(^ServiceGetDetailCompletion)(MiewahAsset *asset, NSError *error);
 
 - (void)getListAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion;
 - (void)getDetailOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion;
+
+- (void)cacheList:(NSArray<MiewahAsset *> *)aList completion:(CacheCompletion)completion;
+- (void)readListCacheCompletion:(ReadCacheCompletion)completion;
 
 @end

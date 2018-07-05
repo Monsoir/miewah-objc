@@ -7,6 +7,7 @@
 //
 
 #import "MiewahListViewModel.h"
+#import "FoundationConstants.h"
 
 @interface MiewahListViewModel ()
 
@@ -21,8 +22,22 @@
 
 @implementation MiewahListViewModel
 
++ (MiewahItemType)assetType {
+    return MiewahItemTypeNone;
+}
+
 - (void)readCache {
+    [self.items removeAllObjects];
     
+    @weakify(self);
+    [self.service readListCacheCompletion:^(BOOL success, NSArray<MiewahAsset *> *assets, NSString *errorMsg) {
+        @strongify(self);
+        if (success) {
+            [self.items addObjectsFromArray:assets];
+            [self.readCacheCompleted sendCompleted];
+        }
+#warning 错误处理
+    }];
 }
 
 - (void)loadData {
@@ -34,15 +49,32 @@
             return;
         }
         
+        // 当第一次请求时，清空数据（之前的缓存）
+        if (self.skip == 0) {
+            [self.items removeAllObjects];
+        }
+        
+        BOOL shouldCache = self.items.count <= CacheItemCount;
+        
         [self.items addObjectsFromArray:list];
         self.skip = self.items.count;
         [self.loadedSuccess sendNext:self.items];
+        
+        if (shouldCache) {
+            // 最多缓存数目
+            NSArray *tocache = [self.items subarrayWithRange:NSMakeRange(0, self.items.count < CacheItemCount ? self.items.count : CacheItemCount)];
+            [self.service cacheList:tocache completion:^(BOOL success, NSString *errorMsg) {
+#if DEBUG
+                NSLog(@"cache list: %@", @(success));
+                NSLog(@"cache list error msg: %@", errorMsg);
+#endif
+            }];
+        }
     }];
 }
 
 - (void)resetFlags {
     self.skip = 0;
-    [self.items removeAllObjects];
 }
 
 - (void)reloadData {
