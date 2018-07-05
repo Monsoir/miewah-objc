@@ -146,9 +146,10 @@
     NSString *cellIdentifier = [NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])];
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     MiewahSlang *slang = (MiewahSlang *)self.vm.items[indexPath.row];
-    cell.lbItem.text = slang.item;
-    cell.lbDetailA.text = slang.pronunciation;
-    cell.lbDetailB.text = slang.meaning;
+    cell.item = slang.item;
+    cell.pronunciation = slang.pronunciation;
+    cell.meaning = slang.meaning;
+    cell.updateAt = [slang normalFormatUpdatedAt];
     return cell;
 }
 

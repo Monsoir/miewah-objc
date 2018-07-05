@@ -10,9 +10,10 @@
 
 @interface ItemTableViewCell : UITableViewCell
 
-@property (strong, nonatomic, readonly) UILabel *lbItem;
-@property (strong, nonatomic, readonly) UILabel *lbDetailA;
-@property (strong, nonatomic, readonly) UILabel *lbDetailB;
+@property (nonatomic, copy) NSString *item;
+@property (nonatomic, copy) NSString *pronunciation;
+@property (nonatomic, copy) NSString *meaning;
+@property (nonatomic, copy) NSString *updateAt;
 
 + (NSString *)reuseIdentifier;
 + (CGFloat)cellHeight;

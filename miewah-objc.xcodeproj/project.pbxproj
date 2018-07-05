@@ -132,6 +132,8 @@
 		9DAD6C5C20EC9E64001BBCE0 /* CharacterListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C5B20EC9E64001BBCE0 /* CharacterListViewModel.m */; };
 		9DAD6C5F20ECAFE2001BBCE0 /* WordListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C5E20ECAFE2001BBCE0 /* WordListViewModel.m */; };
 		9DAD6C6220ECB1F0001BBCE0 /* SlangListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C6120ECB1F0001BBCE0 /* SlangListViewModel.m */; };
+		9DAD6C7C20EDF2CA001BBCE0 /* DatetimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C7B20EDF2CA001BBCE0 /* DatetimeHelper.m */; };
+		9DAD6C8020EDF794001BBCE0 /* DatetimeHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C7F20EDF794001BBCE0 /* DatetimeHelperTests.m */; };
 		9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */; };
 		9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC34BE020BE82570098AE7C /* FMDB.framework */; };
 		9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */; };
@@ -395,6 +397,9 @@
 		9DAD6C5E20ECAFE2001BBCE0 /* WordListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordListViewModel.m; sourceTree = "<group>"; };
 		9DAD6C6020ECB1F0001BBCE0 /* SlangListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlangListViewModel.h; sourceTree = "<group>"; };
 		9DAD6C6120ECB1F0001BBCE0 /* SlangListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlangListViewModel.m; sourceTree = "<group>"; };
+		9DAD6C7A20EDF2CA001BBCE0 /* DatetimeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatetimeHelper.h; sourceTree = "<group>"; };
+		9DAD6C7B20EDF2CA001BBCE0 /* DatetimeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatetimeHelper.m; sourceTree = "<group>"; };
+		9DAD6C7F20EDF794001BBCE0 /* DatetimeHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatetimeHelperTests.m; sourceTree = "<group>"; };
 		9DC34BDD20BE7CD90098AE7C /* DatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
 		9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 		9DC34BE020BE82570098AE7C /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = Carthage/Build/iOS/FMDB.framework; sourceTree = "<group>"; };
@@ -629,6 +634,7 @@
 		9D1B8FCF2090E2550099976C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD6C7920EDF2A4001BBCE0 /* Datetime */,
 				9D1B8FD02090E3A60099976C /* UIConstants.h */,
 				9D1B8FD12090E3A60099976C /* UIConstants.m */,
 				9D4500A4209756E700A63C20 /* FoundationConstants.h */,
@@ -716,9 +722,9 @@
 		9D20FDEA20887E3E00FC4856 /* miewah-objcTests */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD6C7D20EDF775001BBCE0 /* Utils */,
 				9DAD6C4D20EB6A1F001BBCE0 /* Service */,
 				9DAD6C3420EB51B9001BBCE0 /* DAO */,
-				9DAD6C3020EB4BD2001BBCE0 /* NetworkUtils */,
 				9D20FDED20887E3E00FC4856 /* Info.plist */,
 			);
 			path = "miewah-objcTests";
@@ -1107,6 +1113,32 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		9DAD6C7920EDF2A4001BBCE0 /* Datetime */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C7A20EDF2CA001BBCE0 /* DatetimeHelper.h */,
+				9DAD6C7B20EDF2CA001BBCE0 /* DatetimeHelper.m */,
+			);
+			path = Datetime;
+			sourceTree = "<group>";
+		};
+		9DAD6C7D20EDF775001BBCE0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C7E20EDF782001BBCE0 /* Datetime */,
+				9DAD6C3020EB4BD2001BBCE0 /* NetworkUtils */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9DAD6C7E20EDF782001BBCE0 /* Datetime */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C7F20EDF794001BBCE0 /* DatetimeHelperTests.m */,
+			);
+			path = Datetime;
+			sourceTree = "<group>";
+		};
 		9DC34BD920BE7B680098AE7C /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -1455,6 +1487,7 @@
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,
 				9DC9019D20A2F103004670B8 /* EditViewModel.m in Sources */,
 				9D0AFE5C20B5392B00C93934 /* EditPreviewViewController.m in Sources */,
+				9DAD6C7C20EDF2CA001BBCE0 /* DatetimeHelper.m in Sources */,
 				9D1B8F9C2090BDA50099976C /* UIView+RoundCorner.m in Sources */,
 				9D51F46820C5373A00488DDF /* AppDelegate+TabBar.m in Sources */,
 				9D4500962096F34A00A63C20 /* LoginResponseObject.m in Sources */,
@@ -1511,6 +1544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DAD6C8020EDF794001BBCE0 /* DatetimeHelperTests.m in Sources */,
 				9DAD6C3620EB6079001BBCE0 /* LeanCloudWordDaoTests.m in Sources */,
 				9DAD6C5720EB7004001BBCE0 /* WordServiceTests.m in Sources */,
 				9DAD6C2E20EB3476001BBCE0 /* LeanCloudCharacterDaoTests.m in Sources */,

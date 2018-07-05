@@ -10,6 +10,7 @@
 #import "MiewahCharacter.h"
 #import "MiewahWord.h"
 #import "MiewahSlang.h"
+#import "DatetimeHelper.h"
 
 @implementation MiewahAsset
 
@@ -28,6 +29,18 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"item:%@\npronunciation: %@\nmeaning: %@\nsource:%@\nsentences:%@", self.item, self.pronunciation, self.meaning, self.source, self.sentences];
+}
+
+@end
+
+@implementation MiewahAsset(Datetime)
+
+- (NSString *)normalFormatCreatedAt {
+    return [DatetimeHelper convertISODate2NormalFormatDate:self.createdAt];
+}
+
+- (NSString *)normalFormatUpdatedAt {
+    return [DatetimeHelper convertISODate2NormalFormatDate:self.updatedAt];
 }
 
 @end

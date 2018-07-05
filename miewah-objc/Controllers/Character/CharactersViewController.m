@@ -130,9 +130,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     MiewahCharacter *character = (MiewahCharacter *)self.vm.items[indexPath.row];
-    cell.lbItem.text = character.item;
-    cell.lbDetailA.text = character.pronunciation;
-    cell.lbDetailB.text = character.meaning;
+    cell.item = character.item;
+    cell.pronunciation = character.pronunciation;
+    cell.meaning = character.meaning;
+    cell.updateAt = [character normalFormatUpdatedAt];
     return cell;
 }
 

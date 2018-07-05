@@ -19,4 +19,14 @@
  */
 - (void)addBottomBorder:(CGFloat)inset height:(CGFloat)height color:(UIColor *)color;
 
+
+/**
+ 简单添加顶边
+
+ @param inset 顶边距离 view 两边的距离，这里指的是一边的距离，会自动计算两边
+ @param height 顶边高度
+ @param color 顶边颜色
+ */
+- (void)addTopBorder:(CGFloat)inset height:(CGFloat)height color:(UIColor *)color;
+
 @end

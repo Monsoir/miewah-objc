@@ -18,4 +18,12 @@
     [self.layer addSublayer:bottomBorderLayer];
 }
 
+- (void)addTopBorder:(CGFloat)inset height:(CGFloat)height color:(UIColor *)color {
+    CALayer *topBorderLayer = [CALayer layer];
+    topBorderLayer.frame = CGRectMake(inset, 0, self.frame.size.width - 2 * inset, height);
+    topBorderLayer.backgroundColor = color.CGColor;
+    topBorderLayer.masksToBounds = YES;
+    [self.layer addSublayer:topBorderLayer];
+}
+
 @end

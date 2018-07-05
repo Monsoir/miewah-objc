@@ -29,3 +29,10 @@
 + (MiewahAsset *)assetOfType:(MiewahItemType)type;
 
 @end
+
+@interface MiewahAsset(Datetime)
+
+- (NSString *)normalFormatCreatedAt;
+- (NSString *)normalFormatUpdatedAt;
+
+@end

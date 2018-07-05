@@ -11,6 +11,9 @@
 #import "UIColor+Hex.h"
 #import "UIView+Shadow.h"
 #import "UIView+RoundCorner.h"
+#import "UIView+Border.h"
+
+static const CGFloat AccessoryFontSize = 12;
 
 // 缩放动画时间
 static const CGFloat AnimatingTime = 0.1;
@@ -23,6 +26,8 @@ static const CGFloat ScaleY = 0.9;
 @property (strong, nonatomic) UILabel *lbItem;
 @property (strong, nonatomic) UILabel *lbDetailA;
 @property (strong, nonatomic) UILabel *lbDetailB;
+@property (nonatomic, strong) UIView *accessoriesContainer;
+@property (nonatomic, strong) UILabel *lbUpdateAt;
 
 @property (nonatomic, assign) BOOL didInitialLayout;
 
@@ -64,8 +69,8 @@ static const CGFloat ScaleY = 0.9;
     UIColor *color = [UIColor colorWithHexString:@"#c7c7c7"];
     [self.container simpleShadowWithOffset:offset radius:radius opacity:opacity color:color];
     
-//    [self.container maskRoundedCorners:UIRectCornerAllCorners cornerRadius:CGSizeMake(10, 10)];
     [self.container maskRoundedCornersWithRadius:10];
+    [self.accessoriesContainer addTopBorder:4 height:1 color:[UIColor colorWithHexString:@"#ececec"]];
 }
 
 - (void)initialize {
@@ -76,6 +81,9 @@ static const CGFloat ScaleY = 0.9;
     [self.contentView addSubview:self.lbItem];
     [self.contentView addSubview:self.lbDetailA];
     [self.contentView addSubview:self.lbDetailB];
+    
+    [self.contentView addSubview:self.accessoriesContainer];
+    [self.accessoriesContainer addSubview:self.lbUpdateAt];
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
@@ -117,7 +125,19 @@ static const CGFloat ScaleY = 0.9;
             make.top.equalTo(self.lbDetailA.mas_bottom).offset(8);
             make.left.equalTo(self.lbItem);
             make.right.equalTo(self.lbItem);
+            make.height.mas_greaterThanOrEqualTo(30);
+        }];
+        
+        [self.accessoriesContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.lbDetailB.mas_bottom).offset(8);
             make.bottom.equalTo(self.container).offset(-8);
+            make.left.equalTo(self.lbItem);
+            make.right.equalTo(self.lbItem);
+        }];
+        
+        [self.lbUpdateAt mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.accessoriesContainer);
+            make.left.equalTo(self.accessoriesContainer);
         }];
         
         self.didInitialLayout = YES;
@@ -126,12 +146,77 @@ static const CGFloat ScaleY = 0.9;
     [super updateConstraints];
 }
 
+static NSDictionary *AccessoryAttributes = nil;
++ (NSDictionary *)accessoryAttributes {
+    if (AccessoryAttributes == nil) {
+        AccessoryAttributes = @{
+                                NSForegroundColorAttributeName:[UIColor colorWithRed:0.604 green:0.604 blue:0.604 alpha:1.0],
+                                NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:AccessoryFontSize],
+                                };
+    }
+    return AccessoryAttributes;
+}
+
+static NSTextAttachment *UpdatedAtAttachment = nil;
++ (NSTextAttachment *)updatedAtAttachment {
+    if (UpdatedAtAttachment == nil) {
+        UpdatedAtAttachment = [[NSTextAttachment alloc] init];
+        UpdatedAtAttachment.image = [UIImage imageNamed:@"updatedAt"];
+        CGFloat imageOffsetY = -3.0;
+        UpdatedAtAttachment.bounds = CGRectMake(0, imageOffsetY, AccessoryFontSize, AccessoryFontSize);
+    }
+    return UpdatedAtAttachment;
+}
+
+static NSAttributedString *UpdatedAtIconAttributedString = nil;
++ (NSAttributedString *)updatedAtIconAttributedString {
+    if (UpdatedAtIconAttributedString == nil) {
+        UpdatedAtIconAttributedString = [NSAttributedString attributedStringWithAttachment:[self updatedAtAttachment]];
+    }
+    return UpdatedAtIconAttributedString;
+}
+
+#pragma mark - Accessors
+
 - (UIView *)container {
     if (_container == nil) {
         _container = [[UIView alloc] init];
         _container.backgroundColor = UIColor.whiteColor;
     }
     return _container;
+}
+
+- (UIView *)accessoriesContainer {
+    if (_accessoriesContainer == nil) {
+        _accessoriesContainer = [[UIView alloc] init];
+        _accessoriesContainer.backgroundColor = UIColor.whiteColor;
+    }
+    return _accessoriesContainer;
+}
+
+- (void)setItem:(NSString *)item {
+    _item = item;
+    self.lbItem.text = _item;
+}
+
+- (void)setPronunciation:(NSString *)pronunciation {
+    _pronunciation = pronunciation;
+    self.lbDetailA.text = _pronunciation;
+}
+
+- (void)setMeaning:(NSString *)meaning {
+    _meaning = meaning;
+    self.lbDetailB.text = _meaning;
+}
+
+- (void)setUpdateAt:(NSString *)updateAt {
+    _updateAt = updateAt;
+    // 文字部分
+    NSAttributedString *attributedStringContent = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@", _updateAt] attributes:[[self class] accessoryAttributes]];
+    // 图标部分
+    NSMutableAttributedString *combinedAttributedString = [[NSAttributedString attributedStringWithAttachment:[[self class] updatedAtAttachment]] mutableCopy];
+    [combinedAttributedString appendAttributedString:attributedStringContent];
+    self.lbUpdateAt.attributedText = [combinedAttributedString copy];
 }
 
 - (UILabel *)lbItem {
@@ -157,6 +242,14 @@ static const CGFloat ScaleY = 0.9;
         _lbDetailB.font = [UIFont systemFontOfSize:20];
     }
     return _lbDetailB;
+}
+
+- (UILabel *)lbUpdateAt {
+    if (_lbUpdateAt == nil) {
+        _lbUpdateAt = [[UILabel alloc] init];
+        _lbUpdateAt.numberOfLines = 1;
+    }
+    return _lbUpdateAt;
 }
 
 @end

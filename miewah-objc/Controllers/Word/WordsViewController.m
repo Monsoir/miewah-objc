@@ -142,10 +142,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = [NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])];
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    MiewahWord *word = self.vm.items[indexPath.row];
-    cell.lbItem.text = word.item;
-    cell.lbDetailA.text = word.pronunciation;
-    cell.lbDetailB.text = word.meaning;
+    MiewahWord *word = (MiewahWord *)self.vm.items[indexPath.row];
+    cell.item = word.item;
+    cell.pronunciation = word.pronunciation;
+    cell.meaning = word.meaning;
+    cell.updateAt = [word normalFormatUpdatedAt];
     return cell;
 }
 

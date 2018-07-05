@@ -36,7 +36,7 @@
 
 @property (nonatomic, strong, readonly) id<MiewahDetailRequestProtocol> requester;
 
-- (instancetype)initWithIdentifier:(NSNumber *)identifier;
+- (instancetype)initWithIdentifier:(NSString *)identifier;
 - (void)loadDetail;
 
 @end
