@@ -103,7 +103,7 @@
 
 - (void)setupNavigationBar {
     [self.navigationController.navigationBar removeBottomLine];
-    [self configureNewOneItem];
+//    [self configureNewOneItem];
 }
 
 - (void)setupSubviews {
