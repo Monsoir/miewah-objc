@@ -28,7 +28,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"item:%@\npronunciation: %@\nmeaning: %@\nsource:%@\nsentences:%@", self.item, self.pronunciation, self.meaning, self.source, self.sentences];
+    return [NSString stringWithFormat:@"objectId:%@\nitem:%@\npronunciation: %@\nmeaning: %@\nsource:%@\nsentences:%@", self.objectId, self.item, self.pronunciation, self.meaning, self.source, self.sentences];
 }
 
 @end
