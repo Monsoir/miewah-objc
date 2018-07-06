@@ -18,6 +18,8 @@ extern const NSInteger CacheItemCount;
 extern NSString * const AssetObjectIdKey;
 extern NSString * const AssetItemKey;
 extern NSString * const AssetPronunciationKey;
+extern NSString * const AssetMeaningKey;
+extern NSString * const AssetSentencesKey;
 
 // 编辑时的表单字段可视化名称
 extern NSString * const EditAssetBasicInfosFieldNames;

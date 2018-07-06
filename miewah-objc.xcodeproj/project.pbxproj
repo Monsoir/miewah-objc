@@ -134,6 +134,9 @@
 		9DAD6C6220ECB1F0001BBCE0 /* SlangListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C6120ECB1F0001BBCE0 /* SlangListViewModel.m */; };
 		9DAD6C7C20EDF2CA001BBCE0 /* DatetimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C7B20EDF2CA001BBCE0 /* DatetimeHelper.m */; };
 		9DAD6C8020EDF794001BBCE0 /* DatetimeHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C7F20EDF794001BBCE0 /* DatetimeHelperTests.m */; };
+		9DAD6C8820EF0E60001BBCE0 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C8720EF0E60001BBCE0 /* ShareView.m */; };
+		9DAD6C8B20EF1890001BBCE0 /* CustomAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C8A20EF1890001BBCE0 /* CustomAlertController.m */; };
+		9DAD6C8E20EF3FEF001BBCE0 /* ShareItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C8D20EF3FEF001BBCE0 /* ShareItemViewController.m */; };
 		9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */; };
 		9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC34BE020BE82570098AE7C /* FMDB.framework */; };
 		9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */; };
@@ -400,6 +403,12 @@
 		9DAD6C7A20EDF2CA001BBCE0 /* DatetimeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatetimeHelper.h; sourceTree = "<group>"; };
 		9DAD6C7B20EDF2CA001BBCE0 /* DatetimeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatetimeHelper.m; sourceTree = "<group>"; };
 		9DAD6C7F20EDF794001BBCE0 /* DatetimeHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatetimeHelperTests.m; sourceTree = "<group>"; };
+		9DAD6C8620EF0E60001BBCE0 /* ShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		9DAD6C8720EF0E60001BBCE0 /* ShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		9DAD6C8920EF1890001BBCE0 /* CustomAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAlertController.h; sourceTree = "<group>"; };
+		9DAD6C8A20EF1890001BBCE0 /* CustomAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAlertController.m; sourceTree = "<group>"; };
+		9DAD6C8C20EF3FEF001BBCE0 /* ShareItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareItemViewController.h; sourceTree = "<group>"; };
+		9DAD6C8D20EF3FEF001BBCE0 /* ShareItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareItemViewController.m; sourceTree = "<group>"; };
 		9DC34BDD20BE7CD90098AE7C /* DatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
 		9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 		9DC34BE020BE82570098AE7C /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = Carthage/Build/iOS/FMDB.framework; sourceTree = "<group>"; };
@@ -519,6 +528,7 @@
 		9D1B8F92209053360099976C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD6C8520EF0E56001BBCE0 /* ShareView */,
 				9D48863920AEC7650007D297 /* TextTableViewCell */,
 				9DA882E1209BFD9B002E02DC /* LongItemTableViewCell */,
 				9D4500A72098395200A63C20 /* ListTableFooterView */,
@@ -764,6 +774,10 @@
 			children = (
 				9D2355FF20B3C02B0051A1CE /* TypingBoardViewController.h */,
 				9D23560020B3C02B0051A1CE /* TypingBoardViewController.m */,
+				9DAD6C8920EF1890001BBCE0 /* CustomAlertController.h */,
+				9DAD6C8A20EF1890001BBCE0 /* CustomAlertController.m */,
+				9DAD6C8C20EF3FEF001BBCE0 /* ShareItemViewController.h */,
+				9DAD6C8D20EF3FEF001BBCE0 /* ShareItemViewController.m */,
 			);
 			path = Accessories;
 			sourceTree = "<group>";
@@ -1139,6 +1153,15 @@
 			path = Datetime;
 			sourceTree = "<group>";
 		};
+		9DAD6C8520EF0E56001BBCE0 /* ShareView */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C8620EF0E60001BBCE0 /* ShareView.h */,
+				9DAD6C8720EF0E60001BBCE0 /* ShareView.m */,
+			);
+			path = ShareView;
+			sourceTree = "<group>";
+		};
 		9DC34BD920BE7B680098AE7C /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -1437,6 +1460,7 @@
 				9D4500A6209756E700A63C20 /* FoundationConstants.m in Sources */,
 				9D1B8FBC2090C9170099976C /* TextAlignCenterTableViewCell.m in Sources */,
 				9DA882FB209C5323002E02DC /* SlangDetailViewModel.m in Sources */,
+				9DAD6C8E20EF3FEF001BBCE0 /* ShareItemViewController.m in Sources */,
 				9D1B8FB72090C8360099976C /* ItemIntroductionHeader.m in Sources */,
 				9D1B8FC52090CB650099976C /* ColorBlockBasicTableViewCell.m in Sources */,
 				9DAD6C1920EB172E001BBCE0 /* LeanCloudCharacterDAO.m in Sources */,
@@ -1475,6 +1499,7 @@
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
 				9DAD6C2120EB196B001BBCE0 /* LeanCloudWordDAO.m in Sources */,
 				9DAD6C2C20EB1EF5001BBCE0 /* LeanCloudGetter.m in Sources */,
+				9DAD6C8B20EF1890001BBCE0 /* CustomAlertController.m in Sources */,
 				9D20FDE220887E3D00FC4856 /* main.m in Sources */,
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
 				9DAD6C5520EB6F55001BBCE0 /* SlangService.m in Sources */,
@@ -1500,6 +1525,7 @@
 				9DF322672099634800D5C463 /* MiewahWordRequestManager.m in Sources */,
 				9DF322702099842500D5C463 /* MiewahModel.m in Sources */,
 				9DF3227F2099B13800D5C463 /* WordDetailViewModel.m in Sources */,
+				9DAD6C8820EF0E60001BBCE0 /* ShareView.m in Sources */,
 				9DF66E8020C4E1F400DC1342 /* MiewahFileMangerHelper.m in Sources */,
 				9DF66E7C20C4326200DC1342 /* NSDateFormatter+Singleton.m in Sources */,
 				9D4500B420983F2600A63C20 /* ListLoadMoreFooterView.m in Sources */,

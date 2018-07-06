@@ -16,6 +16,8 @@ const NSInteger CacheItemCount = 10;
 NSString * const AssetObjectIdKey = @"identifier";
 NSString * const AssetItemKey = @"item";
 NSString * const AssetPronunciationKey = @"pronunciation";
+NSString * const AssetMeaningKey = @"meaning";
+NSString * const AssetSentencesKey = @"sentences";
 
 NSString * const EditAssetBasicInfosFieldNames = @"BasicInfos";
 NSString * const EditAssetExtraInfosFieldNames = @"ExtraInfos";
