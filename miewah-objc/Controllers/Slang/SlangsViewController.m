@@ -133,8 +133,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahSlang *slang = (MiewahSlang *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{
-                               AssetObjectIdKey: slang.objectId,
-                               AssetItemKey: slang.item,
+                               AssetObjectIdKey: alwaysString(slang.objectId),
+                               AssetItemKey: alwaysString(slang.item),
                                AssetPronunciationKey: alwaysString(slang.pronunciation),
                                };
     [self performSegueWithIdentifier:@"showSlangDetail" sender:userInfo];

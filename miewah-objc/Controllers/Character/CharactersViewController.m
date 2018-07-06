@@ -140,8 +140,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahCharacter *character = (MiewahCharacter *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{
-                               AssetObjectIdKey: character.objectId,
-                               AssetItemKey: character.item,
+                               AssetObjectIdKey: alwaysString(character.objectId),
+                               AssetItemKey: alwaysString(character.item),
                                AssetPronunciationKey: alwaysString(character.pronunciation),
                                };
     [self performSegueWithIdentifier:@"showCharacterDetail" sender:userInfo];

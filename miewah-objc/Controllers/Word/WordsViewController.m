@@ -129,8 +129,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahWord *word = (MiewahWord *)self.vm.items[indexPath.row];
     NSDictionary *userInfo = @{
-                               AssetObjectIdKey: word.objectId,
-                               AssetItemKey: word.item,
+                               AssetObjectIdKey: alwaysString(word.objectId),
+                               AssetItemKey: alwaysString(word.item),
                                AssetPronunciationKey: alwaysString(word.pronunciation),
                                };
     [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];

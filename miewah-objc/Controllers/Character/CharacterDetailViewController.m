@@ -67,7 +67,7 @@ static NSString *SectionIdentifier = @"section-header";
     [self.vm.loadedFailure subscribeNext:^(NSString * _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
-            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:x style:BannerStyleWarning onViewController:self.navigationController];
+            [NotificationBanner displayABannerWithTitle:@"请求失败" detail:nil style:BannerStyleWarning onViewController:self.navigationController];
             self.navigationItem.rightBarButtonItem = nil;
         };
         runOnMainThread(_);
