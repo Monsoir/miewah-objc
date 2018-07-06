@@ -20,6 +20,7 @@
     self = [[super class] alertControllerWithTitle:title message:nil preferredStyle:style];
     if (self) {
         _customVC = customVC;
+        self.view.tintColor = [UIColor blackColor];
     }
     return self;
 }

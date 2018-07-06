@@ -6,10 +6,8 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AssetDetailViewController.h"
 
-@interface CharacterDetailViewController : UIViewController
-
-- (void)setInitialInfo:(NSDictionary *)info;
+@interface CharacterDetailViewController : AssetDetailViewController
 
 @end

@@ -20,36 +20,15 @@ static NSString *SectionIdentifier = @"section-header";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet SlangItemDetailHeaderView *header;
 
-@property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
-
 @property (nonatomic, strong) SlangDetailViewModel *vm;
-
-@property (nonatomic, copy) NSString *tempSlang;
-@property (nonatomic, copy) NSString *tempPronunciation;
 
 @end
 
 @implementation SlangDetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self setupNavigationBar];
-    [self setupSubviews];
-    [self linkSignals];
-    [self.vm loadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-#if DEBUG
-    NSLog(@"%@ deallocs", [self class]);
-#endif
 }
 
 - (void)linkSignals {
@@ -57,7 +36,7 @@ static NSString *SectionIdentifier = @"section-header";
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
-            self.navigationItem.rightBarButtonItem = nil;
+            self.navigationItem.rightBarButtonItem = self.shareItem;
             self.header.lbSlang.text = self.vm.asset.item;
             self.header.lbPronounce.text = self.vm.asset.pronunciation;
             [self.tableView reloadData];
@@ -73,11 +52,6 @@ static NSString *SectionIdentifier = @"section-header";
         };
         runOnMainThread(_);
     }];
-}
-
-- (void)setupNavigationBar {
-    self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
-    self.title = self.vm.asset.item;
 }
 
 - (void)setupSubviews {
@@ -112,26 +86,12 @@ static NSString *SectionIdentifier = @"section-header";
     return header;
 }
 
+#pragma mark - Accessors
+
+@synthesize vm = _vm;
+
 - (void)setInitialInfo:(NSDictionary *)info {
     _vm = [[SlangDetailViewModel alloc] initWithInfo:info];
-}
-
-- (SlangDetailViewModel *)vm {
-    if (_vm == nil) {
-        _vm = [[SlangDetailViewModel alloc] init];
-    }
-    return _vm;
-}
-
-- (UIBarButtonItem *)loadingIndicatorItem {
-    if (_loadingIndicatorItem == nil) {
-        UIActivityIndicatorView *anIndicator = [[UIActivityIndicatorView alloc] init];
-        anIndicator.hidesWhenStopped = YES;
-        anIndicator.color = UIColor.darkGrayColor;
-        [anIndicator startAnimating];
-        _loadingIndicatorItem = [[UIBarButtonItem alloc] initWithCustomView:anIndicator];
-    }
-    return _loadingIndicatorItem;
 }
 
 @end

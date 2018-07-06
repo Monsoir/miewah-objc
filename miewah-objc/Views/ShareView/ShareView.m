@@ -56,6 +56,7 @@ NSString * const ShareSentenceKey = @"share-sentence";
     [self addSubview:self.lbSentence];
     
     self.lbItem.text = self.item;
+    if (self.item.length >= 3) self.lbItem.numberOfLines = 2;
     self.lbMeaning.text = self.meaning;
     self.lbSentence.text = self.sentence;
 }
@@ -66,19 +67,19 @@ NSString * const ShareSentenceKey = @"share-sentence";
         
         [self.lbItem mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(8);
-            make.left.equalTo(self).offset(8);
+            make.centerX.equalTo(self).offset(-30);
             make.size.mas_equalTo(CGSizeMake(110, 110));
         }];
         
         [self.lbMeaning mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lbItem.mas_bottom).offset(8);
-            make.left.equalTo(self.lbItem);
+            make.centerX.equalTo(self.lbItem);
             make.size.mas_equalTo(CGSizeMake(100, 30));
         }];
         
         [self.lbSentence mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.lbMeaning.mas_bottom).offset(8);
-            make.left.equalTo(self.lbItem);
+            make.centerX.equalTo(self.lbItem);
             make.size.mas_equalTo(CGSizeMake(100, 50));
         }];
         
@@ -97,6 +98,7 @@ NSString * const ShareSentenceKey = @"share-sentence";
         _lbItem.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
         _lbItem.layer.cornerRadius = 10;
         _lbItem.textAlignment = NSTextAlignmentCenter;
+        _lbItem.adjustsFontSizeToFitWidth = YES;
     }
     return _lbItem;
 }

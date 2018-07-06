@@ -14,8 +14,6 @@
 #import "MiewahCharacter.h"
 #import "MiewahWord.h"
 #import "ItemIntroductionCell.h"
-#import "CustomAlertController.h"
-#import "ShareItemViewController.h"
 
 static NSString *SectionIdentifier = @"section-header";
 
@@ -23,8 +21,6 @@ static NSString *SectionIdentifier = @"section-header";
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet ShortItemDetailHeaderView *header;
-@property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
-@property (nonatomic, strong) UIBarButtonItem *shareItem;
 
 @property (nonatomic, strong) CharacterDetailViewModel *vm;
 
@@ -32,26 +28,9 @@ static NSString *SectionIdentifier = @"section-header";
 
 @implementation CharacterDetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self setupNavigationBar];
-    [self setupSubviews];
-    [self linkSignals];
-    
-    [self.vm loadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-#if DEBUG
-    NSLog(@"%@ deallocs", [self class]);
-#endif
 }
 
 - (void)linkSignals {
@@ -59,7 +38,6 @@ static NSString *SectionIdentifier = @"section-header";
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
-//            self.navigationItem.rightBarButtonItem = nil;
             self.navigationItem.rightBarButtonItem = self.shareItem;
             self.header.lbWord.text = self.vm.asset.item;
             self.header.lbPronounce.text = self.vm.asset.pronunciation;
@@ -76,26 +54,6 @@ static NSString *SectionIdentifier = @"section-header";
         };
         runOnMainThread(_);
     }];
-}
-
-- (void)setupNavigationBar {
-    self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
-    self.title = self.vm.asset.item;
-}
-
-- (void)actionShare {
-    NSDictionary *shareInfo = @{
-                                AssetItemKey: alwaysString(self.vm.asset.item),
-                                AssetSentencesKey: alwaysString(self.vm.asset.sentences),
-                                AssetMeaningKey: alwaysString(self.vm.asset.meaning),
-                                };
-    ShareItemViewController *shareVC = [[ShareItemViewController alloc] initWithShareInfo:shareInfo];
-    CustomAlertController *alert = [[CustomAlertController alloc] initWithTitle:@"Share" customViewController:shareVC style:UIAlertControllerStyleAlert];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:cancel];
-    [alert addAction:confirm];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)setupSubviews {
@@ -130,26 +88,12 @@ static NSString *SectionIdentifier = @"section-header";
     return cell;
 }
 
+#pragma mark - Accessors
+
+@synthesize vm = _vm;
+
 - (void)setInitialInfo:(NSDictionary *)info {
     _vm = [[CharacterDetailViewModel alloc] initWithInfo:info];
-}
-
-- (UIBarButtonItem *)loadingIndicatorItem {
-    if (_loadingIndicatorItem == nil) {
-        UIActivityIndicatorView *anIndicator = [[UIActivityIndicatorView alloc] init];
-        anIndicator.hidesWhenStopped = YES;
-        anIndicator.color = UIColor.darkGrayColor;
-        [anIndicator startAnimating];
-        _loadingIndicatorItem = [[UIBarButtonItem alloc] initWithCustomView:anIndicator];
-    }
-    return _loadingIndicatorItem;
-}
-
-- (UIBarButtonItem *)shareItem {
-    if (_shareItem == nil) {
-        _shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(actionShare)];
-    }
-    return _shareItem;
 }
 
 @end

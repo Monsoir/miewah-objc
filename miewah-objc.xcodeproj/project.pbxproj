@@ -137,6 +137,9 @@
 		9DAD6C8820EF0E60001BBCE0 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C8720EF0E60001BBCE0 /* ShareView.m */; };
 		9DAD6C8B20EF1890001BBCE0 /* CustomAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C8A20EF1890001BBCE0 /* CustomAlertController.m */; };
 		9DAD6C8E20EF3FEF001BBCE0 /* ShareItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C8D20EF3FEF001BBCE0 /* ShareItemViewController.m */; };
+		9DAD6C9620EF5E6C001BBCE0 /* ViewShooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C9520EF5E6C001BBCE0 /* ViewShooter.m */; };
+		9DAD6C9920EFD67A001BBCE0 /* SystemProvide.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C9820EFD67A001BBCE0 /* SystemProvide.m */; };
+		9DAD6C9C20EFDB3D001BBCE0 /* AssetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD6C9B20EFDB3D001BBCE0 /* AssetDetailViewController.m */; };
 		9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */; };
 		9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC34BE020BE82570098AE7C /* FMDB.framework */; };
 		9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */; };
@@ -409,6 +412,12 @@
 		9DAD6C8A20EF1890001BBCE0 /* CustomAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAlertController.m; sourceTree = "<group>"; };
 		9DAD6C8C20EF3FEF001BBCE0 /* ShareItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareItemViewController.h; sourceTree = "<group>"; };
 		9DAD6C8D20EF3FEF001BBCE0 /* ShareItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareItemViewController.m; sourceTree = "<group>"; };
+		9DAD6C9420EF5E6C001BBCE0 /* ViewShooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewShooter.h; sourceTree = "<group>"; };
+		9DAD6C9520EF5E6C001BBCE0 /* ViewShooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewShooter.m; sourceTree = "<group>"; };
+		9DAD6C9720EFD67A001BBCE0 /* SystemProvide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemProvide.h; sourceTree = "<group>"; };
+		9DAD6C9820EFD67A001BBCE0 /* SystemProvide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemProvide.m; sourceTree = "<group>"; };
+		9DAD6C9A20EFDB3D001BBCE0 /* AssetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetDetailViewController.h; sourceTree = "<group>"; };
+		9DAD6C9B20EFDB3D001BBCE0 /* AssetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetDetailViewController.m; sourceTree = "<group>"; };
 		9DC34BDD20BE7CD90098AE7C /* DatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
 		9DC34BDE20BE7CD90098AE7C /* DatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 		9DC34BE020BE82570098AE7C /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = Carthage/Build/iOS/FMDB.framework; sourceTree = "<group>"; };
@@ -521,6 +530,8 @@
 				9D1B8F82209051430099976C /* AboutMeViewController.m */,
 				9DC9018C20A2E228004670B8 /* MiewahListViewController.h */,
 				9DC9018D20A2E228004670B8 /* MiewahListViewController.m */,
+				9DAD6C9A20EFDB3D001BBCE0 /* AssetDetailViewController.h */,
+				9DAD6C9B20EFDB3D001BBCE0 /* AssetDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -644,6 +655,7 @@
 		9D1B8FCF2090E2550099976C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD6C9320EF5E47001BBCE0 /* View */,
 				9DAD6C7920EDF2A4001BBCE0 /* Datetime */,
 				9D1B8FD02090E3A60099976C /* UIConstants.h */,
 				9D1B8FD12090E3A60099976C /* UIConstants.m */,
@@ -655,6 +667,8 @@
 				9D8BCB6020C41A41009C913B /* AVFoundationUtils */,
 				9DC34BD920BE7B680098AE7C /* Database */,
 				9DAD6C2520EB1E7E001BBCE0 /* NetworkUtils */,
+				9DAD6C9720EFD67A001BBCE0 /* SystemProvide.h */,
+				9DAD6C9820EFD67A001BBCE0 /* SystemProvide.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1162,6 +1176,15 @@
 			path = ShareView;
 			sourceTree = "<group>";
 		};
+		9DAD6C9320EF5E47001BBCE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9DAD6C9420EF5E6C001BBCE0 /* ViewShooter.h */,
+				9DAD6C9520EF5E6C001BBCE0 /* ViewShooter.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9DC34BD920BE7B680098AE7C /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -1493,6 +1516,7 @@
 				9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */,
 				9D48863D20AEC7940007D297 /* TextTableViewCell.m in Sources */,
 				9DA882F2209C0AA7002E02DC /* BaseListReponseObject.m in Sources */,
+				9DAD6C9C20EFDB3D001BBCE0 /* AssetDetailViewController.m in Sources */,
 				9DAD6C0A20EA252E001BBCE0 /* LeanCloudAPIAddresses.m in Sources */,
 				9DF322732099870200D5C463 /* MiewahListViewModel.m in Sources */,
 				9D4500C320985B6A00A63C20 /* MiewahCharacterRequestManager.m in Sources */,
@@ -1506,8 +1530,10 @@
 				9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */,
+				9DAD6C9620EF5E6C001BBCE0 /* ViewShooter.m in Sources */,
 				9DAD6C6220ECB1F0001BBCE0 /* SlangListViewModel.m in Sources */,
 				9D0AFE5F20B539C500C93934 /* EditPreviewViewModel.m in Sources */,
+				9DAD6C9920EFD67A001BBCE0 /* SystemProvide.m in Sources */,
 				9D4500A3209750A400A63C20 /* AppDelegate+TestForDevelopment.m in Sources */,
 				9D1B8F83209051430099976C /* AboutMeViewController.m in Sources */,
 				9DC9019D20A2F103004670B8 /* EditViewModel.m in Sources */,

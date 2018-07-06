@@ -21,7 +21,6 @@ static NSString *SectionIdentifier = @"section-header";
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet ShortItemDetailHeaderView *header;
-@property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
 
 @property (nonatomic, strong) WordDetailViewModel *vm;
 
@@ -29,26 +28,9 @@ static NSString *SectionIdentifier = @"section-header";
 
 @implementation WordDetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self setupNavigationBar];
-    [self setupSubviews];
-    [self linkSignals];
-    
-    [self.vm loadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-#if DEBUG
-    NSLog(@"%@ deallocs", [self class]);
-#endif
 }
 
 - (void)linkSignals {
@@ -56,7 +38,7 @@ static NSString *SectionIdentifier = @"section-header";
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
-            self.navigationItem.rightBarButtonItem = nil;
+            self.navigationItem.rightBarButtonItem = self.shareItem;
             self.header.lbWord.text = self.vm.asset.item;
             self.header.lbPronounce.text = self.vm.asset.pronunciation;
             [self.tableView reloadData];
@@ -72,11 +54,6 @@ static NSString *SectionIdentifier = @"section-header";
         };
         runOnMainThread(_);
     }];
-}
-
-- (void)setupNavigationBar {
-    self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
-    self.title = self.vm.asset.item;
 }
 
 - (void)setupSubviews {
@@ -111,19 +88,12 @@ static NSString *SectionIdentifier = @"section-header";
     return cell;
 }
 
+#pragma mark - Accessors
+
+@synthesize vm = _vm;
+
 - (void)setInitialInfo:(NSDictionary *)info {
     _vm = [[WordDetailViewModel alloc] initWithInfo:info];
-}
-
-- (UIBarButtonItem *)loadingIndicatorItem {
-    if (_loadingIndicatorItem == nil) {
-        UIActivityIndicatorView *anIndicator = [[UIActivityIndicatorView alloc] init];
-        anIndicator.hidesWhenStopped = YES;
-        anIndicator.color = UIColor.darkGrayColor;
-        [anIndicator startAnimating];
-        _loadingIndicatorItem = [[UIBarButtonItem alloc] initWithCustomView:anIndicator];
-    }
-    return _loadingIndicatorItem;
 }
 
 @end

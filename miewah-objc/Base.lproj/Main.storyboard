@@ -124,6 +124,12 @@
                                         <constraint firstItem="AJk-gY-Vtw" firstAttribute="leading" secondItem="Gr3-uX-l2a" secondAttribute="leading" id="oUl-q4-UcN"/>
                                         <constraint firstAttribute="bottom" secondItem="MEk-EI-BQw" secondAttribute="bottom" constant="20" id="xQr-Sq-bhv"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="AJk-gY-Vtw"/>
+                                            <exclude reference="xmc-9M-feV"/>
+                                        </mask>
+                                    </variation>
                                     <connections>
                                         <outlet property="btnPronounce" destination="AJk-gY-Vtw" id="cCd-80-GU1"/>
                                         <outlet property="btnRecord" destination="xmc-9M-feV" id="L2q-c8-XDo"/>
@@ -458,6 +464,12 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gZz-6B-G4j" secondAttribute="trailing" constant="20" symbolic="YES" id="uTF-mF-pDr"/>
                                         <constraint firstItem="gZz-6B-G4j" firstAttribute="leading" secondItem="LwC-sV-mNf" secondAttribute="trailing" constant="60" id="vGL-21-IfE"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="LwC-sV-mNf"/>
+                                            <exclude reference="gZz-6B-G4j"/>
+                                        </mask>
+                                    </variation>
                                     <connections>
                                         <outlet property="btnPronounce" destination="LwC-sV-mNf" id="14K-iM-Xiq"/>
                                         <outlet property="btnRecord" destination="gZz-6B-G4j" id="8b6-07-E7e"/>
@@ -973,6 +985,12 @@
                                         <constraint firstAttribute="bottom" secondItem="11C-3v-uMw" secondAttribute="bottom" constant="20" id="oaE-WX-Jt1"/>
                                         <constraint firstItem="11C-3v-uMw" firstAttribute="top" secondItem="TTY-NY-KR2" secondAttribute="top" constant="20" id="pzD-c4-xxw"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="TUu-JL-Dq1"/>
+                                            <exclude reference="8We-aR-XD9"/>
+                                        </mask>
+                                    </variation>
                                     <connections>
                                         <outlet property="btnPronounce" destination="TUu-JL-Dq1" id="FoD-TK-8UE"/>
                                         <outlet property="btnRecord" destination="8We-aR-XD9" id="8BC-2J-BxE"/>

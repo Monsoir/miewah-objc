@@ -6,10 +6,8 @@
 //  Copyright © 2018 wenyongyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AssetDetailViewController.h"
 
-@interface WordDetailViewController : UIViewController
-
-- (void)setInitialInfo:(NSDictionary *)info;
+@interface WordDetailViewController : AssetDetailViewController
 
 @end
