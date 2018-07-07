@@ -12,6 +12,5 @@
 
 - (instancetype)initWithShareInfo:(NSDictionary *)shareInfo;
 - (void)shootViewCompletion:(void (^)(UIImage *viewShot))completion;
-- (void)shareItems:(NSArray *)items;
 
 @end
