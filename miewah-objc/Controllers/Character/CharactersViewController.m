@@ -49,16 +49,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (self.vm.items.count == 0) {
-        self.loadingIndicator.hidden = NO;
-        [self.loadingIndicator startAnimating];
-        [self.vm reloadData];
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -94,7 +84,12 @@
     [self.vm.readCacheCompleted subscribeCompleted:^{
         @strongify(self);
         void(^_)(void) = ^void() {
+            // 先显示缓存数据
             [self.tableView reloadData];
+            
+            // 再请求新数据
+            self.loadingIndicator.hidden = NO;
+            [self.loadingIndicator startAnimating];
             [self.vm reloadData];
         };
         runOnMainThread(_);

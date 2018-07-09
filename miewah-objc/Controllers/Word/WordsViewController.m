@@ -50,16 +50,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (self.vm.items.count == 0) {
-        self.loadingIndicator.hidden = NO;
-        [self.loadingIndicator startAnimating];
-        [self.vm reloadData];
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
