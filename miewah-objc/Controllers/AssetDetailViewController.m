@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
 @property (nonatomic, strong) UIBarButtonItem *shareItem;
+@property (nonatomic, strong) UIBarButtonItem *favorItem;
 
 @end
 
@@ -28,7 +29,9 @@
     [self setupSubviews];
     [self linkSignals];
     
-    [self.vm loadData];
+    // loadData 改为当缓存读取完成后再进行
+//    [self.vm loadData];
+    [self.vm readFromFavor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +74,10 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)actionToggleCollect {
+    self.vm.favored ? [self.vm unfavorAsset] : [self.vm favorAsset];
+}
+
 #pragma mark - Accessors
 
 - (UIBarButtonItem *)loadingIndicatorItem {
@@ -89,6 +96,13 @@
         _shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionShare)];
     }
     return _shareItem;
+}
+
+- (UIBarButtonItem *)favorItem {
+    if (_favorItem == nil) {
+        _favorItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collect_selected"] style:UIBarButtonItemStylePlain target:self action:@selector(actionToggleCollect)];
+    }
+    return _favorItem;
 }
 
 @end

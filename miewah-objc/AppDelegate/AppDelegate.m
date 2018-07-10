@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MiewahUser.h"
 
 #import "AppDelegate+TestForDevelopment.h"
 #import "AppDelegate+DataBaseStuff.h"
@@ -34,7 +33,7 @@
     [_window makeKeyAndVisible];
     [self configureAppTintColor];
     
-    [[MiewahUser thisUser] fetchUserInfoFromLocal];
+//    [[MiewahUser thisUser] fetchUserInfoFromLocal];
     [self initializeDatabase];
     
     return YES;

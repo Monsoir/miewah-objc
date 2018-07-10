@@ -28,14 +28,14 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
 #if DEBUG
-    NSLog(@"%@ is setting undefined key", [self class]);
+    NSLog(@"%@ is setting undefined key: %@", [self class], key);
 #endif
     return;
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
 #if DEBUG
-    NSLog(@"%@ is reading an undefined key...", [self class]);
+    NSLog(@"%@ is reading an undefined key: %@", [self class], key);
 #endif
     return nil;
 }

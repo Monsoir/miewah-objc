@@ -13,15 +13,27 @@
 @interface MiewahDetailViewModel : MiewahViewModel
 
 @property (nonatomic, strong, readonly) MiewahAsset *asset;
+@property (nonatomic, assign, readonly) BOOL favored;
 @property (nonatomic, strong, readonly) id<BaseServiceProtocol> service;
 @property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
 @property (nonatomic, strong, readonly) RACSubject *loadedFailure;
+@property (nonatomic, strong, readonly) RACSubject *readFavorComplete;
+@property (nonatomic, strong, readonly) RACSignal *loadingSignal;
+
+/**
+ 指 favor 中有或者请求成功
+ */
+@property (nonatomic, strong, readonly) RACSignal *assetExistSignal;
+@property (nonatomic, strong, readonly) RACSignal *favorSignal;
 
 @property (nonatomic, strong, readonly) NSArray<NSString *> *sectionNames;
 @property (nonatomic, strong, readonly) NSArray<NSString *> *displayContents;
 
 - (instancetype)initWithInfo:(NSDictionary *)userInfo;
+- (void)readFromFavor;
 - (void)loadData;
 - (NSArray <NSString *> *)makeContentToDisplay;
+- (void)favorAsset;
+- (void)unfavorAsset;
 
 @end

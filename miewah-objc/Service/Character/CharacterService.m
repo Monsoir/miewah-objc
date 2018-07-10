@@ -34,6 +34,22 @@
     [DatabaseHelper readListCacheOfType:MiewahItemTypeCharacter completion:completion];
 }
 
+- (void)favorAnAsset:(MiewahAsset *)anAsset completion:(CacheCompletion)completion {
+    [DatabaseHelper favorAnItemoOfType:MiewahItemTypeCharacter detail:anAsset completion:completion];
+}
+
+- (void)unfavorAnAsset:(MiewahAsset *)anAsset completion:(CacheCompletion)completion {
+    [DatabaseHelper removeAnFavoriteItemOfType:MiewahItemTypeCharacter identifier:anAsset.objectId completion:completion];
+}
+
+- (void)isAssetFavored:(MiewahAsset *)anAsset completion:(void (^)(BOOL, NSString *))completion {
+    [DatabaseHelper isFavoredItemofType:MiewahItemTypeCharacter identifier:anAsset.objectId completion:completion];
+}
+
+- (void)readAssetFromFavoredOf:(NSString *)identifier completion:(void(^)(MiewahAsset *asset, NSString *errorMsg))completion {
+    [DatabaseHelper readItemFromFavorOfType:MiewahItemTypeCharacter identifier:identifier completion:completion];
+}
+
 - (void)getListFromLeanCloudAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
     [self.dao getListAtPage:pageIndex success:^(NSArray *results) {
         NSMutableArray<MiewahCharacter *> *characters = [NSMutableArray array];

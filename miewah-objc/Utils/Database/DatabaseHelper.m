@@ -55,19 +55,20 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (void)readListCacheOfType:(MiewahItemType)type completion:(ReadCacheCompletion)completion {
-    NSString *tableName = [self tableNameOfType:type];
+    NSString *tableName = [self cacheTableNameOfType:type];
     if (tableName == nil) {
         completion(NO, nil, @"未找到表名");
         return;
     }
     
     [CacheQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@", tableName];
+        static NSString *template = @"SELECT * FROM %@;";
+        NSString *sql = [NSString stringWithFormat:template, tableName];
         NSMutableArray *assets = [NSMutableArray array];
         FMResultSet *result = [db executeQuery:sql];
         while ([result next]) {
             MiewahAsset *asset = [MiewahAsset assetOfType:type];
-            asset.identifier = [result stringForColumnIndex:0];
+            asset.objectId = [result stringForColumnIndex:0];
             asset.item = [result stringForColumnIndex:1];
             asset.pronunciation = [result stringForColumnIndex:2];
             asset.meaning = [result stringForColumnIndex:3];
@@ -83,7 +84,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 + (void)cacheListOfType:(MiewahItemType)type assets:(NSArray<MiewahAsset *> *)assets completion:(CacheCompletion)completion {
     [self clearCacheOfType:type];
     
-    NSString *tableName = [self tableNameOfType:type];
+    NSString *tableName = [self cacheTableNameOfType:type];
     if (tableName == nil) {
         completion(false, @"未找到表名");
         return;
@@ -91,7 +92,8 @@ static NSString * SlangFavorTableName = @"slang_favor";
     
     NSMutableArray *sqls = [NSMutableArray array];
     for (MiewahAsset *asset in assets) {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ VALUES ('%@', '%@', '%@', '%@', '%@', '%@')", tableName, asset.objectId, asset.item, asset.pronunciation, asset.meaning, asset.createdAt, asset.updatedAt];
+        static NSString *template = @"INSERT INTO %@ VALUES ('%@', '%@', '%@', '%@', '%@', '%@');";
+        NSString *sql = [NSString stringWithFormat:template, tableName, asset.objectId, asset.item, asset.pronunciation, asset.meaning, asset.createdAt, asset.updatedAt];
         [sqls addObject:sql];
     }
     
@@ -103,32 +105,129 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (void)clearCacheOfType:(MiewahItemType)type {
-    NSString *tableName = [self tableNameOfType:type];
+    NSString *tableName = [self cacheTableNameOfType:type];
     
     if (tableName == nil) return;
-    NSString *deleteSQL = [NSString stringWithFormat:@"DELETE FROM %@", tableName];
+    static NSString *template = @"DELETE FROM %@";
+    NSString *deleteSQL = [NSString stringWithFormat:template, tableName];
     [CacheQueue inDatabase:^(FMDatabase * _Nonnull db) {
         [db executeUpdate:deleteSQL];
     }];
 }
 
-+ (NSString *)createCacheTablesSQLs {
-    NSString *createCharacterTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, createdAt text, updatedAt text)", CharacterListCacheTableName];
-    NSString *createWordTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, createdAt text, updatedAt text)", WordListCacheTableName];
-    NSString *createSlangTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, createdAt text, updatedAt text)", SlangListCacheTableName];
++ (void)favorAnItemoOfType:(MiewahItemType)type detail:(MiewahAsset *)asset completion:(CacheCompletion)completion {
+    NSArray *pair = [self insertOrUpdateSQLOfType:type asset:asset];
+    NSString *tableName = pair.firstObject;
+    if (!pair.firstObject) {
+        completion(NO, @"未找到表名");
+        return;
+    }
     
-    return [@[createCharacterTable, createWordTable, createSlangTable] componentsJoinedByString:@";"];
+    NSString *sql = pair[1];
+    [FavorQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        BOOL result = [db executeUpdate:sql];
+        NSString *errorMsg = result ? @"" : [NSString stringWithFormat:@"%@ 收藏失败", tableName];
+        if (result == NO) {
+#if DEBUG
+            NSLog(@"%@: %@", NSStringFromSelector(_cmd), [db lastError]);
+#endif
+        }
+        completion(result, errorMsg);
+    }];
+}
+
++ (void)removeAnFavoriteItemOfType:(MiewahItemType)type identifier:(NSString *)identifier completion:(CacheCompletion)completion {
+    NSString *tableName = [self favorTableNameOfType:type];
+    if (tableName == nil) {
+        completion(NO, @"未找到表名");
+        return;
+    }
+    
+    static NSString *template = @"DELETE FROM %@ WHERE objectId='%@';";
+    NSString *sql = [NSString stringWithFormat:template, tableName, identifier];
+    [FavorQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        BOOL result = [db executeUpdate:sql];
+        NSString *errorMsg = result ? @"" : [NSString stringWithFormat:@"%@ 取消收藏失败", tableName];
+        if (result == NO) {
+#if DEBUG
+            NSLog(@"%@: %@", NSStringFromSelector(_cmd), [db lastError]);
+#endif
+        }
+        completion(result, errorMsg);
+    }];
+}
+
++ (void)isFavoredItemofType:(MiewahItemType)type identifier:(NSString *)identifier completion:(void (^)(BOOL, NSString *))completion {
+    NSString *tableName = [self favorTableNameOfType:type];
+    if (tableName == nil) {
+        completion(NO, @"未找到表名");
+        return;
+    }
+    
+    static NSString *template = @"SELECT COUNT(*) FROM %@ WHERE objectId='%@';";
+    NSString *sql = [NSString stringWithFormat:template, tableName, identifier];
+    [FavorQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *result = [db executeQuery:sql];
+        if ([result next]) {
+            int count = [result intForColumnIndex:0];
+            completion(count > 0, nil);
+            return;
+        }
+        
+#if DEBUG
+        NSLog(@"%@: %@", NSStringFromSelector(_cmd), [db lastError]);
+#endif
+        completion(NO, @"查找失败");
+    }];
+}
+
++ (void)readItemFromFavorOfType:(MiewahItemType)type identifier:(NSString *)identifier completion:(void (^)(MiewahAsset *, NSString *))completion {
+    NSString *tableName = [self favorTableNameOfType:type];
+    if (tableName == nil) {
+        completion(nil, @"未找到表明");
+        return;
+    }
+    
+    static NSString *readSQLTemplate = @"SELECT * FROM %@ WHERE objectId='%@'";
+    NSString *sql = [NSString stringWithFormat:readSQLTemplate, tableName, identifier];
+    [FavorQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *result = [db executeQuery:sql];
+        if ([result next]) {
+            MiewahAsset *asset = [self assetOfType:type fromFavorResult:result];
+            completion(asset, nil);
+        } else {
+            completion(nil, @"");
+        }
+    }];
+}
+
+/*** Private ***/
+
++ (NSString *)createCacheTablesSQLs {
+    static NSString *createCharacterTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId TEXT PRIMARY KEY, item TEXT, pronunciation TEXT, meaning TEXT, createdAt TEXT, updatedAt TEXT)";
+    static NSString *createWordTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId TEXT PRIMARY KEY, item TEXT, pronunciation TEXT, meaning TEXT, createdAt TEXT, updatedAt TEXT)";
+    static NSString *createSlangTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId TEXT PRIMARY KEY, item TEXT, pronunciation TEXT, meaning TEXT, createdAt TEXT, updatedAt TEXT)";
+    
+    NSString *createCharacterTableSQL = [NSString stringWithFormat:createCharacterTableSQLTemplate, CharacterListCacheTableName];
+    NSString *createWordTableSQL = [NSString stringWithFormat:createWordTableSQLTemplate, WordListCacheTableName];
+    NSString *createSlangTableSQL = [NSString stringWithFormat:createSlangTableSQLTemplate, SlangListCacheTableName];
+    
+    return [@[createCharacterTableSQL, createWordTableSQL, createSlangTableSQL] componentsJoinedByString:@";"];
 }
 
 + (NSString *)createFavorTablesSQLs {
-    NSString *createCharacterTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text, createdAt text, updatedAt text)", CharacterFavorTableName];
-    NSString *createWordTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, sentences text, pronunciationVoice text, createdAt text, updatedAt text)", WordFavorTableName];
-    NSString *createSlangTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (objectId text, item text, pronunciation text, meaning text, pronunciationVoice text, source text, createdAt text, updatedAt text)", SlangFavorTableName];
+    static NSString *createCharacterTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text, createdAt text, updatedAt text)";
+    static NSString *createWordTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, sentences text, pronunciationVoice text, createdAt text, updatedAt text)";
+    static NSString *createSlangTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, pronunciationVoice text, source text, sentence text, createdAt text, updatedAt text)";
     
-    return [@[createCharacterTable, createWordTable, createSlangTable] componentsJoinedByString:@";"];
+    NSString *createCharacterTableSQL = [NSString stringWithFormat:createCharacterTableSQLTemplate, CharacterFavorTableName];
+    NSString *createWordTableSQL = [NSString stringWithFormat:createWordTableSQLTemplate, WordFavorTableName];
+    NSString *createSlangTableSQL = [NSString stringWithFormat:createSlangTableSQLTemplate, SlangFavorTableName];
+    
+    return [@[createCharacterTableSQL, createWordTableSQL, createSlangTableSQL] componentsJoinedByString:@";"];
 }
 
-+ (NSString *)tableNameOfType:(MiewahItemType)type {
++ (NSString *)cacheTableNameOfType:(MiewahItemType)type {
     NSString *tableName = nil;
     switch (type) {
         case MiewahItemTypeCharacter:
@@ -145,6 +244,102 @@ static NSString * SlangFavorTableName = @"slang_favor";
             break;
     }
     return tableName;
+}
+
++ (NSString *)favorTableNameOfType:(MiewahItemType)type {
+    NSString *tableName = nil;
+    switch (type) {
+        case MiewahItemTypeCharacter:
+            tableName = CharacterFavorTableName;
+            break;
+        case MiewahItemTypeWord:
+            tableName = WordFavorTableName;
+            break;
+        case MiewahItemTypeSlang:
+            tableName = SlangFavorTableName;
+            break;
+            
+        default:
+            break;
+    }
+    return tableName;
+}
+
++ (NSArray<NSString *> *)insertOrUpdateSQLOfType:(MiewahItemType)type asset:(MiewahAsset *)asset {
+    NSString *tableName = [self favorTableNameOfType:type];
+    if (tableName == nil) return @[@"", @""];
+    
+    NSString *sql = @"";
+    switch (type) {
+        case MiewahItemTypeCharacter:
+        {
+            MiewahCharacter *a = (MiewahCharacter *)asset;
+            static NSString *template = @"INSERT OR REPLACE INTO %@ VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');";
+            sql = [NSString stringWithFormat:template, tableName, a.objectId, a.item, a.pronunciation, a.meaning, a.inputMethods, a.sentences, a.pronunciationVoice, a.source, a.createdAt, a.updatedAt];
+            break;
+        }
+        case MiewahItemTypeWord:
+        {
+            MiewahWord *a = (MiewahWord *)asset;
+            static NSString *template = @"INSERT OR REPLACE INTO %@ VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');";
+            sql = [NSString stringWithFormat:template, tableName, a.objectId, a.item, a.pronunciation, a.meaning, a.sentences, a.pronunciationVoice, a.createdAt, a.updatedAt];
+            break;
+        }
+        case MiewahItemTypeSlang:
+        {
+            MiewahSlang *a = (MiewahSlang *)asset;
+            static NSString *template = @"INSERT OR REPLACE INTO %@ VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@');";
+            sql = [NSString stringWithFormat:template, tableName, a.objectId, a.item, a.pronunciation, a.meaning, a.pronunciationVoice, a.source, a.sentences, a.createdAt, a.updatedAt];
+            break;
+        }
+            
+        default:
+            sql = @"";
+    }
+    return @[alwaysString(tableName), alwaysString(sql)];
+}
+
++ (MiewahAsset *)assetOfType:(MiewahItemType)type fromFavorResult:(FMResultSet *)result {
+    switch (type) {
+        case MiewahItemTypeCharacter:
+            return [self characterAssetFromFavorResult:result];
+        case MiewahItemTypeWord:
+            return [self wordAssetFromFavorResult:result];
+        case MiewahItemTypeSlang:
+            return [self slangAssetFromFavorResult:result];
+        default:
+            return nil;
+    }
+}
+
++ (MiewahCharacter *)characterAssetFromFavorResult:(FMResultSet *)result {
+    NSSet *propertyNames = [MiewahCharacter propertyList];
+    NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
+    for (NSString *propertyName in propertyNames) {
+        objectInfo[propertyName] = [result stringForColumn:propertyName];
+    }
+    MiewahCharacter *asset = [[MiewahCharacter alloc] initWithDictionary:objectInfo];
+    return asset;
+}
+
++ (MiewahWord *)wordAssetFromFavorResult:(FMResultSet *)result {
+    NSSet *propertyNames = [MiewahWord propertyList];
+    NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
+    for (NSString *propertyName in propertyNames) {
+        objectInfo[propertyName] = [result stringForColumn:propertyName];
+    }
+    MiewahWord *asset = [[MiewahWord alloc] initWithDictionary:objectInfo];
+    return asset;
+}
+
++ (MiewahSlang *)slangAssetFromFavorResult:(FMResultSet *)result {
+    NSSet *propertyNames = [MiewahSlang propertyList];
+    NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
+    for (NSString *propertyName in propertyNames) {
+        objectInfo[propertyName] = [result stringForColumn:propertyName];
+    }
+    MiewahSlang *asset = [[MiewahSlang alloc] initWithDictionary:objectInfo];
+    return asset;
 }
 
 + (NSString *)cacheDatabasePath {

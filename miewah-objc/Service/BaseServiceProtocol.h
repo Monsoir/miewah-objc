@@ -21,4 +21,11 @@ typedef void(^ServiceGetDetailCompletion)(MiewahAsset *asset, NSError *error);
 - (void)cacheList:(NSArray<MiewahAsset *> *)aList completion:(CacheCompletion)completion;
 - (void)readListCacheCompletion:(ReadCacheCompletion)completion;
 
+- (void)favorAnAsset:(MiewahAsset *)anAsset completion:(CacheCompletion)completion;
+- (void)unfavorAnAsset:(MiewahAsset *)anAsset completion:(CacheCompletion)completion;
+- (void)isAssetFavored:(MiewahAsset *)anAsset completion:(void(^)(BOOL favored, NSString *errorMsg))completion;
+- (void)readAssetFromFavoredOf:(NSString *)identifier completion:(void(^)(MiewahAsset *asset, NSString *errorMsg))completion;
+//- (void)readFromFavorForAnItem:(NSString *)itemId ofType:(MiewahItemType)type completion:(ServiceGetDetailCompletion)completion;
+//- (void)readFromFavorForItemListOfType:(MiewahItemType)type;
+
 @end

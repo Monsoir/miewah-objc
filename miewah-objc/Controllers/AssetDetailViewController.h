@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readonly) MiewahDetailViewModel *vm;
 @property (nonatomic, strong, readonly) UIBarButtonItem *loadingIndicatorItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *shareItem;
+@property (nonatomic, strong, readonly) UIBarButtonItem *favorItem;
 
 - (void)setInitialInfo:(NSDictionary *)info;
 - (void)setupNavigationBar;

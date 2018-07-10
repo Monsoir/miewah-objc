@@ -55,8 +55,7 @@
 }
 
 + (NSDictionary *)escapedKeys {
-    NSDictionary *dict = @{@"id": NSStringFromSelector(@selector(identifier))};
-    return dict;
+    return nil;
 }
 
 @end

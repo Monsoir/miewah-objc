@@ -11,9 +11,6 @@
 
 @interface MiewahAsset : MiewahModel
 
-#warning 重构使用 LeanCloud 后，删除 identifier
-@property (nonatomic, strong) NSString *identifier;
-
 @property (nonatomic, copy) NSString *objectId;
 
 @property (nonatomic, copy) NSString *item;
@@ -27,6 +24,7 @@
 @property (nonatomic, copy) NSString *updatedAt;
 
 + (MiewahAsset *)assetOfType:(MiewahItemType)type;
++ (NSSet<NSString *> *)propertyList;
 
 @end
 
