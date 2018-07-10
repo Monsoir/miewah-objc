@@ -313,7 +313,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (MiewahCharacter *)characterAssetFromFavorResult:(FMResultSet *)result {
-    NSSet *propertyNames = [MiewahCharacter propertyList];
+    NSSet *propertyNames = [MiewahCharacter propertiesListInheritedFromClass:[MiewahAsset class]];
     NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
     for (NSString *propertyName in propertyNames) {
         objectInfo[propertyName] = [result stringForColumn:propertyName];
@@ -323,7 +323,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (MiewahWord *)wordAssetFromFavorResult:(FMResultSet *)result {
-    NSSet *propertyNames = [MiewahWord propertyList];
+    NSSet *propertyNames = [MiewahWord propertiesListInheritedFromClass:[MiewahAsset class]];
     NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
     for (NSString *propertyName in propertyNames) {
         objectInfo[propertyName] = [result stringForColumn:propertyName];
@@ -333,7 +333,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (MiewahSlang *)slangAssetFromFavorResult:(FMResultSet *)result {
-    NSSet *propertyNames = [MiewahSlang propertyList];
+    NSSet *propertyNames = [MiewahSlang propertiesListInheritedFromClass:[MiewahAsset class]];
     NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
     for (NSString *propertyName in propertyNames) {
         objectInfo[propertyName] = [result stringForColumn:propertyName];

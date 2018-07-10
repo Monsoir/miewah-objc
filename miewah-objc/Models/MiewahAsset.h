@@ -8,6 +8,7 @@
 
 #import "MiewahModel.h"
 #import "FoundationConstants.h"
+#import "NSObject+Property.h"
 
 @interface MiewahAsset : MiewahModel
 
@@ -24,7 +25,6 @@
 @property (nonatomic, copy) NSString *updatedAt;
 
 + (MiewahAsset *)assetOfType:(MiewahItemType)type;
-+ (NSSet<NSString *> *)propertyList;
 
 @end
 

@@ -146,6 +146,8 @@
 		9DC9018B20A2DC43004670B8 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9018A20A2DC43004670B8 /* EditViewController.m */; };
 		9DC9018E20A2E228004670B8 /* MiewahListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9018D20A2E228004670B8 /* MiewahListViewController.m */; };
 		9DC9019D20A2F103004670B8 /* EditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9019C20A2F103004670B8 /* EditViewModel.m */; };
+		9DD5974520F4D7510079DEF5 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5974420F4D7510079DEF5 /* NSObject+Property.m */; };
+		9DD5974920F4DF840079DEF5 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5974820F4DF840079DEF5 /* NSObject+Property.m */; };
 		9DF322672099634800D5C463 /* MiewahWordRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322662099634800D5C463 /* MiewahWordRequestManager.m */; };
 		9DF3226A2099635F00D5C463 /* WordListResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322692099635F00D5C463 /* WordListResponseObject.m */; };
 		9DF3226D2099685000D5C463 /* MiewahWord.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3226C2099685000D5C463 /* MiewahWord.m */; };
@@ -429,6 +431,9 @@
 		9DC9018D20A2E228004670B8 /* MiewahListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahListViewController.m; sourceTree = "<group>"; };
 		9DC9019B20A2F103004670B8 /* EditViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditViewModel.h; sourceTree = "<group>"; };
 		9DC9019C20A2F103004670B8 /* EditViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditViewModel.m; sourceTree = "<group>"; };
+		9DD5974320F4D7510079DEF5 /* NSObject+Property.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Property.h"; sourceTree = "<group>"; };
+		9DD5974420F4D7510079DEF5 /* NSObject+Property.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Property.m"; sourceTree = "<group>"; };
+		9DD5974820F4DF840079DEF5 /* NSObject+Property.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Property.m"; sourceTree = "<group>"; };
 		9DF322652099634800D5C463 /* MiewahWordRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahWordRequestManager.h; sourceTree = "<group>"; };
 		9DF322662099634800D5C463 /* MiewahWordRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahWordRequestManager.m; sourceTree = "<group>"; };
 		9DF322682099635F00D5C463 /* WordListResponseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordListResponseObject.h; sourceTree = "<group>"; };
@@ -584,6 +589,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9DD5974020F4D6960079DEF5 /* NSObject */,
 				9DF66E7920C4325300DC1342 /* NSDateFormatter */,
 				9D8BCB5C20C3DF7C009C913B /* UITableViewCell */,
 				9D23560220B3C13D0051A1CE /* UITextView */,
@@ -746,6 +752,7 @@
 		9D20FDEA20887E3E00FC4856 /* miewah-objcTests */ = {
 			isa = PBXGroup;
 			children = (
+				9DD5974620F4DF5D0079DEF5 /* Categories */,
 				9DAD6C7D20EDF775001BBCE0 /* Utils */,
 				9DAD6C4D20EB6A1F001BBCE0 /* Service */,
 				9DAD6C3420EB51B9001BBCE0 /* DAO */,
@@ -1260,6 +1267,31 @@
 			path = Slang;
 			sourceTree = "<group>";
 		};
+		9DD5974020F4D6960079DEF5 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				9DD5974320F4D7510079DEF5 /* NSObject+Property.h */,
+				9DD5974420F4D7510079DEF5 /* NSObject+Property.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		9DD5974620F4DF5D0079DEF5 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9DD5974720F4DF660079DEF5 /* NSObject */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9DD5974720F4DF660079DEF5 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				9DD5974820F4DF840079DEF5 /* NSObject+Property.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
 		9DF322742099950600D5C463 /* NetworkProtocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -1588,6 +1620,7 @@
 				9DC34BE420BE8D120098AE7C /* AppDelegate+DataBaseStuff.m in Sources */,
 				9D1B8FA72090C28C0099976C /* ShortItemDetailHeaderView.m in Sources */,
 				9D6D4F1820944D2E009AA9CE /* RegisterViewModel.m in Sources */,
+				9DD5974520F4D7510079DEF5 /* NSObject+Property.m in Sources */,
 				9D6D4F1F20946163009AA9CE /* MiewahViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1600,6 +1633,7 @@
 				9DAD6C3620EB6079001BBCE0 /* LeanCloudWordDaoTests.m in Sources */,
 				9DAD6C5720EB7004001BBCE0 /* WordServiceTests.m in Sources */,
 				9DAD6C2E20EB3476001BBCE0 /* LeanCloudCharacterDaoTests.m in Sources */,
+				9DD5974920F4DF840079DEF5 /* NSObject+Property.m in Sources */,
 				9DAD6C3320EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m in Sources */,
 				9DAD6C3820EB60DC001BBCE0 /* LeanCloudSlangDaoTests.m in Sources */,
 				9DAD6C4F20EB6A36001BBCE0 /* CharacterServiceTests.m in Sources */,
