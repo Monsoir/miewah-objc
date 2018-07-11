@@ -40,5 +40,6 @@ dispatch_async(queue, block);\
 
 + (CGFloat)NavigationBarHeight;
 + (BOOL)isiPhoneX;
++ (CGFloat)screenWidth;
 
 @end

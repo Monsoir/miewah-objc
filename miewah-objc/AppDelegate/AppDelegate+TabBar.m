@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate+TabBar.h"
+#import "LocalContainerViewController.h"
 
 @implementation AppDelegate (TabBar)
 
@@ -33,11 +34,16 @@
 //    UINavigationController *mineNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"MineNC"];
 //    [[self class] configureViewController:mineNC tabBarImage:[UIImage imageNamed:@"tab-bar-mine"] selected:[UIImage imageNamed:@"tab-bar-mine-selected"]];
     
+    LocalContainerViewController *localVC = [[LocalContainerViewController alloc] init];
+    UINavigationController *localNC = [[UINavigationController alloc] initWithRootViewController:localVC];
+    localNC.tabBarItem.title = @"title";
+    
     return @[
              characterNC,
              wordNC,
              slangNC,
 //             mineNC,
+             localNC,
              ];
 }
 

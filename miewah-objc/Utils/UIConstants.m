@@ -17,11 +17,16 @@ CGFloat const iPhoneXDeviceHeight = 2436;
 }
 
 + (BOOL)isiPhoneX {
+    
     if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) {
         return false;
     }
     
     return UIScreen.mainScreen.nativeBounds.size.height == iPhoneXDeviceHeight;
+}
+
++ (CGFloat)screenWidth {
+    return [UIScreen mainScreen].bounds.size.width;
 }
 
 @end
