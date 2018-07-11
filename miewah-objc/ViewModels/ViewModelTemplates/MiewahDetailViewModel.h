@@ -15,8 +15,8 @@
 @property (nonatomic, strong, readonly) MiewahAsset *asset;
 @property (nonatomic, assign, readonly) BOOL favored;
 @property (nonatomic, strong, readonly) id<BaseServiceProtocol> service;
-@property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
-@property (nonatomic, strong, readonly) RACSubject *loadedFailure;
+@property (nonatomic, weak, readonly) RACSubject *loadedSuccess;
+@property (nonatomic, weak, readonly) RACSubject *loadedFailure;
 @property (nonatomic, strong, readonly) RACSubject *readFavorComplete;
 @property (nonatomic, strong, readonly) RACSignal *loadingSignal;
 

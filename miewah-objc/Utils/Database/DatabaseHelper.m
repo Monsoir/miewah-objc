@@ -77,6 +77,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
             
             [assets addObject:asset];
         }
+        [result close];
         completion(YES, assets, @"");
     }];
 }
@@ -170,6 +171,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
         FMResultSet *result = [db executeQuery:sql];
         if ([result next]) {
             int count = [result intForColumnIndex:0];
+            [result close];
             completion(count > 0, nil);
             return;
         }
@@ -177,6 +179,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 #if DEBUG
         NSLog(@"%@: %@", NSStringFromSelector(_cmd), [db lastError]);
 #endif
+        [result close];
         completion(NO, @"查找失败");
     }];
 }
@@ -194,8 +197,10 @@ static NSString * SlangFavorTableName = @"slang_favor";
         FMResultSet *result = [db executeQuery:sql];
         if ([result next]) {
             MiewahAsset *asset = [self assetOfType:type fromFavorResult:result];
+            [result close];
             completion(asset, nil);
         } else {
+            [result close];
             completion(nil, @"");
         }
     }];

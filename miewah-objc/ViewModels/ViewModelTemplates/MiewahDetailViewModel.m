@@ -17,8 +17,8 @@
 @property (nonatomic, assign) BOOL assetExist;
 
 @property (nonatomic, strong) NSMutableSet *racSubjects;
-@property (nonatomic, strong) RACSubject *loadedSuccess;
-@property (nonatomic, strong) RACSubject *loadedFailure;
+@property (nonatomic, weak) RACSubject *loadedSuccess;
+@property (nonatomic, weak) RACSubject *loadedFailure;
 @property (nonatomic, strong) RACSubject *readFavorComplete;
 @property (nonatomic, strong) RACSignal *loadingSignal;
 @property (nonatomic, strong) RACSignal *favorSignal;
@@ -66,6 +66,10 @@
     dispatch_async(ConcurrentQueue, ^{
         [garbage makeObjectsPerformSelector:@selector(sendCompleted)];
     });
+    
+#if DEBUG
+    NSLog(@"%@ deallocs", [self class]);
+#endif
 }
 
 - (void)readFromFavor {
@@ -133,16 +137,18 @@
 
 - (RACSubject *)loadedSuccess {
     if (_loadedSuccess == nil) {
-        _loadedSuccess = [[RACSubject alloc] init];
-        [self.racSubjects addObject:_loadedSuccess];
+        RACSubject *t = [[RACSubject alloc] init];
+        [self.racSubjects addObject:t];
+        _loadedSuccess = t;
     }
     return _loadedSuccess;
 }
 
 - (RACSubject *)loadedFailure {
     if (_loadedFailure == nil) {
-        _loadedFailure = [[RACSubject alloc] init];
-        [self.racSubjects addObject:_loadedFailure];
+        RACSubject *t = [[RACSubject alloc] init];
+        [self.racSubjects addObject:t];
+        _loadedFailure = t;
     }
     return _loadedFailure;
 }
