@@ -66,6 +66,7 @@ static NSString *SectionIdentifier = @"section-header";
     }];
     
     [self.vm.loadingSignal subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
         BOOL loading = [x boolValue];
         void (^_)(void) = ^void() {
             if (loading) {
