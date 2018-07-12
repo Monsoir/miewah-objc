@@ -50,7 +50,7 @@
 - (UILabel *)lbTitle {
     if (_lbTitle == nil) {
         _lbTitle = [[UILabel alloc] init];
-        _lbTitle.font = [UIFont systemFontOfSize:25];
+        _lbTitle.font = [UIFont fontWithName:@"PingFangSC-Ultralight" size:25];
         _lbTitle.text = self.title;
         _lbTitle.textAlignment = NSTextAlignmentCenter;
     }

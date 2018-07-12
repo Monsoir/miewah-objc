@@ -24,6 +24,8 @@
 @property (nonatomic, strong) UILabel *lbSectionTitle;
 @property (nonatomic, strong) UIButton *btnSectionIndicator;
 @property (nonatomic, strong) CollectionViewSimpleTextPlaceholderBackgoundView *placeholderView;
+@property (nonatomic, strong) NSDictionary *indicatorEnableAttributes;
+@property (nonatomic, strong) NSDictionary *indicatorDisableAttributes;
 
 @property (nonatomic, assign) MiewahItemType type;
 @property (nonatomic, strong) LocalAssetListViewModel *vm;
@@ -193,11 +195,34 @@
 - (UIButton *)btnSectionIndicator {
     if (_btnSectionIndicator == nil) {
         _btnSectionIndicator = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_btnSectionIndicator setTitle:@"查看更多 >" forState:UIControlStateNormal];
-        _btnSectionIndicator.titleLabel.font = [UIFont systemFontOfSize:18];
+        static NSString *title = @"查看更多 >";
+        NSAttributedString *enabledAttributedTitle = [[NSAttributedString alloc] initWithString:title attributes:self.indicatorEnableAttributes];
+        NSAttributedString *disabledAttributedTitle = [[NSAttributedString alloc] initWithString:title attributes:self.indicatorDisableAttributes];
+        [_btnSectionIndicator setAttributedTitle:enabledAttributedTitle forState:UIControlStateNormal];
+        [_btnSectionIndicator setAttributedTitle:disabledAttributedTitle forState:UIControlStateDisabled];
         _btnSectionIndicator.enabled = NO;
     }
     return _btnSectionIndicator;
+}
+
+- (NSDictionary *)indicatorEnableAttributes {
+    if (_indicatorEnableAttributes == nil) {
+        _indicatorEnableAttributes = @{
+                                       NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Ultralight" size:18],
+                                       NSForegroundColorAttributeName: [UIColor blackColor],
+                                       };
+    }
+    return _indicatorEnableAttributes;
+}
+
+- (NSDictionary *)indicatorDisableAttributes {
+    if (_indicatorDisableAttributes == nil) {
+        _indicatorDisableAttributes = @{
+                                        NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Ultralight" size:18],
+                                        NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                        };
+    }
+    return _indicatorDisableAttributes;
 }
 
 - (CollectionViewSimpleTextPlaceholderBackgoundView *)placeholderView {
