@@ -16,7 +16,6 @@
 #import "MiewahCharacter.h"
 
 #import "UIColor+Hex.h"
-#import "UINavigationBar+BottomLine.h"
 
 @interface CharactersViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -97,7 +96,6 @@
 }
 
 - (void)setupNavigationBar {
-    [self.navigationController.navigationBar removeBottomLine];
 //    [self configureNewOneItem];
 }
 

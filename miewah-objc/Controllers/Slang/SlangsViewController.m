@@ -18,7 +18,6 @@
 #import "UIConstants.h"
 
 #import "UIColor+Hex.h"
-#import "UINavigationBar+BottomLine.h"
 
 @interface SlangsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -98,7 +97,6 @@
 }
 
 - (void)setupNavigationBar {
-    [self.navigationController.navigationBar removeBottomLine];
 }
 
 - (void)setupSubviews {

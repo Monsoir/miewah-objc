@@ -8,6 +8,7 @@
 
 #import "AppDelegate+TabBar.h"
 #import "LocalContainerViewController.h"
+#import "UINavigationBar+BottomLine.h"
 
 @implementation AppDelegate (TabBar)
 
@@ -36,6 +37,7 @@
     
     LocalContainerViewController *localVC = [[LocalContainerViewController alloc] init];
     UINavigationController *localNC = [[UINavigationController alloc] initWithRootViewController:localVC];
+    [localNC.navigationBar removeBottomLine];
     localNC.tabBarItem.title = @"title";
     
     return @[
@@ -48,7 +50,9 @@
 }
 
 + (UINavigationController *)navigationViewControllerFromStoryboard:(UIStoryboard *)sb identifier:(NSString *)identifier {
-    return [sb instantiateViewControllerWithIdentifier:identifier];
+    UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:identifier];
+    [nc.navigationBar removeBottomLine];
+    return nc;
 }
 
 + (void)configureViewController:(UIViewController *)vc tabBarImage:(UIImage *)image selected:(UIImage *)selectedImage {

@@ -17,7 +17,6 @@
 #import "UIConstants.h"
 
 #import "UIColor+Hex.h"
-#import "UINavigationBar+BottomLine.h"
 
 @interface WordsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -92,7 +91,6 @@
 }
 
 - (void)setupNavigationBar {
-    [self.navigationController.navigationBar removeBottomLine];
 }
 
 - (void)setupSubviews {
