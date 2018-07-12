@@ -122,7 +122,7 @@
     cell.item = asset.item;
     cell.pronunciation = asset.pronunciation;
     cell.meaning = asset.meaning;
-    cell.updateAt = asset.updatedAt;
+    cell.updateAt = [asset normalFormatUpdatedAt];
     
     return cell;
 }
