@@ -108,7 +108,7 @@ static const CGFloat ScaleY = 0.9;
     if (self.didInitialLayout == NO) {
         
         [self.container mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(10, 20, 10, 20));
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(8, 10, 8, 10));
         }];
         
         [self.lbItem mas_makeConstraints:^(MASConstraintMaker *make) {

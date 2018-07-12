@@ -63,7 +63,15 @@ typedef void(^ReadFavorItemCompletion)(BOOL success, MiewahAsset *asset, NSStrin
  */
 + (void)readItemFromFavorOfType:(MiewahItemType)type identifier:(NSString *)identifier completion:(void(^)(MiewahAsset *asset, NSString *errorMsg))completion;
 
-//+ (void)readFromFavorForAnItem:(NSString *)itemId ofType:(MiewahItemType)type completion:(ReadFavorItemCompletion)completion;
-//+ (void)readFromFavorForItemListOfType:(MiewahItemType)type;
+
+/**
+ 从 favor 中读取 asset 列表
+
+ @param type asset 类型
+ @param skip 读取时跳过的个数
+ @param size 读取的数量
+ @param completion 读取完成回调
+ */
++ (void)readFavoredItemsOfType:(MiewahItemType)type skip:(NSInteger)skip size:(NSInteger)size completion:(void(^)(NSArray<MiewahAsset *> *assets, NSString *errorMsg))completion;
 
 @end

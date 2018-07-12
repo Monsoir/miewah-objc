@@ -77,10 +77,10 @@
     }];
     
     UIView *lastView = nil;
-    static CGFloat Height = 200;
+    static CGFloat CollectionViewHeight = 250;
     for (UIView *childView in views) {
         [childView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(Height);
+            make.height.mas_equalTo(CollectionViewHeight);
             make.left.right.equalTo(self.container);
             if (lastView == nil) {
                 make.top.equalTo(self.container);
@@ -112,21 +112,21 @@
 
 - (LocalAssetViewController *)characterVC {
     if (_characterVC == nil) {
-        _characterVC = [[LocalAssetViewController alloc] init];
+        _characterVC = [[LocalAssetViewController alloc] initWithType:MiewahItemTypeCharacter];
     }
     return _characterVC;
 }
 
 - (LocalAssetViewController *)wordVC {
     if (_wordVC == nil) {
-        _wordVC = [[LocalAssetViewController alloc] init];
+        _wordVC = [[LocalAssetViewController alloc] initWithType:MiewahItemTypeWord];
     }
     return _wordVC;
 }
 
 - (LocalAssetViewController *)slangVC {
     if (_slangVC == nil) {
-        _slangVC = [[LocalAssetViewController alloc] init];
+        _slangVC = [[LocalAssetViewController alloc] initWithType:MiewahItemTypeSlang];
     }
     return _slangVC;
 }

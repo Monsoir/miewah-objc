@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MiewahAsset.h"
 
 @interface LocalAssetViewController : UIViewController
+
+- (instancetype)initWithType:(MiewahItemType)type;
 
 @end

@@ -187,7 +187,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 + (void)readItemFromFavorOfType:(MiewahItemType)type identifier:(NSString *)identifier completion:(void (^)(MiewahAsset *, NSString *))completion {
     NSString *tableName = [self favorTableNameOfType:type];
     if (tableName == nil) {
-        completion(nil, @"未找到表明");
+        completion(nil, @"未找到表名");
         return;
     }
     
@@ -196,13 +196,35 @@ static NSString * SlangFavorTableName = @"slang_favor";
     [FavorQueue inDatabase:^(FMDatabase * _Nonnull db) {
         FMResultSet *result = [db executeQuery:sql];
         if ([result next]) {
-            MiewahAsset *asset = [self assetOfType:type fromFavorResult:result];
+            MiewahAsset *asset = [self assetOfType:type fromFavorResult:result fetchingKeys:nil];
             [result close];
             completion(asset, nil);
         } else {
             [result close];
             completion(nil, @"");
         }
+    }];
+}
+
++ (void)readFavoredItemsOfType:(MiewahItemType)type skip:(NSInteger)skip size:(NSInteger)size completion:(void (^)(NSArray<MiewahAsset *> *, NSString *))completion {
+    NSString *tableName = [self favorTableNameOfType:type];
+    if (tableName == nil) {
+        completion(nil, @"未找到表名");
+        return;
+    }
+    
+    NSArray<NSString *> *keys = @[@"objectId", @"item", @"pronunciation", @"updatedAt", @"meaning"];
+    static NSString *readSQLTemplate = @"SELECT %@ FROM %@ ORDER BY updatedAt LIMIT %ld OFFSET %ld;";
+    NSString *sql = [NSString stringWithFormat:readSQLTemplate, [keys componentsJoinedByString:@", "], tableName, size, skip];
+    [FavorQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *result = [db executeQuery:sql];
+        NSMutableArray *assets = [NSMutableArray array];
+        while ([result next]) {
+            MiewahAsset *asset = [self assetOfType:type fromFavorResult:result fetchingKeys:[NSSet setWithArray:keys]];
+            [assets addObject:asset];
+        }
+        [result close];
+        completion(assets, nil);
     }];
 }
 
@@ -304,21 +326,37 @@ static NSString * SlangFavorTableName = @"slang_favor";
     return @[alwaysString(tableName), alwaysString(sql)];
 }
 
-+ (MiewahAsset *)assetOfType:(MiewahItemType)type fromFavorResult:(FMResultSet *)result {
+
+/**
+ 判断不同的 asset 类型，生成不同的 asset
+ 
+ keys 用于与 MiewahAsset 中所有的属性进行交集操作，确定需要转换哪些类型
+
+ @param type asset 类型
+ @param result 数据库返回对象
+ @param keys 需要进行转换的属性名，避免 FMDB 警告找不到列名，传 nil 表示检索 MiewahAsset 的所有属性
+ @return 转换后的 MiewahAsset 对象
+ */
++ (MiewahAsset *)assetOfType:(MiewahItemType)type fromFavorResult:(FMResultSet *)result fetchingKeys:(NSSet<NSString *> *)keys {
     switch (type) {
         case MiewahItemTypeCharacter:
-            return [self characterAssetFromFavorResult:result];
+            return [self characterAssetFromFavorResult:result fetchingKeys:keys];
         case MiewahItemTypeWord:
-            return [self wordAssetFromFavorResult:result];
+            return [self wordAssetFromFavorResult:result fetchingKeys:keys];
         case MiewahItemTypeSlang:
-            return [self slangAssetFromFavorResult:result];
+            return [self slangAssetFromFavorResult:result fetchingKeys:keys];
         default:
             return nil;
     }
 }
 
-+ (MiewahCharacter *)characterAssetFromFavorResult:(FMResultSet *)result {
++ (MiewahCharacter *)characterAssetFromFavorResult:(FMResultSet *)result fetchingKeys:(NSSet<NSString *> *)keys {
     NSSet *propertyNames = [MiewahCharacter propertiesListInheritedFromClass:[MiewahAsset class]];
+    if (keys) {
+        NSMutableSet *interactionSet = [[NSMutableSet alloc] initWithSet:propertyNames];
+        [interactionSet intersectSet:keys];
+        propertyNames = [interactionSet copy];
+    }
     NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
     for (NSString *propertyName in propertyNames) {
         objectInfo[propertyName] = [result stringForColumn:propertyName];
@@ -327,8 +365,13 @@ static NSString * SlangFavorTableName = @"slang_favor";
     return asset;
 }
 
-+ (MiewahWord *)wordAssetFromFavorResult:(FMResultSet *)result {
++ (MiewahWord *)wordAssetFromFavorResult:(FMResultSet *)result fetchingKeys:(NSSet<NSString *> *)keys {
     NSSet *propertyNames = [MiewahWord propertiesListInheritedFromClass:[MiewahAsset class]];
+    if (keys) {
+        NSMutableSet *interactionSet = [[NSMutableSet alloc] initWithSet:propertyNames];
+        [interactionSet intersectSet:keys];
+        propertyNames = [interactionSet copy];
+    }
     NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
     for (NSString *propertyName in propertyNames) {
         objectInfo[propertyName] = [result stringForColumn:propertyName];
@@ -337,8 +380,13 @@ static NSString * SlangFavorTableName = @"slang_favor";
     return asset;
 }
 
-+ (MiewahSlang *)slangAssetFromFavorResult:(FMResultSet *)result {
++ (MiewahSlang *)slangAssetFromFavorResult:(FMResultSet *)result fetchingKeys:(NSSet<NSString *> *)keys {
     NSSet *propertyNames = [MiewahSlang propertiesListInheritedFromClass:[MiewahAsset class]];
+    if (keys) {
+        NSMutableSet *interactionSet = [[NSMutableSet alloc] initWithSet:propertyNames];
+        [interactionSet intersectSet:keys];
+        propertyNames = [interactionSet copy];
+    }
     NSMutableDictionary *objectInfo = [NSMutableDictionary dictionary];
     for (NSString *propertyName in propertyNames) {
         objectInfo[propertyName] = [result stringForColumn:propertyName];
