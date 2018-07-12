@@ -106,6 +106,7 @@
 		9D7B493920C62BC100FDF0AD /* AppDelegate+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7B493820C62BC100FDF0AD /* AppDelegate+Appearance.m */; };
 		9D899BAA20F6EB890051223C /* LocalAssetCollectionViewSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BA920F6EB890051223C /* LocalAssetCollectionViewSectionHeader.m */; };
 		9D899BAE20F72A6D0051223C /* LocalAssetListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BAD20F72A6D0051223C /* LocalAssetListViewModel.m */; };
+		9D899BB120F793C00051223C /* UIViewController+NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BB020F793C00051223C /* UIViewController+NavigationItem.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -368,6 +369,8 @@
 		9D899BA920F6EB890051223C /* LocalAssetCollectionViewSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalAssetCollectionViewSectionHeader.m; sourceTree = "<group>"; };
 		9D899BAC20F72A6D0051223C /* LocalAssetListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalAssetListViewModel.h; sourceTree = "<group>"; };
 		9D899BAD20F72A6D0051223C /* LocalAssetListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalAssetListViewModel.m; sourceTree = "<group>"; };
+		9D899BAF20F793C00051223C /* UIViewController+NavigationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationItem.h"; sourceTree = "<group>"; };
+		9D899BB020F793C00051223C /* UIViewController+NavigationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationItem.m"; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -719,6 +722,8 @@
 			children = (
 				9D1B8FE32091D3750099976C /* UIViewController+Keyboard.h */,
 				9D1B8FE42091D3750099976C /* UIViewController+Keyboard.m */,
+				9D899BAF20F793C00051223C /* UIViewController+NavigationItem.h */,
+				9D899BB020F793C00051223C /* UIViewController+NavigationItem.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1664,6 +1669,7 @@
 				9D0AFE6520B5ACD100C93934 /* MiewahAssetRequestManager.m in Sources */,
 				9D1B8FA42090C1150099976C /* UIColor+Hex.m in Sources */,
 				9D6D4F24209467B6009AA9CE /* BaseResponseObject.m in Sources */,
+				9D899BB120F793C00051223C /* UIViewController+NavigationItem.m in Sources */,
 				9D1B8FAA2090C4A90099976C /* UIView+Border.m in Sources */,
 				9D1B8FB32090C77C0099976C /* ItemIntroductionCell.m in Sources */,
 				9DC34BDF20BE7CD90098AE7C /* DatabaseHelper.m in Sources */,

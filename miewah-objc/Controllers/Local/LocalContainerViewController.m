@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "LocalAssetViewController.h"
 #import "UIColor+Hex.h"
+#import "UIViewController+NavigationItem.h"
 
 @interface LocalContainerViewController ()
 
@@ -40,6 +41,7 @@
     if (@available(iOS 11, *)) {
         self.navigationController.navigationBar.prefersLargeTitles = YES;
     }
+    [self removeBackButtonItemTitle];
 }
 
 - (void)setupSubviews {
