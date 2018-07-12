@@ -14,6 +14,7 @@
 #import "UIColor+Hex.h"
 #import "LocalAssetListViewModel.h"
 #import "UIConstants.h"
+#import "AssetDetailViewController.h"
 
 @interface LocalAssetViewController ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -49,6 +50,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.vm fetchLocalAsset];
+    NSLog(@"%@ did appear", [self class]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,7 +102,7 @@
     [self.vm.readComplete subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void(^_)(void) = ^() {
-            self.btnSectionIndicator.enabled = self.vm.items.count == 0;
+            self.btnSectionIndicator.enabled = self.vm.items.count >= 10;
             [self.collectionView reloadData];
         };
         runOnMainThread(_);
@@ -108,6 +110,35 @@
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    MiewahAsset *asset = self.vm.items[indexPath.row];
+    NSDictionary *userInfo = @{
+                               AssetObjectIdKey: alwaysString(asset.objectId),
+                               AssetItemKey: alwaysString(asset.item),
+                               AssetPronunciationKey: alwaysString(asset.pronunciation),
+                               };
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AssetDetailViewController *vc = nil;
+    switch (self.type) {
+        case MiewahItemTypeCharacter:
+            vc = [sb instantiateViewControllerWithIdentifier:@"CharacterDetailViewController"];
+            break;
+        case MiewahItemTypeWord:
+            vc = [sb instantiateViewControllerWithIdentifier:@"WordDetailViewController"];
+            break;
+        case MiewahItemTypeSlang:
+            vc = [sb instantiateViewControllerWithIdentifier:@"SlangDetailViewController"];
+            break;
+        default:
+            break;
+    }
+    if (vc == nil) return;
+    
+    [vc setInitialInfo:userInfo];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark - UICollectionViewDataSource
 

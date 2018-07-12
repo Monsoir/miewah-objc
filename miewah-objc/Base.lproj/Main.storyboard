@@ -54,7 +54,7 @@
         <!--咩-->
         <scene sceneID="mYc-IU-tee">
             <objects>
-                <viewController title="咩" hidesBottomBarWhenPushed="YES" id="sLH-pY-bax" customClass="WordDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WordDetailViewController" title="咩" hidesBottomBarWhenPushed="YES" id="sLH-pY-bax" customClass="WordDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLF-HJ-ggu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -402,7 +402,7 @@
         <!--惦过碌蔗-->
         <scene sceneID="Tf9-R0-Tkk">
             <objects>
-                <viewController title="惦过碌蔗" hidesBottomBarWhenPushed="YES" id="qan-Yb-Ktr" customClass="SlangDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlangDetailViewController" title="惦过碌蔗" hidesBottomBarWhenPushed="YES" id="qan-Yb-Ktr" customClass="SlangDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6g3-P1-K6R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -903,7 +903,7 @@
         <!--咩-->
         <scene sceneID="3XP-5k-jTX">
             <objects>
-                <viewController title="咩" hidesBottomBarWhenPushed="YES" id="ryt-Iu-3cy" customClass="CharacterDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterDetailViewController" title="咩" hidesBottomBarWhenPushed="YES" id="ryt-Iu-3cy" customClass="CharacterDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jc-d9-sSU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
