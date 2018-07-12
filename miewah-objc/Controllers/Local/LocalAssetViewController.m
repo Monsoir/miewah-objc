@@ -15,6 +15,7 @@
 #import "LocalAssetListViewModel.h"
 #import "UIConstants.h"
 #import "AssetDetailViewController.h"
+#import "CollectionViewSimpleTextPlaceholderBackgoundView.h"
 
 @interface LocalAssetViewController ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UIView *headerContainer;
 @property (nonatomic, strong) UILabel *lbSectionTitle;
 @property (nonatomic, strong) UIButton *btnSectionIndicator;
+@property (nonatomic, strong) CollectionViewSimpleTextPlaceholderBackgoundView *placeholderView;
 
 @property (nonatomic, assign) MiewahItemType type;
 @property (nonatomic, strong) LocalAssetListViewModel *vm;
@@ -102,7 +104,9 @@
     [self.vm.readComplete subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void(^_)(void) = ^() {
-            self.btnSectionIndicator.enabled = self.vm.items.count >= 10;
+            NSInteger count = self.vm.items.count;
+            self.btnSectionIndicator.enabled = count >= 10;
+            self.collectionView.backgroundView = count > 0 ? nil : self.placeholderView;
             [self.collectionView reloadData];
         };
         runOnMainThread(_);
@@ -194,6 +198,30 @@
         _btnSectionIndicator.enabled = NO;
     }
     return _btnSectionIndicator;
+}
+
+- (CollectionViewSimpleTextPlaceholderBackgoundView *)placeholderView {
+    if (_placeholderView == nil) {
+        static NSString *titleForCharacter = @"还没收藏关于「字」的内容";
+        static NSString *titleForWord = @"还没收藏关于「词」的内容";
+        static NSString *titleForSlang = @"还没收藏关于「短语」的内容";
+        NSString *title = nil;
+        switch (self.type) {
+            case MiewahItemTypeCharacter:
+                title = titleForCharacter;
+                break;
+            case MiewahItemTypeWord:
+                title = titleForWord;
+                break;
+            case MiewahItemTypeSlang:
+                title = titleForSlang;
+                break;
+            default:
+                break;
+        }
+        _placeholderView = [[CollectionViewSimpleTextPlaceholderBackgoundView alloc] initWithTitle:title];
+    }
+    return _placeholderView;
 }
 
 @end
