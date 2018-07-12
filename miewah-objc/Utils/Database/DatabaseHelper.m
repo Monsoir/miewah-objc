@@ -245,7 +245,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
 + (NSString *)createFavorTablesSQLs {
     static NSString *createCharacterTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text, createdAt text, updatedAt text)";
     static NSString *createWordTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, sentences text, pronunciationVoice text, createdAt text, updatedAt text)";
-    static NSString *createSlangTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, pronunciationVoice text, source text, sentence text, createdAt text, updatedAt text)";
+    static NSString *createSlangTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, pronunciationVoice text, source text, sentences text, createdAt text, updatedAt text)";
     
     NSString *createCharacterTableSQL = [NSString stringWithFormat:createCharacterTableSQLTemplate, CharacterFavorTableName];
     NSString *createWordTableSQL = [NSString stringWithFormat:createWordTableSQLTemplate, WordFavorTableName];
