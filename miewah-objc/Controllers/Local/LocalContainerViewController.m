@@ -37,7 +37,7 @@
 }
 
 - (void)setupNavigationBar {
-    self.title = @"本地收藏";
+    self.navigationItem.title = @"本地收藏";
     if (@available(iOS 11, *)) {
         self.navigationController.navigationBar.prefersLargeTitles = YES;
     }

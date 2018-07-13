@@ -37,8 +37,8 @@
     
     LocalContainerViewController *localVC = [[LocalContainerViewController alloc] init];
     UINavigationController *localNC = [[UINavigationController alloc] initWithRootViewController:localVC];
+    [[self class] configureViewController:localNC tabBarImage:[UIImage imageNamed:@"tab-bar-local"] selected:[UIImage imageNamed:@"tab-bar-local-selected"]];
     [localNC.navigationBar removeBottomLine];
-    localNC.tabBarItem.title = @"title";
     
     return @[
              characterNC,
@@ -56,7 +56,7 @@
 }
 
 + (void)configureViewController:(UIViewController *)vc tabBarImage:(UIImage *)image selected:(UIImage *)selectedImage {
-    vc.tabBarItem.title = @"";
+    vc.tabBarItem.title = nil;
     vc.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
     vc.tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
