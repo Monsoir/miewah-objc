@@ -108,6 +108,7 @@
 		9D899BAE20F72A6D0051223C /* LocalAssetListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BAD20F72A6D0051223C /* LocalAssetListViewModel.m */; };
 		9D899BB120F793C00051223C /* UIViewController+NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BB020F793C00051223C /* UIViewController+NavigationItem.m */; };
 		9D899BB920F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BB820F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m */; };
+		9D899BC120F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -374,6 +375,8 @@
 		9D899BB020F793C00051223C /* UIViewController+NavigationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationItem.m"; sourceTree = "<group>"; };
 		9D899BB720F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewSimpleTextPlaceholderBackgoundView.h; sourceTree = "<group>"; };
 		9D899BB820F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewSimpleTextPlaceholderBackgoundView.m; sourceTree = "<group>"; };
+		9D899BBF20F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewSimpleTextSectionAccessory.h; sourceTree = "<group>"; };
+		9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewSimpleTextSectionAccessory.m; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -569,6 +572,7 @@
 		9D1B8F92209053360099976C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D899BBE20F87E940051223C /* CollectionViewSimpleTextSectionAccessory */,
 				9D899BB620F79B420051223C /* CollectionViewBackgroundViews */,
 				9D899BA720F6EB6B0051223C /* LocalAssetCollectionViewSectionHeader */,
 				9D63B12820F5F05000B847B0 /* LocalAssetCollectionViewCell */,
@@ -1048,6 +1052,15 @@
 				9D899BB820F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m */,
 			);
 			path = CollectionViewBackgroundViews;
+			sourceTree = "<group>";
+		};
+		9D899BBE20F87E940051223C /* CollectionViewSimpleTextSectionAccessory */ = {
+			isa = PBXGroup;
+			children = (
+				9D899BBF20F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.h */,
+				9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */,
+			);
+			path = CollectionViewSimpleTextSectionAccessory;
 			sourceTree = "<group>";
 		};
 		9D8BCB5C20C3DF7C009C913B /* UITableViewCell */ = {
@@ -1645,6 +1658,7 @@
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
 				9DAD6C5520EB6F55001BBCE0 /* SlangService.m in Sources */,
 				9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */,
+				9D899BC120F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */,
 				9DAD6C9620EF5E6C001BBCE0 /* ViewShooter.m in Sources */,

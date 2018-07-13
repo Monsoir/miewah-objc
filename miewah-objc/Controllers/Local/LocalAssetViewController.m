@@ -10,16 +10,19 @@
 #import "UIContainerBuilder.h"
 #import <Masonry/Masonry.h>
 #import "LocalAssetCollectionViewCell.h"
-#import "LocalAssetCollectionViewSectionHeader.h"
+#import "CollectionViewSimpleTextSectionAccessory.h"
 #import "UIColor+Hex.h"
 #import "LocalAssetListViewModel.h"
 #import "UIConstants.h"
 #import "AssetDetailViewController.h"
 #import "CollectionViewSimpleTextPlaceholderBackgoundView.h"
 
-@interface LocalAssetViewController ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+static NSInteger ListMaxLength = 10;
+
+@interface LocalAssetViewController ()<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CollectionViewSimpleTextSectionAccessoryDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) UIView *headerContainer;
 @property (nonatomic, strong) UILabel *lbSectionTitle;
 @property (nonatomic, strong) UIButton *btnSectionIndicator;
@@ -29,6 +32,7 @@
 
 @property (nonatomic, assign) MiewahItemType type;
 @property (nonatomic, strong) LocalAssetListViewModel *vm;
+@property (nonatomic, assign) BOOL needSectionFooter;
 
 @end
 
@@ -107,8 +111,9 @@
         @strongify(self);
         void(^_)(void) = ^() {
             NSInteger count = self.vm.items.count;
-            self.btnSectionIndicator.enabled = count >= 10;
+            self.btnSectionIndicator.enabled = count >= ListMaxLength;
             self.collectionView.backgroundView = count > 0 ? nil : self.placeholderView;
+            self.needSectionFooter = count >= ListMaxLength;
             [self.collectionView reloadData];
         };
         runOnMainThread(_);
@@ -149,7 +154,7 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.vm.items.count >= 10 ? 11 : self.vm.items.count;
+    return self.vm.items.count >= ListMaxLength ? ListMaxLength + 1 : self.vm.items.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -164,16 +169,47 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        CollectionViewSimpleTextSectionAccessory *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:[CollectionViewSimpleTextSectionAccessory reuseIdentifier] forIndexPath:indexPath];
+        footer.delegate = self;
+        footer.title = @"查看更多 >";
+        return footer;
+    }
+    
+    return nil;
+}
+
+#pragma mark - CollectionViewSimpleTextSectionAccessoryDelegate
+
+- (void)simpleTextSectionAccessoryDidSelect:(CollectionViewSimpleTextSectionAccessory *)accessory {
+    NSLog(@"hi");
+}
+
 #pragma mark - Accessors
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         NSArray<NSDictionary *> *cellInfo = @[@{CollectionViewBuilderCellClassKey: [LocalAssetCollectionViewCell class],CollectionViewBuilderCellIdentifierKey:[LocalAssetCollectionViewCell reuseIdentifier]}];
-        UICollectionViewFlowLayout *flowLayout = [UIContainerBuilder collectionFlowLayoutWithItemSize:[LocalAssetCollectionViewCell cellSize] scrollDirection:UICollectionViewScrollDirectionHorizontal];
-        _collectionView = [UIContainerBuilder collectionViewOfFlowLayout:flowLayout backgroundColor:[UIColor colorWithHexString:@"#F6F6F6"] cellInfo:cellInfo delegate:self dataSource:self];
+        _collectionView = [UIContainerBuilder collectionViewOfFlowLayout:self.flowLayout backgroundColor:[UIColor colorWithHexString:@"#F6F6F6"] cellInfo:cellInfo delegate:self dataSource:self];
+        [_collectionView registerClass:[CollectionViewSimpleTextSectionAccessory class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:[CollectionViewSimpleTextSectionAccessory reuseIdentifier]];
         _collectionView.alwaysBounceHorizontal = YES;
     }
     return _collectionView;
+}
+
+- (UICollectionViewFlowLayout *)flowLayout {
+    if (_flowLayout == nil) {
+        _flowLayout = [UIContainerBuilder collectionFlowLayoutWithItemSize:[LocalAssetCollectionViewCell cellSize] scrollDirection:UICollectionViewScrollDirectionHorizontal];
+        _flowLayout.footerReferenceSize = CGSizeMake(100, 100);
+    }
+    return _flowLayout;
+}
+
+- (void)setNeedSectionFooter:(BOOL)needSectionFooter {
+    _needSectionFooter = needSectionFooter;
+    self.flowLayout.footerReferenceSize = CGSizeMake(_needSectionFooter ? 100 : 0, 100);
 }
 
 - (UIView *)headerContainer {
