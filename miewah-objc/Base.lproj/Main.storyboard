@@ -26,23 +26,17 @@
                                     <constraint firstAttribute="height" constant="667" id="eCM-4L-Ugy"/>
                                 </constraints>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-g9-e4y">
-                                <rect key="frame" x="177.5" y="357" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3ZF-It-BpY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="49" id="1lq-P0-8Ra"/>
                             <constraint firstAttribute="trailing" secondItem="3ZF-It-BpY" secondAttribute="trailing" id="HQe-f3-Glz"/>
                             <constraint firstItem="3ZF-It-BpY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tp4-o5-N1d"/>
-                            <constraint firstItem="nTq-g9-e4y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mPo-Th-iKy"/>
-                            <constraint firstItem="nTq-g9-e4y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="u0g-fB-pHq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="字" id="n1O-Ln-Ze1"/>
                     <connections>
-                        <outlet property="loadingIndicator" destination="nTq-g9-e4y" id="G7B-Im-RRA"/>
                         <outlet property="tableView" destination="3ZF-It-BpY" id="sNI-lf-uP8"/>
                         <segue destination="ryt-Iu-3cy" kind="show" identifier="showCharacterDetail" id="AiO-pz-xXt"/>
                     </connections>
@@ -212,24 +206,18 @@
                                     <outlet property="delegate" destination="tLY-lZ-jMt" id="hqS-1E-tXC"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DY6-ed-rZk">
-                                <rect key="frame" x="177.5" y="357" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="DY6-ed-rZk" firstAttribute="centerY" secondItem="6jj-wp-fhB" secondAttribute="centerY" id="6xm-dJ-Ztc"/>
                             <constraint firstAttribute="bottom" secondItem="VTV-OF-dBx" secondAttribute="bottom" id="PcM-5k-PyV"/>
                             <constraint firstItem="VTV-OF-dBx" firstAttribute="top" secondItem="zQc-Ek-kGL" secondAttribute="top" id="Tpu-av-fIQ"/>
                             <constraint firstAttribute="trailing" secondItem="VTV-OF-dBx" secondAttribute="trailing" id="Vol-0g-F3r"/>
                             <constraint firstItem="VTV-OF-dBx" firstAttribute="leading" secondItem="zQc-Ek-kGL" secondAttribute="leading" id="a3l-fI-aUj"/>
-                            <constraint firstItem="DY6-ed-rZk" firstAttribute="centerX" secondItem="6jj-wp-fhB" secondAttribute="centerX" id="htV-6P-17e"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6jj-wp-fhB"/>
                     </view>
                     <navigationItem key="navigationItem" title="故仔" id="eXW-AY-eGH"/>
                     <connections>
-                        <outlet property="loadingIndicator" destination="DY6-ed-rZk" id="ubZ-H6-l6j"/>
                         <outlet property="tableView" destination="VTV-OF-dBx" id="cgs-Ua-6b6"/>
                         <segue destination="qan-Yb-Ktr" kind="show" identifier="showSlangDetail" id="8vv-eD-QY2"/>
                     </connections>
@@ -501,16 +489,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rrD-Uh-Yci">
-                                <rect key="frame" x="177.5" y="357" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jBy-hm-Aq7" firstAttribute="top" secondItem="VQh-Nl-HAj" secondAttribute="top" id="Iro-Nf-WAt"/>
                             <constraint firstAttribute="bottom" secondItem="jBy-hm-Aq7" secondAttribute="bottom" id="JJe-an-ICj"/>
-                            <constraint firstItem="rrD-Uh-Yci" firstAttribute="centerX" secondItem="wGB-J3-5FL" secondAttribute="centerX" id="KJ3-Ii-MON"/>
-                            <constraint firstItem="rrD-Uh-Yci" firstAttribute="centerY" secondItem="wGB-J3-5FL" secondAttribute="centerY" id="THh-wd-7l0"/>
                             <constraint firstAttribute="trailing" secondItem="jBy-hm-Aq7" secondAttribute="trailing" id="qyd-dF-lhy"/>
                             <constraint firstItem="jBy-hm-Aq7" firstAttribute="leading" secondItem="VQh-Nl-HAj" secondAttribute="leading" id="sqw-gf-mJV"/>
                         </constraints>
@@ -518,7 +501,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="词" id="Tt4-eD-tAS"/>
                     <connections>
-                        <outlet property="loadingIndicator" destination="rrD-Uh-Yci" id="rgr-Qm-hAW"/>
                         <outlet property="tableView" destination="jBy-hm-Aq7" id="Kko-Sd-EeN"/>
                         <segue destination="sLH-pY-bax" kind="show" identifier="showWordDetail" id="VN9-U8-rpq"/>
                     </connections>

@@ -16,10 +16,10 @@
 #import "MiewahCharacter.h"
 
 #import "UIColor+Hex.h"
+#import "UITableView+AutoRefresh.h"
 
 @interface CharactersViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
@@ -59,10 +59,9 @@
     [self.vm.loadedSuccess subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
-            if (self.refreshControl.isRefreshing) [self.refreshControl endRefreshing];
-            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         };
         
         runOnMainThread(_);
@@ -72,7 +71,6 @@
         @strongify(self);
         void (^_)(void) = ^void() {
             [self.refreshControl endRefreshing];
-            if ([self.loadingIndicator isAnimating]) [self.loadingIndicator stopAnimating];
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:nil style:BannerStyleWarning onViewController:nil];
         };
@@ -87,9 +85,8 @@
             [self.tableView reloadData];
             
             // 再请求新数据
-            self.loadingIndicator.hidden = NO;
-            [self.loadingIndicator startAnimating];
-            [self.vm reloadData];
+            [self.tableView refresh];
+            [self actionRefresh:nil];
         };
         runOnMainThread(_);
     }];
@@ -112,8 +109,6 @@
     
     // 设置 tableview 最下面的点击加载
     self.tableView.tableFooterView = self.footer;
-    
-    [self.loadingIndicator stopAnimating];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
