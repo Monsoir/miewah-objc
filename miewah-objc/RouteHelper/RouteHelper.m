@@ -11,6 +11,10 @@
 
 NSString * const AppScheme = @"com.wenyongyang.miewah";
 
+static NSString *CharacterRouteRoot = @"character";
+static NSString *WordRouteRoot = @"word";
+static NSString *SlangRouteRoot = @"slang";
+
 #define alwaysString(aString) aString ?: @""
 
 @implementation RouteHelper
@@ -18,15 +22,15 @@ NSString * const AppScheme = @"com.wenyongyang.miewah";
 /* list pattern */
 
 + (NSString *)characterListRoutePattern {
-    return @"/characters";
+    return [NSString stringWithFormat:@"/%@s", CharacterRouteRoot];
 }
 
 + (NSString *)wordListRoutePattern {
-    return @"/words";
+    return [NSString stringWithFormat:@"/%@s", WordRouteRoot];
 }
 
 + (NSString *)slangListRoutePattern {
-    return @"/slangs";
+    return [NSString stringWithFormat:@"/%@s", SlangRouteRoot];
 }
 
 /* list url */
@@ -49,29 +53,30 @@ NSString * const AppScheme = @"com.wenyongyang.miewah";
 /* detail pattern */
 
 + (NSString *)characterDetailRoutePattern {
-    return @"/character/:objectId";
+    return [NSString stringWithFormat:@"/%@/:objectId", CharacterRouteRoot];
 }
 
 + (NSString *)wordDetailRoutePattern {
     return @"/word/:objectId";
+    return [NSString stringWithFormat:@"/%@/:objectId", WordRouteRoot];
 }
 
 + (NSString *)slangDetailRoutePattern {
-    return @"/slang/:objectId";
+    return [NSString stringWithFormat:@"/%@/:objectId", SlangRouteRoot];
 }
 
 /* detail url string generators */
 
 + (NSString *)characterDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
-    return [self assetDetailRouteBuilderOfRootRoute:@"/character" objectId:objectId item:item pronunciation:pronunciation];
+    return [self assetDetailRouteBuilderOfRootRoute:[NSString stringWithFormat:@"/%@", CharacterRouteRoot] objectId:objectId item:item pronunciation:pronunciation];
 }
 
 + (NSString *)wordDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
-    return [self assetDetailRouteBuilderOfRootRoute:@"/word" objectId:objectId item:item pronunciation:pronunciation];
+    return [self assetDetailRouteBuilderOfRootRoute:[NSString stringWithFormat:@"/%@", WordRouteRoot] objectId:objectId item:item pronunciation:pronunciation];
 }
 
 + (NSString *)slangDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
-    return [self assetDetailRouteBuilderOfRootRoute:@"/slang" objectId:objectId item:item pronunciation:pronunciation];
+    return [self assetDetailRouteBuilderOfRootRoute:[NSString stringWithFormat:@"/%@", SlangRouteRoot] objectId:objectId item:item pronunciation:pronunciation];
 }
 
 /* detail url generators */
