@@ -23,7 +23,8 @@
 }
 
 - (NSString *)queryParams {
-    return [self joinBySeparator:@"&"];
+    // 对于 query params, 需要对中文进行转义
+    return [[self joinBySeparator:@"&"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
 
 @end

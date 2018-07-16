@@ -126,13 +126,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahCharacter *character = (MiewahCharacter *)self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{
-                               AssetObjectIdKey: alwaysString(character.objectId),
-                               AssetItemKey: alwaysString(character.item),
-                               AssetPronunciationKey: alwaysString(character.pronunciation),
-                               };
-    [self performSegueWithIdentifier:@"showCharacterDetail" sender:userInfo];
+    MiewahCharacter *item = (MiewahCharacter *)self.vm.items[indexPath.row];
+    NSURL *routeURL = [RouteHelper characterDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation];
+    [JLRoutes routeURL:routeURL];
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {
@@ -144,13 +140,6 @@
         _vm = [[CharacterListViewModel alloc] init];
     }
     return _vm;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
-    if ([segue.identifier isEqualToString:@"showCharacterDetail"]) {
-        CharacterDetailViewController *vc = segue.destinationViewController;
-        [vc setInitialInfo: userInfo];
-    }
 }
 
 - (MiewahItemType)miewahItemType {

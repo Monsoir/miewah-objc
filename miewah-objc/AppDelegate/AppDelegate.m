@@ -12,6 +12,7 @@
 #import "AppDelegate+DataBaseStuff.h"
 #import "AppDelegate+TabBar.h"
 #import "AppDelegate+Appearance.h"
+#import "AppDelegate+Routes.h"
 
 @interface AppDelegate ()
 
@@ -22,18 +23,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-#if DEBUG
-    [self logSandBoxPaths];
-#endif
-    [self clearLoginInfo];
+//#if DEBUG
+//    [self logSandBoxPaths];
+//#endif
+//    [self clearLoginInfo];
     
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.backgroundColor = UIColor.whiteColor;
-    _window.rootViewController = [self configureTabBarStuff];
-    [_window makeKeyAndVisible];
+    
+    // 配置路由
+    [self configureRoutes];
+    
+    // 配置页面主题颜色
     [self configureAppTintColor];
     
-//    [[MiewahUser thisUser] fetchUserInfoFromLocal];
+    _window.rootViewController = [self configureTabBarStuff];
+    [_window makeKeyAndVisible];
+    
+    // 配置数据库文件
     [self initializeDatabase];
     
     return YES;

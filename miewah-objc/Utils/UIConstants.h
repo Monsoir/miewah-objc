@@ -36,6 +36,10 @@ dispatch_async(queue, block);\
 #define runOnMainThread(block) dispatch_queue_async_safe(dispatch_get_main_queue(), block)
 #endif
 
+#ifndef MainStoryBoard
+#define MainStoryBoard [UIStoryboard storyboardWithName:@"Main" bundle:nil]
+#endif
+
 @interface UIConstants : NSObject
 
 + (CGFloat)NavigationBarHeight;

@@ -26,15 +26,15 @@
 }
 
 - (void)testCharacterListRoute {
-    NSAssert([[RouteHelper characterListRoute] isEqualToString:@"/characters"], @"");
+    NSAssert([[RouteHelper characterListRoutePattern] isEqualToString:@"/characters"], @"");
 }
 
 - (void)testWordListRoute {
-    NSAssert([[RouteHelper wordListRoute] isEqualToString:@"/words"], @"");
+    NSAssert([[RouteHelper wordListRoutePattern] isEqualToString:@"/words"], @"");
 }
 
 - (void)testSlangListRoute {
-    NSAssert([[RouteHelper slangListRoute] isEqualToString:@"/slangs"], @"");
+    NSAssert([[RouteHelper slangListRoutePattern] isEqualToString:@"/slangs"], @"");
 }
 
 - (void)testCharacterListRouteURL {

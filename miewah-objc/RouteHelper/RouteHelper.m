@@ -9,33 +9,58 @@
 #import "RouteHelper.h"
 #import "NSDictionary+JoinString.h"
 
+NSString * const AppScheme = @"com.wenyongyang.miewah";
+
 #define alwaysString(aString) aString ?: @""
 
 @implementation RouteHelper
 
-+ (NSString *)characterListRoute {
+/* list pattern */
+
++ (NSString *)characterListRoutePattern {
     return @"/characters";
 }
 
-+ (NSString *)wordListRoute {
++ (NSString *)wordListRoutePattern {
     return @"/words";
 }
 
-+ (NSString *)slangListRoute {
++ (NSString *)slangListRoutePattern {
     return @"/slangs";
 }
 
+/* list url */
+
 + (NSURL *)characterListRouteURL {
-    return [NSURL URLWithString:[self characterListRoute]];
+    NSString *routePattern = [self assetListRouteBuilderOfRootRoute:[self characterListRoutePattern]];
+    return [NSURL URLWithString:routePattern];
 }
 
 + (NSURL *)wordListRouteURL {
-    return [NSURL URLWithString:[self wordListRoute]];
+    NSString *routePattern = [self assetListRouteBuilderOfRootRoute:[self wordListRoutePattern]];
+    return [NSURL URLWithString:routePattern];
 }
 
 + (NSURL *)slangListRouteURL {
-    return [NSURL URLWithString:[self slangListRoute]];
+    NSString *routePattern = [self assetListRouteBuilderOfRootRoute:[self slangListRoutePattern]];
+    return [NSURL URLWithString:routePattern];
 }
+
+/* detail pattern */
+
++ (NSString *)characterDetailRoutePattern {
+    return @"/character/:objectId";
+}
+
++ (NSString *)wordDetailRoutePattern {
+    return @"/word/:objectId";
+}
+
++ (NSString *)slangDetailRoutePattern {
+    return @"/slang/:objectId";
+}
+
+/* detail url string generators */
 
 + (NSString *)characterDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
     return [self assetDetailRouteBuilderOfRootRoute:@"/character" objectId:objectId item:item pronunciation:pronunciation];
@@ -49,25 +74,38 @@
     return [self assetDetailRouteBuilderOfRootRoute:@"/slang" objectId:objectId item:item pronunciation:pronunciation];
 }
 
+/* detail url generators */
+
 + (NSURL *)characterDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
-    return [NSURL URLWithString:[self characterDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation]];
+    NSString *pattern = [self characterDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation];
+    return [NSURL URLWithString:pattern];
 }
 
 + (NSURL *)wordDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
-    return [NSURL URLWithString:[self wordDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation]];
+    NSString *pattern = [self wordDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation];
+    return [NSURL URLWithString:pattern];
 }
 
 + (NSURL *)slangDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
-    return [NSURL URLWithString:[self slangDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation]];
+    NSString *pattern = [self slangDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation];
+    return [NSURL URLWithString:pattern];
 }
 
 /*** Private ***/
+
++ (NSString *)assetListRouteBuilderOfRootRoute:(NSString *)root {
+    NSAssert(root.length > 0, @"should pass a root route");
+    
+    // 没错，这里只有一个 `/`
+    return [NSString stringWithFormat:@"%@:/%@", AppScheme, root];
+}
 
 + (NSString *)assetDetailRouteBuilderOfRootRoute:(NSString *)root objectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation {
     NSAssert(root.length > 0, @"should pass a root route");
     NSAssert(objectId.length > 0, @"should pass an object ID");
     
-    NSMutableString *mPath = [NSMutableString stringWithFormat:@"%@/%@", root, objectId];
+    // 没错，这里只有一个 `/`
+    NSMutableString *mPath = [NSMutableString stringWithFormat:@"%@:/%@/%@", AppScheme, root, objectId];
     
     NSDictionary *queryParmsDict = @{
                                      @"item": alwaysString(item),

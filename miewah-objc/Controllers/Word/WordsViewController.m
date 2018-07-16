@@ -113,13 +113,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahWord *word = (MiewahWord *)self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{
-                               AssetObjectIdKey: alwaysString(word.objectId),
-                               AssetItemKey: alwaysString(word.item),
-                               AssetPronunciationKey: alwaysString(word.pronunciation),
-                               };
-    [self performSegueWithIdentifier:@"showWordDetail" sender:userInfo];
+    MiewahWord *item = (MiewahWord *)self.vm.items[indexPath.row];
+    NSURL *routeURL = [RouteHelper wordDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation];
+    [JLRoutes routeURL:routeURL];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -135,13 +131,6 @@
     cell.meaning = word.meaning;
     cell.updateAt = [word normalFormatUpdatedAt];
     return cell;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
-    if ([segue.identifier isEqualToString:@"showWordDetail"]) {
-        WordDetailViewController *vc = segue.destinationViewController;
-        [vc setInitialInfo: userInfo];
-    }
 }
 
 - (MiewahItemType)miewahItemType {

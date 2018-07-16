@@ -114,6 +114,7 @@
 		9D899BCF20FC3D300051223C /* NSDictionary+JoinString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BCE20FC3D300051223C /* NSDictionary+JoinString.m */; };
 		9D899BD720FC45300051223C /* NSDictionary+JoinStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BD620FC45300051223C /* NSDictionary+JoinStringTests.m */; };
 		9D899BD920FC456F0051223C /* RouteHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BD820FC456F0051223C /* RouteHelperTests.m */; };
+		9D899BDC20FC67C30051223C /* AppDelegate+Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BDB20FC67C30051223C /* AppDelegate+Routes.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -389,6 +390,8 @@
 		9D899BCE20FC3D300051223C /* NSDictionary+JoinString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JoinString.m"; sourceTree = "<group>"; };
 		9D899BD620FC45300051223C /* NSDictionary+JoinStringTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JoinStringTests.m"; sourceTree = "<group>"; };
 		9D899BD820FC456F0051223C /* RouteHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteHelperTests.m; sourceTree = "<group>"; };
+		9D899BDA20FC67C30051223C /* AppDelegate+Routes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Routes.h"; sourceTree = "<group>"; };
+		9D899BDB20FC67C30051223C /* AppDelegate+Routes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Routes.m"; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -1040,6 +1043,8 @@
 				9DC34BE320BE8D120098AE7C /* AppDelegate+DataBaseStuff.m */,
 				9D4500A1209750A400A63C20 /* AppDelegate+TestForDevelopment.h */,
 				9D4500A2209750A400A63C20 /* AppDelegate+TestForDevelopment.m */,
+				9D899BDA20FC67C30051223C /* AppDelegate+Routes.h */,
+				9D899BDB20FC67C30051223C /* AppDelegate+Routes.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -1697,6 +1702,7 @@
 				9DC9018B20A2DC43004670B8 /* EditViewController.m in Sources */,
 				9D6D4F0A2092FDA4009AA9CE /* CharactersViewController.m in Sources */,
 				9D23560B20B3FF950051A1CE /* ItemEditExtraInfoViewController.m in Sources */,
+				9D899BDC20FC67C30051223C /* AppDelegate+Routes.m in Sources */,
 				9D1B8F89209051690099976C /* WordDetailViewController.m in Sources */,
 				9D48863D20AEC7940007D297 /* TextTableViewCell.m in Sources */,
 				9DA882F2209C0AA7002E02DC /* BaseListReponseObject.m in Sources */,

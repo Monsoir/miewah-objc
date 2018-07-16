@@ -118,13 +118,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiewahSlang *slang = (MiewahSlang *)self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{
-                               AssetObjectIdKey: alwaysString(slang.objectId),
-                               AssetItemKey: alwaysString(slang.item),
-                               AssetPronunciationKey: alwaysString(slang.pronunciation),
-                               };
-    [self performSegueWithIdentifier:@"showSlangDetail" sender:userInfo];
+    MiewahSlang *item = (MiewahSlang *)self.vm.items[indexPath.row];
+    NSURL *routeURL = [RouteHelper slangDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation];
+    [JLRoutes routeURL:routeURL];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -140,13 +136,6 @@
     cell.meaning = slang.meaning;
     cell.updateAt = [slang normalFormatUpdatedAt];
     return cell;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)userInfo {
-    if ([segue.identifier isEqualToString:@"showSlangDetail"]) {
-        SlangDetailViewController *vc = segue.destinationViewController;
-        [vc setInitialInfo: userInfo];
-    }
 }
 
 - (MiewahItemType)miewahItemType {

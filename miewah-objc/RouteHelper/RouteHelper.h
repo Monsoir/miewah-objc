@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const AppScheme;
+
 /**
  路由常数
  
@@ -20,11 +22,11 @@
 
 /* List */
 
-/** Route string **/
+/** Route pattern **/
 
-+ (NSString *)characterListRoute;
-+ (NSString *)wordListRoute;
-+ (NSString *)slangListRoute;
++ (NSString *)characterListRoutePattern;
++ (NSString *)wordListRoutePattern;
++ (NSString *)slangListRoutePattern;
 
 /** Route url **/
 
@@ -33,6 +35,12 @@
 + (NSURL *)slangListRouteURL;
 
 /* Detail */
+
+/** Route Pattern **/
+
++ (NSString *)characterDetailRoutePattern;
++ (NSString *)wordDetailRoutePattern;
++ (NSString *)slangDetailRoutePattern;
 
 /** Route string **/
 
