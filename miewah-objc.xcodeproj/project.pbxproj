@@ -110,6 +110,10 @@
 		9D899BB920F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BB820F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m */; };
 		9D899BC120F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */; };
 		9D899BC320FC34820051223C /* JLRoutes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D899BC220FC34820051223C /* JLRoutes.framework */; };
+		9D899BCB20FC36FB0051223C /* RouteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BCA20FC36FB0051223C /* RouteHelper.m */; };
+		9D899BCF20FC3D300051223C /* NSDictionary+JoinString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BCE20FC3D300051223C /* NSDictionary+JoinString.m */; };
+		9D899BD720FC45300051223C /* NSDictionary+JoinStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BD620FC45300051223C /* NSDictionary+JoinStringTests.m */; };
+		9D899BD920FC456F0051223C /* RouteHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BD820FC456F0051223C /* RouteHelperTests.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -379,6 +383,12 @@
 		9D899BBF20F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewSimpleTextSectionAccessory.h; sourceTree = "<group>"; };
 		9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewSimpleTextSectionAccessory.m; sourceTree = "<group>"; };
 		9D899BC220FC34820051223C /* JLRoutes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JLRoutes.framework; path = Carthage/Build/iOS/JLRoutes.framework; sourceTree = "<group>"; };
+		9D899BC920FC36FB0051223C /* RouteHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteHelper.h; sourceTree = "<group>"; };
+		9D899BCA20FC36FB0051223C /* RouteHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteHelper.m; sourceTree = "<group>"; };
+		9D899BCD20FC3D300051223C /* NSDictionary+JoinString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JoinString.h"; sourceTree = "<group>"; };
+		9D899BCE20FC3D300051223C /* NSDictionary+JoinString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JoinString.m"; sourceTree = "<group>"; };
+		9D899BD620FC45300051223C /* NSDictionary+JoinStringTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JoinStringTests.m"; sourceTree = "<group>"; };
+		9D899BD820FC456F0051223C /* RouteHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteHelperTests.m; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -624,6 +634,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D899BCC20FC3D260051223C /* NSDictionary */,
 				9DD5974020F4D6960079DEF5 /* NSObject */,
 				9DF66E7920C4325300DC1342 /* NSDateFormatter */,
 				9D8BCB5C20C3DF7C009C913B /* UITableViewCell */,
@@ -763,6 +774,7 @@
 		9D20FDD120887E3A00FC4856 /* miewah-objc */ = {
 			isa = PBXGroup;
 			children = (
+				9D899BC820FC36F40051223C /* RouteHelper */,
 				9DAD6C3920EB62B6001BBCE0 /* Service */,
 				9DAD6C1320EB16CD001BBCE0 /* DAO */,
 				9D7B493620C62AED00FDF0AD /* AppDelegate */,
@@ -789,6 +801,7 @@
 		9D20FDEA20887E3E00FC4856 /* miewah-objcTests */ = {
 			isa = PBXGroup;
 			children = (
+				9D899BD320FC441C0051223C /* RouteHelper */,
 				9DD5974620F4DF5D0079DEF5 /* Categories */,
 				9DAD6C7D20EDF775001BBCE0 /* Utils */,
 				9DAD6C4D20EB6A1F001BBCE0 /* Service */,
@@ -1065,6 +1078,40 @@
 				9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */,
 			);
 			path = CollectionViewSimpleTextSectionAccessory;
+			sourceTree = "<group>";
+		};
+		9D899BC820FC36F40051223C /* RouteHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9D899BC920FC36FB0051223C /* RouteHelper.h */,
+				9D899BCA20FC36FB0051223C /* RouteHelper.m */,
+			);
+			path = RouteHelper;
+			sourceTree = "<group>";
+		};
+		9D899BCC20FC3D260051223C /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				9D899BCD20FC3D300051223C /* NSDictionary+JoinString.h */,
+				9D899BCE20FC3D300051223C /* NSDictionary+JoinString.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		9D899BD020FC411B0051223C /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				9D899BD620FC45300051223C /* NSDictionary+JoinStringTests.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		9D899BD320FC441C0051223C /* RouteHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9D899BD820FC456F0051223C /* RouteHelperTests.m */,
+			);
+			path = RouteHelper;
 			sourceTree = "<group>";
 		};
 		9D8BCB5C20C3DF7C009C913B /* UITableViewCell */ = {
@@ -1376,6 +1423,7 @@
 		9DD5974620F4DF5D0079DEF5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D899BD020FC411B0051223C /* NSDictionary */,
 				9DD5974720F4DF660079DEF5 /* NSObject */,
 			);
 			path = Categories;
@@ -1664,6 +1712,7 @@
 				9D23560520B3C1520051A1CE /* UITextView+Placeholder.m in Sources */,
 				9DAD6C5520EB6F55001BBCE0 /* SlangService.m in Sources */,
 				9D3950D020B665870049C9E8 /* MiewahPostNetworker.m in Sources */,
+				9D899BCB20FC36FB0051223C /* RouteHelper.m in Sources */,
 				9D899BC120F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m in Sources */,
 				9D4500C720986BCE00A63C20 /* UITableView+AutoRefresh.m in Sources */,
 				9D6BF4D620C131A100E95D4B /* ItemTableViewCell.m in Sources */,
@@ -1696,6 +1745,7 @@
 				9D1B8FC22090CA710099976C /* Footer.m in Sources */,
 				9DAD6C5F20ECAFE2001BBCE0 /* WordListViewModel.m in Sources */,
 				9D6D4F0D2092FE3E009AA9CE /* WordsViewController.m in Sources */,
+				9D899BCF20FC3D300051223C /* NSDictionary+JoinString.m in Sources */,
 				9D23560E20B4011C0051A1CE /* EditExtraInfoViewModel.m in Sources */,
 				9D45009A20973C8600A63C20 /* MiewahUser.m in Sources */,
 				9D0574EA2098949E00FB7661 /* CharacterDetailViewModel.m in Sources */,
@@ -1738,8 +1788,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DAD6C8020EDF794001BBCE0 /* DatetimeHelperTests.m in Sources */,
+				9D899BD720FC45300051223C /* NSDictionary+JoinStringTests.m in Sources */,
 				9DAD6C3620EB6079001BBCE0 /* LeanCloudWordDaoTests.m in Sources */,
 				9DAD6C5720EB7004001BBCE0 /* WordServiceTests.m in Sources */,
+				9D899BD920FC456F0051223C /* RouteHelperTests.m in Sources */,
 				9DAD6C2E20EB3476001BBCE0 /* LeanCloudCharacterDaoTests.m in Sources */,
 				9DD5974920F4DF840079DEF5 /* NSObject+Property.m in Sources */,
 				9DAD6C3320EB4C02001BBCE0 /* LeanCloudAPIManagerTests.m in Sources */,
