@@ -109,6 +109,7 @@
 		9D899BB120F793C00051223C /* UIViewController+NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BB020F793C00051223C /* UIViewController+NavigationItem.m */; };
 		9D899BB920F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BB820F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m */; };
 		9D899BC120F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */; };
+		9D899BC320FC34820051223C /* JLRoutes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D899BC220FC34820051223C /* JLRoutes.framework */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -377,6 +378,7 @@
 		9D899BB820F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewSimpleTextPlaceholderBackgoundView.m; sourceTree = "<group>"; };
 		9D899BBF20F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewSimpleTextSectionAccessory.h; sourceTree = "<group>"; };
 		9D899BC020F87F2E0051223C /* CollectionViewSimpleTextSectionAccessory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewSimpleTextSectionAccessory.m; sourceTree = "<group>"; };
+		9D899BC220FC34820051223C /* JLRoutes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JLRoutes.framework; path = Carthage/Build/iOS/JLRoutes.framework; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				9D1B8F91209052E10099976C /* AFNetworking.framework in Frameworks */,
 				9DC34BE120BE82570098AE7C /* FMDB.framework in Frameworks */,
 				9D6BF4D820C137A500E95D4B /* Masonry.framework in Frameworks */,
+				9D899BC320FC34820051223C /* JLRoutes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +810,7 @@
 		9D20FE0420887E8800FC4856 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D899BC220FC34820051223C /* JLRoutes.framework */,
 				9D6BF4D720C137A500E95D4B /* Masonry.framework */,
 				9DC34BE020BE82570098AE7C /* FMDB.framework */,
 				9D1B8F90209052E10099976C /* AFNetworking.framework */,
@@ -1577,12 +1581,14 @@
 				"$(SRCROOT)/Carthage/Build/iOS/AFNetworking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FMDB.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/JLRoutes.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveObjC.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AFNetworking.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FMDB.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Masonry.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JLRoutes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
