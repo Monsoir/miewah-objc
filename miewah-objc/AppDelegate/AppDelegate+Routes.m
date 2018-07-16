@@ -26,25 +26,34 @@
 
 - (void)configureListRoutes {
     
-    JLRRouteDefinition *characterListRoute = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper characterListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
-        [AppTabBarController setSelectedIndex:0];
-        return YES;
-    }];
-    
-    JLRRouteDefinition *wordListRoute = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper wordListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
-        [AppTabBarController setSelectedIndex:1];
-        return YES;
-    }];
-    
-    JLRRouteDefinition *slangListRoute = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper slangListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
-        [AppTabBarController setSelectedIndex:2];
-        return YES;
-    }];
-    
     JLRoutes *routes = [JLRoutes globalRoutes];
-    [routes addRoute:characterListRoute];
-    [routes addRoute:wordListRoute];
-    [routes addRoute:slangListRoute];
+    
+    {
+        /* character 列表路由 */
+        JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper characterListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
+            [AppTabBarController setSelectedIndex:0];
+            return YES;
+        }];
+        [routes addRoute:route];
+    }
+    
+    {
+        /* word 列表路由 */
+        JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper wordListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
+            [AppTabBarController setSelectedIndex:1];
+            return YES;
+        }];
+        [routes addRoute:route];
+    }
+    
+    {
+        /* slang 列表路由 */
+        JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper slangListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
+            [AppTabBarController setSelectedIndex:2];
+            return YES;
+        }];
+        [routes addRoute:route];
+    }
 }
 
 - (void)configureDetailRoutes {
@@ -54,6 +63,7 @@
     UIStoryboard *sb = MainStoryBoard;
     
     {
+        /* character 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper characterDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
             [AppTabBarController setSelectedIndex:0];
             
@@ -72,6 +82,7 @@
     }
     
     {
+        /* word 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper wordDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
             
             [AppTabBarController setSelectedIndex:1];
@@ -91,6 +102,7 @@
     }
     
     {
+        /* slang 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper slangDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
             
             [AppTabBarController setSelectedIndex:2];
