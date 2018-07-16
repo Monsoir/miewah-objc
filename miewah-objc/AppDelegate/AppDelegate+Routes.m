@@ -54,6 +54,15 @@
         }];
         [routes addRoute:route];
     }
+    
+    {
+        /* 本地 asset 列表路由 */
+        JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper localAssetListRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
+            [AppTabBarController setSelectedIndex:3];
+            return YES;
+        }];
+        [routes addRoute:route];
+    }
 }
 
 - (void)configureDetailRoutes {
@@ -62,10 +71,18 @@
     
     UIStoryboard *sb = MainStoryBoard;
     
+    void(^ChangeTabIfNeeded)(BOOL, NSInteger) = ^(BOOL doNotChangeTab, NSInteger tabIndex) {
+        if (doNotChangeTab == NO) {
+            [AppTabBarController setSelectedIndex:tabIndex];
+        }
+    };
+    
     {
         /* character 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper characterDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
-            [AppTabBarController setSelectedIndex:0];
+            
+            BOOL doNotChangeTab = [[parameters objectForKey:DoNotChangeTabKey] boolValue];
+            ChangeTabIfNeeded(doNotChangeTab, 0);
             
             NSDictionary *userInfo = @{
                                        AssetItemKey: alwaysString([parameters objectForKey:AssetItemKey]),
@@ -85,7 +102,8 @@
         /* word 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper wordDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
             
-            [AppTabBarController setSelectedIndex:1];
+            BOOL doNotChangeTab = [[parameters objectForKey:DoNotChangeTabKey] boolValue];
+            ChangeTabIfNeeded(doNotChangeTab, 1);
             
             NSDictionary *userInfo = @{
                                        AssetItemKey: alwaysString([parameters objectForKey:AssetItemKey]),
@@ -105,7 +123,8 @@
         /* slang 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper slangDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
             
-            [AppTabBarController setSelectedIndex:2];
+            BOOL doNotChangeTab = [[parameters objectForKey:DoNotChangeTabKey] boolValue];
+            ChangeTabIfNeeded(doNotChangeTab, 2);
             
             NSDictionary *userInfo = @{
                                        AssetItemKey: alwaysString([parameters objectForKey:AssetItemKey]),

@@ -14,8 +14,10 @@
 #import "UIColor+Hex.h"
 #import "LocalAssetListViewModel.h"
 #import "UIConstants.h"
-#import "AssetDetailViewController.h"
+//#import "AssetDetailViewController.h"
 #import "CollectionViewSimpleTextPlaceholderBackgoundView.h"
+#import <JLRoutes/JLRoutes.h>
+#import "RouteHelper.h"
 
 static NSInteger ListMaxLength = 10;
 
@@ -124,31 +126,27 @@ static NSInteger ListMaxLength = 10;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     MiewahAsset *asset = self.vm.items[indexPath.row];
-    NSDictionary *userInfo = @{
-                               AssetObjectIdKey: alwaysString(asset.objectId),
-                               AssetItemKey: alwaysString(asset.item),
-                               AssetPronunciationKey: alwaysString(asset.pronunciation),
-                               };
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    AssetDetailViewController *vc = nil;
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSURL *routeURL = nil;
     switch (self.type) {
         case MiewahItemTypeCharacter:
-            vc = [sb instantiateViewControllerWithIdentifier:@"CharacterDetailViewController"];
+            routeURL = [RouteHelper characterDetailRouteURLOfObjectId:asset.objectId item:asset.item pronunciation:asset.pronunciation otherParams:otherParams];
             break;
         case MiewahItemTypeWord:
-            vc = [sb instantiateViewControllerWithIdentifier:@"WordDetailViewController"];
+            routeURL = [RouteHelper wordDetailRouteURLOfObjectId:asset.objectId item:asset.item pronunciation:asset.pronunciation otherParams:otherParams];
             break;
         case MiewahItemTypeSlang:
-            vc = [sb instantiateViewControllerWithIdentifier:@"SlangDetailViewController"];
+            routeURL = [RouteHelper slangDetailRouteURLOfObjectId:asset.objectId item:asset.item pronunciation:asset.pronunciation otherParams:otherParams];
             break;
         default:
             break;
     }
-    if (vc == nil) return;
+    if (routeURL == nil) return;
     
-    [vc setInitialInfo:userInfo];
-    [self.navigationController pushViewController:vc animated:YES];
+    [JLRoutes routeURL:routeURL];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -185,6 +183,7 @@ static NSInteger ListMaxLength = 10;
 
 - (void)simpleTextSectionAccessoryDidSelect:(CollectionViewSimpleTextSectionAccessory *)accessory {
     NSLog(@"hi");
+    NSAssert(false, @"todo");
 }
 
 #pragma mark - Accessors

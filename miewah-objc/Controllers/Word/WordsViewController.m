@@ -114,7 +114,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahWord *item = (MiewahWord *)self.vm.items[indexPath.row];
-    NSURL *routeURL = [RouteHelper wordDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation];
+    NSURL *routeURL = [RouteHelper wordDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation otherParams:nil];
     [JLRoutes routeURL:routeURL];
 }
 

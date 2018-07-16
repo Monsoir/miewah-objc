@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const AppScheme;
+extern NSString * const DoNotChangeTabKey;
 
 /**
  路由常数
@@ -27,12 +28,14 @@ extern NSString * const AppScheme;
 + (NSString *)characterListRoutePattern;
 + (NSString *)wordListRoutePattern;
 + (NSString *)slangListRoutePattern;
++ (NSString *)localAssetListRoutePattern;
 
 /** Route url **/
 
 + (NSURL *)characterListRouteURL;
 + (NSURL *)wordListRouteURL;
 + (NSURL *)slangListRouteURL;
++ (NSURL *)localAssetListRouteURL;
 
 /* Detail */
 
@@ -44,14 +47,14 @@ extern NSString * const AppScheme;
 
 /** Route string **/
 
-+ (NSString *)characterDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation;
-+ (NSString *)wordDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation;
-+ (NSString *)slangDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation;
++ (NSString *)characterDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams;
++ (NSString *)wordDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams;
++ (NSString *)slangDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams;
 
 /** Route url **/
 
-+ (NSURL *)characterDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation;
-+ (NSURL *)wordDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation;
-+ (NSURL *)slangDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation;
++ (NSURL *)characterDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams;
++ (NSURL *)wordDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams;
++ (NSURL *)slangDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams;
 
 @end

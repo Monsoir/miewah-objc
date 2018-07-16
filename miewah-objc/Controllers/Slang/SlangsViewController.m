@@ -119,7 +119,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MiewahSlang *item = (MiewahSlang *)self.vm.items[indexPath.row];
-    NSURL *routeURL = [RouteHelper slangDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation];
+    NSURL *routeURL = [RouteHelper slangDetailRouteURLOfObjectId:item.objectId item:item.item pronunciation:item.pronunciation otherParams:nil];
     [JLRoutes routeURL:routeURL];
 }
 
