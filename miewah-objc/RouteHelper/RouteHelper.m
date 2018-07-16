@@ -116,7 +116,7 @@ static NSString *LocalAssetRouteRoot = @"local-asset";
     return [NSString stringWithFormat:@"%@:/%@", AppScheme, root];
 }
 
-+ (NSString *)assetDetailRouteBuilderOfRootRoute:(NSString *)root objectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary<NSDictionary *, id> *)otherParams {
++ (NSString *)assetDetailRouteBuilderOfRootRoute:(NSString *)root objectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary<NSString *, id> *)otherParams {
     NSAssert(root.length > 0, @"should pass a root route");
     NSAssert(objectId.length > 0, @"should pass an object ID");
     
