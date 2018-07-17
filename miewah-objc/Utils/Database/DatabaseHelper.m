@@ -243,15 +243,23 @@ static NSString * SlangFavorTableName = @"slang_favor";
 }
 
 + (NSString *)createFavorTablesSQLs {
-    static NSString *createCharacterTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text, createdAt text, updatedAt text)";
-    static NSString *createWordTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, sentences text, pronunciationVoice text, createdAt text, updatedAt text)";
-    static NSString *createSlangTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text, pronunciation text, meaning text, pronunciationVoice text, source text, sentences text, createdAt text, updatedAt text)";
+    // 创建表
+    static NSString *createCharacterTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text NOT NULL UNIQUE, pronunciation text, meaning text, inputMethods text, sentences text, pronunciationVoice text, source text, createdAt text, updatedAt text)";
+    static NSString *createWordTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text NOT NULL UNIQUE, pronunciation text, meaning text, sentences text, pronunciationVoice text, createdAt text, updatedAt text)";
+    static NSString *createSlangTableSQLTemplate = @"CREATE TABLE IF NOT EXISTS %@ (objectId text PRIMARY KEY, item text NOT NULL UNIQUE, pronunciation text, meaning text, pronunciationVoice text, source text, sentences text, createdAt text, updatedAt text)";
     
     NSString *createCharacterTableSQL = [NSString stringWithFormat:createCharacterTableSQLTemplate, CharacterFavorTableName];
     NSString *createWordTableSQL = [NSString stringWithFormat:createWordTableSQLTemplate, WordFavorTableName];
     NSString *createSlangTableSQL = [NSString stringWithFormat:createSlangTableSQLTemplate, SlangFavorTableName];
     
-    return [@[createCharacterTableSQL, createWordTableSQL, createSlangTableSQL] componentsJoinedByString:@";"];
+    // 创建索引
+    static NSString *createTableIndexSQLTemplate = @"CREATE INDEX %@_object_id_index ON %@ (objectId);CREATE INDEX %@_item_index ON %@ (item);";
+    
+    NSString *createCharacterTableIndexSQL = [NSString stringWithFormat:createTableIndexSQLTemplate, CharacterFavorTableName, CharacterFavorTableName, CharacterFavorTableName, CharacterFavorTableName];
+    NSString *createWordTableIndexSQL = [NSString stringWithFormat:createTableIndexSQLTemplate, WordFavorTableName, WordFavorTableName, WordFavorTableName, WordFavorTableName];
+    NSString *createSlangTableIndexSQL = [NSString stringWithFormat:createTableIndexSQLTemplate, SlangFavorTableName, SlangFavorTableName, SlangFavorTableName, SlangFavorTableName];
+    
+    return [@[createCharacterTableSQL, createWordTableSQL, createSlangTableSQL, createCharacterTableIndexSQL, createWordTableIndexSQL, createSlangTableIndexSQL] componentsJoinedByString:@";"];
 }
 
 + (NSString *)cacheTableNameOfType:(MiewahItemType)type {
