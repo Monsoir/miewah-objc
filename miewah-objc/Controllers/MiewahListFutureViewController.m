@@ -10,14 +10,17 @@
 //
 
 #import "MiewahListFutureViewController.h"
-#import "UITableView+AutoRefresh.h"
 #import <Masonry/Masonry.h>
+#import <JLRoutes/JLRoutes.h>
+#import "UITableView+AutoRefresh.h"
 #import "UIColor+Hex.h"
 #import "ItemTableViewCell.h"
 #import "ListLoadMoreFooterView.h"
 #import "MiewahAsset.h"
 #import "MiewahListViewModel.h"
 #import "UIConstants.h"
+#import "RouteHelper.h"
+#import "UIViewController+NavigationItem.h"
 
 NSString * const MiewahListFutureViewControllerTypeKey = @"MiewahListFutureViewControllerTypeKey";
 
@@ -73,6 +76,7 @@ NSString * const MiewahListFutureViewControllerTypeKey = @"MiewahListFutureViewC
             break;
     }
     self.title = title;
+    [self removeBackButtonItemTitle];
 }
 
 - (void)linkSingals {
@@ -109,6 +113,35 @@ NSString * const MiewahListFutureViewControllerTypeKey = @"MiewahListFutureViewC
 - (void)actionRefresh {
     [self.vm resetFlags];
     [self.vm readFavored];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MiewahAsset *asset = self.vm.items[indexPath.row];
+    NSURL *route = nil;
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    switch ([[self.vm class] assetType]) {
+        case MiewahItemTypeCharacter:
+            route = [RouteHelper characterDetailRouteURLOfObjectId:asset.objectId item:asset.item pronunciation:asset.pronunciation otherParams:otherParams];
+            break;
+        case MiewahItemTypeWord:
+            route = [RouteHelper wordDetailRouteURLOfObjectId:asset.objectId item:asset.item pronunciation:asset.pronunciation otherParams:otherParams];
+            break;
+        case MiewahItemTypeSlang:
+            route = [RouteHelper slangDetailRouteURLOfObjectId:asset.objectId item:asset.item pronunciation:asset.pronunciation otherParams:otherParams];
+            break;
+            
+        default:
+            break;
+    }
+    if (route == nil) return;
+    
+    [JLRoutes routeURL:route];
 }
 
 #pragma mark - UITableViewDataSource
