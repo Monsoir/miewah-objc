@@ -14,6 +14,7 @@
 #import "ShortItemDetailHeaderView.h"
 #import "MiewahCharacter.h"
 #import "MiewahWord.h"
+#import "PlainTextFooter.h"
 
 static NSString *SectionIdentifier = @"section-header";
 
@@ -21,6 +22,7 @@ static NSString *SectionIdentifier = @"section-header";
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet ShortItemDetailHeaderView *header;
+@property (nonatomic, strong) PlainTextFooter *plainTextFooter;
 
 @property (nonatomic, strong) WordDetailViewModel *vm;
 
@@ -46,6 +48,7 @@ static NSString *SectionIdentifier = @"section-header";
             // 当自动更新完成后，才将 table view 的更新控件赋值到
             // 避免多次重复刷新产生不必要的 bug
             self.tableView.refreshControl = self.tableRefresher;
+            [self.plainTextFooter setDetail:[self.vm.asset normalFormatUpdatedAt]];
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -59,6 +62,7 @@ static NSString *SectionIdentifier = @"section-header";
             self.header.lbWord.text = self.vm.asset.item;
             self.header.lbPronounce.text = self.vm.asset.pronunciation;
             [self.tableRefresher endRefreshing];
+            [self.plainTextFooter setDetail:[self.vm.asset normalFormatUpdatedAt]];
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -116,6 +120,7 @@ static NSString *SectionIdentifier = @"section-header";
     
     self.header.lbWord.text = self.vm.asset.item;
     self.header.lbPronounce.text = self.vm.asset.pronunciation;
+    self.tableView.tableFooterView = self.plainTextFooter;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -144,6 +149,15 @@ static NSString *SectionIdentifier = @"section-header";
 
 - (void)setInitialInfo:(NSDictionary *)info {
     _vm = [[WordDetailViewModel alloc] initWithInfo:info];
+}
+
+- (PlainTextFooter *)plainTextFooter {
+    if (_plainTextFooter == nil) {
+        _plainTextFooter = [[PlainTextFooter alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 100)];
+        _plainTextFooter.lbTtitle.textColor = [UIColor lightGrayColor];
+        _plainTextFooter.prompt = @"最后更新于";
+    }
+    return _plainTextFooter;
 }
 
 @end
