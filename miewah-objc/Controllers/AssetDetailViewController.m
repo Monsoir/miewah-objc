@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIBarButtonItem *loadingIndicatorItem;
 @property (nonatomic, strong) UIBarButtonItem *shareItem;
 @property (nonatomic, strong) UIBarButtonItem *favorItem;
+@property (nonatomic, strong) UIRefreshControl *tableRefresher;
 
 @end
 
@@ -78,6 +79,10 @@
     self.vm.favored ? [self.vm unfavorAsset] : [self.vm favorAsset];
 }
 
+- (void)actionUserRefresh {
+    [self.vm loadData];
+}
+
 #pragma mark - Accessors
 
 - (UIBarButtonItem *)loadingIndicatorItem {
@@ -103,6 +108,14 @@
         _favorItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"collect_selected"] style:UIBarButtonItemStylePlain target:self action:@selector(actionToggleCollect)];
     }
     return _favorItem;
+}
+
+- (UIRefreshControl *)tableRefresher {
+    if (_tableRefresher == nil) {
+        _tableRefresher = [[UIRefreshControl alloc] init];
+        [_tableRefresher addTarget:self action:@selector(actionUserRefresh) forControlEvents:UIControlEventValueChanged];
+    }
+    return _tableRefresher;
 }
 
 @end

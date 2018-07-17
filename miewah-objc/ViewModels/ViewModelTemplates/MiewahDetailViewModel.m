@@ -105,6 +105,7 @@
         self.asset = asset;
         self.displayContents = [self makeContentToDisplay];
         if (self.assetExist == NO) self.assetExist = YES;
+        if (self.favored) [self favorAsset];
         [self.loadedSuccess sendNext:self.asset];
     }];
 }

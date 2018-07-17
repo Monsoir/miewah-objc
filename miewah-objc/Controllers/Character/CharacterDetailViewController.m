@@ -42,6 +42,10 @@ static NSString *SectionIdentifier = @"section-header";
             [self.navigationItem setRightBarButtonItems:@[self.shareItem, self.favorItem]];
             self.header.lbWord.text = self.vm.asset.item;
             self.header.lbPronounce.text = self.vm.asset.pronunciation;
+            
+            // 当自动更新完成后，才将 table view 的更新控件赋值到
+            // 避免多次重复刷新产生不必要的 bug
+            self.tableView.refreshControl = self.tableRefresher;
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -54,6 +58,7 @@ static NSString *SectionIdentifier = @"section-header";
             [self.navigationItem setRightBarButtonItems:@[self.shareItem, self.favorItem]];
             self.header.lbWord.text = self.vm.asset.item;
             self.header.lbPronounce.text = self.vm.asset.pronunciation;
+            [self.tableRefresher endRefreshing];
             [self.tableView reloadData];
         };
         runOnMainThread(_);
@@ -62,6 +67,7 @@ static NSString *SectionIdentifier = @"section-header";
     [self.vm.loadedFailure subscribeNext:^(NSString * _Nullable x) {
         @strongify(self);
         void (^_)(void) = ^void() {
+            [self.tableRefresher endRefreshing];
             [NotificationBanner displayABannerWithTitle:@"请求失败" detail:nil style:BannerStyleWarning onViewController:self.navigationController];
         };
         runOnMainThread(_);

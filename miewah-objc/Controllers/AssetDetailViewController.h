@@ -15,11 +15,13 @@
 @property (nonatomic, strong, readonly) UIBarButtonItem *loadingIndicatorItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *shareItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *favorItem;
+@property (nonatomic, strong, readonly) UIRefreshControl *tableRefresher;
 
 - (void)setInitialInfo:(NSDictionary *)info;
 - (void)setupNavigationBar;
 - (void)setupSubviews;
 - (void)linkSignals;
 - (void)actionShare;
+- (void)actionUserRefresh;
 
 @end
