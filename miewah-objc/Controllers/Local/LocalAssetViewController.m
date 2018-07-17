@@ -59,7 +59,6 @@ static NSInteger ListMaxLength = 10;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.vm fetchLocalAsset];
-    NSLog(@"%@ did appear", [self class]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,7 +111,8 @@ static NSInteger ListMaxLength = 10;
         @strongify(self);
         void(^_)(void) = ^() {
             NSInteger count = self.vm.items.count;
-            self.btnSectionIndicator.enabled = count >= ListMaxLength;
+//            self.btnSectionIndicator.enabled = count >= ListMaxLength;
+            self.btnSectionIndicator.enabled = YES;
             self.collectionView.backgroundView = count > 0 ? nil : self.placeholderView;
             self.needSectionFooter = count >= ListMaxLength;
             [self.collectionView reloadData];
@@ -178,11 +178,15 @@ static NSInteger ListMaxLength = 10;
     return nil;
 }
 
+- (void)actionCheckMore {
+    NSURL *routeURL = [RouteHelper localAssetConcreteListRouteURLOfType:self.type otherParams:nil];
+    [JLRoutes routeURL:routeURL];
+}
+
 #pragma mark - CollectionViewSimpleTextSectionAccessoryDelegate
 
 - (void)simpleTextSectionAccessoryDidSelect:(CollectionViewSimpleTextSectionAccessory *)accessory {
-    NSLog(@"hi");
-    NSAssert(false, @"todo");
+    [self actionCheckMore];
 }
 
 #pragma mark - Accessors
@@ -234,6 +238,7 @@ static NSInteger ListMaxLength = 10;
         NSAttributedString *disabledAttributedTitle = [[NSAttributedString alloc] initWithString:title attributes:self.indicatorDisableAttributes];
         [_btnSectionIndicator setAttributedTitle:enabledAttributedTitle forState:UIControlStateNormal];
         [_btnSectionIndicator setAttributedTitle:disabledAttributedTitle forState:UIControlStateDisabled];
+        [_btnSectionIndicator addTarget:self action:@selector(actionCheckMore) forControlEvents:UIControlEventTouchUpInside];
         _btnSectionIndicator.enabled = NO;
     }
     return _btnSectionIndicator;

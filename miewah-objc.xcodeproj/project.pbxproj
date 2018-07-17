@@ -116,6 +116,7 @@
 		9D899BD920FC456F0051223C /* RouteHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BD820FC456F0051223C /* RouteHelperTests.m */; };
 		9D899BDC20FC67C30051223C /* AppDelegate+Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BDB20FC67C30051223C /* AppDelegate+Routes.m */; };
 		9D899BE020FD998C0051223C /* PlainTextFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BDF20FD998C0051223C /* PlainTextFooter.m */; };
+		9D899BE320FDC5480051223C /* MiewahListFutureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D899BE220FDC5480051223C /* MiewahListFutureViewController.m */; };
 		9D8BCB5B20C3DF2F009C913B /* EditRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */; };
 		9D8BCB5F20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB5E20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.m */; };
 		9D8BCB6320C41FB1009C913B /* MiewahAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D8BCB6220C41FB1009C913B /* MiewahAudioHelper.m */; };
@@ -395,6 +396,8 @@
 		9D899BDB20FC67C30051223C /* AppDelegate+Routes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Routes.m"; sourceTree = "<group>"; };
 		9D899BDE20FD998C0051223C /* PlainTextFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTextFooter.h; sourceTree = "<group>"; };
 		9D899BDF20FD998C0051223C /* PlainTextFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTextFooter.m; sourceTree = "<group>"; };
+		9D899BE120FDC5480051223C /* MiewahListFutureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahListFutureViewController.h; sourceTree = "<group>"; };
+		9D899BE220FDC5480051223C /* MiewahListFutureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahListFutureViewController.m; sourceTree = "<group>"; };
 		9D8BCB5920C3DF2F009C913B /* EditRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditRecordTableViewCell.h; sourceTree = "<group>"; };
 		9D8BCB5A20C3DF2F009C913B /* EditRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditRecordTableViewCell.m; sourceTree = "<group>"; };
 		9D8BCB5D20C3DF91009C913B /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 				9D1B8F82209051430099976C /* AboutMeViewController.m */,
 				9DC9018C20A2E228004670B8 /* MiewahListViewController.h */,
 				9DC9018D20A2E228004670B8 /* MiewahListViewController.m */,
+				9D899BE120FDC5480051223C /* MiewahListFutureViewController.h */,
+				9D899BE220FDC5480051223C /* MiewahListFutureViewController.m */,
 				9DAD6C9A20EFDB3D001BBCE0 /* AssetDetailViewController.h */,
 				9DAD6C9B20EFDB3D001BBCE0 /* AssetDetailViewController.m */,
 			);
@@ -1725,6 +1730,7 @@
 				9DF322732099870200D5C463 /* MiewahListViewModel.m in Sources */,
 				9D4500C320985B6A00A63C20 /* MiewahCharacterRequestManager.m in Sources */,
 				9D20FDD720887E3A00FC4856 /* ViewController.m in Sources */,
+				9D899BE320FDC5480051223C /* MiewahListFutureViewController.m in Sources */,
 				9DAD6C2120EB196B001BBCE0 /* LeanCloudWordDAO.m in Sources */,
 				9DAD6C2C20EB1EF5001BBCE0 /* LeanCloudGetter.m in Sources */,
 				9DAD6C8B20EF1890001BBCE0 /* CustomAlertController.m in Sources */,

@@ -16,12 +16,13 @@ static NSString *CharacterRouteRoot = @"character";
 static NSString *WordRouteRoot = @"word";
 static NSString *SlangRouteRoot = @"slang";
 static NSString *LocalAssetRouteRoot = @"local-asset";
+static NSString *LocalAssetConcreteRouteRoot = @"local-asset-concrete-list";
 
 #define alwaysString(aString) aString ?: @""
 
 @implementation RouteHelper
 
-/* list pattern */
+/* list pattern - 用于注册 */
 
 + (NSString *)characterListRoutePattern {
     return [NSString stringWithFormat:@"/%@s", CharacterRouteRoot];
@@ -39,7 +40,21 @@ static NSString *LocalAssetRouteRoot = @"local-asset";
     return [NSString stringWithFormat:@"/%@s", LocalAssetRouteRoot];
 }
 
-/* list url */
++ (NSString *)localAssetConcreteListRoutePattern {
+    return [NSString stringWithFormat:@"/%@/:type", LocalAssetConcreteRouteRoot];
+}
+
+/* list url string generators - 用于生成 url*/
++ (NSString *)localAssetConcreteListRouteOfType:(NSInteger)type otherParams:(NSDictionary<NSString *,id> *)otherParams {
+    NSMutableString *mPath = [NSMutableString stringWithFormat:@"%@://%@/%ld", AppScheme, LocalAssetConcreteRouteRoot, type];
+    
+    if (otherParams) {
+        [mPath appendString:[NSString stringWithFormat:@"?%@", [otherParams queryParams]]];
+    }
+    return [mPath copy];
+}
+
+/* list url - 用于调用 */
 
 + (NSURL *)characterListRouteURL {
     NSString *routePattern = [self assetListRouteBuilderOfRootRoute:[self characterListRoutePattern]];
@@ -61,7 +76,17 @@ static NSString *LocalAssetRouteRoot = @"local-asset";
     return [NSURL URLWithString:routePattern];
 }
 
-/* detail pattern */
++ (NSURL *)localAssetConcreteListRouteURL {
+    NSString *routePattern = [self assetListRouteBuilderOfRootRoute:[self localAssetConcreteListRoutePattern]];
+    return [NSURL URLWithString:routePattern];
+}
+
++ (NSURL *)localAssetConcreteListRouteURLOfType:(NSInteger)type otherParams:(NSDictionary<NSString *,id> *)otherParams {
+    NSString *pattern = [self localAssetConcreteListRouteOfType:type otherParams:otherParams];
+    return [NSURL URLWithString:pattern];
+}
+
+/* detail pattern - 用于注册 */
 
 + (NSString *)characterDetailRoutePattern {
     return [NSString stringWithFormat:@"/%@/:objectId", CharacterRouteRoot];
@@ -76,7 +101,7 @@ static NSString *LocalAssetRouteRoot = @"local-asset";
     return [NSString stringWithFormat:@"/%@/:objectId", SlangRouteRoot];
 }
 
-/* detail url string generators */
+/* detail url string generators - 用于生成 url */
 
 + (NSString *)characterDetailRouteOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams {
     return [self assetDetailRouteBuilderOfRootRoute:[NSString stringWithFormat:@"/%@", CharacterRouteRoot] objectId:objectId item:item pronunciation:pronunciation otherParams:otherParams];
@@ -90,7 +115,7 @@ static NSString *LocalAssetRouteRoot = @"local-asset";
     return [self assetDetailRouteBuilderOfRootRoute:[NSString stringWithFormat:@"/%@", SlangRouteRoot] objectId:objectId item:item pronunciation:pronunciation otherParams:otherParams];
 }
 
-/* detail url generators */
+/* detail url generators - 用于调用 */
 
 + (NSURL *)characterDetailRouteURLOfObjectId:(NSString *)objectId item:(NSString *)item pronunciation:(NSString *)pronunciation otherParams:(NSDictionary <NSString *, id> *)otherParams {
     NSString *pattern = [self characterDetailRouteOfObjectId:objectId item:item pronunciation:pronunciation otherParams:otherParams];

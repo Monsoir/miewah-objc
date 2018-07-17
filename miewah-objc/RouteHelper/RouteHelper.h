@@ -29,6 +29,7 @@ extern NSString * const DoNotChangeTabKey;
 + (NSString *)wordListRoutePattern;
 + (NSString *)slangListRoutePattern;
 + (NSString *)localAssetListRoutePattern;
++ (NSString *)localAssetConcreteListRoutePattern;
 
 /** Route url **/
 
@@ -36,6 +37,11 @@ extern NSString * const DoNotChangeTabKey;
 + (NSURL *)wordListRouteURL;
 + (NSURL *)slangListRouteURL;
 + (NSURL *)localAssetListRouteURL;
++ (NSURL *)localAssetConcreteListRouteURL;
+
++ (NSString *)localAssetConcreteListRouteOfType:(NSInteger)type otherParams:(NSDictionary<NSString *, id> *)otherParams;
+
++ (NSURL *)localAssetConcreteListRouteURLOfType:(NSInteger)type otherParams:(NSDictionary<NSString *, id> *)otherParams;
 
 /* Detail */
 

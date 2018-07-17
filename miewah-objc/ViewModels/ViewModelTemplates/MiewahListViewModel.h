@@ -21,10 +21,13 @@ typedef void(^MiewahReadCacheCompletion)(void);
 
 @property (nonatomic, strong, readonly) id<BaseServiceProtocol> service;
 @property (nonatomic, strong, readonly) RACSubject *readCacheCompleted;
+@property (nonatomic, strong, readonly) RACSubject *readFavoredCompleted;
 @property (nonatomic, strong, readonly) RACSubject *loadedSuccess;
 @property (nonatomic, strong, readonly) RACSubject *loadedFailure;
 
 @property (nonatomic, assign, readonly) NSInteger skip;
+
++ (instancetype)viewModelOfType:(MiewahItemType)type;
 
 /**
  读取缓存
@@ -44,9 +47,17 @@ typedef void(^MiewahReadCacheCompletion)(void);
 - (void)resetFlags;
 
 /**
- 重新加载数据
+ 重新加载数据，从 server 读取
  */
 - (void)reloadData;
+
+
+/**
+ 读取 favored
+ 
+ 内部维护一个读取状态，继续读取直接调用此方法
+ */
+- (void)readFavored;
 
 + (MiewahItemType)assetType;
 

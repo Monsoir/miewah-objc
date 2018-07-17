@@ -50,6 +50,10 @@
     [DatabaseHelper readItemFromFavorOfType:MiewahItemTypeCharacter identifier:identifier completion:completion];
 }
 
+- (void)readAssetListFromFavoredSkip:(NSInteger)skip count:(NSInteger)count completion:(void (^)(NSArray<MiewahAsset *> *, NSString *))completion {
+    [DatabaseHelper readFavoredItemsOfType:MiewahItemTypeCharacter skip:skip size:count completion:completion];
+}
+
 - (void)getListFromLeanCloudAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
     [self.dao getListAtPage:pageIndex success:^(NSArray *results) {
         NSMutableArray<MiewahCharacter *> *characters = [NSMutableArray array];

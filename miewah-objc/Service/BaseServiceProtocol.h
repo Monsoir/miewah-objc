@@ -15,17 +15,27 @@ typedef void(^ServiceGetDetailCompletion)(MiewahAsset *asset, NSError *error);
 
 @protocol BaseServiceProtocol <NSObject>
 
+/* From server */
 - (void)getListAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion;
 - (void)getDetailOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion;
 
+/* Cache */
 - (void)cacheList:(NSArray<MiewahAsset *> *)aList completion:(CacheCompletion)completion;
 - (void)readListCacheCompletion:(ReadCacheCompletion)completion;
 
+/* Favor */
 - (void)favorAnAsset:(MiewahAsset *)anAsset completion:(CacheCompletion)completion;
 - (void)unfavorAnAsset:(MiewahAsset *)anAsset completion:(CacheCompletion)completion;
 - (void)isAssetFavored:(MiewahAsset *)anAsset completion:(void(^)(BOOL favored, NSString *errorMsg))completion;
 - (void)readAssetFromFavoredOf:(NSString *)identifier completion:(void(^)(MiewahAsset *asset, NSString *errorMsg))completion;
-//- (void)readFromFavorForAnItem:(NSString *)itemId ofType:(MiewahItemType)type completion:(ServiceGetDetailCompletion)completion;
-//- (void)readFromFavorForItemListOfType:(MiewahItemType)type;
+
+
+/**
+ 从 favor 中读取列表
+
+ @param skip 跳过的个数
+ @param count 读取的个数
+ */
+- (void)readAssetListFromFavoredSkip:(NSInteger)skip count:(NSInteger)count completion:(void(^)(NSArray<MiewahAsset *> *list, NSString *errorMsg))completion;
 
 @end
