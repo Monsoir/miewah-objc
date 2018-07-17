@@ -12,7 +12,6 @@
 #import "ListLoadMoreFooterView.h"
 #import "SlangListViewModel.h"
 #import "MiewahSlang.h"
-#import "SlangDetailViewController.h"
 #import "FoundationConstants.h"
 
 #import "UIConstants.h"

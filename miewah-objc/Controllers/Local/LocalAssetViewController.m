@@ -14,7 +14,6 @@
 #import "UIColor+Hex.h"
 #import "LocalAssetListViewModel.h"
 #import "UIConstants.h"
-//#import "AssetDetailViewController.h"
 #import "CollectionViewSimpleTextPlaceholderBackgoundView.h"
 #import <JLRoutes/JLRoutes.h>
 #import "RouteHelper.h"

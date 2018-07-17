@@ -12,7 +12,6 @@
 #import "CharacterListViewModel.h"
 #import "UIConstants.h"
 #import "NotificationBanner.h"
-#import "CharacterDetailViewController.h"
 #import "MiewahCharacter.h"
 
 #import "UIColor+Hex.h"

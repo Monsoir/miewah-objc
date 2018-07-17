@@ -10,7 +10,6 @@
 #import "ItemTableViewCell.h"
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
-#import "WordDetailViewController.h"
 #import "MiewahWord.h"
 
 #import "WordListViewModel.h"
