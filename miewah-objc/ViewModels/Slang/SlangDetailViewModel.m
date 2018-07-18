@@ -24,7 +24,6 @@
              alwaysString(asset.meaning), // 意义
              alwaysString(asset.meaning), // 出处参考
              alwaysString(asset.sentences), // 例句
-             @"", //输入法
              ];
 }
 

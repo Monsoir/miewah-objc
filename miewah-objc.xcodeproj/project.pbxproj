@@ -177,6 +177,7 @@
 		9DF66E7C20C4326200DC1342 /* NSDateFormatter+Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF66E7B20C4326200DC1342 /* NSDateFormatter+Singleton.m */; };
 		9DF66E8020C4E1F400DC1342 /* MiewahFileMangerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */; };
 		9DFD2FB120FF2A5B00EB9580 /* InputMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD2FB020FF2A5B00EB9580 /* InputMethod.m */; };
+		9DFD2FB320FF38C500EB9580 /* CharacterDetailSections.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD2FB220FF38C500EB9580 /* CharacterDetailSections.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -508,6 +509,7 @@
 		9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahFileMangerHelper.m; sourceTree = "<group>"; };
 		9DFD2FAF20FF2A5B00EB9580 /* InputMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputMethod.h; sourceTree = "<group>"; };
 		9DFD2FB020FF2A5B00EB9580 /* InputMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputMethod.m; sourceTree = "<group>"; };
+		9DFD2FB220FF38C500EB9580 /* CharacterDetailSections.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterDetailSections.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,6 +745,7 @@
 		9D1B8FD32090E6CA0099976C /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				9DFD2FB220FF38C500EB9580 /* CharacterDetailSections.plist */,
 				9D1B8FD42090E6DF0099976C /* AboutMeLoggedItems.plist */,
 				9D1B8FD52090E6DF0099976C /* AboutMeUnloggedItems.plist */,
 				9D1B8FD72090E6DF0099976C /* SlangDetailSections.plist */,
@@ -1623,6 +1626,7 @@
 				9D1B8FDA2090E6DF0099976C /* WordDetailSections.plist in Resources */,
 				9D4500B120983F1600A63C20 /* ListLoadMoreFooterView.xib in Resources */,
 				9D2355EC20B2A0E80051A1CE /* NewWordFieldNames.plist in Resources */,
+				9DFD2FB320FF38C500EB9580 /* CharacterDetailSections.plist in Resources */,
 				9D20FDDC20887E3D00FC4856 /* Assets.xcassets in Resources */,
 				9DA882E6209BFDB0002E02DC /* LongItemTableViewCell.xib in Resources */,
 				9D1B8FC82090CD230099976C /* NotificationBanner.xib in Resources */,

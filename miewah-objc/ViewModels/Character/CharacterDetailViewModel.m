@@ -54,7 +54,7 @@
 @synthesize sectionNames = _sectionNames;
 - (NSArray<NSString *> *)sectionNames {
     if (_sectionNames == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"WordDetailSections" ofType:@"plist"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CharacterDetailSections" ofType:@"plist"];
         _sectionNames = [NSArray arrayWithContentsOfFile:path];
     }
     return _sectionNames;
