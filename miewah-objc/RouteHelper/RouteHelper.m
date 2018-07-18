@@ -76,11 +76,6 @@ static NSString *LocalAssetConcreteRouteRoot = @"local-asset-concrete-list";
     return [NSURL URLWithString:routePattern];
 }
 
-+ (NSURL *)localAssetConcreteListRouteURL {
-    NSString *routePattern = [self assetListRouteBuilderOfRootRoute:[self localAssetConcreteListRoutePattern]];
-    return [NSURL URLWithString:routePattern];
-}
-
 + (NSURL *)localAssetConcreteListRouteURLOfType:(NSInteger)type otherParams:(NSDictionary<NSString *,id> *)otherParams {
     NSString *pattern = [self localAssetConcreteListRouteOfType:type otherParams:otherParams];
     return [NSURL URLWithString:pattern];

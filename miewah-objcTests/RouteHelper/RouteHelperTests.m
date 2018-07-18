@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "RouteHelper.h"
+#import "FoundationConstants.h"
+#import "NSDictionary+JoinString.h"
 
 @interface RouteHelperTests : XCTestCase
 
@@ -37,6 +39,15 @@
     NSAssert([[RouteHelper slangListRoutePattern] isEqualToString:@"/slangs"], @"");
 }
 
+- (void)testLocalAssetListRoutePattern {
+    NSAssert([[RouteHelper localAssetListRoutePattern] isEqualToString:@"/local-assets"], @"");
+}
+
+- (void)testLocalAssetConcreteListRoutePattern {
+    NSAssert([[RouteHelper localAssetConcreteListRoutePattern] isEqualToString:@"/local-asset-concrete-list/:type"], @"");
+}
+
+
 - (void)testCharacterListRouteURL {
     NSURL *url = [RouteHelper characterListRouteURL];
     NSAssert([url isKindOfClass:[NSURL class]], @"The character list route url is not an instance of NSURL");
@@ -61,49 +72,196 @@
     NSAssert([[url absoluteString] isEqualToString:expectedString], @"The slang list url string is not right");
 }
 
-- (void)testCharacterDetailRoute {
-    NSString *url = [RouteHelper characterDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg"];
-    NSString *correct1 = [NSString stringWithFormat:@"%@://character/123?item=abc&pronunciation=efg", AppScheme];
-    NSString *correct2 = [NSString stringWithFormat:@"%@://character/123?pronunciation=efg&item=abc", AppScheme];
-    NSAssert([url isEqualToString:correct1] || [url isEqualToString:correct2], @"The character detail route is not right");
+- (void)testLocalAssetListRouteURL {
+    NSURL *url = [RouteHelper localAssetListRouteURL];
+    NSAssert([url isKindOfClass:[url class]], @"The local asset list route url is not an instance of NSURL");
+    
+    NSString *expectingString = [NSString stringWithFormat:@"%@://local-assets", AppScheme];
+    NSAssert([[url absoluteString] isEqualToString:expectingString], @"The local asset list route url string is not right");
 }
 
-- (void)testWordDetailRoute {
-    NSString *url = [RouteHelper wordDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg"];
-    NSString *correct1 = [NSString stringWithFormat:@"%@://word/123?item=abc&pronunciation=efg", AppScheme];
-    NSString *correct2 = [NSString stringWithFormat:@"%@://word/123?pronunciation=efg&item=abc", AppScheme];
-    NSAssert([url isEqualToString:correct1] || [url isEqualToString:correct2], @"The word detail route is not right");
+- (void)testCharacterDetailRouteWithOtherParams {
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    [queryParams addEntriesFromDictionary:otherParams];
+    NSString *url = [RouteHelper characterDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:otherParams];
+    NSString *correct = [NSString stringWithFormat:@"%@://character/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isEqualToString:correct], @"The character detail route with other params is not right");
 }
 
-- (void)testSlangDetailRoute {
-    NSString *url = [RouteHelper slangDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg"];
-    NSString *correct1 = [NSString stringWithFormat:@"%@://slang/123?item=abc&pronunciation=efg", AppScheme];
-    NSString *correct2 = [NSString stringWithFormat:@"%@://slang/123?pronunciation=efg&item=abc", AppScheme];
-    NSAssert([url isEqualToString:correct1] || [url isEqualToString:correct2], @"The slang detail route is not right");
+- (void)testCharacterDetailRouteWithoutOtherParams {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    NSString *url = [RouteHelper characterDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:nil];
+    NSString *correct = [NSString stringWithFormat:@"%@://character/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isEqualToString:correct], @"The character detail route without other params is not right");
 }
 
-- (void)testCharacterDetailRouteURL {
-    NSURL *url = [RouteHelper characterDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg"];
-    NSString *correct1 = [NSString stringWithFormat:@"%@://character/123?item=abc&pronunciation=efg", AppScheme];
-    NSString *correct2 = [NSString stringWithFormat:@"%@://character/123?pronunciation=efg&item=abc", AppScheme];
-    NSAssert([url isKindOfClass:[NSURL class]], @"The character detail route url is not an instance of NSURL");
-    NSAssert([[url absoluteString] isEqualToString:correct1] || [[url absoluteString] isEqualToString:correct2], @"The character route url is not right");
+- (void)testWordDetailRouteWithOtherParams {
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    [queryParams addEntriesFromDictionary:otherParams];
+    NSString *url = [RouteHelper wordDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:otherParams];
+    NSString *correct = [NSString stringWithFormat:@"%@://word/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isEqualToString:correct], @"The word detail route with other params is not right");
 }
 
-- (void)testWordDetailRouteURL {
-    NSURL *url = [RouteHelper wordDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg"];
-    NSString *correct1 = [NSString stringWithFormat:@"%@://word/123?item=abc&pronunciation=efg", AppScheme];
-    NSString *correct2 = [NSString stringWithFormat:@"%@://word/123?pronunciation=efg&item=abc", AppScheme];
-    NSAssert([url isKindOfClass:[NSURL class]], @"The word detail route url is not an instance of NSURL");
-    NSAssert([[url absoluteString] isEqualToString:correct1] || [[url absoluteString] isEqualToString:correct2], @"The word route url is not right");
+- (void)testWordDetailRouteWithoutOtherParams {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    NSString *url = [RouteHelper wordDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:nil];
+    NSString *correct = [NSString stringWithFormat:@"%@://word/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isEqualToString:correct], @"The word detail route without other params is not right");
 }
 
-- (void)testSlangDetailRouteURL {
-    NSURL *url = [RouteHelper slangDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg"];
-    NSString *correct1 = [NSString stringWithFormat:@"%@://slang/123?item=abc&pronunciation=efg", AppScheme];
-    NSString *correct2 = [NSString stringWithFormat:@"%@://slang/123?pronunciation=efg&item=abc", AppScheme];
-    NSAssert([url isKindOfClass:[NSURL class]], @"The slang detail route url is not an instance of NSURL");
-    NSAssert([[url absoluteString] isEqualToString:correct1] || [[url absoluteString] isEqualToString:correct2], @"The slang route url is not right");
+- (void)testSlangDetailRouteWithOtherParams {
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    [queryParams addEntriesFromDictionary:otherParams];
+    NSString *url = [RouteHelper slangDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:otherParams];
+    NSString *correct = [NSString stringWithFormat:@"%@://slang/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isEqualToString:correct], @"The slang detail route with other params is not right");
+}
+
+- (void)testSlangDetailRouteWithoutOtherParams {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    NSString *url = [RouteHelper slangDetailRouteOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:nil];
+    NSString *correct = [NSString stringWithFormat:@"%@://slang/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isEqualToString:correct], @"The slang detail route without other params is not right");
+}
+
+- (void)testLocalAssetConcreteListRouteWithOtherParams {
+    NSDictionary *params = @{
+                             DoNotChangeTabKey: @(YES),
+                             };
+    NSString *url = [RouteHelper localAssetConcreteListRouteOfType:1 otherParams:params];
+    NSString *correct = [NSString stringWithFormat:@"%@://local-asset-concrete-list/1?do-not-change-tab=1", AppScheme];
+    NSAssert([url isEqualToString:correct], @"The concrete list detail route with other params is not right");
+}
+
+- (void)testLocalAssetConcreteListRouteWithoutOtherParams {
+    NSString *url = [RouteHelper localAssetConcreteListRouteOfType:1 otherParams:nil];
+    NSString *correct = [NSString stringWithFormat:@"%@://local-asset-concrete-list/1", AppScheme];
+    NSAssert([url isEqualToString:correct], @"The concrete list detail route without other params is not right");
+}
+
+- (void)testCharacterDetailRouteURLWithOtherParams {
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    [queryParams addEntriesFromDictionary:otherParams];
+    NSURL *url = [RouteHelper characterDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:otherParams];
+    NSString *correct = [NSString stringWithFormat:@"%@://character/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The character detail route url with other params is not an instance of NSURL");
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The character route url with other params is not right");
+}
+
+- (void)testCharacterDetailRouteURLWithoutOtherParams {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    NSURL *url = [RouteHelper characterDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:nil];
+    NSString *correct = [NSString stringWithFormat:@"%@://character/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The character detail route url without other params is not an instance of NSURL");
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The character route url without other params is not right");
+}
+
+- (void)testWordDetailRouteURLWithOtherParams {
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    [queryParams addEntriesFromDictionary:otherParams];
+    NSURL *url = [RouteHelper wordDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:otherParams];
+    NSString *correct = [NSString stringWithFormat:@"%@://word/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The word detail route url with other params is not an instance of NSURL");
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The word route url with other params is not right");
+}
+
+- (void)testWordDetailRouteURLWithoutOtherParams {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    NSURL *url = [RouteHelper wordDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:nil];
+    NSString *correct1 = [NSString stringWithFormat:@"%@://word/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The word detail route url without other params is not an instance of NSURL");
+    NSAssert([[url absoluteString] isEqualToString:correct1], @"The word route url without other params is not right");
+}
+
+- (void)testSlangDetailRouteURLWithOtherParams {
+    NSDictionary *otherParams = @{
+                                  DoNotChangeTabKey: @(YES),
+                                  };
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    [queryParams addEntriesFromDictionary:otherParams];
+    NSURL *url = [RouteHelper slangDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:otherParams];
+    NSString *correct = [NSString stringWithFormat:@"%@://slang/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The slang detail route url with other params is not an instance of NSURL");
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The slang route url with other params is not right");
+}
+
+- (void)testSlangDetailRouteURLWithoutOtherParams {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                       AssetPronunciationKey: @"efg",
+                                                                                       AssetItemKey: @"abc",
+                                                                                       }];
+    NSURL *url = [RouteHelper slangDetailRouteURLOfObjectId:@"123" item:@"abc" pronunciation:@"efg" otherParams:nil];
+    NSString *correct = [NSString stringWithFormat:@"%@://slang/123?%@", AppScheme, [[queryParams copy] queryParams]];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The slang detail route url without other params is not an instance of NSURL");
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The slang route url without other params is not right");
+}
+
+- (void)testLocalAssetConcreteListRouteURLWithOtherParams {
+    NSDictionary *params = @{
+                             DoNotChangeTabKey: @(YES),
+                             };
+    NSURL *url = [RouteHelper localAssetConcreteListRouteURLOfType:1 otherParams:params];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The concrete list route url with other params is not an instance of NSURL");
+    
+    NSString *correct = [NSString stringWithFormat:@"%@://local-asset-concrete-list/1?do-not-change-tab=1", AppScheme];
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The concrete list detail route with other params is not right");
+}
+
+- (void)testLocalAssetConcreteListRouteURLWithoutOtherParams {
+    NSURL *url = [RouteHelper localAssetConcreteListRouteURLOfType:1 otherParams:nil];
+    NSAssert([url isKindOfClass:[NSURL class]], @"The concrete list route url with other params is not an instance of NSURL");
+    
+    NSString *correct = [NSString stringWithFormat:@"%@://local-asset-concrete-list/1", AppScheme];
+    NSAssert([[url absoluteString] isEqualToString:correct], @"The concrete list detail route without other params is not right");
 }
 
 @end
