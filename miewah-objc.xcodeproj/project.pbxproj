@@ -176,6 +176,7 @@
 		9DF322822099B2D100D5C463 /* WordDetailResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF322812099B2D100D5C463 /* WordDetailResponseObject.m */; };
 		9DF66E7C20C4326200DC1342 /* NSDateFormatter+Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF66E7B20C4326200DC1342 /* NSDateFormatter+Singleton.m */; };
 		9DF66E8020C4E1F400DC1342 /* MiewahFileMangerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */; };
+		9DFD2FB120FF2A5B00EB9580 /* InputMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD2FB020FF2A5B00EB9580 /* InputMethod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -505,6 +506,8 @@
 		9DF66E7B20C4326200DC1342 /* NSDateFormatter+Singleton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Singleton.m"; sourceTree = "<group>"; };
 		9DF66E7E20C4E1F400DC1342 /* MiewahFileMangerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiewahFileMangerHelper.h; sourceTree = "<group>"; };
 		9DF66E7F20C4E1F400DC1342 /* MiewahFileMangerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiewahFileMangerHelper.m; sourceTree = "<group>"; };
+		9DFD2FAF20FF2A5B00EB9580 /* InputMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputMethod.h; sourceTree = "<group>"; };
+		9DFD2FB020FF2A5B00EB9580 /* InputMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputMethod.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -907,6 +910,8 @@
 				9DA882EB209C09D6002E02DC /* MiewahSlang.m */,
 				9D2355F020B2AB0E0051A1CE /* NewMiewahAsset.h */,
 				9D2355F120B2AB0E0051A1CE /* NewMiewahAsset.m */,
+				9DFD2FAF20FF2A5B00EB9580 /* InputMethod.h */,
+				9DFD2FB020FF2A5B00EB9580 /* InputMethod.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1789,6 +1794,7 @@
 				9DF3227C2099AD2600D5C463 /* MiewahDetailViewModel.m in Sources */,
 				9DAD6C2420EB1979001BBCE0 /* LeanCloudSlangDAO.m in Sources */,
 				9D6D4F1C20945FBF009AA9CE /* MiewahNetworker.m in Sources */,
+				9DFD2FB120FF2A5B00EB9580 /* InputMethod.m in Sources */,
 				9D0AFE6220B53DA500C93934 /* EditPreviewViewHeader.m in Sources */,
 				9D899BAA20F6EB890051223C /* LocalAssetCollectionViewSectionHeader.m in Sources */,
 				9D23560820B3EAFB0051A1CE /* TextPlaceholderView.m in Sources */,

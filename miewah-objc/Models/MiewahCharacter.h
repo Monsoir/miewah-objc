@@ -7,6 +7,7 @@
 //
 
 #import "MiewahAsset.h"
+#import "InputMethod.h"
 
 @interface MiewahCharacter : MiewahAsset
 
@@ -14,6 +15,12 @@
 @property (nonatomic, copy) NSString *pronunciationVoice;
 
 - (NSDictionary *)deSerializeInputMethods;
-- (NSString *)prettifiedInputMethods;
+
+/**
+ 将输入法模型 JSON 数据转换成阅读友好的格式
+
+ @return 阅读友好的输入法字典
+ */
+- (NSDictionary<NSString *, NSArray<InputMethod *> *> *)organizedInputMethods;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface CharacterDetailViewModel : MiewahDetailViewModel
 
+- (NSString *)prettifiedInputMethod;
+
 @end

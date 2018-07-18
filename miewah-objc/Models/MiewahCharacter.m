@@ -26,16 +26,55 @@
     return inputMethodJSONObject;
 }
 
-- (NSString *)prettifiedInputMethods {
-    NSDictionary *inputMethodJSON = [self deSerializeInputMethods];
-    if (inputMethodJSON == nil) return nil;
+- (NSDictionary<NSString *, NSArray<InputMethod *> *> *)organizedInputMethods {
+    NSDictionary *inputMethods = [self deSerializeInputMethods];
+    if (inputMethods == nil) return nil;
     
-    NSMutableArray<NSString *> *methods = [NSMutableArray array];
-    [inputMethodJSON enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-        [methods addObject: [NSString stringWithFormat:@"%@: %@", key, obj]];
+    /**
+     输入法 JSON 模型
+     
+     {
+         macOS: [
+             {
+                 inputMethodCode: 'native',
+                 input: 'mie',
+             },
+             {
+                 inputMethodCode: 'sogou',
+                 input: 'mie',
+             },
+         ],
+         Windows: [
+             {
+                 inputMethodCode: 'microsoft-pinyin',
+                 input: 'mie',
+             },
+             {
+                 inputMethodCode: 'sogou',
+                 input: 'mie',
+             },
+             {
+                 inputMethodCode: 'bing',
+                 input: 'mie',
+             },
+         ],
+     }
+     */
+    
+    NSMutableDictionary<NSString *, NSArray<InputMethod *> *> *methods = [NSMutableDictionary dictionary];
+    NSMutableArray *temp = [NSMutableArray array];
+    [inputMethods enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray * _Nonnull obj, BOOL * _Nonnull stop) {
+        [temp removeAllObjects];
+        for (NSDictionary *info in obj) {
+            NSString *code = [info objectForKey:InputMethodCodeKey];
+            NSString *name = [info objectForKey:InputMethodNameKey];
+            NSString *input = [info objectForKey:InputMethodInputKey];
+            InputMethod *i = [InputMethod inputMethodWithCode:code name:name input:input];
+            [temp addObject:i];
+        }
+        methods[key] = [temp copy];
     }];
-    
-    return [methods componentsJoinedByString:@"\n"];
+    return [methods copy];
 }
 
 + (NSArray<NSString *> *)extractKeys {

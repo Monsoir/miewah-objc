@@ -8,6 +8,7 @@
 
 #import "CharacterDetailViewModel.h"
 #import "CharacterService.h"
+#import "MiewahCharacter.h"
 
 @interface CharacterDetailViewModel ()
 
@@ -24,11 +25,28 @@
              alwaysString(asset.meaning), // 意义
              alwaysString(asset.source), // 出处参考
              alwaysString(asset.sentences), // 例句
-#warning 后台需要修改一下输入法数据的格式
-//             alwaysString(asset.prettifiedInputMethods), //输入法
-             alwaysString(asset.inputMethods), //输入法
-             @"", // 搜索关键字
+             alwaysString([self prettifiedInputMethod]), // 输入法
+             @"", // 查询关键词
              ];
+}
+
+- (NSString *)prettifiedInputMethod {
+    MiewahCharacter *item = (MiewahCharacter *)self.asset;
+    NSDictionary *methods = [item organizedInputMethods];
+    if (methods == nil) return nil;
+    
+    NSMutableString *presentation = [NSMutableString string];
+    NSMutableString *temp = [NSMutableString string];
+    [methods enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray * _Nonnull obj, BOOL * _Nonnull stop) {
+        [temp setString:@""];
+        for (InputMethod *method in obj) {
+            [temp appendFormat:@"\t%@: %@\n", method.inputMethodName, method.input];
+        }
+        [presentation appendString:key];
+        [presentation appendFormat:@"\n%@", [temp copy]];
+    }];
+    
+    return [presentation copy];
 }
 
 #pragma mark - Accessors
