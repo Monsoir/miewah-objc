@@ -253,7 +253,7 @@ static NSString * SlangFavorTableName = @"slang_favor";
     NSString *createSlangTableSQL = [NSString stringWithFormat:createSlangTableSQLTemplate, SlangFavorTableName];
     
     // 创建索引
-    static NSString *createTableIndexSQLTemplate = @"CREATE INDEX %@_object_id_index ON %@ (objectId);CREATE INDEX %@_item_index ON %@ (item);";
+    static NSString *createTableIndexSQLTemplate = @"CREATE INDEX IF NOT EXISTS %@_object_id_index ON %@ (objectId);CREATE INDEX IF NOT EXISTS %@_item_index ON %@ (item);";
     
     NSString *createCharacterTableIndexSQL = [NSString stringWithFormat:createTableIndexSQLTemplate, CharacterFavorTableName, CharacterFavorTableName, CharacterFavorTableName, CharacterFavorTableName];
     NSString *createWordTableIndexSQL = [NSString stringWithFormat:createTableIndexSQLTemplate, WordFavorTableName, WordFavorTableName, WordFavorTableName, WordFavorTableName];
