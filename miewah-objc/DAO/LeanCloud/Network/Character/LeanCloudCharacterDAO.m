@@ -13,7 +13,8 @@
 
 - (NSURLSessionDataTask *)getListAtPage:(NSInteger)pageIndex success:(LeanCloudListRequestSuccess)successHandler error:(LeanCloudRequestError)errorHandler {
     NSString *url = [SharedLeanCloudAPIManager characterListURLWithPageIndex:pageIndex];
-    return [SharedLeanCloudGetter GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    LeanCloudGetter *manager = SharedLeanCloudGetter;
+    return [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *results = [responseObject valueForKey:@"results"];
         successHandler(results);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -23,10 +24,13 @@
 
 - (NSURLSessionDataTask *)getDetailOfIdentifier:(NSString *)identifier success:(LeanCloudDetailRequestSuccess)successHandler error:(LeanCloudRequestError)errorHandler {
     NSString *url = [SharedLeanCloudAPIManager characterDetailOfIdentifier:identifier];
-    return [SharedLeanCloudGetter GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    LeanCloudGetter *manager = SharedLeanCloudGetter;
+    return [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         successHandler(responseObject);
+        [manager invalidateSessionCancelingTasks:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         errorHandler(error);
+        [manager invalidateSessionCancelingTasks:YES];
     }];
 }
 
