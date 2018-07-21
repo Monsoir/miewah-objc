@@ -9,19 +9,25 @@
 #import "ShareView.h"
 #import <Masonry/Masonry.h>
 #import "UIView+RoundCorner.h"
+#import "UIScrollView+Snapshot.h"
 
 NSString * const ShareItemKey = @"share-item";
 NSString * const ShareMeaningKey = @"share-meaning";
 NSString * const ShareSentenceKey = @"share-sentence";
 
+static NSString *MeaningPrompt = @"意义";
+static NSString *SentencesPrompt = @"例句";
+
 @interface ShareView()
 @property (nonatomic, strong) UILabel *lbItem;
+@property (nonatomic, strong) UILabel *lbMeaningPrompt;
 @property (nonatomic, strong) UILabel *lbMeaning;
+@property (nonatomic, strong) UILabel *lbSentencePrompt;
 @property (nonatomic, strong) UILabel *lbSentence;
+@property (nonatomic, strong) UIScrollView *backingScrollableView;
+@property (nonatomic, strong) UIView *container;
 
-@property (nonatomic, copy) NSString *item;
-@property (nonatomic, copy) NSString *meaning;
-@property (nonatomic, copy) NSString *sentence;
+@property (nonatomic, strong) NSDictionary *userInfo;
 
 @property (nonatomic, assign) BOOL didInitialLayout;
 @end
@@ -36,9 +42,7 @@ NSString * const ShareSentenceKey = @"share-sentence";
 - (instancetype)initWithUserInfo:(NSDictionary *)userInfo {
     self = [super init];
     if (self) {
-        _item = [userInfo valueForKey:ShareItemKey];
-        _meaning = [userInfo valueForKey:ShareMeaningKey];
-        _sentence = [userInfo valueForKey:ShareSentenceKey];
+        _userInfo = userInfo;
         _didInitialLayout = NO;
         
         [self setupSubviews];
@@ -51,42 +55,84 @@ NSString * const ShareSentenceKey = @"share-sentence";
 }
 
 - (void)setupSubviews {
-    [self addSubview:self.lbItem];
-    [self addSubview:self.lbMeaning];
-    [self addSubview:self.lbSentence];
+    [self addSubview:self.backingScrollableView];
+    [self.backingScrollableView addSubview:self.container];
     
-    self.lbItem.text = self.item;
-    if (self.item.length >= 3) self.lbItem.numberOfLines = 2;
-    self.lbMeaning.text = self.meaning;
-    self.lbSentence.text = self.sentence;
+    [self.container addSubview:self.lbItem];
+    [self.container addSubview:self.lbMeaningPrompt];
+    [self.container addSubview:self.lbMeaning];
+    [self.container addSubview:self.lbSentencePrompt];
+    [self.container addSubview:self.lbSentence];
+    [self configureShareContent];
 }
 
 - (void)updateConstraints {
     
     if (self.didInitialLayout == NO) {
         
-        [self.lbItem mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(8);
-            make.centerX.equalTo(self).offset(-30);
-            make.size.mas_equalTo(CGSizeMake(110, 110));
+        [self.backingScrollableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (@available(iOS 11, *)) {
+                make.edges.equalTo(self.safeAreaLayoutGuide);
+            } else {
+                make.edges.equalTo(self.layoutGuides);
+            }
         }];
         
-        [self.lbMeaning mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.lbItem.mas_bottom).offset(8);
-            make.centerX.equalTo(self.lbItem);
-            make.size.mas_equalTo(CGSizeMake(100, 30));
+        [self.container mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.backingScrollableView);
+            make.width.equalTo(self.backingScrollableView);
         }];
         
-        [self.lbSentence mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.lbMeaning.mas_bottom).offset(8);
-            make.centerX.equalTo(self.lbItem);
-            make.size.mas_equalTo(CGSizeMake(100, 50));
+        NSArray<UIView *> *views = @[self.lbItem, self.lbMeaningPrompt, self.lbMeaning, self.lbSentencePrompt, self.lbSentence];
+        __block UIView *lastView = nil;
+        
+        for (UIView *view in views) {
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.container).offset(8);
+                if (lastView == nil) {
+                    make.top.equalTo(self.container).offset(8);
+                    make.size.mas_equalTo(CGSizeMake(110, 110));
+                } else {
+                    make.top.equalTo(lastView.mas_bottom).offset(8);
+                    make.right.lessThanOrEqualTo(self.container);
+                    make.height.mas_greaterThanOrEqualTo(30);
+                }
+                lastView = view;
+            }];
+        }
+        
+        [self.container mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(lastView);
         }];
         
         self.didInitialLayout = YES;
     }
     
     [super updateConstraints];
+}
+
+- (void)configureShareContent {
+    NSString *item = self.userInfo[ShareItemKey];
+    NSString *meaning = self.userInfo[ShareMeaningKey];
+    NSString *sentence = self.userInfo[ShareSentenceKey];
+    
+    self.lbItem.text = item;
+    
+    UIFont *meaningFont = [UIFont systemFontOfSize:20];
+    NSDictionary *meaningAttributes = @{
+                                        NSFontAttributeName: meaningFont,
+                                        };
+    self.lbMeaning.attributedText = [[NSAttributedString alloc] initWithString:meaning attributes:meaningAttributes];
+    
+    UIFont *sentenceFont = [UIFont systemFontOfSize:20];
+    NSDictionary *sentenceAttributes = @{
+                                         NSFontAttributeName: sentenceFont,
+                                         };
+    self.lbSentence.attributedText = [[NSAttributedString alloc] initWithString:sentence attributes:sentenceAttributes];
+}
+
+- (UIImage *)snapshot {
+    return [self.backingScrollableView snapshot];
 }
 
 #pragma mark - Accessors
@@ -103,19 +149,51 @@ NSString * const ShareSentenceKey = @"share-sentence";
     return _lbItem;
 }
 
+- (UILabel *)lbMeaningPrompt {
+    if (_lbMeaningPrompt == nil) {
+        _lbMeaningPrompt = [[UILabel alloc] init];
+        _lbMeaningPrompt.textColor = [UIColor lightGrayColor];
+        _lbMeaningPrompt.text = MeaningPrompt;
+    }
+    return _lbMeaningPrompt;
+}
+
 - (UILabel *)lbMeaning {
     if (_lbMeaning == nil) {
         _lbMeaning = [[UILabel alloc] init];
-        _lbMeaning.font = [UIFont systemFontOfSize:25];
     }
     return _lbMeaning;
+}
+
+- (UILabel *)lbSentencePrompt {
+    if (_lbSentencePrompt == nil) {
+        _lbSentencePrompt = [[UILabel alloc] init];
+        _lbSentencePrompt.textColor = [UIColor lightGrayColor];
+        _lbSentencePrompt.text = SentencesPrompt;
+    }
+    return _lbSentencePrompt;
 }
 
 - (UILabel *)lbSentence {
     if (_lbSentence == nil) {
         _lbSentence = [[UILabel alloc] init];
+        _lbSentence.numberOfLines = 0;
     }
     return _lbSentence;
+}
+
+- (UIView *)container {
+    if (_container == nil) {
+        _container = [[UIView alloc] init];
+    }
+    return _container;
+}
+
+- (UIScrollView *)backingScrollableView {
+    if (_backingScrollableView == nil) {
+        _backingScrollableView = [[UIScrollView alloc] init];
+    }
+    return _backingScrollableView;
 }
 
 @end

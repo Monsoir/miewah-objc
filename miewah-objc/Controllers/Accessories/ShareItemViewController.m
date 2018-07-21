@@ -46,8 +46,7 @@
 }
 
 - (void)shootViewCompletion:(void (^)(UIImage *viewShot))completion {
-    UIImage *shot = [ViewShooter shootAtView:self.shareView];
-    completion(shot);
+    completion([self.shareView snapshot]);
 }
 
 - (ShareView *)shareView {

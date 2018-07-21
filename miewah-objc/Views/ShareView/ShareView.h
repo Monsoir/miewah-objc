@@ -15,5 +15,6 @@ extern NSString * const ShareSentenceKey;
 @interface ShareView : UIView
 
 - (instancetype)initWithUserInfo:(NSDictionary *)userInfo;
+- (UIImage *)snapshot;
 
 @end

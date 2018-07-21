@@ -87,6 +87,7 @@
 		9D48863D20AEC7940007D297 /* TextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D48863B20AEC7940007D297 /* TextTableViewCell.m */; };
 		9D48863E20AEC7940007D297 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D48863C20AEC7940007D297 /* TextTableViewCell.xib */; };
 		9D51F46820C5373A00488DDF /* AppDelegate+TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */; };
+		9D59451821032B3800BEF294 /* UIScrollView+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D59451721032B3800BEF294 /* UIScrollView+Snapshot.m */; };
 		9D63B12120F5A34400B847B0 /* LocalContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D63B12020F5A34400B847B0 /* LocalContainerViewController.m */; };
 		9D63B12420F5A47C00B847B0 /* UIContainerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D63B12320F5A47C00B847B0 /* UIContainerBuilder.m */; };
 		9D63B12720F5AE9500B847B0 /* LocalAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D63B12620F5AE9500B847B0 /* LocalAssetViewController.m */; };
@@ -344,6 +345,8 @@
 		9D48863C20AEC7940007D297 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
 		9D51F46620C5373A00488DDF /* AppDelegate+TabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+TabBar.h"; sourceTree = "<group>"; };
 		9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+TabBar.m"; sourceTree = "<group>"; };
+		9D59451621032B3800BEF294 /* UIScrollView+Snapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Snapshot.h"; sourceTree = "<group>"; };
+		9D59451721032B3800BEF294 /* UIScrollView+Snapshot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Snapshot.m"; sourceTree = "<group>"; };
 		9D63B11F20F5A34400B847B0 /* LocalContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalContainerViewController.h; sourceTree = "<group>"; };
 		9D63B12020F5A34400B847B0 /* LocalContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalContainerViewController.m; sourceTree = "<group>"; };
 		9D63B12220F5A47C00B847B0 /* UIContainerBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContainerBuilder.h; sourceTree = "<group>"; };
@@ -651,6 +654,7 @@
 		9D1B8F992090BD7C0099976C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9D59451521032B2000BEF294 /* UIScrollView */,
 				9D899BCC20FC3D260051223C /* NSDictionary */,
 				9DD5974020F4D6960079DEF5 /* NSObject */,
 				9DF66E7920C4325300DC1342 /* NSDateFormatter */,
@@ -948,6 +952,15 @@
 				9D48863C20AEC7940007D297 /* TextTableViewCell.xib */,
 			);
 			path = TextTableViewCell;
+			sourceTree = "<group>";
+		};
+		9D59451521032B2000BEF294 /* UIScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				9D59451621032B3800BEF294 /* UIScrollView+Snapshot.h */,
+				9D59451721032B3800BEF294 /* UIScrollView+Snapshot.m */,
+			);
+			path = UIScrollView;
 			sourceTree = "<group>";
 		};
 		9D63B11E20F5A33300B847B0 /* Local */ = {
@@ -1686,6 +1699,7 @@
 				9DF3226D2099685000D5C463 /* MiewahWord.m in Sources */,
 				9D3950D320B667970049C9E8 /* MiewahRequestConvention.m in Sources */,
 				9D4500932096F15900A63C20 /* MiewahLoginManager.m in Sources */,
+				9D59451821032B3800BEF294 /* UIScrollView+Snapshot.m in Sources */,
 				9DF3226A2099635F00D5C463 /* WordListResponseObject.m in Sources */,
 				9D6D4F1520940C43009AA9CE /* LoginViewModel.m in Sources */,
 				9DAD6C4920EB658A001BBCE0 /* CharacterService.m in Sources */,
