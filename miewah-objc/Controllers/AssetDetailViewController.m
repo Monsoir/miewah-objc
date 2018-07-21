@@ -63,9 +63,9 @@
                                 AssetMeaningKey: alwaysString(self.vm.asset.meaning),
                                 };
     ShareItemViewController *shareVC = [[ShareItemViewController alloc] initWithShareInfo:shareInfo];
-    CustomAlertController *alert = [[CustomAlertController alloc] initWithTitle:@"告知" customViewController:shareVC style:UIAlertControllerStyleAlert];
+    CustomAlertController *alert = [[CustomAlertController alloc] initWithTitle:self.vm.asset.item customViewController:shareVC style:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"就咁样" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [shareVC shootViewCompletion:^(UIImage *viewShot) {
             [SystemProvide shareItems:@[viewShot]];
         }];
