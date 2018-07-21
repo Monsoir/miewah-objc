@@ -118,13 +118,13 @@ static NSString *SentencesPrompt = @"例句";
     
     self.lbItem.text = item;
     
-    UIFont *meaningFont = [UIFont systemFontOfSize:20];
+    UIFont *meaningFont = [UIFont fontWithName:@"PingFangSC-Medium" size:25];
     NSDictionary *meaningAttributes = @{
                                         NSFontAttributeName: meaningFont,
                                         };
     self.lbMeaning.attributedText = [[NSAttributedString alloc] initWithString:meaning attributes:meaningAttributes];
     
-    UIFont *sentenceFont = [UIFont systemFontOfSize:20];
+    UIFont *sentenceFont = [UIFont fontWithName:@"PingFangSC-Medium" size:25];
     NSDictionary *sentenceAttributes = @{
                                          NSFontAttributeName: sentenceFont,
                                          };
@@ -153,6 +153,7 @@ static NSString *SentencesPrompt = @"例句";
     if (_lbMeaningPrompt == nil) {
         _lbMeaningPrompt = [[UILabel alloc] init];
         _lbMeaningPrompt.textColor = [UIColor lightGrayColor];
+        _lbMeaningPrompt.font = [UIFont fontWithName:@"PingFangSC-Ultralight" size:20];
         _lbMeaningPrompt.text = MeaningPrompt;
     }
     return _lbMeaningPrompt;
@@ -169,6 +170,7 @@ static NSString *SentencesPrompt = @"例句";
     if (_lbSentencePrompt == nil) {
         _lbSentencePrompt = [[UILabel alloc] init];
         _lbSentencePrompt.textColor = [UIColor lightGrayColor];
+        _lbSentencePrompt.font = [UIFont fontWithName:@"PingFangSC-Ultralight" size:20];
         _lbSentencePrompt.text = SentencesPrompt;
     }
     return _lbSentencePrompt;
