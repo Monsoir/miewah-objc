@@ -125,10 +125,6 @@
                                     </connections>
                                 </view>
                                 <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="sLH-pY-bax" id="krL-lq-xbB"/>
-                                    <outlet property="delegate" destination="sLH-pY-bax" id="G6h-Zv-sqD"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -140,10 +136,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YhT-9Z-BRd"/>
                     </view>
-                    <connections>
-                        <outlet property="header" destination="xyb-Zs-J5l" id="Mx6-UY-4e0"/>
-                        <outlet property="tableView" destination="7j2-UP-B7F" id="PJI-pd-Chv"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SzZ-Io-oks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -447,10 +439,6 @@
                                         <outlet property="lbSlang" destination="ax8-DS-SaP" id="pSh-vl-bTr"/>
                                     </connections>
                                 </view>
-                                <connections>
-                                    <outlet property="dataSource" destination="qan-Yb-Ktr" id="QZK-2C-FbH"/>
-                                    <outlet property="delegate" destination="qan-Yb-Ktr" id="hjS-Sk-q3H"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -462,10 +450,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uYM-rK-cwc"/>
                     </view>
-                    <connections>
-                        <outlet property="header" destination="FuA-qK-Zvp" id="gjE-OB-WkC"/>
-                        <outlet property="tableView" destination="5ai-Ok-y3m" id="Cbe-IH-zPI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFA-2C-gEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -956,10 +940,6 @@
                                     </connections>
                                 </view>
                                 <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="ryt-Iu-3cy" id="cw3-4q-1XV"/>
-                                    <outlet property="delegate" destination="ryt-Iu-3cy" id="xn3-qk-JIb"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -971,10 +951,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CzV-Wi-eAi"/>
                     </view>
-                    <connections>
-                        <outlet property="header" destination="TTY-NY-KR2" id="GI1-ew-uU4"/>
-                        <outlet property="tableView" destination="das-uG-yws" id="dQP-gO-arA"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2y0-HA-yN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

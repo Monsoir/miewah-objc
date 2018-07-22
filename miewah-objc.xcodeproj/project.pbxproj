@@ -88,6 +88,8 @@
 		9D48863E20AEC7940007D297 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D48863C20AEC7940007D297 /* TextTableViewCell.xib */; };
 		9D51F46820C5373A00488DDF /* AppDelegate+TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */; };
 		9D59451821032B3800BEF294 /* UIScrollView+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D59451721032B3800BEF294 /* UIScrollView+Snapshot.m */; };
+		9D594583210431C000BEF294 /* ItemDetailHeaderViewStyle1.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D594582210431C000BEF294 /* ItemDetailHeaderViewStyle1.m */; };
+		9D5945862104509500BEF294 /* ItemDetailHeaderViewStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5945852104509500BEF294 /* ItemDetailHeaderViewStyle2.m */; };
 		9D63B12120F5A34400B847B0 /* LocalContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D63B12020F5A34400B847B0 /* LocalContainerViewController.m */; };
 		9D63B12420F5A47C00B847B0 /* UIContainerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D63B12320F5A47C00B847B0 /* UIContainerBuilder.m */; };
 		9D63B12720F5AE9500B847B0 /* LocalAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D63B12620F5AE9500B847B0 /* LocalAssetViewController.m */; };
@@ -347,6 +349,10 @@
 		9D51F46720C5373A00488DDF /* AppDelegate+TabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+TabBar.m"; sourceTree = "<group>"; };
 		9D59451621032B3800BEF294 /* UIScrollView+Snapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Snapshot.h"; sourceTree = "<group>"; };
 		9D59451721032B3800BEF294 /* UIScrollView+Snapshot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Snapshot.m"; sourceTree = "<group>"; };
+		9D594581210431C000BEF294 /* ItemDetailHeaderViewStyle1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailHeaderViewStyle1.h; sourceTree = "<group>"; };
+		9D594582210431C000BEF294 /* ItemDetailHeaderViewStyle1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailHeaderViewStyle1.m; sourceTree = "<group>"; };
+		9D5945842104509500BEF294 /* ItemDetailHeaderViewStyle2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailHeaderViewStyle2.h; sourceTree = "<group>"; };
+		9D5945852104509500BEF294 /* ItemDetailHeaderViewStyle2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailHeaderViewStyle2.m; sourceTree = "<group>"; };
 		9D63B11F20F5A34400B847B0 /* LocalContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalContainerViewController.h; sourceTree = "<group>"; };
 		9D63B12020F5A34400B847B0 /* LocalContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalContainerViewController.m; sourceTree = "<group>"; };
 		9D63B12220F5A47C00B847B0 /* UIContainerBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContainerBuilder.h; sourceTree = "<group>"; };
@@ -604,6 +610,7 @@
 		9D1B8F92209053360099976C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D594580210431B300BEF294 /* ItemDetailHeaderViews */,
 				9D899BDD20FD997A0051223C /* PlainTextFooter */,
 				9D899BBE20F87E940051223C /* CollectionViewSimpleTextSectionAccessory */,
 				9D899BB620F79B420051223C /* CollectionViewBackgroundViews */,
@@ -961,6 +968,17 @@
 				9D59451721032B3800BEF294 /* UIScrollView+Snapshot.m */,
 			);
 			path = UIScrollView;
+			sourceTree = "<group>";
+		};
+		9D594580210431B300BEF294 /* ItemDetailHeaderViews */ = {
+			isa = PBXGroup;
+			children = (
+				9D594581210431C000BEF294 /* ItemDetailHeaderViewStyle1.h */,
+				9D594582210431C000BEF294 /* ItemDetailHeaderViewStyle1.m */,
+				9D5945842104509500BEF294 /* ItemDetailHeaderViewStyle2.h */,
+				9D5945852104509500BEF294 /* ItemDetailHeaderViewStyle2.m */,
+			);
+			path = ItemDetailHeaderViews;
 			sourceTree = "<group>";
 		};
 		9D63B11E20F5A33300B847B0 /* Local */ = {
@@ -1713,6 +1731,7 @@
 				9D899BB920F79B510051223C /* CollectionViewSimpleTextPlaceholderBackgoundView.m in Sources */,
 				9D1B8FC52090CB650099976C /* ColorBlockBasicTableViewCell.m in Sources */,
 				9DAD6C1920EB172E001BBCE0 /* LeanCloudCharacterDAO.m in Sources */,
+				9D594583210431C000BEF294 /* ItemDetailHeaderViewStyle1.m in Sources */,
 				9D4500BD2098595800A63C20 /* CharacterListResponseObject.m in Sources */,
 				9D1B8FAD2090C6AF0099976C /* SlangItemDetailHeaderView.m in Sources */,
 				9D45007F2094B88000A63C20 /* MiewahRegisterManager.m in Sources */,
@@ -1749,6 +1768,7 @@
 				9D48863D20AEC7940007D297 /* TextTableViewCell.m in Sources */,
 				9DA882F2209C0AA7002E02DC /* BaseListReponseObject.m in Sources */,
 				9DAD6C9C20EFDB3D001BBCE0 /* AssetDetailViewController.m in Sources */,
+				9D5945862104509500BEF294 /* ItemDetailHeaderViewStyle2.m in Sources */,
 				9DAD6C0A20EA252E001BBCE0 /* LeanCloudAPIAddresses.m in Sources */,
 				9DF322732099870200D5C463 /* MiewahListViewModel.m in Sources */,
 				9D4500C320985B6A00A63C20 /* MiewahCharacterRequestManager.m in Sources */,

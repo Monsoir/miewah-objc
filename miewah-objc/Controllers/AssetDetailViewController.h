@@ -18,7 +18,7 @@
 @property (nonatomic, strong, readonly) UIRefreshControl *tableRefresher;
 
 - (void)setInitialInfo:(NSDictionary *)info;
-- (void)setupNavigationBar;
+- (void)setupBars;
 - (void)setupSubviews;
 - (void)linkSignals;
 - (void)actionShare;

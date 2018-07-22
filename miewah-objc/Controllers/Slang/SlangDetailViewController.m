@@ -11,15 +11,16 @@
 #import "SlangDetailViewModel.h"
 #import "NotificationBanner.h"
 #import "UIConstants.h"
-#import "SlangItemDetailHeaderView.h"
+#import "ItemDetailHeaderViewStyle2.h"
+#import <Masonry/Masonry.h>
 #import "PlainTextFooter.h"
 
 static NSString *SectionIdentifier = @"section-header";
 
 @interface SlangDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet SlangItemDetailHeaderView *header;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ItemDetailHeaderViewStyle2 *header;
 @property (nonatomic, strong) PlainTextFooter *plainTextFooter;
 
 @property (nonatomic, strong) SlangDetailViewModel *vm;
@@ -33,6 +34,17 @@ static NSString *SectionIdentifier = @"section-header";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGSize size = [ItemDetailHeaderViewStyle2 preDefinedSize];
+    self.header.frame = CGRectMake(0, 0, self.view.bounds.size.width, size.height);
+    self.tableView.tableHeaderView = self.header;
+    
+    self.plainTextFooter.frame = CGRectMake(0, 0, self.view.bounds.size.width, 100);
+    self.tableView.tableFooterView = self.plainTextFooter;
+}
+
 - (void)linkSignals {
     @weakify(self);
     
@@ -40,8 +52,8 @@ static NSString *SectionIdentifier = @"section-header";
         @strongify(self);
         void (^_)(void) = ^void() {
             [self.navigationItem setRightBarButtonItems:@[self.shareItem, self.favorItem]];
-            self.header.lbSlang.text = self.vm.asset.item;
-            self.header.lbPronounce.text = self.vm.asset.pronunciation;
+            self.header.lbItem.text = self.vm.asset.item;
+            self.header.lbPronunce.text = self.vm.asset.pronunciation;
             
             // 当自动更新完成后，才将 table view 的更新控件赋值到
             // 避免多次重复刷新产生不必要的 bug
@@ -57,8 +69,8 @@ static NSString *SectionIdentifier = @"section-header";
         @strongify(self);
         void (^_)(void) = ^void() {
             [self.navigationItem setRightBarButtonItems:@[self.shareItem, self.favorItem]];
-            self.header.lbSlang.text = self.vm.asset.item;
-            self.header.lbPronounce.text = self.vm.asset.pronunciation;
+            self.header.lbItem.text = self.vm.asset.item;
+            self.header.lbPronunce.text = self.vm.asset.pronunciation;
             [self.tableRefresher endRefreshing];
             [self.plainTextFooter setDetail:[self.vm.asset normalFormatUpdatedAt]];
             [self.tableView reloadData];
@@ -108,17 +120,19 @@ static NSString *SectionIdentifier = @"section-header";
     }];
 }
 
-- (void)setupSubviews {
-    self.tableView.sectionHeaderHeight = 40;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 100;
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:SectionIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
-    self.tableView.tableFooterView = [[UIView alloc] init];
+- (void)setupSubviews {    
+    [self.view addSubview:self.tableView];
     
-    self.header.lbSlang.text = self.vm.asset.item;
-    self.header.lbPronounce.text = self.vm.asset.pronunciation;
-    self.tableView.tableFooterView = self.plainTextFooter;
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11, *)) {
+            make.edges.equalTo(self.view.safeAreaLayoutGuide);
+        } else {
+            make.edges.equalTo(self.view.layoutGuides);
+        }
+    }];
+    
+    self.header.lbItem.text = self.vm.asset.item;
+    self.header.lbPronunce.text = self.vm.asset.pronunciation;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -147,6 +161,28 @@ static NSString *SectionIdentifier = @"section-header";
 
 - (void)setInitialInfo:(NSDictionary *)info {
     _vm = [[SlangDetailViewModel alloc] initWithInfo:info];
+}
+
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.sectionHeaderHeight = 40;
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = 100;
+        [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:SectionIdentifier];
+        [_tableView registerNib:[UINib nibWithNibName:[ItemIntroductionCell reuseIdentifier] bundle:nil] forCellReuseIdentifier:[ItemIntroductionCell reuseIdentifier]];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+
+- (ItemDetailHeaderViewStyle2 *)header {
+    if (_header == nil) {
+        _header = [[ItemDetailHeaderViewStyle2 alloc] init];
+    }
+    return _header;
 }
 
 - (PlainTextFooter *)plainTextFooter {

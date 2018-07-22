@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupNavigationBar];
+    [self setupBars];
     [self setupSubviews];
     [self linkSignals];
     
@@ -48,7 +48,7 @@
 
 - (void)setInitialInfo:(NSDictionary *)info {}
 
-- (void)setupNavigationBar {
+- (void)setupBars {
     self.navigationItem.rightBarButtonItem = self.loadingIndicatorItem;
     self.title = self.vm.asset.item;
 }

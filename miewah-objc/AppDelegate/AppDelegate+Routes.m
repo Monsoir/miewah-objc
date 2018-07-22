@@ -86,8 +86,6 @@
     
     JLRoutes *routes = [JLRoutes globalRoutes];
     
-    UIStoryboard *sb = MainStoryBoard;
-    
     {
         /* character 详情路由 */
         JLRRouteDefinition *route = [[JLRRouteDefinition alloc] initWithPattern:[RouteHelper characterDetailRoutePattern] priority:0 handlerBlock:^BOOL(NSDictionary * _Nonnull parameters) {
@@ -100,7 +98,7 @@
                                        AssetPronunciationKey: alwaysString([parameters objectForKey:AssetPronunciationKey]),
                                        AssetObjectIdKey: alwaysString([parameters objectForKey:AssetObjectIdKey])
                                        };
-            AssetDetailViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CharacterDetailViewController"];
+            AssetDetailViewController *vc = [[NSClassFromString(@"CharacterDetailViewController") alloc] init];
             [vc setInitialInfo:userInfo];
             [AppCurrentNavigationController pushViewController:vc animated:YES];
             
@@ -121,7 +119,7 @@
                                        AssetPronunciationKey: alwaysString([parameters objectForKey:AssetPronunciationKey]),
                                        AssetObjectIdKey: alwaysString([parameters objectForKey:AssetObjectIdKey])
                                        };
-            AssetDetailViewController *vc = [sb instantiateViewControllerWithIdentifier:@"WordDetailViewController"];
+            AssetDetailViewController *vc = [[NSClassFromString(@"WordDetailViewController") alloc] init];
             [vc setInitialInfo:userInfo];
             [AppCurrentNavigationController pushViewController:vc animated:YES];
             
@@ -142,7 +140,7 @@
                                        AssetPronunciationKey: alwaysString([parameters objectForKey:AssetPronunciationKey]),
                                        AssetObjectIdKey: alwaysString([parameters objectForKey:AssetObjectIdKey])
                                        };
-            AssetDetailViewController *vc = [sb instantiateViewControllerWithIdentifier:@"SlangDetailViewController"];
+            AssetDetailViewController *vc = [[NSClassFromString(@"SlangDetailViewController") alloc] init];
             [vc setInitialInfo:userInfo];
             [AppCurrentNavigationController pushViewController:vc animated:YES];
             
