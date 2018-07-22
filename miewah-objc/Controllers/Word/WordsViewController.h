@@ -9,5 +9,5 @@
 #import "MiewahListViewController.h"
 
 @interface WordsViewController : MiewahListViewController
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end

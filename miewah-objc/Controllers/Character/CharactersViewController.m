@@ -13,12 +13,15 @@
 #import "UIConstants.h"
 #import "NotificationBanner.h"
 #import "MiewahCharacter.h"
+#import "UIContainerBuilder.h"
+#import <Masonry/Masonry.h>
 
 #import "UIColor+Hex.h"
 #import "UITableView+AutoRefresh.h"
 
 @interface CharactersViewController ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
@@ -35,7 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupNavigationBar];
+    [self setupBars];
     [self setupSubviews];
     [self linkSignals];
 }
@@ -91,23 +94,24 @@
     }];
 }
 
-- (void)setupNavigationBar {
+- (void)setupBars {
 //    [self configureNewOneItem];
+    self.navigationItem.title = @"字";
+    if (@available(iOS 11, *)) {
+        self.navigationController.navigationBar.prefersLargeTitles = YES;
+    }
+    self.tabBarItem.title = nil;
 }
 
 - (void)setupSubviews {
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
-    self.tableView.rowHeight = [ItemTableViewCell cellHeight];
-    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:[ItemTableViewCell reuseIdentifier]];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.showsVerticalScrollIndicator = YES;
-    
-    // 设置 tableview 的下拉刷新
-    self.tableView.refreshControl = self.refreshControl;
-    
-    // 设置 tableview 最下面的点击加载
-    self.tableView.tableFooterView = self.footer;
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11, *)) {
+            make.edges.equalTo(self.view.safeAreaLayoutGuide);
+        } else {
+            make.edges.equalTo(self.view.layoutGuides);
+        }
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -134,6 +138,12 @@
     [self.vm reloadData];
 }
 
+- (MiewahItemType)miewahItemType {
+    return MiewahItemTypeCharacter;
+}
+
+#pragma mark - Accessors
+
 - (CharacterListViewModel *)vm {
     if (_vm == nil) {
         _vm = [[CharacterListViewModel alloc] init];
@@ -141,8 +151,24 @@
     return _vm;
 }
 
-- (MiewahItemType)miewahItemType {
-    return MiewahItemTypeCharacter;
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        NSArray *cellInfo = @[@{TableViewBuilderCellClassKey: [ItemTableViewCell class], TableViewBuilderCellIdentifierKey: [ItemTableViewCell reuseIdentifier]}];
+        _tableView = [UIContainerBuilder tableViewWithBackgroundColor:[UIColor colorWithHexString:@"#F6F6F6"]
+                                                            rowHeight:[ItemTableViewCell cellHeight]
+                                                             cellInfo:cellInfo
+                                                             delegate:self
+                                                           dataSource:self];
+        
+        _tableView.showsVerticalScrollIndicator = YES;
+        
+        // 设置 tableview 的下拉刷新
+        _tableView.refreshControl = self.refreshControl;
+        
+        // 设置 tableview 最下面的点击加载
+        _tableView.tableFooterView = self.footer;
+    }
+    return _tableView;
 }
 
 - (UIRefreshControl *)refreshControl {

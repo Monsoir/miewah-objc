@@ -11,6 +11,8 @@
 #import "NotificationBanner.h"
 #import "ListLoadMoreFooterView.h"
 #import "MiewahWord.h"
+#import <Masonry/Masonry.h>
+#import "UIContainerBuilder.h"
 
 #import "WordListViewModel.h"
 #import "UIConstants.h"
@@ -20,6 +22,7 @@
 
 @interface WordsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ListLoadMoreFooterView *footer;
 
@@ -36,7 +39,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupNavigationBar];
+    [self setupBars];
     [self setupSubviews];
     [self linkSignals];
 }
@@ -89,22 +92,23 @@
     }];
 }
 
-- (void)setupNavigationBar {
+- (void)setupBars {
+    self.navigationItem.title = @"词";
+    if (@available(iOS 11, *)) {
+        self.navigationController.navigationBar.prefersLargeTitles = YES;
+    }
+    self.tabBarItem.title = nil;
 }
 
 - (void)setupSubviews {
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"#F6F6F6"];
-    self.tableView.rowHeight = [ItemTableViewCell cellHeight];
-    [self.tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:[NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])]];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.showsVerticalScrollIndicator = YES;
-    
-    // 设置 tableview 的下拉刷新
-    self.tableView.refreshControl = self.refreshControl;
-    
-    // 设置 tableview 最下面的点击加载
-    self.tableView.tableFooterView = self.footer;
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11, *)) {
+            make.edges.equalTo(self.view.safeAreaLayoutGuide);
+        } else {
+            make.edges.equalTo(self.view.layoutGuides);
+        }
+    }];
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {
@@ -122,8 +126,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"%@-%@", [ItemTableViewCell reuseIdentifier], NSStringFromClass([self class])];
-    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[ItemTableViewCell reuseIdentifier] forIndexPath:indexPath];
     MiewahWord *word = (MiewahWord *)self.vm.items[indexPath.row];
     cell.item = word.item;
     cell.pronunciation = word.pronunciation;
@@ -134,6 +137,28 @@
 
 - (MiewahItemType)miewahItemType {
     return MiewahItemTypeWord;
+}
+
+#pragma mark - Accessors
+
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        NSArray *cellInfo = @[@{TableViewBuilderCellClassKey: [ItemTableViewCell class], TableViewBuilderCellIdentifierKey: [ItemTableViewCell reuseIdentifier]}];
+        _tableView = [UIContainerBuilder tableViewWithBackgroundColor:[UIColor colorWithHexString:@"#F6F6F6"]
+                                                            rowHeight:[ItemTableViewCell cellHeight]
+                                                             cellInfo:cellInfo
+                                                             delegate:self
+                                                           dataSource:self];
+        
+        _tableView.showsVerticalScrollIndicator = YES;
+        
+        // 设置 tableview 的下拉刷新
+        _tableView.refreshControl = self.refreshControl;
+        
+        // 设置 tableview 最下面的点击加载
+        _tableView.tableFooterView = self.footer;
+    }
+    return _tableView;
 }
 
 - (WordListViewModel *)vm {

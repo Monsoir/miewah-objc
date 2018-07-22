@@ -37,7 +37,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="字" id="n1O-Ln-Ze1"/>
                     <connections>
-                        <outlet property="tableView" destination="3ZF-It-BpY" id="sNI-lf-uP8"/>
                         <segue destination="ryt-Iu-3cy" kind="show" identifier="showCharacterDetail" id="AiO-pz-xXt"/>
                     </connections>
                 </viewController>
@@ -201,10 +200,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VTV-OF-dBx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="tLY-lZ-jMt" id="eLL-VF-4LR"/>
-                                    <outlet property="delegate" destination="tLY-lZ-jMt" id="hqS-1E-tXC"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -218,7 +213,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="故仔" id="eXW-AY-eGH"/>
                     <connections>
-                        <outlet property="tableView" destination="VTV-OF-dBx" id="cgs-Ua-6b6"/>
                         <segue destination="qan-Yb-Ktr" kind="show" identifier="showSlangDetail" id="8vv-eD-QY2"/>
                     </connections>
                 </viewController>
@@ -501,7 +495,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="词" id="Tt4-eD-tAS"/>
                     <connections>
-                        <outlet property="tableView" destination="jBy-hm-Aq7" id="Kko-Sd-EeN"/>
                         <segue destination="sLH-pY-bax" kind="show" identifier="showWordDetail" id="VN9-U8-rpq"/>
                     </connections>
                 </viewController>

@@ -27,6 +27,7 @@
     LeanCloudGetter *manager = SharedLeanCloudGetter;
     return [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         successHandler(responseObject);
+        // https://github.com/AFNetworking/AFNetworking/issues/1528
         [manager invalidateSessionCancelingTasks:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         errorHandler(error);

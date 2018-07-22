@@ -9,6 +9,9 @@
 #import "AppDelegate+TabBar.h"
 #import "LocalContainerViewController.h"
 #import "UINavigationBar+BottomLine.h"
+#import "CharactersViewController.h"
+#import "WordsViewController.h"
+#import "SlangsViewController.h"
 
 @implementation AppDelegate (TabBar)
 
@@ -21,15 +24,18 @@
 }
 
 - (NSArray<UINavigationController *> *)tabs {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    UINavigationController *characterNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"CharacterNC"];
+    CharactersViewController *charactersVC = [[CharactersViewController alloc] init];
+    UINavigationController *characterNC = [[UINavigationController alloc] initWithRootViewController:charactersVC];
     [[self class] configureViewController:characterNC tabBarImage:[UIImage imageNamed:@"tab-bar-character"] selected:[UIImage imageNamed:@"tab-bar-character-selected"]];
     
-    UINavigationController *wordNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"WordNC"];
+    WordsViewController *wordsVC = [[WordsViewController alloc] init];
+    UINavigationController *wordNC = [[UINavigationController alloc] initWithRootViewController:wordsVC];
     [[self class] configureViewController:wordNC tabBarImage:[UIImage imageNamed:@"tab-bar-word"] selected:[UIImage imageNamed:@"tab-bar-word-selected"]];
     
-    UINavigationController *slangNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"SlangNC"];
+    SlangsViewController *slangsVC = [[SlangsViewController alloc] init];
+    UINavigationController *slangNC = [[UINavigationController alloc] initWithRootViewController:slangsVC];
     [[self class] configureViewController:slangNC tabBarImage:[UIImage imageNamed:@"tab-bar-slang"] selected:[UIImage imageNamed:@"tab-bar-slang-selected"]];
     
 //    UINavigationController *mineNC = [[self class] navigationViewControllerFromStoryboard:sb identifier:@"MineNC"];
