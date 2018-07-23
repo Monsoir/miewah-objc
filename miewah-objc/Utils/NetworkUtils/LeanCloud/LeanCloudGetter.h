@@ -11,11 +11,11 @@
 @import AFNetworking;
 
 #define SharedLeanCloudGetter [LeanCloudGetter sharedGetter]
-#define ALeanCloudGetter [LeanCloudGetter aGetter]
+//#define ALeanCloudGetter [LeanCloudGetter aGetter]
 
 @interface LeanCloudGetter : AFHTTPSessionManager
 
 + (instancetype)sharedGetter;
-+ (instancetype)aGetter;
+//+ (instancetype)aGetter;
 
 @end

@@ -11,16 +11,11 @@
 
 @implementation LeanCloudGetter
 
-- (void)dealloc {
-    NSLog(@"%@ deallocs", [self class]);
-}
-
 + (instancetype)sharedGetter {
     static LeanCloudGetter *_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        _instance = [[LeanCloudGetter alloc] initWithBaseURL:nil];
-        _instance = [[LeanCloudGetter alloc] initWithSessionConfiguration:nil];
+        _instance = [[LeanCloudGetter alloc] initWithBaseURL:[NSURL URLWithString:LeanCloudBaseURL]];
         [_instance.requestSerializer setValue:LeanCloudApplicationKey forHTTPHeaderField:@"X-Avoscloud-Application-Key"];
         [_instance.requestSerializer setValue:LeanCloudApplicationId forHTTPHeaderField:@"X-Avoscloud-Application-Id"];
     });
@@ -28,7 +23,7 @@
 }
 
 + (instancetype)aGetter {
-    LeanCloudGetter *getter = [[LeanCloudGetter alloc] initWithBaseURL:nil];
+    LeanCloudGetter *getter = [[LeanCloudGetter alloc] initWithBaseURL:[NSURL URLWithString:LeanCloudBaseURL]];
     [getter.requestSerializer setValue:LeanCloudApplicationKey forHTTPHeaderField:@"X-Avoscloud-Application-Key"];
     [getter.requestSerializer setValue:LeanCloudApplicationId forHTTPHeaderField:@"X-Avoscloud-Application-Id"];
     return getter;

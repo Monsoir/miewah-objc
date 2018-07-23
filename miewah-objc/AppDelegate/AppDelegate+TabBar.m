@@ -24,7 +24,6 @@
 }
 
 - (NSArray<UINavigationController *> *)tabs {
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     CharactersViewController *charactersVC = [[CharactersViewController alloc] init];
     UINavigationController *characterNC = [[UINavigationController alloc] initWithRootViewController:charactersVC];
