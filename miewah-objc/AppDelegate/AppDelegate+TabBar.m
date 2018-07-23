@@ -66,6 +66,10 @@
     
     vc.tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        [((UINavigationController *)vc).navigationBar removeBottomLine];
+    }
 }
 
 @end
