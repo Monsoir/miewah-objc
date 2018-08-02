@@ -88,7 +88,7 @@
             
             // 再请求新数据
             [self.tableView refresh];
-            [self actionRefresh:nil];
+            [self.vm reloadData];
         };
         runOnMainThread(_);
     }];
@@ -134,8 +134,15 @@
     [JLRoutes routeURL:routeURL];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // 当暂停滚动时，才刷新列表
+    // 防止过多调用接口
+    if ([self.refreshControl isRefreshing]) {
+        [self.vm reloadData];
+    }
+}
+
 - (void)actionRefresh:(UIRefreshControl *)sender {
-    [self.vm reloadData];
 }
 
 - (MiewahItemType)miewahItemType {

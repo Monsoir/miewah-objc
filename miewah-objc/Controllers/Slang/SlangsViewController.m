@@ -92,7 +92,7 @@
             [self.tableView reloadData];
             
             [self.tableView refresh];
-            [self actionRefresh:nil];
+            [self.vm reloadData];
         };
         runOnMainThread(_);
     }];
@@ -118,7 +118,6 @@
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {
-    [self.vm reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,6 +138,14 @@
     cell.meaning = slang.meaning;
     cell.updateAt = [slang normalFormatUpdatedAt];
     return cell;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // 当暂停滚动时，才刷新列表
+    // 防止过多调用接口
+    if ([self.refreshControl isRefreshing]) {
+        [self.vm reloadData];
+    }
 }
 
 - (MiewahItemType)miewahItemType {
