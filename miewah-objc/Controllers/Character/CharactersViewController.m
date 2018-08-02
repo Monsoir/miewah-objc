@@ -161,6 +161,7 @@
                                                            dataSource:self];
         
         _tableView.showsVerticalScrollIndicator = YES;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         // 设置 tableview 的下拉刷新
         _tableView.refreshControl = self.refreshControl;
