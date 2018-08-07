@@ -96,7 +96,7 @@
     self.loading = YES;
     if (self.currentTask) [self.currentTask cancel];
     @weakify(self);
-    [self.service getDetailOfIdentifier:self.asset.objectId completion:^(MiewahAsset *asset, NSError *error) {
+    self.currentTask = [self.service getDetailOfIdentifier:self.asset.objectId completion:^(MiewahAsset *asset, NSError *error) {
         @strongify(self);
         self.loading = NO;
         self.currentTask = nil;
