@@ -29,6 +29,8 @@
  */
 @property (nonatomic, assign) NSInteger favordSkip;
 
+@property (nonatomic, strong) NSURLSessionDataTask *currentTask;
+
 @end
 
 @implementation MiewahListViewModel
@@ -90,9 +92,12 @@
 }
 
 - (void)loadData {
+    if (self.currentTask) [self.currentTask cancel];
     @weakify(self);
     [self.service getListAtPageIndex:self.skip completion:^(NSArray<MiewahAsset *> *list, NSError *error) {
         @strongify(self);
+        // 清空当前任务
+        self.currentTask = nil;
         if (error) {
             [self.loadedFailure sendNext:error];
             return;

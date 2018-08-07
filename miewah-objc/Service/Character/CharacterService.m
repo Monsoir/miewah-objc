@@ -18,12 +18,12 @@
 
 @implementation CharacterService
 
-- (void)getListAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
-    [self getListFromLeanCloudAtPageIndex:pageIndex completion:completion];
+- (NSURLSessionDataTask *)getListAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
+    return [self getListFromLeanCloudAtPageIndex:pageIndex completion:completion];
 }
 
-- (void)getDetailOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion {
-    [self getDetailFromLeanCloudOfIdentifier:identifier completion:completion];
+- (NSURLSessionDataTask *)getDetailOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion {
+    return [self getDetailFromLeanCloudOfIdentifier:identifier completion:completion];
 }
 
 - (void)cacheList:(NSArray<MiewahAsset *> *)aList completion:(CacheCompletion)completion {
@@ -54,8 +54,8 @@
     [DatabaseHelper readFavoredItemsOfType:MiewahItemTypeCharacter skip:skip size:count completion:completion];
 }
 
-- (void)getListFromLeanCloudAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
-    [self.dao getListAtPage:pageIndex success:^(NSArray *results) {
+- (NSURLSessionDataTask *)getListFromLeanCloudAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion {
+    return [self.dao getListAtPage:pageIndex success:^(NSArray *results) {
         NSMutableArray<MiewahCharacter *> *characters = [NSMutableArray array];
         [results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:obj];
@@ -67,8 +67,8 @@
     }];
 }
 
-- (void)getDetailFromLeanCloudOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion {
-    [self.dao getDetailOfIdentifier:identifier success:^(NSDictionary *result) {
+- (NSURLSessionDataTask *)getDetailFromLeanCloudOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion {
+    return [self.dao getDetailOfIdentifier:identifier success:^(NSDictionary *result) {
         MiewahCharacter *character = [[MiewahCharacter alloc] initWithDictionary:result];
         completion(character, nil);
     } error:^(NSError *error) {

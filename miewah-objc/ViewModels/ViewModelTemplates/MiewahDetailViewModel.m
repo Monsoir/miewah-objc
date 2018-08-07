@@ -24,6 +24,8 @@
 @property (nonatomic, strong) RACSignal *favorSignal;
 @property (nonatomic, strong) RACSignal *assetExistSignal;
 
+@property (nonatomic, strong) NSURLSessionDataTask *currentTask;
+
 @end
 
 @implementation MiewahDetailViewModel
@@ -92,11 +94,12 @@
 
 - (void)loadData {
     self.loading = YES;
+    if (self.currentTask) [self.currentTask cancel];
     @weakify(self);
     [self.service getDetailOfIdentifier:self.asset.objectId completion:^(MiewahAsset *asset, NSError *error) {
         @strongify(self);
         self.loading = NO;
-        
+        self.currentTask = nil;
         if (error != nil) {
             [self.loadedFailure sendNext:error];
             return;

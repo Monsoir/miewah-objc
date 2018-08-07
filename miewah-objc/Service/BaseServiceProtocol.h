@@ -16,8 +16,8 @@ typedef void(^ServiceGetDetailCompletion)(MiewahAsset *asset, NSError *error);
 @protocol BaseServiceProtocol <NSObject>
 
 /* From server */
-- (void)getListAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion;
-- (void)getDetailOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion;
+- (NSURLSessionDataTask *)getListAtPageIndex:(NSInteger)pageIndex completion:(ServiceGetListCompletion)completion;
+- (NSURLSessionDataTask *)getDetailOfIdentifier:(NSString *)identifier completion:(ServiceGetDetailCompletion)completion;
 
 /* Cache */
 - (void)cacheList:(NSArray<MiewahAsset *> *)aList completion:(CacheCompletion)completion;
