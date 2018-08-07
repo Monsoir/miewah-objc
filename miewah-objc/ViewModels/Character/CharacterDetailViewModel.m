@@ -33,7 +33,7 @@
 - (NSString *)prettifiedInputMethod {
     MiewahCharacter *item = (MiewahCharacter *)self.asset;
     NSDictionary *methods = [item organizedInputMethods];
-    if (methods == nil) return nil;
+    if (methods == nil) return item.inputMethods;
     
     NSMutableString *presentation = [NSMutableString string];
     NSMutableString *temp = [NSMutableString string];
