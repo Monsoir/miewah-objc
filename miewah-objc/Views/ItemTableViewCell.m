@@ -63,11 +63,11 @@ static const CGFloat ScaleY = 0.9;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGSize offset = CGSizeMake(-2, -2);
-    CGFloat radius = 8;
-    CGFloat opacity = 0.8;
-    UIColor *color = [UIColor colorWithHexString:@"#c7c7c7"];
-    [self.container simpleShadowWithOffset:offset radius:radius opacity:opacity color:color];
+//    CGSize offset = CGSizeMake(-2, -2);
+//    CGFloat radius = 8;
+//    CGFloat opacity = 0.8;
+//    UIColor *color = [UIColor colorWithHexString:@"#c7c7c7"];
+//    [self.container simpleShadowWithOffset:offset radius:radius opacity:opacity color:color];
     
     [self.container maskRoundedCornersWithRadius:10];
     [self.accessoriesContainer addTopBorder:4 height:1 color:[UIColor colorWithHexString:@"#ececec"]];
