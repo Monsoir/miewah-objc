@@ -28,6 +28,16 @@
 
 @property (nonatomic, strong) WordListViewModel *vm;
 
+/**
+ 标记是否初次请求数据 || 重新加载数据
+ */
+@property (nonatomic, assign, getter=isRefresh) BOOL refresh;
+
+/**
+ 标记是否允许请求，避免多次请求
+ */
+@property (nonatomic, assign, getter=isLoadPermitted) BOOL loadPermitted;
+
 @end
 
 @interface WordsViewController (loadMoreFooter)<ListLoadMoreFooterViewDelegate>
@@ -38,6 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.refresh = YES;
     
     [self setupBars];
     [self setupSubviews];
@@ -63,8 +75,15 @@
         @strongify(self);
         void (^_)(void) = ^void() {
             self.footer.status = ListLoadMoreFooterViewStatusNotLoading;
+            [self.tableView.refreshControl endRefreshing];
+            if (self.isRefresh) {
+                self.refresh = NO;
+                // 手动设置，避免导航栏缩小
+                [UIView animateWithDuration:0.25 animations:^{
+                    [self.tableView setContentOffset:CGPointMake(0, -116) animated:NO];
+                }];
+            }
             [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
         };
         runOnMainThread(_);
     }];
@@ -83,9 +102,13 @@
     [self.vm.readCacheCompleted subscribeCompleted:^{
         @strongify(self);
         void(^_)(void) = ^void() {
+            // 先显示缓存数据
             [self.tableView reloadData];
             
+            self.tableView.refreshControl = self.refreshControl;
             [self.tableView refresh];
+            
+            // 再请求新数据
             [self.vm reloadData];
         };
         runOnMainThread(_);
@@ -112,6 +135,8 @@
 }
 
 - (void)actionRefresh:(UIRefreshControl *)sender {
+    self.loadPermitted = YES;
+    self.refresh = YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,9 +162,15 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     // 当暂停滚动时，才刷新列表
     // 防止过多调用接口
-    if ([self.refreshControl isRefreshing]) {
+    if (self.isLoadPermitted) {
+        self.loadPermitted = NO;
         [self.vm reloadData];
     }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    // 开始拉动，不允许请求，用户松开后才允许请求
+    self.loadPermitted = NO;
 }
 
 - (MiewahItemType)miewahItemType {
@@ -159,9 +190,6 @@
         
         _tableView.showsVerticalScrollIndicator = YES;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        // 设置 tableview 的下拉刷新
-        _tableView.refreshControl = self.refreshControl;
         
         // 设置 tableview 最下面的点击加载
         _tableView.tableFooterView = self.footer;

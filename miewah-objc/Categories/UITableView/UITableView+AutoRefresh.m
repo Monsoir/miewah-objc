@@ -11,7 +11,7 @@
 @implementation UITableView (AutoRefresh)
 
 - (void)refresh {
-    [self setContentOffset:CGPointMake(0, self.contentOffset.y - self.refreshControl.frame.size.height / 2) animated:YES];
+    [self setContentOffset:CGPointMake(0, self.contentOffset.y - self.refreshControl.frame.size.height) animated:NO];
     [self.refreshControl beginRefreshing];
 }
 
