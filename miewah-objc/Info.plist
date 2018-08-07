@@ -28,9 +28,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>请允许「咩话」进行录音</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>请允许「咩话」向图片库添加图片</string>
 	<key>UIRequiredDeviceCapabilities</key>
